@@ -6,6 +6,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Page.Resources>
@@ -63,49 +65,53 @@
                  FontSize="18"
                  Text="ZTasks"
                  Foreground="White"
-                 Margin="20,10,0,0" />
+                 Margin="20,10,220,0" />
 
             <AutoSuggestBox Name="MyAutoSuggestBox"
                       QueryIcon="Find"
                       PlaceholderText="Quick Search"
                  RelativePanel.RightOf="TitleTextBlock"
                       Width="250"
-                      Margin="210,5,10,0" />
+                      Margin="0,5,10,0" />
 
         </RelativePanel>
 
         <SplitView Name="MySplitView"
                Grid.Row="1"
                DisplayMode="CompactInline"
-               OpenPaneLength="320"
+               OpenPaneLength="250"
                CompactPaneLength="45" 
                IsPaneOpen="True"
                    >
             <SplitView.Pane>
-                <ListBox SelectionMode="Single" >
-                    <ListBoxItem Name="Financial">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock
+                <controls:Expander Header="Views" IsExpanded="True" VerticalAlignment="Top" HorizontalAlignment="Stretch">
+                    <ListBox SelectionMode="Single"  >
+                        <ListBoxItem Name="Home">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock
                   Text="&#xE80F;"
+                  Margin="0,1.7,0,0"
                   FontFamily="Segoe MDL2 Assets"
                   FontSize="20" />
-                            <TextBlock Text="Financial"
+                                <TextBlock Text="Home"
                          FontSize="18"
                          Margin="20,0,0,0" />
-                        </StackPanel>
-                    </ListBoxItem>
-                    <ListBoxItem Name="Food">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock
-                  Text="&#xE1CE;"
+                            </StackPanel>
+                        </ListBoxItem>
+                        <ListBoxItem Name="Today">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock
+                  Text="&#xE163;"
+                  Margin="0,1.7,0,0"
                   FontFamily="Segoe MDL2 Assets"
                   FontSize="20" />
-                            <TextBlock Text="Food"
+                                <TextBlock Text="Today"
                          FontSize="18"
                          Margin="20,0,0,0" />
-                        </StackPanel>
-                    </ListBoxItem>
-                </ListBox>
+                            </StackPanel>
+                        </ListBoxItem>
+                    </ListBox>
+                </controls:Expander>
             </SplitView.Pane>
 
             <SplitView.Content>
