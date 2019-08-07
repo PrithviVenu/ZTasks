@@ -6,8 +6,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Page.Resources>
@@ -84,42 +84,76 @@
                IsPaneOpen="True"
                    >
             <SplitView.Pane>
-                <controls:Expander Header="Views" IsExpanded="True" VerticalAlignment="Top" HorizontalAlignment="Stretch">
-                    <ListBox SelectionMode="Single"  >
-                        <ListBoxItem Name="Home">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock
+
+                <ListBox SelectionMode="Single" >
+                    <ListBoxItem Name="Home">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock
                   Text="&#xE80F;"
                   Margin="0,1.7,0,0"
                   FontFamily="Segoe MDL2 Assets"
                   FontSize="20" />
-                                <TextBlock Text="Home"
+                            <TextBlock Text="Home"
                          FontSize="18"
                          Margin="20,0,0,0" />
-                            </StackPanel>
-                        </ListBoxItem>
-                        <ListBoxItem Name="Today">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock
+                        </StackPanel>
+                    </ListBoxItem>
+                    <ListBoxItem Name="Today">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock
                   Text="&#xE163;"
                   Margin="0,1.7,0,0"
                   FontFamily="Segoe MDL2 Assets"
                   FontSize="20" />
-                                <TextBlock Text="Today"
+                            <TextBlock Text="Today"
                          FontSize="18"
                          Margin="20,0,0,0" />
-                            </StackPanel>
-                        </ListBoxItem>
-                    </ListBox>
-                </controls:Expander>
+                        </StackPanel>
+                    </ListBoxItem>
+                    <ListBoxItem Name="Upcoming">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock
+                  Text="&#xE121;"
+                  Margin="0,1.7,0,0"
+                  FontFamily="Segoe MDL2 Assets"
+                  FontSize="20" />
+                            <TextBlock Text="Upcoming"
+                         FontSize="18"
+                         Margin="20,0,0,0" />
+                        </StackPanel>
+                    </ListBoxItem>
+                    <ListBoxItem Name="Delayed">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock
+                  Text="&#xE1DB;"
+                  Margin="0,1.7,0,0"
+                  FontFamily="Segoe MDL2 Assets"
+                  FontSize="20" />
+                            <TextBlock Text="Delayed"
+                         FontSize="18"
+                         Margin="20,0,0,0" />
+                        </StackPanel>
+                    </ListBoxItem>
+                    <ListBoxItem Name="AssignedToOthers">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock
+                  Text="&#xE13D;"
+                  Margin="0,1.7,0,0"
+                  FontFamily="Segoe MDL2 Assets"
+                  FontSize="20" />
+                            <TextBlock Text="Assigned To Others"
+                         FontSize="18"
+                         Margin="20,0,0,0" />
+                        </StackPanel>
+                    </ListBoxItem>
+                </ListBox>
             </SplitView.Pane>
 
             <SplitView.Content>
                 <Grid>
-
+                    <Frame Name="MyFrame"></Frame>
                 </Grid>
             </SplitView.Content>
         </SplitView>
-
     </Grid>
 </Page>
