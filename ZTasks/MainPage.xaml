@@ -8,7 +8,8 @@
     mc:Ignorable="d"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+  >
 
     <Page.Resources>
         <ResourceDictionary>
@@ -17,7 +18,7 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" >
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -42,8 +43,12 @@
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
 
-        <RelativePanel Background="#DE483B">
-            <Button Name="HamburgerButton"
+        <Grid Grid.Row="0" Background="#DE483B" x:Name="CustomTitleBar">
+            <Grid x:Name="trickyTitleBar" Background="Transparent"/>
+
+
+            <RelativePanel>
+                <Button Name="HamburgerButton"
               RelativePanel.AlignLeftWithPanel="True"
               FontFamily="Segoe MDL2 Assets"
               Content="&#xE700;"
@@ -55,26 +60,81 @@
               Background="#DE483B"
               Foreground="White"
               >
-                <Button.Resources>
-                    <SolidColorBrush x:Key="ButtonForegroundPointerOver" Color="White"/>
-                    <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="#DE483B"/>
-                </Button.Resources>
-            </Button>
-            <TextBlock Name="TitleTextBlock"
+                    <Button.Resources>
+                        <SolidColorBrush x:Key="ButtonForegroundPointerOver" Color="White"/>
+                        <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="#DE483B"/>
+                    </Button.Resources>
+                </Button>
+                <TextBlock Name="TitleTextBlock"
                  RelativePanel.RightOf="HamburgerButton"
                  FontSize="18"
                  Text="ZTasks"
                  Foreground="White"
                  Margin="20,10,220,0" />
 
-            <AutoSuggestBox Name="MyAutoSuggestBox"
+                <AutoSuggestBox Name="MyAutoSuggestBox"
                       QueryIcon="Find"
                       PlaceholderText="Quick Search"
                  RelativePanel.RightOf="TitleTextBlock"
                       Width="250"
                       Margin="0,5,10,0" />
 
-        </RelativePanel>
+                <Button Name="AddTaskButton"
+              RelativePanel.AlignRightWithPanel="True"
+              FontFamily="Segoe MDL2 Assets"
+              Content="&#xE109;"
+              FontSize="17"
+              FontWeight="ExtraBold"
+              Margin="0,0,270,0"
+              Width="45"
+              Height="45"
+              HorizontalAlignment="Center"
+              Click="HamburgerButton_Click"
+              Background="#DE483B"
+              Foreground="White"
+              >
+                    <Button.Resources>
+                        <SolidColorBrush x:Key="ButtonForegroundPointerOver" Color="White"/>
+                    </Button.Resources>
+                </Button>
+                <Button Name="notification"
+              RelativePanel.AlignRightWithPanel="True"
+              Width="45"
+              Height="45"
+              Margin="0,0,225,0"
+              Background="#DE483B"
+              Foreground="White"
+              HorizontalAlignment="Center"
+              Click="HamburgerButton_Click">
+                    <Image Source="Assets/notification.png" Stretch="Fill" Height="23" Width="25"/>
+                </Button>
+
+                <Button Name="AppSettings"
+              RelativePanel.AlignRightWithPanel="True"
+              FontFamily="Segoe MDL2 Assets"
+              Content="&#xE115;"
+              FontSize="17"
+              FontWeight="ExtraBold"
+              Margin="0,0,180,0"
+              Width="45"
+              Height="45"
+              HorizontalAlignment="Center"
+              Click="HamburgerButton_Click"
+              Background="#DE483B"
+              Foreground="White"
+              >
+                    <Button.Resources>
+                        <SolidColorBrush x:Key="ButtonForegroundPointerOver" Color="White"/>
+                    </Button.Resources>
+                </Button>
+
+            </RelativePanel>
+
+
+
+
+        </Grid>
+
 
         <SplitView Name="MySplitView"
                Grid.Row="1"
@@ -84,8 +144,21 @@
                IsPaneOpen="True"
                    >
             <SplitView.Pane>
+                <!--<Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
 
-                <ListBox SelectionMode="Single" >
+                    <Button  >
+                        
+                        
+                    </Button>-->
+
+
+
+
+                <ListBox SelectionMode="Single" Grid.Row="1">
                     <ListBoxItem Name="Home">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock
@@ -147,6 +220,7 @@
                         </StackPanel>
                     </ListBoxItem>
                 </ListBox>
+                <!--</Grid>-->
             </SplitView.Pane>
 
             <SplitView.Content>
