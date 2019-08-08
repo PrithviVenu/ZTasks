@@ -132,7 +132,7 @@
                     <Image Source="Assets/notification.png" Stretch="Fill" Height="23" Width="25"/>
                 </Button>
 
-                <Button Name="AppSettings"
+              <Button Name="AppSettings"
               BorderThickness="0"
               RelativePanel.AlignRightWithPanel="True"
               FontFamily="Segoe MDL2 Assets"
@@ -219,7 +219,7 @@
                         </ListBoxItem>
                         <ListBoxItem Name="Upcoming">
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock
+                  <TextBlock
                   Text="&#xE121;"
                   Margin="0,1.7,0,0"
                   FontFamily="Segoe MDL2 Assets"
@@ -259,7 +259,18 @@
 
             <SplitView.Content>
                 <Grid>
-                    <Frame Name="MyFrame"></Frame>
+                    <Frame Name="MyFrame">
+                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <Image Source="Assets/tasks.png" Stretch="Fill" HorizontalAlignment="Center" Height="120" Width="120"/>
+                            <TextBlock Text="What do you wish to accomplish?" HorizontalAlignment="Center" FontSize="18"  Margin="0,10,0,0" />
+                            <Button Name="AddTask" BorderThickness="0" Content="Add Task" FontSize="17" Margin="0 10 0 0"  Width="90" Height="30" HorizontalAlignment="Center" Click="HamburgerButton_Click" Background="#DE483B" Foreground="White">
+                                <Button.Resources>
+                                    <SolidColorBrush x:Key="ButtonForegroundPointerOver" Color="White"/>
+                                    <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="#CA3934"/>
+                                </Button.Resources>
+                            </Button>
+                        </StackPanel>
+                    </Frame>
                 </Grid>
             </SplitView.Content>
         </SplitView>
