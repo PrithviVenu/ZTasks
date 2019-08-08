@@ -28,16 +28,21 @@
             <VisualStateGroup>
                 <VisualState x:Name="NarrowLayout">
                     <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="0" />
+                        <AdaptiveTrigger MinWindowWidth="0"  />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
+                        <Setter Target="MyAutoSuggestBox.Visibility" Value="Collapsed" />
+                        <Setter Target="MyAutoSuggestBoxButton.Visibility" Value="Visible" />
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="WideLayout">
                     <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="400" />
+                        <AdaptiveTrigger MinWindowWidth="900" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
+                        <Setter Target="MyAutoSuggestBox.Visibility" Value="Visible" />
+                        <Setter Target="MyAutoSuggestBoxButton.Visibility" Value="Collapsed" />
+
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
@@ -49,6 +54,7 @@
 
             <RelativePanel>
                 <Button Name="HamburgerButton"
+              BorderThickness="0"
               RelativePanel.AlignLeftWithPanel="True"
               FontFamily="Segoe MDL2 Assets"
               Content="&#xE700;"
@@ -62,7 +68,6 @@
               >
                     <Button.Resources>
                         <SolidColorBrush x:Key="ButtonForegroundPointerOver" Color="White"/>
-                        <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="#DE483B"/>
                     </Button.Resources>
                 </Button>
                 <TextBlock Name="TitleTextBlock"
@@ -79,7 +84,24 @@
                       Width="250"
                       Margin="0,5,10,0" />
 
+                <Button Name="MyAutoSuggestBoxButton"
+              BorderThickness="0"
+              RelativePanel.AlignRightWithPanel="True"
+              FontFamily="Segoe MDL2 Assets"
+              Content="&#xE11A;"
+              FontSize="17"
+              FontWeight="ExtraBold"
+              Margin="0,0,315,0"
+              Width="45"
+              Height="45"
+              HorizontalAlignment="Center"
+              Click="HamburgerButton_Click"
+              Background="#DE483B"
+              Foreground="White"
+              />
+
                 <Button Name="AddTaskButton"
+              BorderThickness="0"
               RelativePanel.AlignRightWithPanel="True"
               FontFamily="Segoe MDL2 Assets"
               Content="&#xE109;"
@@ -98,6 +120,7 @@
                     </Button.Resources>
                 </Button>
                 <Button Name="notification"
+              BorderThickness="0"
               RelativePanel.AlignRightWithPanel="True"
               Width="45"
               Height="45"
@@ -110,6 +133,7 @@
                 </Button>
 
                 <Button Name="AppSettings"
+              BorderThickness="0"
               RelativePanel.AlignRightWithPanel="True"
               FontFamily="Segoe MDL2 Assets"
               Content="&#xE115;"
@@ -143,84 +167,94 @@
                CompactPaneLength="45" 
                IsPaneOpen="True"
                    >
-            <SplitView.Pane>
-                <!--<Grid>
+            <SplitView.Pane >
+                <Grid>
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="60" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
 
-                    <Button  >
-                        
-                        
-                    </Button>-->
+                    <Button HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Transparent" BorderThickness="0" >
+
+                        <StackPanel HorizontalAlignment="Left" Orientation="Horizontal" Margin="-105,0,0,0" >
+                            <Ellipse HorizontalAlignment="Left" Stretch="UniformToFill" Width="35" Height="35" Margin="0,0,0,0">
+                                <Ellipse.Fill>
+                                    <ImageBrush ImageSource="Assets/user.jpg" />
+                                </Ellipse.Fill>
+                            </Ellipse>
+                            <!--<Image Source="Assets/user.jpg" HorizontalAlignment="Left" Stretch="Fill" />-->
+                            <TextBlock x:Name="UserName" Margin="10,0,0,0" VerticalAlignment="Center" FontWeight="Medium" FontSize="16"></TextBlock>
+                        </StackPanel>
+
+                    </Button>
+
+                    <Line Stretch="Fill" Stroke="#8888" X2="1" Opacity="0.2" Grid.Row="1"/>
 
 
-
-
-                <ListBox SelectionMode="Single" Grid.Row="1">
-                    <ListBoxItem Name="Home">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock
+                    <ListBox SelectionMode="Single" Grid.Row="2">
+                        <ListBoxItem Name="Home">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock
                   Text="&#xE80F;"
                   Margin="0,1.7,0,0"
                   FontFamily="Segoe MDL2 Assets"
                   FontSize="20" />
-                            <TextBlock Text="Home"
+                                <TextBlock Text="Home"
                          FontSize="18"
                          Margin="20,0,0,0" />
-                        </StackPanel>
-                    </ListBoxItem>
-                    <ListBoxItem Name="Today">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock
+                            </StackPanel>
+                        </ListBoxItem>
+                        <ListBoxItem Name="Today">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock
                   Text="&#xE163;"
                   Margin="0,1.7,0,0"
                   FontFamily="Segoe MDL2 Assets"
                   FontSize="20" />
-                            <TextBlock Text="Today"
+                                <TextBlock Text="Today"
                          FontSize="18"
                          Margin="20,0,0,0" />
-                        </StackPanel>
-                    </ListBoxItem>
-                    <ListBoxItem Name="Upcoming">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock
+                            </StackPanel>
+                        </ListBoxItem>
+                        <ListBoxItem Name="Upcoming">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock
                   Text="&#xE121;"
                   Margin="0,1.7,0,0"
                   FontFamily="Segoe MDL2 Assets"
                   FontSize="20" />
-                            <TextBlock Text="Upcoming"
+                                <TextBlock Text="Upcoming"
                          FontSize="18"
                          Margin="20,0,0,0" />
-                        </StackPanel>
-                    </ListBoxItem>
-                    <ListBoxItem Name="Delayed">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock
+                            </StackPanel>
+                        </ListBoxItem>
+                        <ListBoxItem Name="Delayed">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock
                   Text="&#xE1DB;"
                   Margin="0,1.7,0,0"
                   FontFamily="Segoe MDL2 Assets"
                   FontSize="20" />
-                            <TextBlock Text="Delayed"
+                                <TextBlock Text="Delayed"
                          FontSize="18"
                          Margin="20,0,0,0" />
-                        </StackPanel>
-                    </ListBoxItem>
-                    <ListBoxItem Name="AssignedToOthers">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock
+                            </StackPanel>
+                        </ListBoxItem>
+                        <ListBoxItem Name="AssignedToOthers">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock
                   Text="&#xE13D;"
                   Margin="0,1.7,0,0"
                   FontFamily="Segoe MDL2 Assets"
                   FontSize="20" />
-                            <TextBlock Text="Assigned To Others"
+                                <TextBlock Text="Assigned To Others"
                          FontSize="18"
                          Margin="20,0,0,0" />
-                        </StackPanel>
-                    </ListBoxItem>
-                </ListBox>
-                <!--</Grid>-->
+                            </StackPanel>
+                        </ListBoxItem>
+                    </ListBox>
+                </Grid>
             </SplitView.Pane>
 
             <SplitView.Content>

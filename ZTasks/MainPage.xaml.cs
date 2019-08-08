@@ -33,23 +33,24 @@ namespace ZTasks
             ApplicationViewTitleBar formattableTitleBar = ApplicationView.GetForCurrentView().TitleBar;
             formattableTitleBar.ButtonBackgroundColor = Colors.Transparent;
             Window.Current.SetTitleBar(trickyTitleBar);
+            UserName.Text = "Prithvi Venu";
         }
 
         private void HamburgerButton_Click(object sender, RoutedEventArgs e)
         {
-            //MySplitView.IsPaneOpen = !MySplitView.IsPaneOpen;
-            //if (MySplitView.IsPaneOpen)
-            //{
-            //    TitleTextBlock.Text = "ZTasks";
-            //    double left = 20, top = 10, right = 220, bottom = 0;
-            //    TitleTextBlock.Margin = new Thickness(left, top, right, bottom);
-            //}
-            //else
-            //{
-            //    TitleTextBlock.Text = "";
-            //    double left = 0, top = 0, right = 10, bottom = 0;
-            //    TitleTextBlock.Margin = new Thickness(left, top, right, bottom);
-            //}
+            MySplitView.IsPaneOpen = !MySplitView.IsPaneOpen;
+            if (MySplitView.IsPaneOpen)
+            {
+                TitleTextBlock.Text = "ZTasks";
+                double left = 20, top = 10, right = 220, bottom = 0;
+                TitleTextBlock.Margin = new Thickness(left, top, right, bottom);
+            }
+            else
+            {
+                TitleTextBlock.Text = "";
+                double left = 0, top = 0, right = 10, bottom = 0;
+                TitleTextBlock.Margin = new Thickness(left, top, right, bottom);
+            }
         }
     }
 }

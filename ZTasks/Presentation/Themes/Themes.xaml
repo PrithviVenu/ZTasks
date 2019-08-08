@@ -48,5 +48,9 @@
             Width="12" 
             CornerRadius="4">
     </Border>
+    <Color x:Key="MyBorder">#8888</Color>
+    <SolidColorBrush x:Key="BorderBrush"  Color="{ThemeResource MyBorder}"/>
+    <!--<SolidColorBrush x:Key="BorderBrush" Width="1" Margin="2" Background="#8888"/>-->
+
 
 </ResourceDictionary>
