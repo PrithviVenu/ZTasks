@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using ZTasks.Presentation.Views;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -52,5 +53,36 @@ namespace ZTasks
                 TitleTextBlock.Margin = new Thickness(left, top, right, bottom);
             }
         }
+
+        private void ListBoxSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (Home.IsSelected)
+            {
+                MyFrame.Navigate(typeof(HomePage));
+            }
+
+            else if (Today.IsSelected)
+            {
+                MyFrame.Navigate(typeof(Today));
+
+            }
+
+            else if (Upcoming.IsSelected)
+            {
+                MyFrame.Navigate(typeof(Upcoming));
+
+            }
+            else if (Delayed.IsSelected)
+            {
+                MyFrame.Navigate(typeof(Delayed));
+
+            }
+            else if (AssignedToOthers.IsSelected)
+            {
+                MyFrame.Navigate(typeof(OthersTasks));
+
+            }
+        }
+
     }
 }

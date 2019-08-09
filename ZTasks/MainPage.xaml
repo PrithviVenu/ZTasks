@@ -132,7 +132,7 @@
                     <Image Source="Assets/notification.png" Stretch="Fill" Height="23" Width="25"/>
                 </Button>
 
-              <Button Name="AppSettings"
+                <Button Name="AppSettings"
               BorderThickness="0"
               RelativePanel.AlignRightWithPanel="True"
               FontFamily="Segoe MDL2 Assets"
@@ -192,7 +192,7 @@
                     <Line Stretch="Fill" Stroke="#8888" X2="1" Opacity="0.2" Grid.Row="1"/>
 
 
-                    <ListBox SelectionMode="Single" Grid.Row="2">
+                    <ListBox SelectionMode="Single" Grid.Row="2" SelectionChanged="ListBoxSelectionChanged">
                         <ListBoxItem Name="Home">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock
@@ -219,7 +219,7 @@
                         </ListBoxItem>
                         <ListBoxItem Name="Upcoming">
                             <StackPanel Orientation="Horizontal">
-                  <TextBlock
+                                <TextBlock
                   Text="&#xE121;"
                   Margin="0,1.7,0,0"
                   FontFamily="Segoe MDL2 Assets"
