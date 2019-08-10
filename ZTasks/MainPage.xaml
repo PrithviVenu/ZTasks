@@ -32,15 +32,16 @@
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="MyAutoSuggestBox.Visibility" Value="Collapsed" />
+                        <Setter Target="MySplitView.DisplayMode" Value="CompactOverlay" />
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="NLayout">
                     <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="400"  />
+                        <AdaptiveTrigger MinWindowWidth="650"  />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="MyAutoSuggestBox.Visibility" Value="Collapsed" />
-                        <Setter Target="MySplitView.DisplayMode" Value="CompactOverlay" />
+                        <Setter Target="MySplitView.DisplayMode" Value="CompactInline" />
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="WideLayout">
