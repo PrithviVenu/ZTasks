@@ -35,6 +35,8 @@ namespace ZTasks
             formattableTitleBar.ButtonBackgroundColor = Colors.Transparent;
             Window.Current.SetTitleBar(trickyTitleBar);
             UserName.Text = "Prithvi Venu";
+            MyFrame.Navigate(typeof(HomePage));
+
         }
 
         private void HamburgerButton_Click(object sender, RoutedEventArgs e)
@@ -43,7 +45,7 @@ namespace ZTasks
             if (MySplitView.IsPaneOpen)
             {
                 TitleTextBlock.Text = "ZTasks";
-                double left = 20, top = 10, right = 220, bottom = 0;
+                double left = 20, top = 10, right = 160, bottom = 0;
                 TitleTextBlock.Margin = new Thickness(left, top, right, bottom);
             }
             else
