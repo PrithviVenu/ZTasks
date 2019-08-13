@@ -9,6 +9,7 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
+
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
             <Image Source="/Assets/tasks.png" Stretch="Fill" HorizontalAlignment="Center" VerticalAlignment="Center" Height="120" Width="120"/>
             <TextBlock Text="What do you wish to accomplish?" HorizontalAlignment="Center" FontSize="18"  Margin="0,10,0,0" />
@@ -19,6 +20,8 @@
                 </Button.Resources>
             </Button>
         </StackPanel>
+
+
 
     </Grid>
 </Page>

@@ -61,28 +61,30 @@ namespace ZTasks
             if (Home.IsSelected)
             {
                 MyFrame.Navigate(typeof(HomePage));
+                Title.Text = "Home";
             }
 
             else if (Today.IsSelected)
             {
                 MyFrame.Navigate(typeof(Today));
-
+                Title.Text = "Today";
             }
 
             else if (Upcoming.IsSelected)
             {
                 MyFrame.Navigate(typeof(Upcoming));
+                Title.Text = "Upcoming";
 
             }
             else if (Delayed.IsSelected)
             {
                 MyFrame.Navigate(typeof(Delayed));
-
+                Title.Text = "Delayed";
             }
             else if (AssignedToOthers.IsSelected)
             {
                 MyFrame.Navigate(typeof(OthersTasks));
-
+                Title.Text = "Assigned To Others";
             }
         }
 
