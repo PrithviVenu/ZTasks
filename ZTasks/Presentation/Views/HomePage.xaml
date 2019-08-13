@@ -5,8 +5,35 @@
     xmlns:local="using:ZTasks.Presentation.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:data="using:ZTasks.Domain.Models"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.Resources>
+        <DataTemplate x:DataType="data:Task" x:Key="TaskDataTemplate">
+
+            <Border BorderThickness="0,0,0,1" BorderBrush="DimGray" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="1200">
+                <Grid Margin="20">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Column="0" Margin="0,0,20,0">
+
+
+                    </Grid>
+
+                    <RelativePanel Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+
+                    </RelativePanel>
+
+                </Grid>
+            </Border>
+
+        </DataTemplate>
+    </Page.Resources>
 
     <Grid>
 
@@ -24,6 +51,7 @@
                 </Button.Resources>
             </Button>
         </StackPanel>
+        <ListView Visibility="Collapsed" Name="TasksListView" Grid.ColumnSpan="2"  ItemsSource="{x:Bind tasks}" HorizontalAlignment="Stretch" ItemTemplate="{StaticResource TaskDataTemplate}"/>
 
 
 
