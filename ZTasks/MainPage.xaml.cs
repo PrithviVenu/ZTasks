@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -36,6 +37,7 @@ namespace ZTasks
             Window.Current.SetTitleBar(trickyTitleBar);
             UserName.Text = "Prithvi Venu";
             MyFrame.Navigate(typeof(HomePage));
+
 
         }
 

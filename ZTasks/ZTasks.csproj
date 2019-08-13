@@ -119,6 +119,12 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Data\DatabaseAccessContext.cs" />
+    <Compile Include="Data\TaskDAO.cs" />
+    <Compile Include="Domain\DMContract\ITaskHandlerInterface.cs" />
+    <Compile Include="Domain\Models\Task.cs" />
+    <Compile Include="Domain\Usecase\AddTaskUseCase.cs" />
+    <Compile Include="Domain\Usecase\UseCaseBase.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -207,8 +213,7 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Data\DataHandler\" />
-    <Folder Include="Domain\" />
+    <Folder Include="Presentation\ViewModel\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
