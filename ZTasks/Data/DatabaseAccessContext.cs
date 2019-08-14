@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.Storage;
 using ZTasks.Domain.Models;
-using Task = ZTasks.Domain.Models.Task;
 
 namespace ZTasks.Data
 {
@@ -37,7 +36,7 @@ namespace ZTasks.Data
         }
         private void InitializeDBWithTables()
         {
-            Connection.CreateTableAsync<Task>();
+            Connection.CreateTableAsync<ZTask>();
         }
 
     }

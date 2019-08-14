@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using ZTasks.Domain.Models;
 namespace ZTasks.Domain.DMContract
 {
-    interface ITaskHandlerInterface
+    interface ITaskHandler
     {
-        System.Threading.Tasks.Task AddTaskToDb(Task task);
+        Task AddTaskToDb(ZTask task);
 
     }
 }

@@ -121,8 +121,8 @@
     </Compile>
     <Compile Include="Data\DatabaseAccessContext.cs" />
     <Compile Include="Data\TaskDAO.cs" />
-    <Compile Include="Domain\DMContract\ITaskHandlerInterface.cs" />
-    <Compile Include="Domain\Models\Task.cs" />
+    <Compile Include="Domain\DMContract\ITaskHandler.cs" />
+    <Compile Include="Domain\Models\ZTask.cs" />
     <Compile Include="Domain\Usecase\AddTaskUseCase.cs" />
     <Compile Include="Domain\Usecase\UseCaseBase.cs" />
     <Compile Include="MainPage.xaml.cs">
@@ -214,6 +214,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Presentation\ViewModel\" />
+  </ItemGroup>
+  <ItemGroup>
+    <SDKReference Include="SQLite.UWP.2015, Version=3.29.0">
+      <Name>SQLite for Universal Windows Platform</Name>
+    </SDKReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

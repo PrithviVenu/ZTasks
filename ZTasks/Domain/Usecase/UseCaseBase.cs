@@ -12,7 +12,7 @@ namespace ZTasks.Domain.Usecase
         {
             return false;
         }
-        internal abstract Task Action();
+        protected abstract Task ActionAsync();
         public abstract void Execute();
 
     }

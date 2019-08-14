@@ -4,12 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ZTasks.Domain.DMContract;
+using ZTasks.Domain.Models;
 
 namespace ZTasks.Data
 {
-    class TaskDAO : ITaskHandlerInterface
+    class TaskDAO : ITaskHandler
     {
-        public Task AddTaskToDb(Task task)
+
+
+        Task ITaskHandler.AddTaskToDb(ZTask task)
         {
             throw new NotImplementedException();
         }

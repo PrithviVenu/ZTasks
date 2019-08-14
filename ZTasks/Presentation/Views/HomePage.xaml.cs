@@ -24,11 +24,13 @@ namespace ZTasks.Presentation.Views
     /// </summary>
     public sealed partial class HomePage : Page
     {
-        private ObservableCollection<Task> tasks;
+        private ObservableCollection<ZTask> tasks;
 
         public HomePage()
         {
             this.InitializeComponent();
+            tasks = new ObservableCollection<ZTask>();
+            tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", AddedOn = System.DateTime.Now, DueDate = System.DateTime.Now, Priority = "High", RemindOn = System.DateTime.Now, ParentTaskId = "1001" });
         }
     }
 }

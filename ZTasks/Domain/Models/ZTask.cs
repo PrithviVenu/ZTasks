@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ZTasks.Domain.Models
 {
-    class Task
+    class ZTask
     {
         [PrimaryKey, AutoIncrement]
         public int TaskId { get; set; }

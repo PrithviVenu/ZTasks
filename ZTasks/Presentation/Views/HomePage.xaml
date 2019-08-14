@@ -10,26 +10,12 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Page.Resources>
-        <DataTemplate x:DataType="data:Task" x:Key="TaskDataTemplate">
+        <DataTemplate x:DataType="data:ZTask" x:Key="TaskDataTemplate">
 
-            <Border BorderThickness="0,0,0,1" BorderBrush="DimGray" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="1200">
-                <Grid Margin="20">
-
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <Grid Grid.Column="0" Margin="0,0,20,0">
-
-
-                    </Grid>
-
-                    <RelativePanel Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-
-                    </RelativePanel>
-
-                </Grid>
+            <Border BorderThickness="0,0,0,1" BorderBrush="DimGray" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="4000">
+                <RelativePanel Margin="20" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <TextBlock RelativePanel.AlignLeftWithPanel="True" Name="TaskTitle" Text="{x:Bind TaskTitle}" FontSize="20" FontWeight="Bold"  Margin="0"/>
+                </RelativePanel>
             </Border>
 
         </DataTemplate>
@@ -51,7 +37,7 @@
                 </Button.Resources>
             </Button>
         </StackPanel>
-        <ListView Visibility="Collapsed" Name="TasksListView" Grid.ColumnSpan="2"  ItemsSource="{x:Bind tasks}" HorizontalAlignment="Stretch" ItemTemplate="{StaticResource TaskDataTemplate}"/>
+        <ListView  Name="TasksListView" Margin="0,20,0,0" Visibility="Collapsed" Grid.ColumnSpan="2"  ItemsSource="{x:Bind tasks}" HorizontalAlignment="Stretch" ItemTemplate="{StaticResource TaskDataTemplate}"/>
 
 
 

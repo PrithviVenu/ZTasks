@@ -12,14 +12,13 @@ namespace ZTasks.Domain.Usecase
     {
         public override void Execute()
         {
-            ITaskHandlerInterface taskHandler = new TaskDAO();
+            ITaskHandler taskHandler = new TaskDAO();
 
         }
 
-        internal override async Task Action()
+        protected override async Task ActionAsync()
         {
-            await Action();
-
+            await ActionAsync();
         }
     }
 }
