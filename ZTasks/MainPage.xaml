@@ -31,7 +31,7 @@
                         <AdaptiveTrigger MinWindowWidth="0"  />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="MyAutoSuggestBox.Visibility" Value="Collapsed" />
+                        <!--<Setter Target="MyAutoSuggestBox.Visibility" Value="Collapsed" />-->
                         <Setter Target="MySplitView.DisplayMode" Value="CompactOverlay" />
                     </VisualState.Setters>
                 </VisualState>
@@ -40,7 +40,7 @@
                         <AdaptiveTrigger MinWindowWidth="650"  />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="MyAutoSuggestBox.Visibility" Value="Collapsed" />
+                        <!--<Setter Target="MyAutoSuggestBox.Visibility" Value="Collapsed" />-->
                         <Setter Target="MySplitView.DisplayMode" Value="CompactInline" />
                     </VisualState.Setters>
                 </VisualState>
@@ -49,14 +49,14 @@
                         <AdaptiveTrigger MinWindowWidth="900" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="MyAutoSuggestBox.Visibility" Value="Visible" />
+                        <!--<Setter Target="MyAutoSuggestBox.Visibility" Value="Visible" />-->
                         <Setter Target="MySplitView.DisplayMode" Value="CompactInline" />
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
 
-        <Grid Grid.Row="0" Background="#DE483B" x:Name="CustomTitleBar">
+        <Grid Grid.Row="0" Background="#DE483B" x:Name="CustomTitleBar" Height="32">
             <Grid x:Name="trickyTitleBar" Background="Transparent"/>
 
 
@@ -73,6 +73,7 @@
               Click="HamburgerButton_Click"
               Background="#DE483B"
               Foreground="White"
+              Margin="0,0,20,0"
               >
                     <Button.Resources>
                         <SolidColorBrush x:Key="ButtonForegroundPointerOver" Color="White"/>
@@ -80,18 +81,19 @@
                 </Button>
                 <TextBlock Name="TitleTextBlock"
                  RelativePanel.RightOf="HamburgerButton"
+                 RelativePanel.AlignVerticalCenterWith="HamburgerButton"
                  FontSize="18"
                  Text="ZTasks"
                  Foreground="White"
-                 Margin="20,10,152,0" />
+                  />
 
-                <AutoSuggestBox Name="MyAutoSuggestBox"
+                <!--<AutoSuggestBox Name="MyAutoSuggestBox"
                       QueryIcon="Find"
                       PlaceholderText="Quick Search"
                  RelativePanel.RightOf="TitleTextBlock"
                       Width="250"
                       Margin="0,5,10,0" 
-                      />
+                      />-->
 
 
                 <Button Name="AddTaskButton"
@@ -99,7 +101,7 @@
               RelativePanel.AlignRightWithPanel="True"
               FontFamily="Segoe MDL2 Assets"
               Content="&#xE109;"
-              FontSize="17"
+              FontSize="15"
               FontWeight="ExtraBold"
               Margin="0,0,270,0"
               Width="45"
@@ -123,7 +125,7 @@
               Foreground="White"
               HorizontalAlignment="Center"
               Click="HamburgerButton_Click">
-                    <Image Source="Assets/notification.png" Stretch="Fill" Height="23" Width="25"/>
+                    <Image Source="Assets/notification.png" Stretch="Fill" Height="21" Width="23"/>
                 </Button>
 
                 <Button Name="AppSettings"
@@ -131,7 +133,7 @@
               RelativePanel.AlignRightWithPanel="True"
               FontFamily="Segoe MDL2 Assets"
               Content="&#xE115;"
-              FontSize="17"
+              FontSize="15"
               FontWeight="ExtraBold"
               Margin="0,0,180,0"
               Width="45"
