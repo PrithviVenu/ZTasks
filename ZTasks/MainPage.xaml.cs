@@ -38,7 +38,6 @@ namespace ZTasks
             UserName.Text = "Prithvi Venu";
             MyFrame.Navigate(typeof(HomePage));
 
-
         }
 
         private void HamburgerButton_Click(object sender, RoutedEventArgs e)
@@ -60,33 +59,36 @@ namespace ZTasks
 
         private void ListBoxSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            ListBoxItem item = ListBox.SelectedItem as ListBoxItem;
+
+
             if (Home.IsSelected)
             {
                 MyFrame.Navigate(typeof(HomePage));
-                Title.Text = "Home";
+                //Title.Text = "Home";
             }
 
             else if (Today.IsSelected)
             {
                 MyFrame.Navigate(typeof(Today));
-                Title.Text = "Today";
+                //Title.Text = "Today";
             }
 
             else if (Upcoming.IsSelected)
             {
                 MyFrame.Navigate(typeof(Upcoming));
-                Title.Text = "Upcoming";
+                //Title.Text = "Upcoming";
 
             }
             else if (Delayed.IsSelected)
             {
                 MyFrame.Navigate(typeof(Delayed));
-                Title.Text = "Delayed";
+                //Title.Text = "Delayed";
             }
             else if (AssignedToOthers.IsSelected)
             {
                 MyFrame.Navigate(typeof(OthersTasks));
-                Title.Text = "Assigned To Others";
+                //Title.Text = "Assigned To Others";
             }
         }
 

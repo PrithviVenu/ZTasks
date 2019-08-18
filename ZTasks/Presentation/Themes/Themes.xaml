@@ -1,7 +1,8 @@
 ﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:ZTasks.Presentation.Themes">
+    xmlns:local="using:ZTasks.Presentation.Themes"
+   >
     <Color x:Key="DefaultAccentColor">#8882A8</Color>
 
     <!-- General Purpose -->
@@ -42,15 +43,11 @@
     <SolidColorBrush x:Key="PageForegroundBrush"
                      Color="#FF466582" />
 
-    <Border x:Key="cart_number_border" 
-            Background="OrangeRed" 
-            Height="12" 
-            Width="12" 
-            CornerRadius="4">
-    </Border>
+
     <Color x:Key="MyBorder">#8888</Color>
     <SolidColorBrush x:Key="BorderBrush"  Color="{ThemeResource MyBorder}"/>
     <!--<SolidColorBrush x:Key="BorderBrush" Width="1" Margin="2" Background="#8888"/>-->
+    
 
 
 </ResourceDictionary>

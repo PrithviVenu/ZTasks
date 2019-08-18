@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -30,7 +31,23 @@ namespace ZTasks.Presentation.Views
         {
             this.InitializeComponent();
             tasks = new ObservableCollection<ZTask>();
-            tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", AddedOn = System.DateTime.Now, DueDate = System.DateTime.Now, Priority = "High", RemindOn = System.DateTime.Now, ParentTaskId = "1001" });
+            tasks.CollectionChanged += task_CollectionChanged;
+            //tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", AddedOn = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, ParentTaskId = "1001" });
+            //tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", AddedOn = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, ParentTaskId = "1001" });
+
+        }
+        void task_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (tasks.Count == 0)
+            {
+                EmptyAddTaskDisplayPanel.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                EmptyAddTaskDisplayPanel.Visibility = Visibility.Collapsed;
+
+            }
+
         }
     }
 }
