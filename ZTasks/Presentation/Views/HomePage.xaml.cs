@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -32,8 +33,28 @@ namespace ZTasks.Presentation.Views
             this.InitializeComponent();
             tasks = new ObservableCollection<ZTask>();
             tasks.CollectionChanged += task_CollectionChanged;
-            //tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", AddedOn = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, ParentTaskId = "1001" });
-            //tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", AddedOn = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, ParentTaskId = "1001" });
+            tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", AddedOn = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, ParentTaskId = "1001" });
+            tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", AddedOn = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, ParentTaskId = "1001" });
+            tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", AddedOn = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, ParentTaskId = "1001" });
+            tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", AddedOn = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, ParentTaskId = "1001" });
+            tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", AddedOn = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, ParentTaskId = "1001" });
+            tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", AddedOn = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, ParentTaskId = "1001" });
+            tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", AddedOn = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, ParentTaskId = "1001" });
+            tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", AddedOn = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, ParentTaskId = "1001" });
+            tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", AddedOn = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, ParentTaskId = "1001" });
+            tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", AddedOn = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, ParentTaskId = "1001" });
+            tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", AddedOn = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, ParentTaskId = "1001" });
+            tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", AddedOn = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, ParentTaskId = "1001" });
+            tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", AddedOn = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, ParentTaskId = "1001" });
+            tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", AddedOn = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, ParentTaskId = "1001" });
+            tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", AddedOn = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, ParentTaskId = "1001" });
+            tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", AddedOn = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, ParentTaskId = "1001" });
+            tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", AddedOn = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, ParentTaskId = "1001" });
+            tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", AddedOn = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, ParentTaskId = "1001" });
+            tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", AddedOn = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, ParentTaskId = "1001" });
+            tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", AddedOn = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, ParentTaskId = "1001" });
+            tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", AddedOn = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, ParentTaskId = "1001" });
+            tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", AddedOn = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, ParentTaskId = "1001" });
 
         }
         void task_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
@@ -48,6 +69,13 @@ namespace ZTasks.Presentation.Views
 
             }
 
+        }
+
+        public void ItemClick(object sender, RoutedEventArgs e)
+        {
+            Debug.WriteLine("hii");
+            TasksListView.SetValue(Grid.ColumnSpanProperty, 1);
+            SlideInPane.Visibility = Visibility.Visible;
         }
     }
 }

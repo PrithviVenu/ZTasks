@@ -37,6 +37,7 @@ namespace ZTasks
             Window.Current.SetTitleBar(trickyTitleBar);
             UserName.Text = "Prithvi Venu";
             MyFrame.Navigate(typeof(HomePage));
+            Home.IsSelected = true;
 
         }
 
@@ -65,6 +66,9 @@ namespace ZTasks
             if (Home.IsSelected)
             {
                 MyFrame.Navigate(typeof(HomePage));
+                SetBackground();
+                Home.Background = new SolidColorBrush(Color.FromArgb(255, 190, 20, 0));
+
                 //Title.Text = "Home";
             }
 
@@ -90,6 +94,16 @@ namespace ZTasks
                 MyFrame.Navigate(typeof(OthersTasks));
                 //Title.Text = "Assigned To Others";
             }
+        }
+
+        public void SetBackground()
+        {
+            Home.Background = new SolidColorBrush(Colors.Transparent);
+            Today.Background = new SolidColorBrush(Colors.Transparent);
+            Upcoming.Background = new SolidColorBrush(Colors.Transparent);
+            Delayed.Background = new SolidColorBrush(Colors.Transparent);
+            AssignedToOthers.Background = new SolidColorBrush(Colors.Transparent);
+
         }
 
     }

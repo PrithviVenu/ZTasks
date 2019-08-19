@@ -13,8 +13,11 @@
         <DataTemplate x:DataType="data:ZTask" x:Key="TaskDataTemplate">
 
             <Border BorderThickness="0,0,0,1" BorderBrush="DimGray" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="4000">
-                <RelativePanel Margin="10,20,20,20" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <RelativePanel Margin="10,10,20,10" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                     <TextBlock RelativePanel.AlignLeftWithPanel="True" Name="TaskTitle" Text="{x:Bind TaskTitle}" FontSize="20"   Margin="0"/>
+                    <TextBlock RelativePanel.AlignLeftWithPanel="True" RelativePanel.Below="TaskTitle" Name="TaskAssignee" FontWeight="Medium" Text="Assigned By :" FontSize="20"   Margin="0"/>
+                    <TextBlock RelativePanel.RightOf="TaskAssignee"  RelativePanel.AlignTopWith="TaskAssignee" Name="TaskAssigneeName" Text="{x:Bind Assignee}" FontSize="20"   Margin="10,0,0,0"/>
+
                 </RelativePanel>
             </Border>
 
@@ -71,14 +74,18 @@
                 </Button.Resources>
             </Button>
         </StackPanel>
-        <ListView Grid.Row="1" Name="TasksListView" Margin="0,20,0,0"  Grid.ColumnSpan="2"  ItemsSource="{x:Bind tasks}" HorizontalAlignment="Stretch" ItemTemplate="{StaticResource TaskDataTemplate}">
+        <ListView Grid.Row="1" Name="TasksListView" Margin="0,20,0,0"  MinWidth="400" Grid.ColumnSpan="2" ItemsSource="{x:Bind tasks}" IsItemClickEnabled="True" ItemClick="ItemClick" HorizontalAlignment="Stretch" ItemTemplate="{StaticResource TaskDataTemplate}">
             <ListView.Resources>
                 <SolidColorBrush x:Key="ListViewItemBackgroundSelected" Color="#f18e8e" />
                 <SolidColorBrush x:Key="ListViewItemBackgroundSelectedPointerOver" Color="#ff8e8e" />
             </ListView.Resources>
         </ListView>
+        <Grid Name="SlideInPane" Grid.RowSpan="2" Grid.Column="1" BorderThickness="1,0,0,0" BorderBrush="DarkGray" Visibility="Collapsed" CornerRadius="1,0,0,0">
+            <Frame Name="MyFrame" >
+
+            </Frame>
+        </Grid>
 
 
-
-    </Grid>
+    </Grid >
 </Page>
