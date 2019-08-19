@@ -73,9 +73,18 @@ namespace ZTasks.Presentation.Views
 
         public void ItemClick(object sender, RoutedEventArgs e)
         {
-            Debug.WriteLine("hii");
+            TasksListView.Margin = new Thickness(0, 0, 0, 0);
             TasksListView.SetValue(Grid.ColumnSpanProperty, 1);
             SlideInPane.Visibility = Visibility.Visible;
         }
+
+        public void AddNewTask(object sender, RoutedEventArgs e)
+        {
+            TasksListView.Margin = new Thickness(0, 0, 0, 0);
+            TasksListView.SetValue(Grid.ColumnSpanProperty, 1);
+            SlideInPane.Visibility = Visibility.Visible;
+        }
+
+
     }
 }

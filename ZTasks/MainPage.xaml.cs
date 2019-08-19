@@ -38,6 +38,7 @@ namespace ZTasks
             UserName.Text = "Prithvi Venu";
             MyFrame.Navigate(typeof(HomePage));
             Home.IsSelected = true;
+            Home.Background = new SolidColorBrush(Color.FromArgb(255, 244, 141, 142));
 
         }
 
@@ -61,13 +62,11 @@ namespace ZTasks
         private void ListBoxSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ListBoxItem item = ListBox.SelectedItem as ListBoxItem;
-
+            Home.Background = new SolidColorBrush(Colors.Transparent);
 
             if (Home.IsSelected)
             {
                 MyFrame.Navigate(typeof(HomePage));
-                SetBackground();
-                Home.Background = new SolidColorBrush(Color.FromArgb(255, 190, 20, 0));
 
                 //Title.Text = "Home";
             }
@@ -96,15 +95,15 @@ namespace ZTasks
             }
         }
 
-        public void SetBackground()
-        {
-            Home.Background = new SolidColorBrush(Colors.Transparent);
-            Today.Background = new SolidColorBrush(Colors.Transparent);
-            Upcoming.Background = new SolidColorBrush(Colors.Transparent);
-            Delayed.Background = new SolidColorBrush(Colors.Transparent);
-            AssignedToOthers.Background = new SolidColorBrush(Colors.Transparent);
+        //public void SetBackground()
+        //{
+        //    Home.Background = new SolidColorBrush(Colors.Transparent);
+        //    Today.Background = new SolidColorBrush(Colors.Transparent);
+        //    Upcoming.Background = new SolidColorBrush(Colors.Transparent);
+        //    Delayed.Background = new SolidColorBrush(Colors.Transparent);
+        //    AssignedToOthers.Background = new SolidColorBrush(Colors.Transparent);
 
-        }
+        //}
 
     }
 }

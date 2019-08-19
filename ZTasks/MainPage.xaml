@@ -179,12 +179,13 @@
                     </Button>
 
                     <Line Stretch="Fill" Stroke="{StaticResource BorderBrush}" X2="1" Opacity="0.2" Grid.Row="1"/>
-                    <ListBox Name="ListBox" SelectionMode="Single" Grid.Row="2" SelectionChanged="ListBoxSelectionChanged">
-                        <ListBox.Resources>
-                            <!--<SolidColorBrush x:Key="{StaticResource FocusVisualPrimaryBrush}" Color="#f18e8e"/>-->
-                        </ListBox.Resources>
+                    <ListView Name="ListBox"  Grid.Row="2" SelectionChanged="ListBoxSelectionChanged">
+                        <ListView.Resources>
+                            <SolidColorBrush x:Key="ListViewItemBackgroundSelected" Color="#f18e8e" />
+                            <SolidColorBrush x:Key="ListViewItemBackgroundSelectedPointerOver" Color="#ff8e8e" />
+                        </ListView.Resources>
 
-                        <ListBoxItem Name="Home" >
+                        <ListViewItem Name="Home" >
                             <StackPanel  Orientation="Horizontal">
                                 <TextBlock
                   Text="&#xE80F;"
@@ -195,8 +196,8 @@
                          FontSize="18"
                          Margin="20,0,0,0" />
                             </StackPanel>
-                        </ListBoxItem>
-                        <ListBoxItem Name="Today">
+                        </ListViewItem>
+                        <ListViewItem Name="Today">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock
                   Text="&#xE163;"
@@ -207,8 +208,8 @@
                          FontSize="18"
                          Margin="20,0,0,0" />
                             </StackPanel>
-                        </ListBoxItem>
-                        <ListBoxItem Name="Upcoming">
+                        </ListViewItem>
+                        <ListViewItem Name="Upcoming">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock
                   Text="&#xE121;"
@@ -219,8 +220,8 @@
                          FontSize="18"
                          Margin="20,0,0,0" />
                             </StackPanel>
-                        </ListBoxItem>
-                        <ListBoxItem Name="Delayed">
+                        </ListViewItem>
+                        <ListViewItem Name="Delayed">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock
                   Text="&#xE1DB;"
@@ -231,8 +232,8 @@
                          FontSize="18"
                          Margin="20,0,0,0" />
                             </StackPanel>
-                        </ListBoxItem>
-                        <ListBoxItem Name="AssignedToOthers">
+                        </ListViewItem>
+                        <ListViewItem Name="AssignedToOthers">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock
                   Text="&#xE13D;"
@@ -243,8 +244,8 @@
                          FontSize="18"
                          Margin="20,0,0,0" />
                             </StackPanel>
-                        </ListBoxItem>
-                    </ListBox>
+                        </ListViewItem>
+                    </ListView>
                 </Grid>
             </SplitView.Pane>
 
