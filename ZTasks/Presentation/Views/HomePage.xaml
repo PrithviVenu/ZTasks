@@ -74,13 +74,13 @@
                 </Button.Resources>
             </Button>
         </StackPanel>
-        <ListView Grid.Row="1" Name="TasksListView" Margin="10,10,10,0"  MinWidth="400" Grid.ColumnSpan="2" ItemsSource="{x:Bind tasks}" IsItemClickEnabled="True" ItemClick="ItemClick" HorizontalAlignment="Stretch" ItemTemplate="{StaticResource TaskDataTemplate}">
+        <ListView Grid.Row="1" Visibility="Collapsed" Name="TasksListView" Margin="10,10,10,0"  MinWidth="400" Grid.ColumnSpan="2" ItemsSource="{x:Bind tasks}" IsItemClickEnabled="True" ItemClick="ItemClick" HorizontalAlignment="Stretch" ItemTemplate="{StaticResource TaskDataTemplate}">
             <ListView.Resources>
                 <SolidColorBrush x:Key="ListViewItemBackgroundSelected" Color="#f18e8e" />
                 <SolidColorBrush x:Key="ListViewItemBackgroundSelectedPointerOver" Color="#ff8e8e" />
             </ListView.Resources>
         </ListView>
-        <Grid Name="SlideInPane" Grid.RowSpan="2" Grid.Column="1" BorderThickness="1,0,0,0" BorderBrush="DarkGray" Visibility="Collapsed" CornerRadius="1,0,0,0">
+        <Grid Name="SlideInPane" Background="White"  Grid.RowSpan="2" Grid.Column="1" BorderThickness="1,0,0,0" BorderBrush="DarkGray" Visibility="Collapsed" CornerRadius="1,0,0,0">
             <Frame Name="MyFrame" >
 
             </Frame>

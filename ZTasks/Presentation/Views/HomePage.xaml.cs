@@ -62,10 +62,12 @@ namespace ZTasks.Presentation.Views
             if (tasks.Count == 0)
             {
                 EmptyAddTaskDisplayPanel.Visibility = Visibility.Visible;
+                TasksListView.Visibility = Visibility.Collapsed;
             }
             else
             {
                 EmptyAddTaskDisplayPanel.Visibility = Visibility.Collapsed;
+                TasksListView.Visibility = Visibility.Visible;
 
             }
 
@@ -80,6 +82,7 @@ namespace ZTasks.Presentation.Views
 
         public void AddNewTask(object sender, RoutedEventArgs e)
         {
+            Debug.WriteLine("hiiii");
             TasksListView.Margin = new Thickness(0, 0, 0, 0);
             TasksListView.SetValue(Grid.ColumnSpanProperty, 1);
             SlideInPane.Visibility = Visibility.Visible;
