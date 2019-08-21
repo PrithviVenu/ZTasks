@@ -80,6 +80,8 @@
             <ListView.Resources>
                 <SolidColorBrush x:Key="ListViewItemBackgroundSelected" Color="#f18e8e" />
                 <SolidColorBrush x:Key="ListViewItemBackgroundSelectedPointerOver" Color="#ff8e8e" />
+                <Thickness x:Key="ListViewItemRevealBorderThemeThickness">0</Thickness>
+
             </ListView.Resources>
         </ListView>
         <Grid Name="SlideInPane" Background="White"  Grid.RowSpan="2" Grid.Column="1" BorderThickness="1,0,0,0" BorderBrush="DarkGray" Visibility="Collapsed" CornerRadius="1,0,0,0">

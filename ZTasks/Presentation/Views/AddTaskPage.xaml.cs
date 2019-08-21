@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -32,6 +33,18 @@ namespace ZTasks.Presentation.Views
             subtasks = new ObservableCollection<ZTask>();
 
             subtasks.Add(new ZTask());
+        }
+        private void Box_KeyDown(object sender, Windows.UI.Xaml.Input.KeyRoutedEventArgs e)
+        {
+            if (e.Key == Windows.System.VirtualKey.Enter)
+            {
+                subtasks.Add(new ZTask());
+
+            }
+        }
+        public void ItemClick(object sender, RoutedEventArgs e)
+        {
+            Debug.WriteLine(SubTasksListView.SelectedIndex, "999999");
         }
     }
 }
