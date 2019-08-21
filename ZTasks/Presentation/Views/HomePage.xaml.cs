@@ -76,6 +76,8 @@ namespace ZTasks.Presentation.Views
         {
             TasksListView.Margin = new Thickness(0, 0, 0, 0);
             TasksListView.SetValue(Grid.ColumnSpanProperty, 1);
+            EmptyAddTaskDisplayPanel.SetValue(Grid.ColumnSpanProperty, 1);
+            TopPanel.SetValue(Grid.ColumnSpanProperty, 1);
             SlideInPane.Visibility = Visibility.Visible;
         }
 
@@ -85,6 +87,8 @@ namespace ZTasks.Presentation.Views
             Debug.WriteLine("hiiii");
             TasksListView.Margin = new Thickness(0, 0, 0, 0);
             TasksListView.SetValue(Grid.ColumnSpanProperty, 1);
+            EmptyAddTaskDisplayPanel.SetValue(Grid.ColumnSpanProperty, 1);
+            TopPanel.SetValue(Grid.ColumnSpanProperty, 1);
             SlideInPane.Visibility = Visibility.Visible;
         }
 

@@ -35,7 +35,7 @@
         </Grid.ColumnDefinitions>
    
      
-        <RelativePanel Grid.Row="0" Grid.ColumnSpan="2">
+        <RelativePanel Name="TopPanel" Grid.Row="0" Grid.ColumnSpan="2">
             <TextBlock Name="Title"
                           RelativePanel.AlignLeftWithPanel="True"
                           FontSize="19"
