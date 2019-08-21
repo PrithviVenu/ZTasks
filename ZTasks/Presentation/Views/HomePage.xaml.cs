@@ -74,22 +74,16 @@ namespace ZTasks.Presentation.Views
 
         public void ItemClick(object sender, RoutedEventArgs e)
         {
-            TasksListView.Margin = new Thickness(0, 0, 0, 0);
-            TasksListView.SetValue(Grid.ColumnSpanProperty, 1);
-            EmptyAddTaskDisplayPanel.SetValue(Grid.ColumnSpanProperty, 1);
-            TopPanel.SetValue(Grid.ColumnSpanProperty, 1);
-            SlideInPane.Visibility = Visibility.Visible;
+            ShowSlideInPane();
+
         }
 
         public void AddNewTask(object sender, RoutedEventArgs e)
         {
             MyFrame.Navigate(typeof(AddTaskPage), this);
-            Debug.WriteLine("hiiii");
-            TasksListView.Margin = new Thickness(0, 0, 0, 0);
-            TasksListView.SetValue(Grid.ColumnSpanProperty, 1);
-            EmptyAddTaskDisplayPanel.SetValue(Grid.ColumnSpanProperty, 1);
-            TopPanel.SetValue(Grid.ColumnSpanProperty, 1);
-            SlideInPane.Visibility = Visibility.Visible;
+            ShowSlideInPane();
+            //CollapseSlideInPane();
+
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -100,6 +94,25 @@ namespace ZTasks.Presentation.Views
                 MainPage mainPage = (MainPage)e.Parameter;
                 mainPage.AddTaskClicked += this.AddNewTask;
             }
+
+        }
+        private void CollapseSlideInPane()
+        {
+            TasksListView.Margin = new Thickness(10, 10, 10, 0);
+            TasksListView.SetValue(Grid.ColumnSpanProperty, 2);
+            EmptyAddTaskDisplayPanel.SetValue(Grid.ColumnSpanProperty, 2);
+            TopPanel.SetValue(Grid.ColumnSpanProperty, 2);
+            SlideInPane.Visibility = Visibility.Collapsed;
+
+        }
+        private void ShowSlideInPane()
+        {
+
+            TasksListView.Margin = new Thickness(0, 0, 0, 0);
+            TasksListView.SetValue(Grid.ColumnSpanProperty, 1);
+            EmptyAddTaskDisplayPanel.SetValue(Grid.ColumnSpanProperty, 1);
+            TopPanel.SetValue(Grid.ColumnSpanProperty, 1);
+            SlideInPane.Visibility = Visibility.Visible;
 
         }
 
