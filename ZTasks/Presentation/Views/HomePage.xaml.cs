@@ -32,32 +32,31 @@ namespace ZTasks.Presentation.Views
         {
             this.InitializeComponent();
             tasks = new ObservableCollection<ZTask>();
-            tasks.CollectionChanged += task_CollectionChanged;
-            tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", AddedOn = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, ParentTaskId = "1001" });
-            tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", AddedOn = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, ParentTaskId = "1001" });
-            tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", AddedOn = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, ParentTaskId = "1001" });
-            tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", AddedOn = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, ParentTaskId = "1001" });
-            tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", AddedOn = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, ParentTaskId = "1001" });
-            tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", AddedOn = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, ParentTaskId = "1001" });
-            tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", AddedOn = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, ParentTaskId = "1001" });
-            tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", AddedOn = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, ParentTaskId = "1001" });
-            tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", AddedOn = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, ParentTaskId = "1001" });
-            tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", AddedOn = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, ParentTaskId = "1001" });
-            tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", AddedOn = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, ParentTaskId = "1001" });
-            tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", AddedOn = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, ParentTaskId = "1001" });
-            tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", AddedOn = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, ParentTaskId = "1001" });
-            tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", AddedOn = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, ParentTaskId = "1001" });
-            tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", AddedOn = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, ParentTaskId = "1001" });
-            tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", AddedOn = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, ParentTaskId = "1001" });
-            tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", AddedOn = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, ParentTaskId = "1001" });
-            tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", AddedOn = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, ParentTaskId = "1001" });
-            tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", AddedOn = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, ParentTaskId = "1001" });
-            tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", AddedOn = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, ParentTaskId = "1001" });
-            tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", AddedOn = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, ParentTaskId = "1001" });
-            tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", AddedOn = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, ParentTaskId = "1001" });
-
+            tasks.CollectionChanged += Task_CollectionChanged;
+            //tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", CreatedTime = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, GroupId = "", ProjectId = "", ParentTaskId = "1001" });
+            //tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", CreatedTime = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, GroupId = "", ProjectId = "", ParentTaskId = "1001" });
+            //tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", CreatedTime = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, GroupId = "98739udh", ProjectId = "pro982j", ParentTaskId = "1001" });
+            //tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", CreatedTime = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, GroupId = "98739udh", ProjectId = "pro982j", ParentTaskId = "1001" });
+            //tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", CreatedTime = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, GroupId = "98739udh", ProjectId = "pro982j", ParentTaskId = "1001" });
+            //tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", CreatedTime = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, GroupId = "98739udh", ProjectId = "pro982j", ParentTaskId = "1001" });
+            //tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", CreatedTime = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, GroupId = "98739udh", ProjectId = "pro982j", ParentTaskId = "1001" });
+            //tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", CreatedTime = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, GroupId = "98739udh", ProjectId = "pro982j", ParentTaskId = "1001" });
+            //tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", CreatedTime = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, GroupId = "98739udh", ProjectId = "pro982j", ParentTaskId = "1001" });
+            //tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", CreatedTime = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, GroupId = "98739udh", ProjectId = "pro982j", ParentTaskId = "1001" });
+            //tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", CreatedTime = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, GroupId = "98739udh", ProjectId = "pro982j", ParentTaskId = "1001" });
+            //tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", CreatedTime = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, GroupId = "98739udh", ProjectId = "pro982j", ParentTaskId = "1001" });
+            //tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", CreatedTime = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, GroupId = "98739udh", ProjectId = "pro982j", ParentTaskId = "1001" });
+            //tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", CreatedTime = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, GroupId = "98739udh", ProjectId = "pro982j", ParentTaskId = "1001" });
+            //tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", CreatedTime = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, GroupId = "98739udh", ProjectId = "pro982j", ParentTaskId = "1001" });
+            //tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", CreatedTime = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, GroupId = "98739udh", ProjectId = "pro982j", ParentTaskId = "1001" });
+            //tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", CreatedTime = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, GroupId = "98739udh", ProjectId = "pro982j", ParentTaskId = "1001" });
+            //tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", CreatedTime = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, GroupId = "98739udh", ProjectId = "pro982j", ParentTaskId = "1001" });
+            //tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", CreatedTime = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, GroupId = "98739udh", ProjectId = "pro982j", ParentTaskId = "1001" });
+            //tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", CreatedTime = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, GroupId = "98739udh", ProjectId = "pro982j", ParentTaskId = "1001" });
+            //tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", CreatedTime = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, GroupId = "98739udh", ProjectId = "pro982j", ParentTaskId = "1001" });
+            //tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", CreatedTime = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, GroupId = "98739udh", ProjectId = "pro982j", ParentTaskId = "1001" });
         }
-        void task_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        void Task_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (tasks.Count == 0)
             {
@@ -82,12 +81,23 @@ namespace ZTasks.Presentation.Views
 
         public void AddNewTask(object sender, RoutedEventArgs e)
         {
+            MyFrame.Navigate(typeof(AddTaskPage), this);
             Debug.WriteLine("hiiii");
             TasksListView.Margin = new Thickness(0, 0, 0, 0);
             TasksListView.SetValue(Grid.ColumnSpanProperty, 1);
             SlideInPane.Visibility = Visibility.Visible;
         }
 
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+
+            if (e != null)
+            {
+                MainPage mainPage = (MainPage)e.Parameter;
+                mainPage.AddTaskClicked += this.AddNewTask;
+            }
+
+        }
 
     }
 }

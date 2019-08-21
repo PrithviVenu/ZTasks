@@ -108,7 +108,7 @@
               Width="45"
               Height="45"
               HorizontalAlignment="Center"
-              Click="HamburgerButton_Click"
+              Click="AddTask"
               Background="#DE483B"
               Foreground="White"
               >
@@ -126,7 +126,7 @@
               Foreground="White"
               HorizontalAlignment="Center"
               Click="HamburgerButton_Click">
-                    <Image Source="Assets/notification.png" Stretch="Fill" Height="21" Width="23"/>
+                    <Image Source="Assets/notification.png" Stretch="Fill" Height="18" Width="21"/>
                 </Button>
 
                 <Button Name="AppSettings"

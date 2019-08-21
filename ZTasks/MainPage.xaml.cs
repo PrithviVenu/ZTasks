@@ -23,10 +23,13 @@ using ZTasks.Presentation.Views;
 namespace ZTasks
 {
     /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// An empty page that can be used on its own or navigated to within a Frame.ss
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        public delegate void AddTaskEventHandler(object sender, RoutedEventArgs args);
+        public event AddTaskEventHandler AddTaskClicked;
+
         public MainPage()
         {
             this.InitializeComponent();
@@ -36,7 +39,7 @@ namespace ZTasks
             formattableTitleBar.ButtonBackgroundColor = Colors.Transparent;
             Window.Current.SetTitleBar(trickyTitleBar);
             UserName.Text = "Prithvi Venu";
-            MyFrame.Navigate(typeof(HomePage));
+            MyFrame.Navigate(typeof(HomePage), this);
             Home.IsSelected = true;
             Home.Background = new SolidColorBrush(Color.FromArgb(255, 244, 141, 142));
 
@@ -59,6 +62,11 @@ namespace ZTasks
             }
         }
 
+        private void AddTask(object sender, RoutedEventArgs e)
+        {
+            AddTaskClicked?.Invoke(this, e);
+        }
+
         private void ListBoxSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ListBoxItem item = ListBox.SelectedItem as ListBoxItem;
@@ -66,31 +74,31 @@ namespace ZTasks
 
             if (Home.IsSelected)
             {
-                MyFrame.Navigate(typeof(HomePage));
+                MyFrame.Navigate(typeof(HomePage), this);
 
                 //Title.Text = "Home";
             }
 
             else if (Today.IsSelected)
             {
-                MyFrame.Navigate(typeof(Today));
+                MyFrame.Navigate(typeof(Today), this);
                 //Title.Text = "Today";
             }
 
             else if (Upcoming.IsSelected)
             {
-                MyFrame.Navigate(typeof(Upcoming));
+                MyFrame.Navigate(typeof(Upcoming), this);
                 //Title.Text = "Upcoming";
 
             }
             else if (Delayed.IsSelected)
             {
-                MyFrame.Navigate(typeof(Delayed));
+                MyFrame.Navigate(typeof(Delayed), this);
                 //Title.Text = "Delayed";
             }
             else if (AssignedToOthers.IsSelected)
             {
-                MyFrame.Navigate(typeof(OthersTasks));
+                MyFrame.Navigate(typeof(OthersTasks), this);
                 //Title.Text = "Assigned To Others";
             }
         }

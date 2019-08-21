@@ -14,7 +14,7 @@
 
             <Border BorderThickness="0,0,0,1" BorderBrush="DimGray" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="4000">
                 <RelativePanel Margin="10,10,20,10" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="50" >
-                    <TextBlock RelativePanel.AlignLeftWithPanel="True" Name="TaskTitle" Text="{x:Bind TaskTitle}" FontSize="20"   Margin="0"/>
+                    <TextBlock RelativePanel.AlignLeftWithPanel="True" Name="TaskTitle" Text="{x:Bind TaskTitle}" FontSize="16"   Margin="0"/>
                     <!--<TextBlock RelativePanel.AlignLeftWithPanel="True" RelativePanel.Below="TaskTitle" Name="TaskAssignee" FontWeight="Medium" Text="Assigned To :" FontSize="18"   Margin="0"/>
                     <TextBlock RelativePanel.RightOf="TaskAssignee"  RelativePanel.AlignTopWith="TaskAssignee" Name="TaskAssigneeName" Text="{x:Bind Assignee}" FontSize="18"   Margin="10,0,0,0"/>-->
 
@@ -30,9 +30,11 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
+   
+     
         <RelativePanel Grid.Row="0" Grid.ColumnSpan="2">
             <TextBlock Name="Title"
                           RelativePanel.AlignLeftWithPanel="True"

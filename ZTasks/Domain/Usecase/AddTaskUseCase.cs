@@ -13,7 +13,6 @@ namespace ZTasks.Domain.Usecase
         public override void Execute()
         {
             ITaskHandler taskHandler = new TaskDAO();
-
         }
 
         protected override async Task ActionAsync()
