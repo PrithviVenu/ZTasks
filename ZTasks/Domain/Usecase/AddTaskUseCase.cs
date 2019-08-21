@@ -10,6 +10,7 @@ namespace ZTasks.Domain.Usecase
 {
     class AddTaskUseCase : UseCaseBase
     {
+
         public override void Execute()
         {
             ITaskHandler taskHandler = new TaskDAO();

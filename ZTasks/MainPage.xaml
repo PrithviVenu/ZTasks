@@ -159,8 +159,8 @@
                CompactPaneLength="45" 
                IsPaneOpen="True"
                    >
-            <SplitView.Pane>
-                <Grid>
+            <SplitView.Pane >
+                <Grid >
                     <Grid.RowDefinitions>
                         <RowDefinition Height="60" />
                         <RowDefinition Height="Auto" />
@@ -179,7 +179,7 @@
                     </Button>
 
                     <Line Stretch="Fill" Stroke="{StaticResource BorderBrush}" X2="1" Opacity="0.2" Grid.Row="1"/>
-                    <ListView Name="ListBox"  Grid.Row="2" SelectionChanged="ListBoxSelectionChanged">
+                    <ListView Name="ListBox"  Grid.Row="2" SelectionChanged="ListBoxSelectionChanged" >
                         <ListView.Resources>
                             <SolidColorBrush x:Key="ListViewItemBackgroundSelected" Color="#f18e8e" />
                             <SolidColorBrush x:Key="ListViewItemBackgroundSelectedPointerOver" Color="#ff8e8e" />
