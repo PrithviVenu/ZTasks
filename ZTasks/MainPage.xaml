@@ -183,6 +183,9 @@
                         <ListView.Resources>
                             <SolidColorBrush x:Key="ListViewItemBackgroundSelected" Color="#f18e8e" />
                             <SolidColorBrush x:Key="ListViewItemBackgroundSelectedPointerOver" Color="#ff8e8e" />
+                            <Thickness x:Key="ListViewItemRevealBorderThemeThickness">0</Thickness>
+                            <SolidColorBrush x:Key="ListViewItemBackgroundPointerOver" Color="#e08e8e" />
+
                         </ListView.Resources>
 
                         <ListViewItem Name="Home" >
@@ -245,6 +248,7 @@
                          Margin="20,0,0,0" />
                             </StackPanel>
                         </ListViewItem>
+                        
                     </ListView>
                 </Grid>
             </SplitView.Pane>
