@@ -53,6 +53,7 @@ namespace ZTasks.Presentation.Views
                 TextBox b = (TextBox)sender;
                 ZTask task1 = (ZTask)b.DataContext;
                 task1.TaskTitle = b.Text;
+                Debug.WriteLine(task1.TaskTitle);
                 if (subtasks.Last() == task1)
                 {
                     if (!task1.TaskTitle.Equals(""))
