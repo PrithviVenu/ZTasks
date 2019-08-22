@@ -26,6 +26,8 @@ namespace ZTasks.Presentation.Views
     public sealed partial class AddTaskPage : Page
     {
         private ObservableCollection<ZTask> subtasks;
+        public delegate void Collapse();
+        public event Collapse CollapseClicked;
 
         public AddTaskPage()
         {
@@ -33,6 +35,16 @@ namespace ZTasks.Presentation.Views
             subtasks = new ObservableCollection<ZTask>();
 
             subtasks.Add(new ZTask());
+        }
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+
+            if (e != null)
+            {
+                HomePage Page = (HomePage)e.Parameter;
+                this.CollapseClicked += Page.CollapseSlideInPane;
+            }
+
         }
         private void Box_KeyDown(object sender, Windows.UI.Xaml.Input.KeyRoutedEventArgs e)
         {
@@ -45,6 +57,11 @@ namespace ZTasks.Presentation.Views
         public void ItemClick(object sender, RoutedEventArgs e)
         {
             Debug.WriteLine(SubTasksListView.SelectedIndex, "999999");
+        }
+
+        public void CollapseSlideInPane(object sender, RoutedEventArgs e)
+        {
+            CollapseClicked?.Invoke();
         }
     }
 }

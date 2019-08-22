@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 using ZTasks.Domain.Models;
 
@@ -80,7 +81,7 @@ namespace ZTasks.Presentation.Views
 
         public void AddNewTask(object sender, RoutedEventArgs e)
         {
-            MyFrame.Navigate(typeof(AddTaskPage), this);
+            MyFrame.Navigate(typeof(AddTaskPage), this, new SuppressNavigationTransitionInfo());
             ShowSlideInPane();
             //CollapseSlideInPane();
 
@@ -96,7 +97,7 @@ namespace ZTasks.Presentation.Views
             }
 
         }
-        private void CollapseSlideInPane()
+        public void CollapseSlideInPane()
         {
             TasksListView.Margin = new Thickness(10, 10, 10, 0);
             TasksListView.SetValue(Grid.ColumnSpanProperty, 2);

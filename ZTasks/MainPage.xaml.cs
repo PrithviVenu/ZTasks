@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 using ZTasks.Presentation.Views;
 
@@ -39,7 +40,7 @@ namespace ZTasks
             formattableTitleBar.ButtonBackgroundColor = Colors.Transparent;
             Window.Current.SetTitleBar(trickyTitleBar);
             UserName.Text = "Prithvi Venu";
-            MyFrame.Navigate(typeof(HomePage), this);
+            MyFrame.Navigate(typeof(HomePage), this, new SuppressNavigationTransitionInfo());
             Home.IsSelected = true;
             Home.Background = new SolidColorBrush(Color.FromArgb(255, 244, 141, 142));
 
@@ -74,31 +75,31 @@ namespace ZTasks
 
             if (Home.IsSelected)
             {
-                MyFrame.Navigate(typeof(HomePage), this);
+                MyFrame.Navigate(typeof(HomePage), this, new SuppressNavigationTransitionInfo());
 
                 //Title.Text = "Home";
             }
 
             else if (Today.IsSelected)
             {
-                MyFrame.Navigate(typeof(Today), this);
+                MyFrame.Navigate(typeof(Today), this, new SuppressNavigationTransitionInfo());
                 //Title.Text = "Today";
             }
 
             else if (Upcoming.IsSelected)
             {
-                MyFrame.Navigate(typeof(Upcoming), this);
+                MyFrame.Navigate(typeof(Upcoming), this, new SuppressNavigationTransitionInfo());
                 //Title.Text = "Upcoming";
 
             }
             else if (Delayed.IsSelected)
             {
-                MyFrame.Navigate(typeof(Delayed), this);
+                MyFrame.Navigate(typeof(Delayed), this, new SuppressNavigationTransitionInfo());
                 //Title.Text = "Delayed";
             }
             else if (AssignedToOthers.IsSelected)
             {
-                MyFrame.Navigate(typeof(OthersTasks), this);
+                MyFrame.Navigate(typeof(OthersTasks), this, new SuppressNavigationTransitionInfo());
                 //Title.Text = "Assigned To Others";
             }
         }
