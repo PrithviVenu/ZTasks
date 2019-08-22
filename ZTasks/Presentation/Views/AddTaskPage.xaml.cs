@@ -46,13 +46,32 @@ namespace ZTasks.Presentation.Views
             }
 
         }
-        private void Box_KeyDown(object sender, Windows.UI.Xaml.Input.KeyRoutedEventArgs e)
+        private void Box_KeyDown(object sender, KeyRoutedEventArgs e)
         {
             if (e.Key == Windows.System.VirtualKey.Enter)
             {
-                subtasks.Add(new ZTask());
+                TextBox b = (TextBox)sender;
+                ZTask task1 = (ZTask)b.DataContext;
+                task1.TaskTitle = b.Text;
+                if (subtasks.Last() == task1)
+                {
+                    if (!task1.TaskTitle.Equals(""))
+                    {
+                        subtasks.Add(new ZTask());
+                    }
+                }
+                else
+                {
+
+                }
+
+                //task1.AssignedBy = "101";
+
+                //Debug.WriteLine(task1.AssignedBy, task1.AssignedBy);
+
 
             }
+
         }
         public void ItemClick(object sender, RoutedEventArgs e)
         {
