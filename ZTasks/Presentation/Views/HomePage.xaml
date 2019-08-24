@@ -84,7 +84,7 @@
                 <SolidColorBrush x:Key="ListViewItemBackgroundPointerOver" Color="#e08e8e" />
             </ListView.Resources>
         </ListView>
-        <Grid Name="SlideInPane" Background="White"  Grid.RowSpan="2" Grid.Column="1" BorderThickness="1,0,0,0" BorderBrush="DarkGray" Visibility="Collapsed" CornerRadius="1,0,0,0">
+        <Grid Name="SlideInPane" Background="White"  Grid.RowSpan="2" Grid.Column="1" BorderThickness="1,0,0,0" BorderBrush="#8888" Visibility="Collapsed" CornerRadius="1,0,0,0">
             <Frame Name="MyFrame" >
 
             </Frame>
