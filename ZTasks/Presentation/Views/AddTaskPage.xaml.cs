@@ -74,6 +74,18 @@ namespace ZTasks.Presentation.Views
             }
 
         }
+        private void ShowCalendarButton_Click(object sender, RoutedEventArgs e)
+        {
+            // calendarPopup.IsOpen = true;
+            CalendarPopup.IsOpen = !CalendarPopup.IsOpen;
+        }
+
+        private void ShowSubTaskCalendarButton_Click(object sender, RoutedEventArgs e)
+        {
+            // calendarPopup.IsOpen = true;
+            CalendarPopup.IsOpen = !CalendarPopup.IsOpen;
+
+        }
         public void ItemClick(object sender, RoutedEventArgs e)
         {
             Debug.WriteLine(SubTasksListView.SelectedIndex, "999999");

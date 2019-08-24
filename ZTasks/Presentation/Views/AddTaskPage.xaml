@@ -19,16 +19,41 @@
                 <TextBox  BorderThickness="0,0,0,0" BorderBrush="#8888" HorizontalContentAlignment="Stretch"  KeyDown="Box_KeyDown"  Name="SubTaskTitle" PlaceholderText="+ Subtask" FontSize="16"   Margin="0"/>
                 <Line Name="Line" Stretch="Fill" Margin="10 0 0 0" Stroke="#8888" X2="1" Opacity="0.2" Grid.Row="1"/>
             </Grid>-->
-            <RelativePanel Margin="10,10,20,10"  HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"  >
-                <TextBox Text="{x:Bind TaskTitle , Mode=TwoWay}" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" BorderThickness="0,0,0,0" BorderBrush="#8888" HorizontalContentAlignment="Stretch"  KeyDown="Box_KeyDown"  Name="SubTaskTitle" PlaceholderText="+ Subtask" FontSize="16"   Margin="0"/>
-                <Line Name="Line" Stretch="Fill" Margin="10 0 0 0" Stroke="#8888" X2="1" Opacity="0.2" RelativePanel.Below="SubTaskTitle" />
+            <RelativePanel Margin="10,10,0,10"  HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"  >
+                <TextBox Text="{x:Bind TaskTitle , Mode=TwoWay}" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" BorderThickness="0,0,0,0" BorderBrush="#8888" HorizontalContentAlignment="Stretch"  HorizontalAlignment="Stretch" KeyDown="Box_KeyDown"  Name="SubTaskTitle" PlaceholderText="+ Subtask" FontSize="16"   Margin="0 0 120 0"/>
+                <Button Name="SubTaskRecurring"  RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignBottomWith="SubTaskTitle" Margin="0,0,20,0" Background="Transparent" BorderThickness="0" Height="Auto" Width="Auto">
+                    <TextBlock
+                  Text="&#xE1CA;"
+                  FontFamily="Segoe MDL2 Assets"
+                  FontSize="19"
+                  Foreground="#888888"/>
+                </Button>
+
+                <Button Name="SubTaskPriority"   RelativePanel.AlignBottomWith="SubTaskTitle" RelativePanel.LeftOf="SubTaskRecurring" Background="Transparent" BorderThickness="0" Height="Auto" Width="Auto">
+                    <TextBlock
+                  Text="&#xE171;"
+                  FontFamily="Segoe MDL2 Assets"
+                  FontSize="19"
+                  Foreground="#888888"/>
+                </Button>
+                <Button Name="SubTaskDueDate"  Click="ShowSubTaskCalendarButton_Click" ClickMode="Hover" RelativePanel.AlignBottomWith="SubTaskTitle" RelativePanel.LeftOf="SubTaskPriority" Background="Transparent" BorderThickness="0" Height="Auto" Width="Auto">
+                    <TextBlock
+                  Text="&#xE163;"
+                  FontFamily="Segoe MDL2 Assets"
+                  FontSize="19"
+                  Foreground="#888888"/>
+                </Button>
+                <Popup Name="SubTaskCalendarPopup" RelativePanel.Below="SubTaskDueDate" IsLightDismissEnabled="True"  RelativePanel.AlignHorizontalCenterWith="SubTaskDueDate">
+                    <CalendarDatePicker x:Name="calendar"  PlaceholderText="Due date"></CalendarDatePicker>
+                </Popup>
+                <Line Name="Line1" Stretch="Fill" Margin="10 0 0 0" Stroke="#8888" X2="1" Opacity="0.2" RelativePanel.Below="SubTaskTitle" />
             </RelativePanel>
         </DataTemplate>
     </Page.Resources>
 
     <RelativePanel>
         <TextBlock Name="MainTitle" HorizontalAlignment="Center" RelativePanel.AlignHorizontalCenterWithPanel="True" Margin="0 10 0 0" FontSize="16" FontWeight="Medium" Text="Add Task"/>
-        <TextBox Name="TaskTitle"  BorderThickness="0 0 0 0"  RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.Below="MainTitle"  Margin="0 40 0 0" FontSize="16"  PlaceholderText="Task Title, @mention assignee" TextWrapping="Wrap" MaxHeight="100"/>
+        <TextBox Name="TaskTitle"  BorderThickness="0 0 0 0"  RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.Below="MainTitle"  Margin="0 40 130 0" FontSize="16"  PlaceholderText="Task Title, @mention assignee" TextWrapping="Wrap" MaxHeight="100"/>
         <Button Name="Recurring"  RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignBottomWith="TaskTitle" Margin="0,0,30,0" Background="Transparent" BorderThickness="0" Height="Auto" Width="Auto">
             <TextBlock
                   Text="&#xE1CA;"
@@ -44,13 +69,20 @@
                   FontSize="19"
                   Foreground="#888888"/>
         </Button>
-        <Button Name="DueDate"   RelativePanel.AlignBottomWith="TaskTitle" RelativePanel.LeftOf="Priority" Background="Transparent" BorderThickness="0" Height="Auto" Width="Auto">
+        <Button Name="DueDate" ClickMode="Hover"  Click="ShowCalendarButton_Click" RelativePanel.AlignBottomWith="TaskTitle" RelativePanel.LeftOf="Priority" Background="Transparent" BorderThickness="0" Height="Auto" Width="Auto">
+            <Button.Resources>
+                <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="Transparent"/>
+            </Button.Resources>
+
             <TextBlock
                   Text="&#xE163;"
                   FontFamily="Segoe MDL2 Assets"
                   FontSize="19"
                   Foreground="#888888"/>
         </Button>
+        <Popup Name="CalendarPopup" RelativePanel.Below="DueDate" IsLightDismissEnabled="True"  RelativePanel.AlignHorizontalCenterWith="DueDate">
+            <CalendarDatePicker x:Name="calendar"  PlaceholderText="Due date"></CalendarDatePicker>
+        </Popup>
         <Line Name="Line" Stretch="Fill" Margin="10 0 10 0" Stroke="#8888" X2="1" Opacity="0.2" RelativePanel.Below="TaskTitle"/>
         <Button Name="ClosePaneButton"
               BorderThickness="0"
@@ -72,7 +104,7 @@
                 <SolidColorBrush x:Key="ButtonBackgroundPressed" Color="Transparent"/>
             </Button.Resources>
         </Button>
-        <ListView RelativePanel.Below="Line" Name="SubTasksListView" Margin="10,10,10,0" MaxHeight="250"  HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch"   ItemsSource="{x:Bind subtasks}" IsItemClickEnabled="True" ItemClick="ItemClick"   ItemTemplate="{StaticResource SubTaskDataTemplate}">
+        <ListView RelativePanel.Below="Line" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" Name="SubTasksListView" Margin="10,10,0,0" MaxHeight="250"  HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch"   ItemsSource="{x:Bind subtasks}" IsItemClickEnabled="True" ItemClick="ItemClick"   ItemTemplate="{StaticResource SubTaskDataTemplate}">
             <ListView.Resources>
                 <SolidColorBrush x:Key="ListViewItemBackgroundSelected" Color="Transparent" />
                 <SolidColorBrush x:Key="ListViewItemBackgroundSelectedPointerOver" Color="Transparent" />
