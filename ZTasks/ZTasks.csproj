@@ -126,6 +126,7 @@
     <Compile Include="Domain\NotificationCenter\INotifyPropertyChangedBase.cs" />
     <Compile Include="Domain\Usecase\AddTaskUseCase.cs" />
     <Compile Include="Domain\Usecase\UseCaseBase.cs" />
+    <Compile Include="Domain\Utility\Priority.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>

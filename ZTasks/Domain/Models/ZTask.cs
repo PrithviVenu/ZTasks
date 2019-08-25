@@ -5,26 +5,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ZTasks.Domain.NotificationCenter;
-
+using ZTasks.Domain.Utility;
 namespace ZTasks.Domain.Models
 {
     class ZTask : INotifyPropertyChangedBase
     {
-        private int ZTaskId;
+        private string ZTaskId;
         private string ZTaskTitle;
         private string ZAssignee;
         private string ZAssignedBy;
         private int ZCreatedTime;
         private int ZDueDate;
         private int ZModifiedDate;
-        private Priority ZPriority;
-        private DateTime ZRemindOn;
-        private string ZGroupId;
-        private string ZProjectId;
+        private int ZPriority;
+        private int ZRemindOn;
         private string ZParentTaskId;
 
-        [PrimaryKey, AutoIncrement]
-        public int TaskId
+        [PrimaryKey]
+        public string TaskId
         {
             get
             {
@@ -108,7 +106,7 @@ namespace ZTasks.Domain.Models
                 this.SetProperty(ref ZModifiedDate, value);
             }
         }
-        public Priority Priority
+        public int Priority
         {
             get
             {
@@ -120,7 +118,7 @@ namespace ZTasks.Domain.Models
                 this.SetProperty(ref ZPriority, value);
             }
         }
-        public DateTime RemindOn
+        public int RemindOn
         {
             get
             {
@@ -132,30 +130,7 @@ namespace ZTasks.Domain.Models
                 this.SetProperty(ref ZRemindOn, value);
             }
         }
-        public string GroupId
-        {
-            get
-            {
-                return ZGroupId;
-            }
 
-            set
-            {
-                this.SetProperty(ref ZGroupId, value);
-            }
-        }
-        public string ProjectId
-        {
-            get
-            {
-                return ZProjectId;
-            }
-
-            set
-            {
-                this.SetProperty(ref ZProjectId, value);
-            }
-        }
         public string ParentTaskId
         {
             get
@@ -171,10 +146,5 @@ namespace ZTasks.Domain.Models
 
     }
 
-    enum Priority
-    {
-        Low,
-        Medium,
-        High
-    }
+
 }

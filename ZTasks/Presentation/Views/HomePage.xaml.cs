@@ -55,7 +55,8 @@ namespace ZTasks.Presentation.Views
             //tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", CreatedTime = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, GroupId = "98739udh", ProjectId = "pro982j", ParentTaskId = "1001" });
             //tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", CreatedTime = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, GroupId = "98739udh", ProjectId = "pro982j", ParentTaskId = "1001" });
             //tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", CreatedTime = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, GroupId = "98739udh", ProjectId = "pro982j", ParentTaskId = "1001" });
-            //tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", CreatedTime = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, GroupId = "98739udh", ProjectId = "pro982j", ParentTaskId = "1001" });
+
+            tasks.Add(new ZTask { TaskId = Guid.NewGuid().ToString(), TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", CreatedTime = 1, DueDate = 1, Priority = 1, RemindOn = 1, ParentTaskId = "-1" });
         }
         void Task_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
@@ -99,7 +100,7 @@ namespace ZTasks.Presentation.Views
         }
         public void CollapseSlideInPane()
         {
-            TasksListView.Margin = new Thickness(10, 10, 10, 0);
+            //TasksListView.Margin = new Thickness(10, 10, 10, 0);
             TasksListView.SetValue(Grid.ColumnSpanProperty, 2);
             //EmptyAddTaskDisplayPanel.SetValue(Grid.ColumnSpanProperty, 2);
             //TopPanel.SetValue(Grid.ColumnSpanProperty, 2);
@@ -109,7 +110,7 @@ namespace ZTasks.Presentation.Views
         private void ShowSlideInPane()
         {
 
-            TasksListView.Margin = new Thickness(0, 0, 0, 0);
+            //TasksListView.Margin = new Thickness(0, 0, 0, 0);
             TasksListView.SetValue(Grid.ColumnSpanProperty, 1);
             //EmptyAddTaskDisplayPanel.SetValue(Grid.ColumnSpanProperty, 1);
             //TopPanel.SetValue(Grid.ColumnSpanProperty, 1);

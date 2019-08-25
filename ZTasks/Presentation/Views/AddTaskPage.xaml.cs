@@ -56,7 +56,7 @@ namespace ZTasks.Presentation.Views
                 Debug.WriteLine(task1.TaskTitle);
                 if (subtasks.Last() == task1)
                 {
-                    if (!task1.TaskTitle.Equals(""))
+                    if (!b.Text.Equals(""))
                     {
                         subtasks.Add(new ZTask());
                     }
@@ -95,5 +95,18 @@ namespace ZTasks.Presentation.Views
         {
             CollapseClicked?.Invoke();
         }
+
+        private void ItemPointerEntered(Object sender, PointerRoutedEventArgs e)
+
+        {
+
+        }
+
+        private void ItemPointerExited(Object sender, PointerRoutedEventArgs e)
+        {
+
+
+        }
+
     }
 }
