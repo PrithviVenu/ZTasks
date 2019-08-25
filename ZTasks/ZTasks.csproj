@@ -123,6 +123,7 @@
     <Compile Include="Data\TaskDAO.cs" />
     <Compile Include="Domain\DMContract\ITaskHandler.cs" />
     <Compile Include="Domain\Models\ZTask.cs" />
+    <Compile Include="Domain\NotificationCenter\INotifyPropertyChangedBase.cs" />
     <Compile Include="Domain\Usecase\AddTaskUseCase.cs" />
     <Compile Include="Domain\Usecase\UseCaseBase.cs" />
     <Compile Include="MainPage.xaml.cs">
