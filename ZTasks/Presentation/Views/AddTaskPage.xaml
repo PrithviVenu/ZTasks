@@ -8,10 +8,11 @@
     xmlns:data="using:ZTasks.Domain.Models"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-    <Page.Resources>
-        <DataTemplate x:DataType="data:ZTask" x:Key="SubTaskDataTemplate">
+    <!--<Page.Resources>-->
+    <!--<DataTemplate x:DataType="data:ZTask" x:Key="SubTaskDataTemplate">-->
 
-            <!--<Grid Margin="10,10,20,10"  HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" >
+
+    <!--<Grid Margin="10,10,20,10"  HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" >
                 <Grid.RowDefinitions>
                     <RowDefinition />
                     <RowDefinition />
@@ -19,7 +20,7 @@
                 <TextBox  BorderThickness="0,0,0,0" BorderBrush="#8888" HorizontalContentAlignment="Stretch"  KeyDown="Box_KeyDown"  Name="SubTaskTitle" PlaceholderText="+ Subtask" FontSize="16"   Margin="0"/>
                 <Line Name="Line" Stretch="Fill" Margin="10 0 0 0" Stroke="#8888" X2="1" Opacity="0.2" Grid.Row="1"/>
             </Grid>-->
-            <RelativePanel Margin="10,10,0,10"  HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" PointerEntered="ItemPointerEntered" PointerExited="ItemPointerExited" >
+    <!--<RelativePanel Margin="10,10,0,10"  HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" PointerEntered="ItemPointerEntered" PointerExited="ItemPointerExited" >
                 <TextBox Text="{x:Bind TaskTitle , Mode=TwoWay}" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" BorderThickness="0,0,0,0" BorderBrush="#8888" HorizontalContentAlignment="Stretch"  HorizontalAlignment="Stretch" KeyDown="Box_KeyDown"  Name="SubTaskTitle" PlaceholderText="+ Subtask" FontSize="16" PointerEntered="ItemPointerEntered" PointerExited="ItemPointerExited"   Margin="0 0 120 0"/>
                 <Button Name="SubTaskRecurring"  RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignBottomWith="SubTaskTitle" Margin="0,0,20,0" Background="Transparent" BorderThickness="0" Height="Auto" Width="Auto">
                     <TextBlock
@@ -47,9 +48,9 @@
                     <CalendarDatePicker x:Name="calendar"  PlaceholderText="Due date"></CalendarDatePicker>
                 </Popup>
                 <Line Name="Line1" Stretch="Fill" Margin="10 0 0 0" Stroke="#8888" X2="1" Opacity="0.2" RelativePanel.Below="SubTaskTitle" />
-            </RelativePanel>
-        </DataTemplate>
-    </Page.Resources>
+            </RelativePanel>-->
+    <!--</DataTemplate>-->
+    <!--</Page.Resources>-->
 
     <RelativePanel>
         <TextBlock Name="MainTitle" HorizontalAlignment="Center" RelativePanel.AlignHorizontalCenterWithPanel="True" Margin="0 10 0 0" FontSize="16" FontWeight="Medium" Text="Add Task"/>
@@ -104,7 +105,7 @@
                 <SolidColorBrush x:Key="ButtonBackgroundPressed" Color="Transparent"/>
             </Button.Resources>
         </Button>
-        <ListView RelativePanel.Below="Line" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" Name="SubTasksListView" Margin="10,10,0,0" MaxHeight="250"  HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch"   ItemsSource="{x:Bind subtasks}" IsItemClickEnabled="True" ItemClick="ItemClick"   ItemTemplate="{StaticResource SubTaskDataTemplate}">
+        <ListView RelativePanel.Below="Line" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" Name="SubTasksListView" Margin="10,10,0,0" MaxHeight="250"  HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch"   ItemsSource="{x:Bind subtasks}" IsItemClickEnabled="True" ItemClick="ItemClick"  >
             <ListView.Resources>
                 <SolidColorBrush x:Key="ListViewItemBackgroundSelected" Color="Transparent" />
                 <SolidColorBrush x:Key="ListViewItemBackgroundSelectedPointerOver" Color="Transparent" />
@@ -115,7 +116,14 @@
 
 
             </ListView.Resources>
-
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="data:ZTask">
+                    <local:AddUserControl x:Name="MyUserControl" 
+                        Loaded="AddUserControl_Loaded"
+                        HorizontalAlignment="Stretch" 
+                        VerticalAlignment="Stretch" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
             <!--<ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="Template">

@@ -2,6 +2,9 @@
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
+    <EnableXBindDiagnostics>false</EnableXBindDiagnostics>
+  </PropertyGroup>
+  <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProjectGuid>{47202321-7AAE-4DCA-9E8F-A4ED3FAA5F82}</ProjectGuid>
@@ -133,6 +136,9 @@
     <Compile Include="Presentation\Views\AddTaskPage.xaml.cs">
       <DependentUpon>AddTaskPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Presentation\Views\AddUserControl.xaml.cs">
+      <DependentUpon>AddUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Presentation\Views\Delayed.xaml.cs">
       <DependentUpon>Delayed.xaml</DependentUpon>
     </Compile>
@@ -190,6 +196,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Presentation\Views\AddTaskPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Presentation\Views\AddUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

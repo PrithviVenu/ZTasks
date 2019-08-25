@@ -28,13 +28,21 @@ namespace ZTasks.Presentation.Views
         private ObservableCollection<ZTask> subtasks;
         public delegate void Collapse();
         public event Collapse CollapseClicked;
-
+        public delegate void ListViewClick(object sender, RoutedEventArgs e);
+        public event ListViewClick ListViewClicked;
         public AddTaskPage()
         {
             this.InitializeComponent();
             subtasks = new ObservableCollection<ZTask>();
-
             subtasks.Add(new ZTask());
+        }
+        private void AddUserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            var userControlObj = (AddUserControl)sender;
+            userControlObj.EnterKeyDown += Box_KeyDown;
+            userControlObj.CalendarButtonClicked += ShowSubTaskCalendarButton_Click;
+            userControlObj.SetEventPageReference(this);
+
         }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -48,30 +56,27 @@ namespace ZTasks.Presentation.Views
         }
         private void Box_KeyDown(object sender, KeyRoutedEventArgs e)
         {
-            if (e.Key == Windows.System.VirtualKey.Enter)
+            TextBox b = (TextBox)sender;
+            ZTask task1 = (ZTask)b.DataContext;
+            task1.TaskTitle = b.Text;
+            Debug.WriteLine(task1.TaskTitle);
+            if (subtasks.Last() == task1)
             {
-                TextBox b = (TextBox)sender;
-                ZTask task1 = (ZTask)b.DataContext;
-                task1.TaskTitle = b.Text;
-                Debug.WriteLine(task1.TaskTitle);
-                if (subtasks.Last() == task1)
+                if (!b.Text.Equals(""))
                 {
-                    if (!b.Text.Equals(""))
-                    {
-                        subtasks.Add(new ZTask());
-                    }
+                    subtasks.Add(new ZTask());
                 }
-                else
-                {
-
-                }
-
-                //task1.AssignedBy = "101";
-
-                //Debug.WriteLine(task1.AssignedBy, task1.AssignedBy);
-
+            }
+            else
+            {
 
             }
+
+            //task1.AssignedBy = "101";
+
+            //Debug.WriteLine(task1.AssignedBy, task1.AssignedBy);
+
+
 
         }
         private void ShowCalendarButton_Click(object sender, RoutedEventArgs e)
@@ -89,6 +94,7 @@ namespace ZTasks.Presentation.Views
         public void ItemClick(object sender, RoutedEventArgs e)
         {
             Debug.WriteLine(SubTasksListView.SelectedIndex, "999999");
+            ListViewClicked?.Invoke(sender, e);
         }
 
         public void CollapseSlideInPane(object sender, RoutedEventArgs e)
@@ -96,17 +102,7 @@ namespace ZTasks.Presentation.Views
             CollapseClicked?.Invoke();
         }
 
-        private void ItemPointerEntered(Object sender, PointerRoutedEventArgs e)
 
-        {
-
-        }
-
-        private void ItemPointerExited(Object sender, PointerRoutedEventArgs e)
-        {
-
-
-        }
 
     }
 }

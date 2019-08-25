@@ -8,7 +8,7 @@ using ZTasks.Domain.NotificationCenter;
 using ZTasks.Domain.Utility;
 namespace ZTasks.Domain.Models
 {
-    class ZTask : INotifyPropertyChangedBase
+    public class ZTask : INotifyPropertyChangedBase
     {
         private string ZTaskId;
         private string ZTaskTitle;

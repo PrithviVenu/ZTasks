@@ -1,0 +1,43 @@
+﻿<UserControl
+    x:Class="ZTasks.Presentation.Views.AddUserControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ZTasks.Presentation.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:data="using:ZTasks.Domain.Models"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <RelativePanel Margin="10,10,0,10"  HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" PointerEntered="ItemPointerEntered" PointerExited="ItemPointerExited" >
+        <TextBox Text="{x:Bind Subtasks.TaskTitle , Mode=TwoWay}" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" BorderThickness="0,0,0,0" BorderBrush="#8888" HorizontalContentAlignment="Stretch"  HorizontalAlignment="Stretch" KeyDown="Box_KeyDown"  Name="SubTaskTitle" PlaceholderText="+ Subtask" FontSize="16" PointerEntered="ItemPointerEntered" PointerExited="ItemPointerExited"   Margin="0 0 120 0"/>
+        <Button Name="SubTaskRecurring"  RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignBottomWith="SubTaskTitle" Margin="0,0,20,0" Background="Transparent" BorderThickness="0" Height="Auto" Width="Auto">
+            <TextBlock
+                  Text="&#xE1CA;"
+                  FontFamily="Segoe MDL2 Assets"
+                  FontSize="19"
+                  Foreground="#888888"/>
+        </Button>
+
+        <Button Name="SubTaskPriority"   RelativePanel.AlignBottomWith="SubTaskTitle" RelativePanel.LeftOf="SubTaskRecurring" Background="Transparent" BorderThickness="0" Height="Auto" Width="Auto">
+            <TextBlock
+                  Text="&#xE171;"
+                  FontFamily="Segoe MDL2 Assets"
+                  FontSize="19"
+                  Foreground="#888888"/>
+        </Button>
+        <Button Name="SubTaskDueDate"  Click="ShowSubTaskCalendarButton_Click" ClickMode="Hover" RelativePanel.AlignBottomWith="SubTaskTitle" RelativePanel.LeftOf="SubTaskPriority" Background="Transparent" BorderThickness="0" Height="Auto" Width="Auto">
+            <TextBlock
+                  Text="&#xE163;"
+                  FontFamily="Segoe MDL2 Assets"
+                  FontSize="19"
+                  Foreground="#888888"/>
+        </Button>
+        <Popup Name="SubTaskCalendarPopup" RelativePanel.Below="SubTaskDueDate" IsLightDismissEnabled="True"  RelativePanel.AlignHorizontalCenterWith="SubTaskDueDate">
+            <CalendarDatePicker x:Name="calendar"  PlaceholderText="Due date"></CalendarDatePicker>
+        </Popup>
+        <Line Name="Line1" Stretch="Fill" Margin="10 0 0 0" Stroke="#8888" X2="1" Opacity="0.2" RelativePanel.Below="SubTaskTitle" />
+    </RelativePanel>
+
+</UserControl>
