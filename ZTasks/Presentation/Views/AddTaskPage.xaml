@@ -70,8 +70,6 @@
                 <Thickness x:Key="ListViewItemRevealBorderThemeThickness">0</Thickness>
                 <SolidColorBrush x:Key="ListViewItemBackgroundPressed" Color="Transparent" />
                 <SolidColorBrush x:Key="ListViewItemBackgroundSelectedPressed" Color="Transparent" />
-
-
             </ListView.Resources>
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>

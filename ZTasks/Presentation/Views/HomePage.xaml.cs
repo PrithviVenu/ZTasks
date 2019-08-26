@@ -56,7 +56,13 @@ namespace ZTasks.Presentation.Views
             //tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", CreatedTime = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, GroupId = "98739udh", ProjectId = "pro982j", ParentTaskId = "1001" });
             //tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", CreatedTime = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, GroupId = "98739udh", ProjectId = "pro982j", ParentTaskId = "1001" });
 
-            tasks.Add(new ZTask { TaskId = Guid.NewGuid().ToString(), TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", CreatedTime = 1, DueDate = 1, Priority = 1, RemindOn = 1, ParentTaskId = "-1" });
+            tasks.Add(new ZTask { TaskId = Guid.NewGuid().ToString(), TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", CreatedTime = DateTime.Now, DueDate = DateTime.Now, Priority = 1, RemindOn = DateTime.Now, ParentTaskId = "-1" });
+        }
+        private void ListTasksUserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            var userControlObj = (ListTasksControl)sender;
+
+
         }
         void Task_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {

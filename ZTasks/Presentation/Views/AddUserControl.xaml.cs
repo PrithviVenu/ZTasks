@@ -32,6 +32,12 @@ namespace ZTasks.Presentation.Views
             this.DataContextChanged += (s, e) => Bindings.Update();
 
         }
+        private void InputTextBox_Loaded(object sender, RoutedEventArgs e)
+        {
+            var textBox = (TextBox)sender;
+            textBox.Focus(FocusState.Programmatic);
+        }
+
 
         public void SetEventPageReference(Page page)
         {
