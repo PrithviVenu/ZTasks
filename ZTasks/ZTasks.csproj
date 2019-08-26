@@ -133,6 +133,7 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Presentation\ViewModel\HomeViewModel.cs" />
     <Compile Include="Presentation\Views\AddTaskPage.xaml.cs">
       <DependentUpon>AddTaskPage.xaml</DependentUpon>
     </Compile>
@@ -249,9 +250,7 @@
       <Version>1.5.231</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Presentation\ViewModel\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <SDKReference Include="SQLite.UWP.2015, Version=3.29.0">
       <Name>SQLite for Universal Windows Platform</Name>

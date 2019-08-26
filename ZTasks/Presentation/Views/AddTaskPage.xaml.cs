@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using ZTasks.Domain.Models;
+using ZTasks.Presentation.ViewModel;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -30,10 +31,13 @@ namespace ZTasks.Presentation.Views
         public event Collapse CollapseClicked;
         public delegate void ListViewClick(object sender, RoutedEventArgs e);
         public event ListViewClick ListViewClicked;
+        HomeViewModel homeViewModel;
+
         public AddTaskPage()
         {
             this.InitializeComponent();
             subtasks = new ObservableCollection<ZTask>();
+            //homeViewModel = new HomeViewModel(ref subtasks);
             subtasks.Add(new ZTask { TaskId = Guid.NewGuid().ToString() });
         }
         private void AddUserControl_Loaded(object sender, RoutedEventArgs e)
@@ -41,6 +45,21 @@ namespace ZTasks.Presentation.Views
             var userControlObj = (AddUserControl)sender;
             userControlObj.EnterKeyDown += Box_KeyDown;
             userControlObj.SetEventPageReference(this);
+            userControlObj.TextContextChanged += TextBox_DataContextChanged;
+
+        }
+        private bool _focusItem = true;
+
+
+        private void TextBox_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
+        {
+            var textBox = (TextBox)sender;
+            if (args.NewValue == SubTasksListView.Items[SubTasksListView.Items.Count - 1] && _focusItem)
+            {
+                //last item, focus it
+                textBox.Focus(FocusState.Programmatic);
+                _focusItem = false;
+            }
 
         }
 

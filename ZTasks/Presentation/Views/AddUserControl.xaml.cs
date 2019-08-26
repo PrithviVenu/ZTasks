@@ -23,6 +23,10 @@ namespace ZTasks.Presentation.Views
         public Domain.Models.ZTask Subtasks { get { return this.DataContext as Domain.Models.ZTask; } }
         public delegate void KeyEvent(object sender, KeyRoutedEventArgs e);
         public event KeyEvent EnterKeyDown;
+        public delegate void TextBoxContextChanged(FrameworkElement sender,
+     DataContextChangedEventArgs args);
+        public event TextBoxContextChanged TextContextChanged;
+
         //public delegate void CalendarButtonClick(object sender, RoutedEventArgs e);
         //public event CalendarButtonClick CalendarButtonClicked;
         public Page page;
@@ -37,7 +41,12 @@ namespace ZTasks.Presentation.Views
             var textBox = (TextBox)sender;
             textBox.Focus(FocusState.Programmatic);
         }
-
+        private void TextBox_DataContextChanged(
+     FrameworkElement sender,
+     DataContextChangedEventArgs args)
+        {
+            TextContextChanged?.Invoke(sender, args);
+        }
 
         public void SetEventPageReference(Page page)
         {
@@ -64,6 +73,7 @@ namespace ZTasks.Presentation.Views
                 if (EnterKeyDown != null)
                 {
                     EnterKeyDown?.Invoke(sender, e);
+
 
                 }
 
