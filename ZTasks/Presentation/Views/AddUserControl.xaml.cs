@@ -23,8 +23,8 @@ namespace ZTasks.Presentation.Views
         public Domain.Models.ZTask Subtasks { get { return this.DataContext as Domain.Models.ZTask; } }
         public delegate void KeyEvent(object sender, KeyRoutedEventArgs e);
         public event KeyEvent EnterKeyDown;
-        public delegate void CalendarButtonClick(object sender, RoutedEventArgs e);
-        public event CalendarButtonClick CalendarButtonClicked;
+        //public delegate void CalendarButtonClick(object sender, RoutedEventArgs e);
+        //public event CalendarButtonClick CalendarButtonClicked;
         public Page page;
         public AddUserControl()
         {
@@ -46,7 +46,9 @@ namespace ZTasks.Presentation.Views
         }
         private void ShowSubTaskCalendarButton_Click(object sender, RoutedEventArgs e)
         {
-            CalendarButtonClicked?.Invoke(sender, e);
+            SubTaskCalendarPopup.IsOpen = !SubTaskCalendarPopup.IsOpen;
+
+            //CalendarButtonClicked?.Invoke(sender, e);
 
         }
         private void Box_KeyDown(object sender, KeyRoutedEventArgs e)
@@ -65,17 +67,21 @@ namespace ZTasks.Presentation.Views
 
         }
 
-        private void ItemPointerEntered(Object sender, PointerRoutedEventArgs e)
+        //private void ItemPointerEntered(Object sender, PointerRoutedEventArgs e)
 
-        {
+        //{
+        //    SubTaskRecurring.Visibility = Visibility.Visible;
+        //    SubTaskPriority.Visibility = Visibility.Visible;
+        //    SubTaskDueDate.Visibility = Visibility.Visible;
 
-        }
+        //}
 
-        private void ItemPointerExited(Object sender, PointerRoutedEventArgs e)
-        {
-
-
-        }
+        //private void ItemPointerExited(Object sender, PointerRoutedEventArgs e)
+        //{
+        //    SubTaskRecurring.Visibility = Visibility.Collapsed;
+        //    SubTaskPriority.Visibility = Visibility.Collapsed;
+        //    SubTaskDueDate.Visibility = Visibility.Collapsed;
+        //}
 
 
     }

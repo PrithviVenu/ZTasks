@@ -40,7 +40,6 @@ namespace ZTasks.Presentation.Views
         {
             var userControlObj = (AddUserControl)sender;
             userControlObj.EnterKeyDown += Box_KeyDown;
-            userControlObj.CalendarButtonClicked += ShowSubTaskCalendarButton_Click;
             userControlObj.SetEventPageReference(this);
 
         }
@@ -65,6 +64,8 @@ namespace ZTasks.Presentation.Views
                 if (!b.Text.Equals(""))
                 {
                     subtasks.Add(new ZTask());
+                    //SubTasksListView?.ScrollIntoView(SubTasksListView.Items[subtasks.Count - 1], ScrollIntoViewAlignment.Leading);
+
                 }
             }
             else
@@ -85,15 +86,10 @@ namespace ZTasks.Presentation.Views
             CalendarPopup.IsOpen = !CalendarPopup.IsOpen;
         }
 
-        private void ShowSubTaskCalendarButton_Click(object sender, RoutedEventArgs e)
-        {
-            // calendarPopup.IsOpen = true;
-            CalendarPopup.IsOpen = !CalendarPopup.IsOpen;
 
-        }
         public void ItemClick(object sender, RoutedEventArgs e)
         {
-            Debug.WriteLine(SubTasksListView.SelectedIndex, "999999");
+            Debug.WriteLine(SubTasksListView.SelectedIndex, "AddTaskPage");
             ListViewClicked?.Invoke(sender, e);
         }
 

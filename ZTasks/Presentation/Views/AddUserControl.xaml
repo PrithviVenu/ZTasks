@@ -10,8 +10,8 @@
     d:DesignHeight="300"
     d:DesignWidth="400">
 
-    <RelativePanel Margin="10,10,0,10"  HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" PointerEntered="ItemPointerEntered" PointerExited="ItemPointerExited" >
-        <TextBox Text="{x:Bind Subtasks.TaskTitle , Mode=TwoWay}" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" BorderThickness="0,0,0,0" BorderBrush="#8888" HorizontalContentAlignment="Stretch"  HorizontalAlignment="Stretch" KeyDown="Box_KeyDown"  Name="SubTaskTitle" PlaceholderText="+ Subtask" FontSize="16" PointerEntered="ItemPointerEntered" PointerExited="ItemPointerExited"   Margin="0 0 120 0"/>
+    <RelativePanel  Margin="10,10,0,10"  HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" >
+        <TextBox Text="{x:Bind Subtasks.TaskTitle , Mode=TwoWay}" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" BorderThickness="0,0,0,0" BorderBrush="#8888" HorizontalContentAlignment="Stretch"  HorizontalAlignment="Stretch" KeyDown="Box_KeyDown"  Name="SubTaskTitle" PlaceholderText="+ Subtask" FontSize="16"    Margin="0 0 120 0"/>
         <Button Name="SubTaskRecurring"  RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignBottomWith="SubTaskTitle" Margin="0,0,20,0" Background="Transparent" BorderThickness="0" Height="Auto" Width="Auto">
             <TextBlock
                   Text="&#xE1CA;"
@@ -34,10 +34,10 @@
                   FontSize="19"
                   Foreground="#888888"/>
         </Button>
-        <Popup Name="SubTaskCalendarPopup" RelativePanel.Below="SubTaskDueDate" IsLightDismissEnabled="True"  RelativePanel.AlignHorizontalCenterWith="SubTaskDueDate">
-            <CalendarDatePicker x:Name="calendar"  PlaceholderText="Due date"></CalendarDatePicker>
+        <Popup Name="SubTaskCalendarPopup"   RelativePanel.Below="SubTaskDueDate" IsLightDismissEnabled="True"  RelativePanel.AlignHorizontalCenterWith="SubTaskDueDate">
+            <CalendarDatePicker    x:Name="SubTaskCalendar"  PlaceholderText="Due date"></CalendarDatePicker>
         </Popup>
-        <Line Name="Line1" Stretch="Fill" Margin="10 0 0 0" Stroke="#8888" X2="1" Opacity="0.2" RelativePanel.Below="SubTaskTitle" />
+        <Line  Name="Line1" Stretch="Fill" Margin="10 0 0 0" Stroke="#8888" X2="1" Opacity="0.2" RelativePanel.Below="SubTaskTitle" />
     </RelativePanel>
 
 </UserControl>
