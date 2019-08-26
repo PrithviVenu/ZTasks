@@ -88,6 +88,10 @@
             </ListView.ItemTemplate>
 
         </ListView>
+        <CheckBox Name="checkBox" Click="CheckBoxClicked"  RelativePanel.Below="SubTasksListView" RelativePanel.AlignLeftWithPanel="True" Margin="20 25 0 0" FontSize="16" Content="Remind On" Width="20" Height="20" />
+        <CalendarDatePicker Name="Reminder" IsEnabled="False" RelativePanel.AlignBottomWith="checkBox" RelativePanel.RightOf="checkBox"/>
+        <Button Name="Save" Content="Save" Click="SaveTask" Background="#DE483B" Foreground="White" RelativePanel.Below="Reminder" RelativePanel.AlignLeftWithPanel="True" Margin="20 45 40 0"  />
+        <Button Name="Cancel" Content="Cancel" Click="CancelTask" Width="{x:Bind Save.Width}"  RelativePanel.AlignBottomWith="Save" RelativePanel.RightOf="Save" />
 
     </RelativePanel>
 </Page>

@@ -34,13 +34,28 @@ namespace ZTasks.Presentation.Views
         {
             this.InitializeComponent();
             subtasks = new ObservableCollection<ZTask>();
-            subtasks.Add(new ZTask());
+            subtasks.Add(new ZTask { TaskId = Guid.NewGuid().ToString() });
         }
         private void AddUserControl_Loaded(object sender, RoutedEventArgs e)
         {
             var userControlObj = (AddUserControl)sender;
             userControlObj.EnterKeyDown += Box_KeyDown;
             userControlObj.SetEventPageReference(this);
+
+        }
+
+        private void CheckBoxClicked(object sender, RoutedEventArgs e)
+        {
+            CheckBox checkBox = (CheckBox)sender;
+            if (checkBox.IsChecked == true)
+            {
+                Reminder.IsEnabled = true;
+            }
+            else
+            {
+                Reminder.IsEnabled = false;
+            }
+
 
         }
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -63,7 +78,7 @@ namespace ZTasks.Presentation.Views
             {
                 if (!b.Text.Equals(""))
                 {
-                    subtasks.Add(new ZTask());
+                    subtasks.Add(new ZTask { TaskId = Guid.NewGuid().ToString() });
                     //SubTasksListView?.ScrollIntoView(SubTasksListView.Items[subtasks.Count - 1], ScrollIntoViewAlignment.Leading);
 
 
@@ -86,7 +101,20 @@ namespace ZTasks.Presentation.Views
             // calendarPopup.IsOpen = true;
             CalendarPopup.IsOpen = !CalendarPopup.IsOpen;
         }
+        private void SaveTask(object sender, RoutedEventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(TaskTitle.Text))
+            {
 
+            }
+        }
+        private void CancelTask(object sender, RoutedEventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(TaskTitle.Text))
+            {
+
+            }
+        }
 
         public void ItemClick(object sender, RoutedEventArgs e)
         {
