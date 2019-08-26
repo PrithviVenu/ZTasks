@@ -66,6 +66,7 @@ namespace ZTasks.Presentation.Views
                     subtasks.Add(new ZTask());
                     //SubTasksListView?.ScrollIntoView(SubTasksListView.Items[subtasks.Count - 1], ScrollIntoViewAlignment.Leading);
 
+
                 }
             }
             else
