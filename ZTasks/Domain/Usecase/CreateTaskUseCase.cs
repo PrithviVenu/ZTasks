@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,13 +11,15 @@ using ZTasks.Domain.Models;
 
 namespace ZTasks.Domain.Usecase
 {
-    class AddTaskUseCase : UseCaseBase
+    class CreateTaskUseCase : UseCaseBase
     {
         public ObservableCollection<ZTask> tasks;
+        public ZTask parentZtask;
 
-        public AddTaskUseCase(ObservableCollection<ZTask> tasks)
+        public CreateTaskUseCase(ObservableCollection<ZTask> tasks, ZTask parentZtask)
         {
             this.tasks = tasks;
+            this.parentZtask = parentZtask;
         }
         public async override void Execute()
         {
@@ -31,7 +34,10 @@ namespace ZTasks.Domain.Usecase
         protected override async Task ActionAsync()
         {
             ITaskHandler taskHandler = new TaskDAO();
-            await ActionAsync();
+
+
+            await taskHandler.AddTaskToDb(tasks, parentZtask);
+
         }
     }
 }

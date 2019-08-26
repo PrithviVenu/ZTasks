@@ -127,13 +127,13 @@
     <Compile Include="Domain\DMContract\ITaskHandler.cs" />
     <Compile Include="Domain\Models\ZTask.cs" />
     <Compile Include="Domain\NotificationCenter\INotifyPropertyChangedBase.cs" />
-    <Compile Include="Domain\Usecase\AddTaskUseCase.cs" />
+    <Compile Include="Domain\Usecase\CreateTaskUseCase.cs" />
     <Compile Include="Domain\Usecase\UseCaseBase.cs" />
     <Compile Include="Domain\Utility\Priority.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Presentation\ViewModel\HomeViewModel.cs" />
+    <Compile Include="Presentation\ViewModel\CreateTaskViewModel.cs" />
     <Compile Include="Presentation\Views\AddTaskPage.xaml.cs">
       <DependentUpon>AddTaskPage.xaml</DependentUpon>
     </Compile>

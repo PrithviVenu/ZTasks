@@ -125,7 +125,7 @@
               Background="#DE483B"
               Foreground="White"
               HorizontalAlignment="Center"
-              Click="HamburgerButton_Click">
+             >
                     <Image Source="Assets/notification.png" Stretch="Fill" Height="18" Width="21"/>
                 </Button>
 
@@ -140,7 +140,6 @@
               Width="45"
               Height="45"
               HorizontalAlignment="Center"
-              Click="HamburgerButton_Click"
               Background="#DE483B"
               Foreground="White"
               >
@@ -184,7 +183,7 @@
                             <SolidColorBrush x:Key="ListViewItemBackgroundSelected" Color="#f18e8e" />
                             <SolidColorBrush x:Key="ListViewItemBackgroundSelectedPointerOver" Color="#ff8e8e" />
                             <Thickness x:Key="ListViewItemRevealBorderThemeThickness">0</Thickness>
-                            <SolidColorBrush x:Key="ListViewItemBackgroundPointerOver" Color="#e08e8e" />
+                            <SolidColorBrush x:Key="ListViewItemBackgroundPointerOver" Color="#ff8e8e" />
 
                         </ListView.Resources>
 
@@ -248,7 +247,7 @@
                          Margin="20,0,0,0" />
                             </StackPanel>
                         </ListViewItem>
-                        
+
                     </ListView>
                 </Grid>
             </SplitView.Pane>

@@ -13,11 +13,13 @@ namespace ZTasks.Data
 {
     class DatabaseAccessContext
     {
-        internal static SQLiteAsyncConnection Connection;
+        public static SQLiteAsyncConnection Connection;
         public DatabaseAccessContext()
         {
-            if (DatabaseAccessContext.Connection.Equals(null))
+
+            if (DatabaseAccessContext.Connection == null)
             {
+
                 Debug.WriteLine("Connecting To Database");
 
                 ConnectToDB();

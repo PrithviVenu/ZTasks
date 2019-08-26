@@ -26,7 +26,9 @@ namespace ZTasks.Presentation.Views
         public delegate void TextBoxContextChanged(FrameworkElement sender,
      DataContextChangedEventArgs args);
         public event TextBoxContextChanged TextContextChanged;
-
+        //    public delegate void TextBoxContextChanged(FrameworkElement sender,
+        //DataContextChangedEventArgs args);
+        //    public event TextBoxContextChanged TextContextChanged;
         //public delegate void CalendarButtonClick(object sender, RoutedEventArgs e);
         //public event CalendarButtonClick CalendarButtonClicked;
         public Page page;
@@ -36,17 +38,20 @@ namespace ZTasks.Presentation.Views
             this.DataContextChanged += (s, e) => Bindings.Update();
 
         }
-        private void InputTextBox_Loaded(object sender, RoutedEventArgs e)
+        internal void FocusTextBox()
         {
-            var textBox = (TextBox)sender;
-            textBox.Focus(FocusState.Programmatic);
+            SubTaskTitle.Focus(FocusState.Programmatic);
         }
-        private void TextBox_DataContextChanged(
-     FrameworkElement sender,
-     DataContextChangedEventArgs args)
-        {
-            TextContextChanged?.Invoke(sender, args);
-        }
+
+        //private void InputTextBox_Loaded(object sender, RoutedEventArgs e)
+        //{
+        //    var textBox = (TextBox)sender;
+        //    textBox.Focus(FocusState.Programmatic);
+        //}
+        //private void TextBox_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
+        //{
+        //    TextContextChanged?.Invoke(sender, args);
+        //}
 
         public void SetEventPageReference(Page page)
         {

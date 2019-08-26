@@ -62,7 +62,7 @@
                 <SolidColorBrush x:Key="ButtonBackgroundPressed" Color="Transparent"/>
             </Button.Resources>
         </Button>
-        <ListView  RelativePanel.Below="Line" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" Name="SubTasksListView" Margin="10,10,0,0" MaxHeight="250"  HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch"   ItemsSource="{x:Bind subtasks}" IsItemClickEnabled="True" ItemClick="ItemClick"  >
+        <ListView  RelativePanel.Below="Line" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" Name="SubTasksListView" Margin="10,10,0,0" MaxHeight="250"  HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch"   ItemsSource="{x:Bind createTaskViewModel.Ztasks}" IsItemClickEnabled="True" ItemClick="ItemClick"  >
             <ListView.Resources>
                 <SolidColorBrush x:Key="ListViewItemBackgroundSelected" Color="Transparent" />
                 <SolidColorBrush x:Key="ListViewItemBackgroundSelectedPointerOver" Color="Transparent" />
@@ -90,7 +90,15 @@
         </ListView>
         <CheckBox Name="checkBox" Click="CheckBoxClicked"  RelativePanel.Below="SubTasksListView" RelativePanel.AlignLeftWithPanel="True" Margin="20 25 0 0" FontSize="16" Content="Remind On" Width="20" Height="20" />
         <CalendarDatePicker Name="Reminder" IsEnabled="False" RelativePanel.AlignBottomWith="checkBox" RelativePanel.RightOf="checkBox"/>
-        <Button Name="Save" Content="Save" Click="SaveTask" Background="#DE483B" Foreground="White" RelativePanel.Below="Reminder" RelativePanel.AlignLeftWithPanel="True" Margin="20 45 40 0"  />
+        <Button Name="Save" Content="Save" Click="SaveTask" Background="#DE483B" Foreground="White" RelativePanel.Below="Reminder" RelativePanel.AlignLeftWithPanel="True" Margin="20 45 40 0"  >
+            <Button.Resources>
+                <SolidColorBrush x:Key="ButtonForegroundPointerOver" Color="White"/>
+                <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="#ff8e8e"/>
+
+            </Button.Resources>
+
+
+        </Button>
         <Button Name="Cancel" Content="Cancel" Click="CancelTask" Width="{x:Bind Save.Width}"  RelativePanel.AlignBottomWith="Save" RelativePanel.RightOf="Save" />
 
     </RelativePanel>
