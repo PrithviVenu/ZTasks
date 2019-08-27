@@ -28,7 +28,7 @@ namespace ZTasks.Domain.Usecase
                 return;
             }
 
-            await ActionAsync();
+            await Task.Run(async () => await  ActionAsync());
         }
 
         public void OnTasksFetchedSuccessfully(ObservableCollection<ZTask> ZtaskList)
