@@ -15,25 +15,17 @@ namespace ZTasks.Domain.Usecase
 {
     class CreateTaskUseCase : UseCaseBase, IAddTasksDbCallback
     {
-        public ObservableCollection<ZTask> tasks;
+        public List<ZTask> tasks;
         public ZTask parentZtask;
         public IAddTaskCallback callback;
 
-        public CreateTaskUseCase(ObservableCollection<ZTask> tasks, ZTask parentZtask, IAddTaskCallback callBack)
+        public CreateTaskUseCase(List<ZTask> tasks, ZTask parentZtask, IAddTaskCallback callBack)
         {
             this.tasks = tasks;
             this.parentZtask = parentZtask;
             this.callback = callBack;
         }
-        public async override void Execute()
-        {
-            if (GetIfAvailableInCache())
-            {
-                return;
-            }
-
-            await ActionAsync();
-        }
+       
 
         public void OnSuccess(bool success)
         {

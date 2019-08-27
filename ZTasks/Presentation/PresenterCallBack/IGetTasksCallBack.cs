@@ -10,6 +10,6 @@ namespace ZTasks.Presentation.PresenterCallBack
 {
     interface IGetTasksCallBack
     {
-        void OnTasksFetchedSuccessfully(ObservableCollection<ZTask> ZtaskList);
+        void OnTasksFetchedSuccessfully(List<ZTask> ZtaskList);
     }
 }

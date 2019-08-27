@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using ZTasks.Models;
 using ZTasks.Domain.Usecase;
 using ZTasks.Presentation.PresenterCallBack;
+using Windows.ApplicationModel.Core;
 
 namespace ZTasks.Presentation.ViewModel
 {
@@ -25,7 +26,7 @@ namespace ZTasks.Presentation.ViewModel
             set
             {
                 ZTaskCollection = value;
-                OnPropertyChanged("Ztasks");
+               // OnPropertyChanged("Ztasks");
             }
         }
         public TaskListViewModel()
@@ -48,14 +49,21 @@ namespace ZTasks.Presentation.ViewModel
 
         }
 
-        public void OnTasksFetchedSuccessfully(ObservableCollection<ZTask> ZtaskList)
+        public async void OnTasksFetchedSuccessfully(List<ZTask> ZtaskList)
         {
-            Debug.WriteLine(ZtaskList.Count, "msdmsdm");
-            Ztasks.Clear();
-            AddElementsToCollection(ZtaskList);
+            //var v =System.Windows.Application.Current.Dispatcher;
+            await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+            {
+                Debug.WriteLine(ZtaskList.Count, "msdmsdm");
+                Ztasks.Clear();
+                AddElementsToCollection(ZtaskList);
+            });
+        
+            //Ztasks = new ObservableCollection<ZTask>(ZtaskList);
+
         }
 
-        public void AddElementsToCollection(ObservableCollection<ZTask> ZtaskList)
+        public void AddElementsToCollection(List<ZTask> ZtaskList)
         {
             foreach (ZTask task in ZtaskList)
             {

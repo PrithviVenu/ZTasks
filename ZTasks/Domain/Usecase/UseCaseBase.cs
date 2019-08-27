@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +14,21 @@ namespace ZTasks.Domain.Usecase
             return false;
         }
         protected abstract Task ActionAsync();
-        public abstract void Execute();
+        public async void Execute()
+        {
+            if (GetIfAvailableInCache())
+            {
+                return;
+            }
+            try
+            {
+                await Task.Run(() => ActionAsync());
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e);
 
+            }
+        }
     }
 }

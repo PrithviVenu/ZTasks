@@ -41,13 +41,13 @@ namespace ZTasks.Presentation.ViewModel
 
         public void AddTask(ZTask parentZtask)
         {
-            removeEmptyListElements();
-            usecase = new CreateTaskUseCase(Ztasks, parentZtask, this);
+            RemoveEmptyListElements();
+            usecase = new CreateTaskUseCase(Ztasks.ToList<ZTask>(), parentZtask, this);
             usecase.Execute();
 
         }
 
-        public void removeEmptyListElements()
+        public void RemoveEmptyListElements()
         {
             //foreach (ZTask item in Ztasks)
             //{

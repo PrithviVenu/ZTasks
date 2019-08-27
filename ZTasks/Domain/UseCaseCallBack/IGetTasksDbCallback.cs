@@ -10,7 +10,7 @@ namespace ZTasks.Domain.UseCaseCallBack
 {
     interface IGetTasksDbCallback
     {
-        void OnTasksFetchedSuccessfully(ObservableCollection<ZTask> ZtaskList);
+        void OnTasksFetchedSuccessfully(List<ZTask> ZtaskList);
 
     }
 }

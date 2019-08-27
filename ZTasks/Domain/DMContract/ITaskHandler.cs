@@ -11,7 +11,7 @@ namespace ZTasks.Domain.DMContract
 {
     interface ITaskHandler
     {
-        Task AddTaskToDb(ObservableCollection<ZTask> task, ZTask parentZtask, IAddTasksDbCallback callback)
+        Task AddTaskToDb(List<ZTask> task, ZTask parentZtask, IAddTasksDbCallback callback)
 ;
         Task GetTasksFromDb(IGetTasksDbCallback callback);
     }

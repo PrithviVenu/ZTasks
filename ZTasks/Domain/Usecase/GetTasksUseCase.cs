@@ -9,11 +9,12 @@ using ZTasks.Domain.DMContract;
 using ZTasks.Models;
 using ZTasks.Domain.UseCaseCallBack;
 using ZTasks.Presentation.PresenterCallBack;
+using System.Diagnostics;
+
 namespace ZTasks.Domain.Usecase
 {
     class GetTasksUseCase : UseCaseBase, IGetTasksDbCallback
     {
-        public ObservableCollection<ZTask> tasks;
         public IGetTasksCallBack callback;
 
         public GetTasksUseCase(IGetTasksCallBack callback)
@@ -21,17 +22,9 @@ namespace ZTasks.Domain.Usecase
             this.callback = callback;
         }
 
-        public async override void Execute()
-        {
-            if (GetIfAvailableInCache())
-            {
-                return;
-            }
+      
 
-            await Task.Run(async () => await  ActionAsync());
-        }
-
-        public void OnTasksFetchedSuccessfully(ObservableCollection<ZTask> ZtaskList)
+        public void OnTasksFetchedSuccessfully(List<ZTask> ZtaskList)
         {
             callback.OnTasksFetchedSuccessfully(ZtaskList);
         }

@@ -24,7 +24,7 @@ namespace ZTasks.Data
 
 
 
-        async Task ITaskHandler.AddTaskToDb(ObservableCollection<ZTask> task, ZTask parentZtask, IAddTasksDbCallback callback)
+        async Task ITaskHandler.AddTaskToDb(List<ZTask> task, ZTask parentZtask, IAddTasksDbCallback callback)
         {
             await DatabaseAccessContext.Connection.InsertAllAsync(task);
             await DatabaseAccessContext.Connection.InsertAsync(parentZtask);
@@ -34,7 +34,7 @@ namespace ZTasks.Data
 
         async Task ITaskHandler.GetTasksFromDb(IGetTasksDbCallback callback)
         {
-            var Tasks = new ObservableCollection<ZTask>(await DatabaseAccessContext.Connection.QueryAsync<ZTask>("select * from ZTask"));
+            var Tasks = (await DatabaseAccessContext.Connection.QueryAsync<ZTask>("select * from ZTask"));
             callback.OnTasksFetchedSuccessfully((Tasks));
         }
 
