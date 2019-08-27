@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,21 +9,18 @@ using ZTasks.Domain.DMContract;
 using ZTasks.Domain.Models;
 using ZTasks.Domain.UseCaseCallBack;
 using ZTasks.Presentation.PresenterCallBack;
-
 namespace ZTasks.Domain.Usecase
 {
-    class CreateTaskUseCase : UseCaseBase, IAddTasksDbCallback
+    class GetTasksUseCase : UseCaseBase, IGetTasksDbCallback
     {
         public ObservableCollection<ZTask> tasks;
-        public ZTask parentZtask;
-        public IAddTaskCallback callback;
+        public IGetTasksCallBack callback;
 
-        public CreateTaskUseCase(ObservableCollection<ZTask> tasks, ZTask parentZtask, IAddTaskCallback callBack)
+        public GetTasksUseCase(IGetTasksCallBack callback)
         {
-            this.tasks = tasks;
-            this.parentZtask = parentZtask;
-            this.callback = callBack;
+            this.callback = callback;
         }
+
         public async override void Execute()
         {
             if (GetIfAvailableInCache())
@@ -35,17 +31,18 @@ namespace ZTasks.Domain.Usecase
             await ActionAsync();
         }
 
-        public void OnSuccess(bool success)
+        public void OnTasksFetchedSuccessfully(ObservableCollection<ZTask> ZtaskList)
         {
-            callback.OnSuccess(success);
+            callback.OnTasksFetchedSuccessfully(ZtaskList);
         }
 
         protected override async Task ActionAsync()
         {
             ITaskHandler taskHandler = new TaskDAO();
+            await taskHandler.GetTasksFromDb(this);
 
 
-            await taskHandler.AddTaskToDb(tasks, parentZtask, this);
+            //ObservableCollection<ZTask> await taskHandler.GetTasksFromDb();
 
         }
     }

@@ -26,10 +26,13 @@ namespace ZTasks.Presentation.Views
     /// </summary>
     public sealed partial class AddTaskPage : Page
     {
-        private ObservableCollection<ZTask> tasks;
+        private ObservableCollection<ZTask> subtasks;
+        private ZTask task;
         private string TaskId = "";
         public delegate void Collapse();
         public event Collapse CollapseClicked;
+        public delegate void Refresh();
+        public event Refresh RefreshData;
         public delegate void ListViewClick(object sender, RoutedEventArgs e);
         public event ListViewClick ListViewClicked;
         public CreateTaskViewModel createTaskViewModel;
@@ -41,9 +44,9 @@ namespace ZTasks.Presentation.Views
 
             createTaskViewModel = new CreateTaskViewModel();
             this.DataContext = createTaskViewModel;
-            tasks = createTaskViewModel.Ztasks;
-
-            tasks.Add(new ZTask { TaskId = Guid.NewGuid().ToString(), ParentTaskId = GetTaskId() });
+            subtasks = createTaskViewModel.Ztasks;
+            task = new ZTask { TaskId = GetTaskId(), TaskTitle = TaskTitle.Text };
+            subtasks.Add(new ZTask { TaskId = Guid.NewGuid().ToString(), ParentTaskId = GetTaskId() });
         }
         private void AddUserControl_Loaded(object sender, RoutedEventArgs e)
         {
@@ -113,7 +116,16 @@ namespace ZTasks.Presentation.Views
             {
                 HomePage Page = (HomePage)e.Parameter;
                 this.CollapseClicked += Page.CollapseSlideInPane;
+                this.RefreshData += Page.GetListData;
+                createTaskViewModel.RefreshData += refresh;
             }
+
+        }
+
+        public void refresh()
+        {
+            RefreshData?.Invoke();
+            Debug.WriteLine(999999);
 
         }
         private void Box_KeyDown(object sender, KeyRoutedEventArgs e)
@@ -122,11 +134,11 @@ namespace ZTasks.Presentation.Views
             ZTask task1 = (ZTask)b.DataContext;
             task1.TaskTitle = b.Text;
             Debug.WriteLine(task1.TaskTitle);
-            if (tasks.Last() == task1)
+            if (subtasks.Last() == task1)
             {
                 if (!b.Text.Equals(""))
                 {
-                    tasks.Add(new ZTask { TaskId = Guid.NewGuid().ToString(), ParentTaskId = GetTaskId() });
+                    subtasks.Add(new ZTask { TaskId = Guid.NewGuid().ToString(), ParentTaskId = GetTaskId() });
                     //SubTasksListView?.ScrollIntoView(SubTasksListView.Items[subtasks.Count - 1], ScrollIntoViewAlignment.Leading);
                     //FocusLastAddUserControl(userControlObj);
 
@@ -153,8 +165,9 @@ namespace ZTasks.Presentation.Views
         {
             if (!string.IsNullOrWhiteSpace(TaskTitle.Text))
             {
+                Debug.WriteLine(task.DueDate, "hoiii");
                 //tasks.Add(new ZTask { TaskId = GetTaskId(), TaskTitle = TaskTitle.Text });
-                createTaskViewModel.AddTask(new ZTask { TaskId = GetTaskId(), TaskTitle = TaskTitle.Text });
+                createTaskViewModel.AddTask(task);
                 //TaskId = "";
                 //tasks.Clear();
             }

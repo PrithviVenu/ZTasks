@@ -9,9 +9,12 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+    <Page.Resources>
+        <local:TimeConverter x:Key="TimeConverter"/>
+    </Page.Resources>
     <RelativePanel>
         <TextBlock Name="MainTitle" HorizontalAlignment="Center" RelativePanel.AlignHorizontalCenterWithPanel="True" Margin="0 10 0 0" FontSize="16" FontWeight="Medium" Text="Add Task"/>
-        <TextBox Name="TaskTitle"  BorderThickness="0 0 0 0"  RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.Below="MainTitle"  Margin="0 40 130 0" FontSize="16"  PlaceholderText="Task Title, @mention assignee" TextWrapping="Wrap" MaxHeight="100"/>
+        <TextBox Name="TaskTitle" Text="{x:Bind task.TaskTitle,Mode=TwoWay}" BorderThickness="0 0 0 0"  RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.Below="MainTitle"  Margin="0 40 130 0" FontSize="16"  PlaceholderText="Task Title, @mention assignee" TextWrapping="Wrap" MaxHeight="100"/>
         <Button Name="Recurring"  RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignBottomWith="TaskTitle" Margin="0,0,30,0" Background="Transparent" BorderThickness="0" Height="Auto" Width="Auto">
             <TextBlock
                   Text="&#xE1CA;"
@@ -38,8 +41,8 @@
                   FontSize="19"
                   Foreground="#888888"/>
         </Button>
-        <Popup Name="CalendarPopup" RelativePanel.Below="DueDate" IsLightDismissEnabled="True"  RelativePanel.AlignHorizontalCenterWith="DueDate">
-            <CalendarDatePicker x:Name="calendar"  PlaceholderText="Due date"></CalendarDatePicker>
+        <Popup Name="CalendarPopup"  RelativePanel.Below="DueDate" IsLightDismissEnabled="True"  RelativePanel.AlignHorizontalCenterWith="DueDate">
+            <CalendarDatePicker Date="{x:Bind task.DueDate , Mode=TwoWay,Converter={StaticResource TimeConverter}}" x:Name="calendar"  PlaceholderText="Due date"></CalendarDatePicker>
         </Popup>
         <Line Name="Line" Stretch="Fill" Margin="10 0 10 0" Stroke="#8888" X2="1" Opacity="0.2" RelativePanel.Below="TaskTitle"/>
         <Button Name="ClosePaneButton"

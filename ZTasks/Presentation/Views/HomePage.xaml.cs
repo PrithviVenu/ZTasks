@@ -17,6 +17,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 using ZTasks.Domain.Models;
+using ZTasks.Presentation.ViewModel;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -28,12 +29,17 @@ namespace ZTasks.Presentation.Views
     public sealed partial class HomePage : Page
     {
         private ObservableCollection<ZTask> tasks;
-
+        public TaskListViewModel taskListViewModel;
         public HomePage()
         {
             this.InitializeComponent();
-            tasks = new ObservableCollection<ZTask>();
+            taskListViewModel = new TaskListViewModel();
+            this.DataContext = taskListViewModel;
+            //tasks = new ObservableCollection<ZTask>();
+            tasks = taskListViewModel.Ztasks;
             tasks.CollectionChanged += Task_CollectionChanged;
+            GetListData();
+
             //tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", CreatedTime = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, GroupId = "", ProjectId = "", ParentTaskId = "1001" });
             //tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", CreatedTime = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, GroupId = "", ProjectId = "", ParentTaskId = "1001" });
             //tasks.Add(new ZTask { TaskId = 1, TaskTitle = "Learn C#", Assignee = "Siddharth", AssignedBy = "Prithvi Venu", CreatedTime = DateTime.Now, DueDate = DateTime.Now, Priority = "High", RemindOn = DateTime.Now, GroupId = "98739udh", ProjectId = "pro982j", ParentTaskId = "1001" });
@@ -103,6 +109,13 @@ namespace ZTasks.Presentation.Views
                 mainPage.AddTaskClicked += this.AddNewTask;
             }
 
+        }
+
+        public void GetListData()
+        {
+            Debug.WriteLine(1000000000);
+
+            taskListViewModel.MyTasks();
         }
         public void CollapseSlideInPane()
         {

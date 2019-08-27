@@ -9,15 +9,17 @@ using System.Text;
 using System.Threading.Tasks;
 using ZTasks.Domain.Models;
 using ZTasks.Domain.Usecase;
+using ZTasks.Presentation.PresenterCallBack;
 
 namespace ZTasks.Presentation.ViewModel
 {
 
-    public class CreateTaskViewModel : INotifyPropertyChanged
+    public class CreateTaskViewModel : INotifyPropertyChanged, IAddTaskCallback
     {
         private ObservableCollection<ZTask> ZTaskCollection { get; set; }
         UseCaseBase usecase;
-
+        public delegate void Refresh();
+        public event Refresh RefreshData;
         public ObservableCollection<ZTask> Ztasks
         {
             get { return ZTaskCollection; }
@@ -40,7 +42,7 @@ namespace ZTasks.Presentation.ViewModel
         public void AddTask(ZTask parentZtask)
         {
             removeEmptyListElements();
-            usecase = new CreateTaskUseCase(Ztasks, parentZtask);
+            usecase = new CreateTaskUseCase(Ztasks, parentZtask, this);
             usecase.Execute();
 
         }
@@ -69,5 +71,10 @@ namespace ZTasks.Presentation.ViewModel
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        public void OnSuccess(bool success)
+        {
+            RefreshData?.Invoke();
+
+        }
     }
 }

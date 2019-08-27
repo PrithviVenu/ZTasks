@@ -127,13 +127,20 @@
     <Compile Include="Domain\DMContract\ITaskHandler.cs" />
     <Compile Include="Domain\Models\ZTask.cs" />
     <Compile Include="Domain\NotificationCenter\INotifyPropertyChangedBase.cs" />
+    <Compile Include="Domain\UseCaseCallBack\IAddTasksDbCallback.cs" />
+    <Compile Include="Domain\UseCaseCallBack\IGetTasksDbCallback.cs" />
     <Compile Include="Domain\Usecase\CreateTaskUseCase.cs" />
+    <Compile Include="Domain\Usecase\GetTasksUseCase.cs" />
     <Compile Include="Domain\Usecase\UseCaseBase.cs" />
+    <Compile Include="Domain\Utility\Status.cs" />
     <Compile Include="Domain\Utility\Priority.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Presentation\PresenterCallBack\IAddTaskCallback.cs" />
+    <Compile Include="Presentation\PresenterCallBack\IGetTasksCallBack.cs" />
     <Compile Include="Presentation\ViewModel\CreateTaskViewModel.cs" />
+    <Compile Include="Presentation\ViewModel\TaskListViewModel.cs" />
     <Compile Include="Presentation\Views\AddTaskPage.xaml.cs">
       <DependentUpon>AddTaskPage.xaml</DependentUpon>
     </Compile>
@@ -152,6 +159,7 @@
     <Compile Include="Presentation\Views\OthersTasks.xaml.cs">
       <DependentUpon>OthersTasks.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Presentation\Views\TimeConverter.cs" />
     <Compile Include="Presentation\Views\Today.xaml.cs">
       <DependentUpon>Today.xaml</DependentUpon>
     </Compile>

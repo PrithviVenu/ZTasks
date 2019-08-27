@@ -18,6 +18,7 @@ namespace ZTasks.Domain.Models
         private DateTime ZDueDate;
         private DateTime ZModifiedDate;
         private int ZPriority;
+        private int ZTaskStatus;
         private DateTime ZRemindOn;
         private string ZParentTaskId;
 
@@ -116,6 +117,19 @@ namespace ZTasks.Domain.Models
             set
             {
                 this.SetProperty(ref ZPriority, value);
+            }
+        }
+
+        public int TaskStatus
+        {
+            get
+            {
+                return ZTaskStatus;
+            }
+
+            set
+            {
+                this.SetProperty(ref ZTaskStatus, value);
             }
         }
         public DateTime RemindOn

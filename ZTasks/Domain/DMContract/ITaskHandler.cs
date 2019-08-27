@@ -5,12 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ZTasks.Domain.Models;
+using ZTasks.Domain.UseCaseCallBack;
+
 namespace ZTasks.Domain.DMContract
 {
     interface ITaskHandler
     {
-        Task AddTaskToDb(ObservableCollection<ZTask> task, ZTask parentZtask)
+        Task AddTaskToDb(ObservableCollection<ZTask> task, ZTask parentZtask, IAddTasksDbCallback callback)
 ;
-
+        Task GetTasksFromDb(IGetTasksDbCallback callback);
     }
 }

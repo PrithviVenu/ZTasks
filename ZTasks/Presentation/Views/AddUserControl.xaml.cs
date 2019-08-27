@@ -25,7 +25,7 @@ namespace ZTasks.Presentation.Views
         public event KeyEvent EnterKeyDown;
         public delegate void TextBoxContextChanged(FrameworkElement sender,
      DataContextChangedEventArgs args);
-        public event TextBoxContextChanged TextContextChanged;
+        //public event TextBoxContextChanged TextContextChanged;
         //    public delegate void TextBoxContextChanged(FrameworkElement sender,
         //DataContextChangedEventArgs args);
         //    public event TextBoxContextChanged TextContextChanged;
@@ -38,6 +38,7 @@ namespace ZTasks.Presentation.Views
             this.DataContextChanged += (s, e) => Bindings.Update();
 
         }
+
         internal void FocusTextBox()
         {
             SubTaskTitle.Focus(FocusState.Programmatic);
@@ -106,4 +107,5 @@ namespace ZTasks.Presentation.Views
 
 
     }
+    
 }
