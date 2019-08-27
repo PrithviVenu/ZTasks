@@ -132,8 +132,8 @@
     <Compile Include="Domain\Usecase\CreateTaskUseCase.cs" />
     <Compile Include="Domain\Usecase\GetTasksUseCase.cs" />
     <Compile Include="Domain\Usecase\UseCaseBase.cs" />
-    <Compile Include="Domain\Utility\Status.cs" />
-    <Compile Include="Domain\Utility\Priority.cs" />
+    <Compile Include="Utility\Status.cs" />
+    <Compile Include="Utility\Priority.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
