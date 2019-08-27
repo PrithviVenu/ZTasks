@@ -19,7 +19,7 @@ namespace ZTasks.Presentation.Views
 {
     public sealed partial class ListTasksControl : UserControl
     {
-        public Domain.Models.ZTask Tasks { get { return this.DataContext as Domain.Models.ZTask; } }
+        public Models.ZTask Tasks { get { return this.DataContext as Models.ZTask; } }
 
         public ListTasksControl()
         {

@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ZTasks.Data;
 using ZTasks.Domain.DMContract;
-using ZTasks.Domain.Models;
+using ZTasks.Models;
 using ZTasks.Domain.UseCaseCallBack;
 using ZTasks.Presentation.PresenterCallBack;
 namespace ZTasks.Domain.Usecase

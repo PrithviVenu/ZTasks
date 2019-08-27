@@ -14,7 +14,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using ZTasks.Domain.Models;
+using ZTasks.Models;
 using ZTasks.Presentation.ViewModel;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
@@ -141,6 +141,7 @@ namespace ZTasks.Presentation.Views
                     subtasks.Add(new ZTask { TaskId = Guid.NewGuid().ToString(), ParentTaskId = GetTaskId() });
                     //SubTasksListView?.ScrollIntoView(SubTasksListView.Items[subtasks.Count - 1], ScrollIntoViewAlignment.Leading);
                     //FocusLastAddUserControl(userControlObj);
+
 
                 }
             }

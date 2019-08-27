@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ZTasks.Domain.NotificationCenter;
 using ZTasks.Domain.Utility;
-namespace ZTasks.Domain.Models
+namespace ZTasks.Models
 {
     public class ZTask : INotifyPropertyChangedBase
     {

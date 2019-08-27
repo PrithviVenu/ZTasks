@@ -20,7 +20,7 @@ namespace ZTasks.Presentation.Views
 {
     public sealed partial class AddUserControl : UserControl
     {
-        public Domain.Models.ZTask Subtasks { get { return this.DataContext as Domain.Models.ZTask; } }
+        public Models.ZTask Subtasks { get { return this.DataContext as Models.ZTask; } }
         public delegate void KeyEvent(object sender, KeyRoutedEventArgs e);
         public event KeyEvent EnterKeyDown;
         public delegate void TextBoxContextChanged(FrameworkElement sender,

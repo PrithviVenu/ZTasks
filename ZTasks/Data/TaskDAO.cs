@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ZTasks.Domain.DMContract;
-using ZTasks.Domain.Models;
+using ZTasks.Models;
 using ZTasks.Domain.UseCaseCallBack;
 
 namespace ZTasks.Data
