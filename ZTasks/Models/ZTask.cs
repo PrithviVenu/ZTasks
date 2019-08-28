@@ -1,11 +1,7 @@
 ﻿using SQLite;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ZTasks.NotificationCenter;
-using ZTasks.Utility;
+
 namespace ZTasks.Models
 {
     public class ZTask : INotifyPropertyChangedBase
