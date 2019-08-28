@@ -6,10 +6,11 @@ using System.Text;
 using System.Threading.Tasks;
 using ZTasks.Models;
 
-namespace ZTasks.Presentation.PresenterCallBack
+namespace ZTasks.Domain.UseCaseCallBackHandler
 {
-    interface IGetTasksCallBack
+    interface IGetTaskCallback
     {
         void OnTasksFetchedSuccessfully(List<ZTask> ZtaskList);
+
     }
 }

@@ -8,18 +8,18 @@ using System.Threading.Tasks;
 using ZTasks.Data.DataManager;
 using ZTasks.Domain.DMContract;
 using ZTasks.Models;
-using ZTasks.Domain.UseCaseCallBack;
-using ZTasks.Presentation.PresenterCallBack;
+using ZTasks.Domain.UseCaseCallBackHandler;
+using ZTasks.Presentation.PresenterCallBackHandler;
 
 namespace ZTasks.Domain.Usecase
 {
-    class CreateTaskUseCase : UseCaseBase, IAddTasksDbCallback
+    class CreateTaskUseCase : UseCaseBase, ICreateTaskCallback
     {
         public List<ZTask> tasks;
         public ZTask parentZtask;
-        public IAddTaskCallback callback;
+        public ICreateTaskPresenterCallback callback;
 
-        public CreateTaskUseCase(List<ZTask> tasks, ZTask parentZtask, IAddTaskCallback callBack)
+        public CreateTaskUseCase(List<ZTask> tasks, ZTask parentZtask, ICreateTaskPresenterCallback callBack)
         {
             this.tasks = tasks;
             this.parentZtask = parentZtask;
@@ -34,10 +34,10 @@ namespace ZTasks.Domain.Usecase
 
         protected override async Task ActionAsync()
         {
-            ITaskHandler taskHandler = new TaskDataManager();
+            ICreateTaskDMContract taskHandler = new CreateTaskDataManager();
 
 
-            await taskHandler.AddTaskToDb(tasks, parentZtask, this);
+            await taskHandler.AddTask(tasks, parentZtask, this);
 
         }
     }

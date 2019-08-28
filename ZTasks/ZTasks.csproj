@@ -123,22 +123,30 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Data\DatabaseAccessContext.cs" />
-    <Compile Include="Data\DataManager\TaskDataManager.cs" />
-    <Compile Include="Domain\DMContract\ITaskHandler.cs" />
+    <Compile Include="Data\DatabaseHandlerCallback\ICreateTaskDMCallback.cs" />
+    <Compile Include="Data\DatabaseHandlerCallback\IGetTaskDMCallback.cs" />
+    <Compile Include="Data\DatabaseHandler\CreateTaskDbHandler.cs" />
+    <Compile Include="Data\DatabaseHandler\GetTaskDbHandler.cs" />
+    <Compile Include="Data\DataManager\CreateTaskDataManager.cs" />
+    <Compile Include="Data\DataManager\GetTaskDataManager.cs" />
+    <Compile Include="Data\DMHandlerContract\ICreateTaskDbHandlerDMContract.cs" />
+    <Compile Include="Data\DMHandlerContract\IGetTaskDbHandlerDMContract.cs" />
+    <Compile Include="Domain\DMContract\IGetTaskDMContract.cs" />
+    <Compile Include="Domain\DMContract\ICreateTaskDMContract.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\ZTask.cs" />
-    <Compile Include="Domain\NotificationCenter\INotifyPropertyChangedBase.cs" />
-    <Compile Include="Domain\UseCaseCallBack\IAddTasksDbCallback.cs" />
-    <Compile Include="Domain\UseCaseCallBack\IGetTasksDbCallback.cs" />
+    <Compile Include="NotificationCenter\INotifyPropertyChangedBase.cs" />
+    <Compile Include="Domain\UseCaseCallBackHandler\ICreateTaskCallback.cs" />
+    <Compile Include="Domain\UseCaseCallBackHandler\IGetTaskCallback.cs" />
     <Compile Include="Domain\Usecase\CreateTaskUseCase.cs" />
-    <Compile Include="Domain\Usecase\GetTasksUseCase.cs" />
+    <Compile Include="Domain\Usecase\GetTaskUseCase.cs" />
     <Compile Include="Domain\Usecase\UseCaseBase.cs" />
     <Compile Include="Utility\TaskEnums.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Presentation\PresenterCallBack\IAddTaskCallback.cs" />
-    <Compile Include="Presentation\PresenterCallBack\IGetTasksCallBack.cs" />
+    <Compile Include="Presentation\PresenterCallBackHandler\ICreateTaskPresenterCallback.cs" />
+    <Compile Include="Presentation\PresenterCallBackHandler\IGetTaskPresenterCallBack.cs" />
     <Compile Include="Presentation\ViewModel\CreateTaskViewModel.cs" />
     <Compile Include="Presentation\ViewModel\TaskListViewModel.cs" />
     <Compile Include="Presentation\Views\AddTaskPage.xaml.cs">
@@ -199,11 +207,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Presentation\ListBoxDictionary.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Presentation\Themes\Themes.xaml">
+    <Page Include="Themes\Themes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

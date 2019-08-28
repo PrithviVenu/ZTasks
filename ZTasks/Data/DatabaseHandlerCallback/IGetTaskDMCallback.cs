@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ZTasks.Models;
 
-namespace ZTasks.Domain.UseCaseCallBack
+namespace ZTasks.Data.DatabaseHandlerCallback
 {
-    interface IGetTasksDbCallback
+    interface IGetTaskDMCallback
     {
         void OnTasksFetchedSuccessfully(List<ZTask> ZtaskList);
 

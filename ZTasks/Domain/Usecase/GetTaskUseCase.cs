@@ -7,17 +7,17 @@ using System.Threading.Tasks;
 using ZTasks.Data.DataManager;
 using ZTasks.Domain.DMContract;
 using ZTasks.Models;
-using ZTasks.Domain.UseCaseCallBack;
-using ZTasks.Presentation.PresenterCallBack;
+using ZTasks.Domain.UseCaseCallBackHandler;
+using ZTasks.Presentation.PresenterCallBackHandler;
 using System.Diagnostics;
 
 namespace ZTasks.Domain.Usecase
 {
-    class GetTasksUseCase : UseCaseBase, IGetTasksDbCallback
+    class GetTaskUseCase : UseCaseBase, IGetTaskCallback
     {
-        public IGetTasksCallBack callback;
+        public IGetTaskPresenterCallBack callback;
 
-        public GetTasksUseCase(IGetTasksCallBack callback)
+        public GetTaskUseCase(IGetTaskPresenterCallBack callback)
         {
             this.callback = callback;
         }
@@ -31,8 +31,8 @@ namespace ZTasks.Domain.Usecase
 
         protected override async Task ActionAsync()
         {
-            ITaskHandler taskHandler = new TaskDataManager();
-            await taskHandler.GetTasksFromDb(this);
+            IGetTaskDMContract taskHandler = new GetTaskDataManager();
+            await taskHandler.GetTasks(this);
 
 
             //ObservableCollection<ZTask> await taskHandler.GetTasksFromDb();

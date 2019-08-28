@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ZTasks.Presentation.PresenterCallBack
+namespace ZTasks.Domain.UseCaseCallBackHandler
 {
-    interface IAddTaskCallback
+    interface ICreateTaskCallback
     {
         void OnSuccess(bool success);
 

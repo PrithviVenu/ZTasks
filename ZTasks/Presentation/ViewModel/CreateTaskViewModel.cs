@@ -9,12 +9,12 @@ using System.Text;
 using System.Threading.Tasks;
 using ZTasks.Models;
 using ZTasks.Domain.Usecase;
-using ZTasks.Presentation.PresenterCallBack;
+using ZTasks.Presentation.PresenterCallBackHandler;
 
 namespace ZTasks.Presentation.ViewModel
 {
 
-    public class CreateTaskViewModel : INotifyPropertyChanged, IAddTaskCallback
+    public class CreateTaskViewModel : INotifyPropertyChanged, ICreateTaskPresenterCallback
     {
         private ObservableCollection<ZTask> ZTaskCollection { get; set; }
         UseCaseBase usecase;

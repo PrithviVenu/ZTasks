@@ -8,12 +8,12 @@ using System.Text;
 using System.Threading.Tasks;
 using ZTasks.Models;
 using ZTasks.Domain.Usecase;
-using ZTasks.Presentation.PresenterCallBack;
+using ZTasks.Presentation.PresenterCallBackHandler;
 using Windows.ApplicationModel.Core;
 
 namespace ZTasks.Presentation.ViewModel
 {
-    public class TaskListViewModel : INotifyPropertyChanged, IGetTasksCallBack
+    public class TaskListViewModel : INotifyPropertyChanged, IGetTaskPresenterCallBack
     {
 
         private ObservableCollection<ZTask> ZTaskCollection { get; set; }
@@ -43,7 +43,7 @@ namespace ZTasks.Presentation.ViewModel
 
         public void MyTasks()
         {
-            usecase = new GetTasksUseCase(this);
+            usecase = new GetTaskUseCase(this);
 
             usecase.Execute();
 
