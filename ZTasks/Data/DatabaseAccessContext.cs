@@ -9,27 +9,43 @@ namespace ZTasks.Data
     class DatabaseAccessContext
     {
         public static SQLiteAsyncConnection Connection;
-        public DatabaseAccessContext()
+        private static DatabaseAccessContext instance = null;
+        private static readonly object lockobj = new object();
+
+        private DatabaseAccessContext()
         {
-
-            if (DatabaseAccessContext.Connection == null)
+            ConnectToDB();
+        }
+        public static DatabaseAccessContext GetInstance
+        {
+            get
             {
-
-                Debug.WriteLine("Connecting To Database");
-
-                ConnectToDB();
+                if (instance == null)
+                {
+                    lock (lockobj)
+                    {
+                        if (instance == null)
+                            instance = new DatabaseAccessContext();
+                    }
+                }
+                return instance;
             }
         }
 
-        private bool ConnectToDB()
+        private void ConnectToDB()
         {
+            if (Connection != null)
+            {
+                return;
+            }
+            Debug.WriteLine("Connecting To Database");
+
             var filename = "ZTasks.db";
             var dbPath = ApplicationData.Current.LocalFolder.Path;
 
             Connection = new SQLiteAsyncConnection(Path.Combine(dbPath, filename));
             InitializeDBWithTables();
 
-            return true;
         }
         private void InitializeDBWithTables()
         {

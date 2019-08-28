@@ -10,20 +10,15 @@ namespace ZTasks.Data.DataManager
 {
     class GetTaskDataManager : IGetTaskDMContract, IGetTaskDMCallback
     {
-        public DatabaseAccessContext zTasksContext;
         public IGetTaskCallback callback;
         public GetTaskDbHandler getTaskDbHandler;
 
-        public GetTaskDataManager()
-        {
-            zTasksContext = new DatabaseAccessContext();
-
-        }
+   
         async public Task GetTasks(IGetTaskCallback callback)
         {
             this.callback = callback;
-            getTaskDbHandler = new GetTaskDbHandler(this);
-            await getTaskDbHandler.GetTasks();
+            getTaskDbHandler =  GetTaskDbHandler.GetInstance;
+            await getTaskDbHandler.GetTasks(this);
         }
 
         public void OnTasksFetchedSuccessfully(List<ZTask> ZtaskList)

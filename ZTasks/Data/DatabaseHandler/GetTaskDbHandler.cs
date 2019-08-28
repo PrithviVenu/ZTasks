@@ -7,14 +7,30 @@ namespace ZTasks.Data.DatabaseHandler
 {
     class GetTaskDbHandler: IGetTaskDbHandlerDMContract
     {
-
-        public IGetTaskDMCallback callback;
-        public GetTaskDbHandler(IGetTaskDMCallback callback)
+        public DatabaseAccessContext zTasksContext;
+        private static GetTaskDbHandler instance = null;
+        private static readonly object lockobj = new object();
+        private GetTaskDbHandler()
         {
-            this.callback = callback;
+            zTasksContext =  DatabaseAccessContext.GetInstance;
+        }
+        public static GetTaskDbHandler GetInstance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    lock (lockobj)
+                    {
+                        if (instance == null)
+                            instance = new GetTaskDbHandler();
+                    }
+                }
+                return instance;
+            }
         }
 
-        async public Task GetTasks()
+        async public Task GetTasks(IGetTaskDMCallback callback)
         {
             var Tasks = (await DatabaseAccessContext.Connection.QueryAsync<ZTask>("select * from ZTask"));
             callback.OnTasksFetchedSuccessfully((Tasks));

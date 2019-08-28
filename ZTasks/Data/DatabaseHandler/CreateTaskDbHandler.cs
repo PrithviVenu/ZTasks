@@ -10,14 +10,29 @@ namespace ZTasks.Data.DatabaseHandler
     {
 
         public DatabaseAccessContext zTasksContext;
-        public ICreateTaskDMCallback callback;
-        public CreateTaskDbHandler(ICreateTaskDMCallback callback)
+        private static CreateTaskDbHandler instance = null;
+        private static readonly object lockobj = new object();
+        private CreateTaskDbHandler()
         {
-            zTasksContext = new DatabaseAccessContext();
-            this.callback = callback;
+            zTasksContext = DatabaseAccessContext.GetInstance;
 
         }
-        async  public Task AddTask(List<ZTask> task, ZTask parentZtask)
+        public static CreateTaskDbHandler GetInstance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    lock (lockobj)
+                    {
+                        if (instance == null)
+                            instance = new CreateTaskDbHandler();
+                    }
+                }
+                return instance;
+            }
+        }
+        async  public Task AddTask(List<ZTask> task, ZTask parentZtask, ICreateTaskDMCallback callback)
         {
             await DatabaseAccessContext.Connection.InsertAllAsync(task);
             await DatabaseAccessContext.Connection.InsertAsync(parentZtask);
