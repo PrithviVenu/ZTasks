@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ZTasks.Data;
+using ZTasks.Data.DataManager;
 using ZTasks.Domain.DMContract;
 using ZTasks.Models;
 using ZTasks.Domain.UseCaseCallBack;
@@ -31,7 +31,7 @@ namespace ZTasks.Domain.Usecase
 
         protected override async Task ActionAsync()
         {
-            ITaskHandler taskHandler = new TaskDAO();
+            ITaskHandler taskHandler = new TaskDataManager();
             await taskHandler.GetTasksFromDb(this);
 
 

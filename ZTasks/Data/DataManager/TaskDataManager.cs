@@ -9,14 +9,14 @@ using ZTasks.Domain.DMContract;
 using ZTasks.Models;
 using ZTasks.Domain.UseCaseCallBack;
 
-namespace ZTasks.Data
+namespace ZTasks.Data.DataManager
 {
-    class TaskDAO : ITaskHandler
+    class TaskDataManager : ITaskHandler
     {
 
         public DatabaseAccessContext zTasksContext;
 
-        public TaskDAO()
+        public TaskDataManager()
         {
             zTasksContext = new DatabaseAccessContext();
 

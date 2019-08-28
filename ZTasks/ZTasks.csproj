@@ -123,7 +123,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Data\DatabaseAccessContext.cs" />
-    <Compile Include="Data\TaskDAO.cs" />
+    <Compile Include="Data\DataManager\TaskDataManager.cs" />
     <Compile Include="Domain\DMContract\ITaskHandler.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\ZTask.cs" />
@@ -133,8 +133,7 @@
     <Compile Include="Domain\Usecase\CreateTaskUseCase.cs" />
     <Compile Include="Domain\Usecase\GetTasksUseCase.cs" />
     <Compile Include="Domain\Usecase\UseCaseBase.cs" />
-    <Compile Include="Utility\Status.cs" />
-    <Compile Include="Utility\Priority.cs" />
+    <Compile Include="Utility\TaskEnums.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>

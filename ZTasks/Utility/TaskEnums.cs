@@ -6,6 +6,12 @@ using System.Threading.Tasks;
 
 namespace ZTasks.Utility
 {
+    enum Priority : int
+    {
+        Low,
+        Medium,
+        High
+    }
     enum Status
     {
         open,
