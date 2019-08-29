@@ -8,8 +8,10 @@ namespace ZTasks.Models
     {
         private string ZTaskId;
         private string ZTaskTitle;
-        private string ZAssignee;
-        private string ZAssignedBy;
+        private string ZAssigneeId;
+        private string ZAssignedById;
+        private string ZAssigneeName;
+        private string ZAssignedByName;
         private DateTime ZCreatedTime;
         private DateTime ZDueDate;
         private DateTime ZModifiedDate;
@@ -43,28 +45,53 @@ namespace ZTasks.Models
                 this.SetProperty(ref ZTaskTitle, value);
             }
         }
-        public string Assignee
+        public string AssigneeId
         {
             get
             {
-                return ZAssignee;
+                return ZAssigneeId;
             }
 
             set
             {
-                this.SetProperty(ref ZAssignee, value);
+                this.SetProperty(ref ZAssigneeId, value);
             }
         }
-        public string AssignedBy
+        public string AssignedById
         {
             get
             {
-                return ZAssignedBy;
+                return ZAssignedById;
             }
 
             set
             {
-                this.SetProperty(ref ZAssignedBy, value);
+                this.SetProperty(ref ZAssignedById, value);
+            }
+        }
+
+        public string AssigneeName
+        {
+            get
+            {
+                return ZAssigneeName;
+            }
+
+            set
+            {
+                this.SetProperty(ref ZAssigneeName, value);
+            }
+        }
+        public string AssignedByName
+        {
+            get
+            {
+                return ZAssignedByName;
+            }
+
+            set
+            {
+                this.SetProperty(ref ZAssignedByName, value);
             }
         }
         public DateTime CreatedTime

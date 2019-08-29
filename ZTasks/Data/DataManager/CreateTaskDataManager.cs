@@ -19,8 +19,6 @@ namespace ZTasks.Data.DataManager
 
         async Task ICreateTaskDMContract.AddTask(List<ZTask> task, ZTask parentZtask, ICreateTaskCallback callback)
         {
-            // var v1 = await DatabaseAccessContext.Connection.InsertAllAsync(task);
-            //var v= await DatabaseAccessContext.Connection.InsertAsync(parentZtask);
             this.callback = callback;
             addTaskDbHandler =  CreateTaskDbHandler.GetInstance;
             await addTaskDbHandler.AddTask(task, parentZtask,this);
