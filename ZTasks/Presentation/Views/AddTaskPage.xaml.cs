@@ -120,6 +120,16 @@ namespace ZTasks.Presentation.Views
             Debug.WriteLine(999999);
 
         }
+        private void LoseFocus(object sender)
+        {
+            var control = sender as Control;
+            var isTabStop = control.IsTabStop;
+            control.IsTabStop = false;
+            control.IsEnabled = false;
+            control.IsEnabled = true;
+            control.IsTabStop = isTabStop;
+        }
+
         private void Box_KeyDown(object sender, KeyRoutedEventArgs e)
         {
             TextBox b = (TextBox)sender;
@@ -131,6 +141,8 @@ namespace ZTasks.Presentation.Views
                 if (!b.Text.Equals(""))
                 {
                     subtasks.Add(new ZTask { TaskId = Guid.NewGuid().ToString(), ParentTaskId = GetTaskId() });
+                    e.Handled = true; LoseFocus(sender);
+
                     //SubTasksListView?.ScrollIntoView(SubTasksListView.Items[subtasks.Count - 1], ScrollIntoViewAlignment.Leading);
                     //FocusLastAddUserControl(userControlObj);
 
@@ -165,13 +177,7 @@ namespace ZTasks.Presentation.Views
                 //tasks.Clear();
             }
         }
-        private void CancelTask(object sender, RoutedEventArgs e)
-        {
-            if (!string.IsNullOrWhiteSpace(TaskTitle.Text))
-            {
-
-            }
-        }
+   
 
         public void ItemClick(object sender, RoutedEventArgs e)
         {

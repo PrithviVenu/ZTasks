@@ -29,11 +29,13 @@ namespace ZTasks.Presentation.Views
             tasks = taskListViewModel.Ztasks;
             tasks.CollectionChanged += Task_CollectionChanged;
             GetListData();
-            tasks.Add(new ZTask { TaskId = Guid.NewGuid().ToString(), TaskTitle = "Learn C#", AssigneeName = "Siddharth", AssignedByName = "Prithvi Venu", AssigneeId = "1", AssignedById = "2", CreatedTime = DateTime.Now, DueDate = DateTime.Now, Priority = 1, RemindOn = DateTime.Now, ParentTaskId = "-1" });
+
+
+            tasks.Add(new ZTask { TaskId = Guid.NewGuid().ToString(), TaskTitle = "Learn C#", AssigneeName = "Siddharth", AssignedByName = "Prithvi Venu", CreatedTime = DateTime.Now, DueDate = DateTime.Now, Priority = 1, RemindOn = DateTime.Now, ParentTaskId = "-1" });
         }
         private void ListTasksUserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            //var userControlObj = (ListTasksControl)sender;
+            var userControlObj = (ListTasksControl)sender;
 
 
         }
@@ -80,6 +82,7 @@ namespace ZTasks.Presentation.Views
 
         public void GetListData()
         {
+            Debug.WriteLine(1000000000);
 
             taskListViewModel.MyTasks();
         }
