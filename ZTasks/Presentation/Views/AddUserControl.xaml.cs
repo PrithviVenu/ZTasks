@@ -1,7 +1,9 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Media;
 
 // The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
 
@@ -14,10 +16,7 @@ namespace ZTasks.Presentation.Views
         public event KeyEvent EnterKeyDown;
         public delegate void TextBoxContextChanged(FrameworkElement sender,
      DataContextChangedEventArgs args);
-        //public event TextBoxContextChanged TextContextChanged;
-        //    public delegate void TextBoxContextChanged(FrameworkElement sender,
-        //DataContextChangedEventArgs args);
-        //    public event TextBoxContextChanged TextContextChanged;
+        public event TextBoxContextChanged TextContextChanged;
         //public delegate void CalendarButtonClick(object sender, RoutedEventArgs e);
         //public event CalendarButtonClick CalendarButtonClicked;
         public Page page;
@@ -28,16 +27,17 @@ namespace ZTasks.Presentation.Views
 
         }
 
+
         internal void FocusTextBox()
         {
             SubTaskTitle.Focus(FocusState.Programmatic);
         }
 
-        //private void InputTextBox_Loaded(object sender, RoutedEventArgs e)
-        //{
-        //    var textBox = (TextBox)sender;
-        //    textBox.Focus(FocusState.Programmatic);
-        //}
+        private void InputTextBox_Loaded(object sender, RoutedEventArgs e)
+        {
+            var textBox = (TextBox)sender;
+            textBox.Focus(FocusState.Programmatic);
+        }
         //private void TextBox_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
         //{
         //    TextContextChanged?.Invoke(sender, args);
@@ -96,5 +96,5 @@ namespace ZTasks.Presentation.Views
 
 
     }
-    
+
 }

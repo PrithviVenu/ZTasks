@@ -93,7 +93,16 @@
         </ListView>
         <CheckBox Name="checkBox" Click="CheckBoxClicked"  RelativePanel.Below="SubTasksListView" RelativePanel.AlignLeftWithPanel="True" Margin="20 25 0 0" FontSize="16" Content="Remind On" Width="20" Height="20" />
         <CalendarDatePicker Name="Reminder" IsEnabled="False" RelativePanel.AlignBottomWith="checkBox" RelativePanel.RightOf="checkBox"/>
-        <Button Name="Save" Content="Save" Click="SaveTask" Background="#DE483B" Foreground="White" RelativePanel.Below="Reminder" RelativePanel.AlignLeftWithPanel="True" Margin="20 45 40 0"  >
+        <TextBox TextWrapping="Wrap" FocusVisualPrimaryThickness="0" FocusVisualSecondaryThickness="0" Name="Description" BorderThickness="0.4"   RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.Below="Reminder"  Margin="10 40 10 0" FontSize="16"  PlaceholderText="Note"  Height="100">
+            <TextBox.Resources>
+                <Thickness x:Key="TextBoxRevealBorderThemeThickness">0</Thickness>
+
+            </TextBox.Resources>
+
+
+        </TextBox>
+
+        <Button Name="Save" Content="Save" Click="SaveTask" Background="#DE483B" Foreground="White" RelativePanel.Below="Description" RelativePanel.AlignLeftWithPanel="True" Margin="20 45 40 0"  >
             <Button.Resources>
                 <SolidColorBrush x:Key="ButtonForegroundPointerOver" Color="White"/>
                 <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="#ff8e8e"/>

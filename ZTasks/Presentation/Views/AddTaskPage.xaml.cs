@@ -2,9 +2,12 @@
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
+using Windows.Foundation.Collections;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using ZTasks.Models;
 using ZTasks.Presentation.ViewModel;
@@ -29,11 +32,12 @@ namespace ZTasks.Presentation.Views
         public event ListViewClick ListViewClicked;
         public CreateTaskViewModel createTaskViewModel;
         public AddUserControl userControlObj;
+        public ZTask newRowSubTask;
         public AddTaskPage()
         {
             this.InitializeComponent();
             //subtasks = new ObservableCollection<ZTask>();
-
+            //SubTasksListView.Items.VectorChanged += ListViewItems_VectorChanged;
             createTaskViewModel = new CreateTaskViewModel();
             this.DataContext = createTaskViewModel;
             subtasks = createTaskViewModel.Ztasks;
@@ -129,7 +133,63 @@ namespace ZTasks.Presentation.Views
             control.IsEnabled = true;
             control.IsTabStop = isTabStop;
         }
+        private void ListView_GotFocus(object sender, RoutedEventArgs e)
+        {
+            // If user clicks on a control in the row, select entire row
+            SubTasksListView.SelectedItem = (sender as ListView).DataContext;
+        }
+        private void ListViewItems_VectorChanged(IObservableVector<object> sender, IVectorChangedEventArgs @event)
+        {
 
+            // If new row added, at this point we can safely select and scroll to new item
+            if (newRowSubTask != null)
+            {
+                Debug.WriteLine("kkkkk");
+
+                SubTasksListView.SelectedIndex = SubTasksListView.Items.Count - 1; // select row
+                //SubTasksListView.ScrollIntoView(SubTasksListView.Items[SubTasksListView.Items.Count - 1]);   // scroll to bottom; this will make sure new row is visible and that DataContextChanged is called
+            }
+        }
+
+        private void ListView_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
+        {
+            Debug.WriteLine("iii");
+
+            // If new row added, at this point the UI is created and we can set focus to text box 
+            if (newRowSubTask != null)
+            {
+                ListView listView = (ListView)sender;
+                ZTask zTask = (ZTask)listView.DataContext;  // might be null
+                Debug.WriteLine("oiiii");
+
+                if (zTask == newRowSubTask)
+                {
+                    Debug.WriteLine("hiiii");
+                    TextBox textBox = FindControl<TextBox>(listView, typeof(TextBox), "SubTaskTitle");
+                    if (textBox != null)
+                    {
+                        textBox.Focus(FocusState.Programmatic);
+                        Debug.WriteLine("siiii");
+                    }
+                    newRowSubTask = null;
+                }
+            }
+        }
+        public static T FindControl<T>(UIElement parent, Type targetType, string ControlName) where T : FrameworkElement
+        {
+
+            if (parent == null) return null;
+            if (parent.GetType() == targetType && ((T)parent).Name == ControlName) return (T)parent;
+
+            int count = VisualTreeHelper.GetChildrenCount(parent);
+            for (int i = 0; i < count; i++)
+            {
+                UIElement child = (UIElement)VisualTreeHelper.GetChild(parent, i);
+                T result = FindControl<T>(child, targetType, ControlName);
+                if (result != null) return result;
+            }
+            return null;
+        }
         private void Box_KeyDown(object sender, KeyRoutedEventArgs e)
         {
             TextBox b = (TextBox)sender;
@@ -140,8 +200,10 @@ namespace ZTasks.Presentation.Views
             {
                 if (!b.Text.Equals(""))
                 {
-                    subtasks.Add(new ZTask { TaskId = Guid.NewGuid().ToString(), ParentTaskId = GetTaskId() });
-                    e.Handled = true; LoseFocus(sender);
+                    ZTask subZtask = new ZTask { TaskId = Guid.NewGuid().ToString(), ParentTaskId = GetTaskId() };
+                    newRowSubTask = subZtask;
+                    subtasks.Add(subZtask);
+                    //e.Handled = true; LoseFocus(sender);
 
                     //SubTasksListView?.ScrollIntoView(SubTasksListView.Items[subtasks.Count - 1], ScrollIntoViewAlignment.Leading);
                     //FocusLastAddUserControl(userControlObj);
@@ -177,7 +239,7 @@ namespace ZTasks.Presentation.Views
                 //tasks.Clear();
             }
         }
-   
+
 
         public void ItemClick(object sender, RoutedEventArgs e)
         {
@@ -190,7 +252,9 @@ namespace ZTasks.Presentation.Views
             CollapseClicked?.Invoke();
         }
 
+        private void SubTasksListView_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
+        {
 
-
+        }
     }
 }

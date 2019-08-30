@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace ZTasks.NotificationCenter
 {
-    public class INotifyPropertyChangedBase : INotifyPropertyChanged
+    public class NotifyPropertyChangedBase : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged(string propertyName)

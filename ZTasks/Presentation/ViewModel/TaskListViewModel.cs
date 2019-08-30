@@ -23,7 +23,7 @@ namespace ZTasks.Presentation.ViewModel
             set
             {
                 ZTaskCollection = value;
-               // OnPropertyChanged("Ztasks");
+                OnPropertyChanged("Ztasks");
             }
         }
         public TaskListViewModel()

@@ -82,8 +82,6 @@ namespace ZTasks.Presentation.Views
 
         public void GetListData()
         {
-            Debug.WriteLine(1000000000);
-
             taskListViewModel.MyTasks();
         }
         public void CollapseSlideInPane()

@@ -135,7 +135,7 @@
     <Compile Include="Domain\DMContract\ICreateTaskDMContract.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\ZTask.cs" />
-    <Compile Include="NotificationCenter\INotifyPropertyChangedBase.cs" />
+    <Compile Include="NotificationCenter\NotifyPropertyChangedBase.cs" />
     <Compile Include="Domain\UseCaseCallBackHandler\ICreateTaskCallback.cs" />
     <Compile Include="Domain\UseCaseCallBackHandler\IGetTaskCallback.cs" />
     <Compile Include="Domain\Usecase\CreateTaskUseCase.cs" />

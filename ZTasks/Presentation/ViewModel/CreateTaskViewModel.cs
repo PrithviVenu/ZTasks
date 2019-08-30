@@ -6,6 +6,9 @@ using System.Linq;
 using ZTasks.Models;
 using ZTasks.Domain.Usecase;
 using ZTasks.Presentation.PresenterCallBackHandler;
+using Windows.ApplicationModel.Core;
+using System;
+
 
 namespace ZTasks.Presentation.ViewModel
 {
@@ -67,9 +70,13 @@ namespace ZTasks.Presentation.ViewModel
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public void OnSuccess(bool success)
+        public async void OnSuccess(bool success)
         {
-            RefreshData?.Invoke();
+            await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+            {
+                Debug.WriteLine("success");
+                RefreshData?.Invoke();
+            });
 
         }
     }

@@ -182,7 +182,9 @@
                         <ListView.Resources>
                             <SolidColorBrush x:Key="ListViewItemBackgroundSelected" Color="#f18e8e" />
                             <SolidColorBrush x:Key="ListViewItemBackgroundSelectedPointerOver" Color="#ff8e8e" />
+                            <SolidColorBrush x:Key="ListViewItemBackgroundPressed" Color="#ff8e8e" />
                             <Thickness x:Key="ListViewItemRevealBorderThemeThickness">0</Thickness>
+                            <SolidColorBrush x:Key="ListViewItemBackgroundSelectedPressed" Color="#ff8e8e" />
                             <SolidColorBrush x:Key="ListViewItemBackgroundPointerOver" Color="#ff8e8e" />
 
                         </ListView.Resources>
