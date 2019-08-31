@@ -65,7 +65,7 @@
                 <SolidColorBrush x:Key="ButtonBackgroundPressed" Color="Transparent"/>
             </Button.Resources>
         </Button>
-        <ListView  RelativePanel.Below="Line" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" Name="SubTasksListView" Margin="10,10,0,0" MaxHeight="250"  HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch"   ItemsSource="{x:Bind createTaskViewModel.Ztasks}" IsItemClickEnabled="True" ItemClick="ItemClick"  >
+        <ListView    RelativePanel.Below="Line" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" Name="SubTasksListView" Margin="10,10,0,0" MaxHeight="250"  HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch"   ItemsSource="{x:Bind createTaskViewModel.Ztasks}" IsItemClickEnabled="True" ItemClick="ItemClick"  >
             <ListView.Resources>
                 <SolidColorBrush x:Key="ListViewItemBackgroundSelected" Color="Transparent" />
                 <SolidColorBrush x:Key="ListViewItemBackgroundSelectedPointerOver" Color="Transparent" />

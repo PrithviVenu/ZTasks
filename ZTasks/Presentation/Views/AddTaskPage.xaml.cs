@@ -144,16 +144,18 @@ namespace ZTasks.Presentation.Views
             // If new row added, at this point we can safely select and scroll to new item
             if (newRowSubTask != null)
             {
-                Debug.WriteLine("kkkkk");
+                Debug.WriteLine(SubTasksListView.Items.Count, "count");
 
                 SubTasksListView.SelectedIndex = SubTasksListView.Items.Count - 1; // select row
-                //SubTasksListView.ScrollIntoView(SubTasksListView.Items[SubTasksListView.Items.Count - 1]);   // scroll to bottom; this will make sure new row is visible and that DataContextChanged is called
+                SubTasksListView.ScrollIntoView(SubTasksListView.Items[SubTasksListView.Items.Count - 1]);   // scroll to bottom; this will make sure new row is visible and that DataContextChanged is called
+                Debug.WriteLine(SubTasksListView.Items.Count, "count");
+                userControlObj.FocusTextBox();
             }
         }
 
         private void ListView_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
         {
-            Debug.WriteLine("iii");
+            Debug.WriteLine("ListView_DataContextChanged");
 
             // If new row added, at this point the UI is created and we can set focus to text box 
             if (newRowSubTask != null)
@@ -203,7 +205,9 @@ namespace ZTasks.Presentation.Views
                     ZTask subZtask = new ZTask { TaskId = Guid.NewGuid().ToString(), ParentTaskId = GetTaskId() };
                     newRowSubTask = subZtask;
                     subtasks.Add(subZtask);
-                    //e.Handled = true; LoseFocus(sender);
+                    //Debug.WriteLine(SubTasksListView.Items.Count, "count");
+
+                    e.Handled = true; LoseFocus(sender);
 
                     //SubTasksListView?.ScrollIntoView(SubTasksListView.Items[subtasks.Count - 1], ScrollIntoViewAlignment.Leading);
                     //FocusLastAddUserControl(userControlObj);
