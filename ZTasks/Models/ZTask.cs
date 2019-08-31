@@ -12,12 +12,12 @@ namespace ZTasks.Models
         private string ZAssignedById;
         private string ZAssigneeName;
         private string ZAssignedByName;
-        private DateTime ZCreatedTime;
-        private DateTime ZDueDate;
-        private DateTime ZModifiedDate;
+        private DateTimeOffset? ZCreatedTime;
+        private DateTimeOffset? ZDueDate;
+        private DateTimeOffset? ZModifiedDate;
         private int ZPriority;
         private int ZTaskStatus;
-        private DateTime ZRemindOn;
+        private DateTimeOffset? ZRemindOn;
         private string ZParentTaskId;
 
         [PrimaryKey]
@@ -94,7 +94,7 @@ namespace ZTasks.Models
                 this.SetProperty(ref ZAssignedByName, value);
             }
         }
-        public DateTime CreatedTime
+        public DateTimeOffset? CreatedTime
         {
             get
             {
@@ -106,7 +106,7 @@ namespace ZTasks.Models
                 this.SetProperty(ref ZCreatedTime, value);
             }
         }
-        public DateTime DueDate
+        public DateTimeOffset? DueDate
         {
             get
             {
@@ -118,7 +118,7 @@ namespace ZTasks.Models
                 this.SetProperty(ref ZDueDate, value);
             }
         }
-        public DateTime ModifiedDate
+        public DateTimeOffset? ModifiedDate
         {
             get
             {
@@ -155,7 +155,7 @@ namespace ZTasks.Models
                 this.SetProperty(ref ZTaskStatus, value);
             }
         }
-        public DateTime RemindOn
+        public DateTimeOffset? RemindOn
         {
             get
             {

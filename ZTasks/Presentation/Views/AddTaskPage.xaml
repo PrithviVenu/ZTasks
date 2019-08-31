@@ -42,7 +42,7 @@
                   Foreground="#888888"/>
         </Button>
         <Popup Name="CalendarPopup"  RelativePanel.Below="DueDate" IsLightDismissEnabled="True"  RelativePanel.AlignHorizontalCenterWith="DueDate">
-            <CalendarDatePicker Date="{x:Bind task.DueDate , Mode=TwoWay,Converter={StaticResource TimeConverter}}" x:Name="calendar"  PlaceholderText="Due date"></CalendarDatePicker>
+            <CalendarDatePicker Date="{x:Bind task.DueDate , Mode=TwoWay}" x:Name="calendar"  PlaceholderText="Due date"></CalendarDatePicker>
         </Popup>
         <Line Name="Line" Stretch="Fill" Margin="10 0 10 0" Stroke="#8888" X2="1" Opacity="0.2" RelativePanel.Below="TaskTitle"/>
         <Button Name="ClosePaneButton"
