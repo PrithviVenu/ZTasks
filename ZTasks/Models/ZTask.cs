@@ -18,6 +18,7 @@ namespace ZTasks.Models
         private int ZPriority;
         private int ZTaskStatus;
         private DateTimeOffset? ZRemindOn;
+        private string ZDescription;
         private string ZParentTaskId;
 
         [PrimaryKey]
@@ -167,6 +168,19 @@ namespace ZTasks.Models
                 this.SetProperty(ref ZRemindOn, value);
             }
         }
+        public string Description
+        {
+            get
+            {
+                return ZDescription;
+            }
+
+            set
+            {
+                this.SetProperty(ref ZDescription, value);
+            }
+        }
+
 
         public string ParentTaskId
         {

@@ -14,8 +14,8 @@
     </Page.Resources>
     <RelativePanel>
         <TextBlock Name="MainTitle" HorizontalAlignment="Center" RelativePanel.AlignHorizontalCenterWithPanel="True" Margin="0 10 0 0" FontSize="16" FontWeight="Medium" Text="Add Task"/>
-        <TextBox  Name="TaskTitle" Text="{x:Bind task.TaskTitle,Mode=TwoWay}" BorderThickness="0 0 0 0"  RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.Below="MainTitle"  Margin="0 40 130 0" FontSize="16"  PlaceholderText="Task Title, @mention assignee" TextWrapping="Wrap" MaxHeight="100"/>
-        <Button Name="Recurring"  RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignBottomWith="TaskTitle" Margin="0,0,30,0" Background="Transparent" BorderThickness="0" Height="Auto" Width="Auto">
+        <TextBox  Name="TaskTitle" KeyDown="Task_KeyDown" Text="{x:Bind task.TaskTitle,Mode=TwoWay}" BorderThickness="0 0 0 0"  RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.Below="MainTitle"  Margin="0 40 130 0" FontSize="16"  PlaceholderText="Task Title, @mention assignee" TextWrapping="Wrap" MaxHeight="100"/>
+        <!--<Button Name="Recurring"  RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignBottomWith="TaskTitle" Margin="0,0,30,0" Background="Transparent" BorderThickness="0" Height="Auto" Width="Auto">
             <TextBlock
                   Text="&#xE1CA;"
                   FontFamily="Segoe MDL2 Assets"
@@ -26,9 +26,9 @@
                 <SolidColorBrush x:Key="ButtonBackgroundPressed" Color="Transparent"/>
 
             </Button.Resources>
-        </Button>
+        </Button>-->
 
-        <Button Name="Priority"   RelativePanel.AlignBottomWith="TaskTitle" RelativePanel.LeftOf="Recurring" Background="Transparent" BorderThickness="0" Height="Auto" Width="Auto">
+        <Button Name="Priority"  RelativePanel.AlignRightWithPanel="True"  RelativePanel.AlignBottomWith="TaskTitle" Margin="0,0,65,0" Background="Transparent" BorderThickness="0" Height="Auto" Width="Auto">
             <TextBlock
                   Text="&#xE171;"
                   FontFamily="Segoe MDL2 Assets"
@@ -119,8 +119,8 @@
 
         </ListView>
         <CheckBox Name="checkBox" Click="CheckBoxClicked"  RelativePanel.Below="SubTasksListView" RelativePanel.AlignLeftWithPanel="True" Margin="20 25 0 0" FontSize="16" Content="Remind On" Width="20" Height="20" />
-        <CalendarDatePicker Name="Reminder" IsEnabled="False" RelativePanel.AlignBottomWith="checkBox" RelativePanel.RightOf="checkBox"/>
-        <TextBox TextWrapping="Wrap" FocusVisualPrimaryThickness="0" FocusVisualSecondaryThickness="0" Name="Description" BorderThickness="0.4"   RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.Below="Reminder"  Margin="10 40 10 0" FontSize="16"  PlaceholderText="Note"  Height="100">
+        <CalendarDatePicker Name="Reminder" Date="{x:Bind task.RemindOn , Mode=TwoWay}" IsEnabled="False" RelativePanel.AlignBottomWith="checkBox" RelativePanel.RightOf="checkBox"/>
+        <TextBox TextWrapping="Wrap" Text="{x:Bind task.Description , Mode=TwoWay}" FocusVisualPrimaryThickness="0" FocusVisualSecondaryThickness="0" Name="Description" BorderThickness="0.4"   RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.Below="Reminder"  Margin="10 40 10 0" FontSize="16"  PlaceholderText="Note"  Height="100">
             <TextBox.Resources>
                 <Thickness x:Key="TextBoxRevealBorderThemeThickness">0</Thickness>
 

@@ -18,7 +18,10 @@ namespace ZTasks.Presentation.Views
         public event KeyEvent EnterKeyDown;
         public delegate void TextBoxContextChanged(FrameworkElement sender,
      DataContextChangedEventArgs args);
-        public event TextBoxContextChanged TextContextChanged;
+        // public event TextBoxContextChanged TextContextChanged;
+        string OldText = string.Empty;
+        public delegate void DeleteButtonClick(object sender, RoutedEventArgs e);
+        public event DeleteButtonClick DeleteButtonClicked;
         // AddTaskPage addTaskPage1;
         //public delegate void CalendarButtonClick(object sender, RoutedEventArgs e);
         //public event CalendarButtonClick CalendarButtonClicked;
@@ -30,7 +33,20 @@ namespace ZTasks.Presentation.Views
 
         }
 
+        private void textBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            OldText = SubTaskTitle.Text;
+        }
 
+        private void textBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            string newText = SubTaskTitle.Text;
+            if (string.IsNullOrEmpty(newText))
+            {
+                SubTaskTitle.Text = OldText;
+            }
+            //Compare OldText and newText here
+        }
         internal void FocusTextBox()
         {
             SubTaskTitle.Focus(FocusState.Programmatic);
@@ -109,19 +125,14 @@ namespace ZTasks.Presentation.Views
         {
             if (e.Key == Windows.System.VirtualKey.Enter)
             {
-                if (EnterKeyDown != null)
-                {
-                    EnterKeyDown?.Invoke(sender, e);
-
-
-                }
-
-
-
+                EnterKeyDown?.Invoke(sender, e);
             }
 
         }
-
+        public void DeleteSubTask(object sender, RoutedEventArgs e)
+        {
+            DeleteButtonClicked?.Invoke(sender, e);
+        }
         //private void ItemPointerEntered(Object sender, PointerRoutedEventArgs e)
 
         //{

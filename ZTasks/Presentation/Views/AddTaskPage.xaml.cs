@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using Windows.Foundation.Collections;
 using Windows.UI;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
@@ -33,6 +34,7 @@ namespace ZTasks.Presentation.Views
         public CreateTaskViewModel createTaskViewModel;
         public AddUserControl userControlObj;
         public ZTask newRowSubTask;
+
         public AddTaskPage()
         {
             this.InitializeComponent();
@@ -49,6 +51,7 @@ namespace ZTasks.Presentation.Views
             userControlObj = (AddUserControl)sender;
             userControlObj.EnterKeyDown += Box_KeyDown;
             userControlObj.SetEventPageReference(this);
+            userControlObj.DeleteButtonClicked += DeleteSubTask;
             //userControlObj.TextContextChanged += TextBox_DataContextChanged;
             //userControlObj.DataContextChanged += UserControlObj_DataContextChanged;
 
@@ -235,6 +238,29 @@ namespace ZTasks.Presentation.Views
             }
             return null;
         }
+
+        private void Task_KeyDown(object sender, KeyRoutedEventArgs e)
+        {
+            TextBox b = (TextBox)sender;
+
+            if (subtasks.Count == 0)
+            {
+                if (!b.Text.Equals(""))
+                {
+                    ZTask subZtask = new ZTask { TaskId = Guid.NewGuid().ToString(), ParentTaskId = GetTaskId() };
+                    newRowSubTask = subZtask;
+                    subtasks.Add(subZtask);
+                    //Debug.WriteLine(SubTasksListView.Items.Count, "count");
+
+                    e.Handled = true; LoseFocus(sender);
+
+                    //SubTasksListView?.ScrollIntoView(SubTasksListView.Items[subtasks.Count - 1], ScrollIntoViewAlignment.Leading);
+                    //FocusLastAddUserControl(userControlObj);
+
+
+                }
+            }
+        }
         private void Box_KeyDown(object sender, KeyRoutedEventArgs e)
         {
             TextBox b = (TextBox)sender;
@@ -275,7 +301,7 @@ namespace ZTasks.Presentation.Views
             // calendarPopup.IsOpen = true;
             CalendarPopup.IsOpen = !CalendarPopup.IsOpen;
         }
-        private void SaveTask(object sender, RoutedEventArgs e)
+        private async void SaveTask(object sender, RoutedEventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(TaskTitle.Text))
             {
@@ -285,6 +311,21 @@ namespace ZTasks.Presentation.Views
                 //TaskId = "";
                 //tasks.Clear();
             }
+            else
+            {
+                MessageDialog showDialog = new MessageDialog("Please Enter Title");
+                showDialog.Commands.Add(new UICommand("Ok")
+                {
+                    // Id = 0
+                });
+                //showDialog.DefaultCommandIndex = 0;
+                await showDialog.ShowAsync();
+                //if ((int)result.Id == 0)
+                //{
+                //    //do your task  
+                //}
+
+            }
         }
 
 
@@ -292,6 +333,33 @@ namespace ZTasks.Presentation.Views
         {
             Debug.WriteLine(SubTasksListView.SelectedIndex, "AddTaskPage");
             ListViewClicked?.Invoke(sender, e);
+        }
+
+        public async void DeleteSubTask(object sender, RoutedEventArgs e)
+        {
+            Button item = (Button)sender;
+            //Debug.WriteLine(item.Text, item.Name);
+            ZTask task = (ZTask)item.DataContext;
+            // Debug.WriteLine("delete");
+            MessageDialog showDialog = new MessageDialog("Do you wish to delete this task ?");
+            showDialog.Commands.Add(new UICommand("Yes")
+            {
+                Id = 0
+            });
+            showDialog.Commands.Add(new UICommand("No")
+            {
+                Id = 1
+            });
+            showDialog.DefaultCommandIndex = 0;
+            showDialog.CancelCommandIndex = 1;
+            var result = await showDialog.ShowAsync();
+            if ((int)result.Id == 0)
+            {
+                subtasks.Remove(task);
+            }
+            else
+            {
+            }
         }
 
         public void CollapseSlideInPane(object sender, RoutedEventArgs e)
