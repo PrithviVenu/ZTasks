@@ -54,6 +54,48 @@ namespace ZTasks.Presentation.Views
 
 
         }
+
+        public void PriorityClick(object sender, RoutedEventArgs e)
+        {
+            MenuFlyoutItem item = (MenuFlyoutItem)sender;
+            //Debug.WriteLine(item.Text, item.Name);
+            High.Background = new SolidColorBrush(Colors.Transparent);
+            Low.Background = new SolidColorBrush(Colors.Transparent);
+            Medium.Background = new SolidColorBrush(Colors.Transparent);
+
+            if ((string)item.Tag == "2")
+            {
+                High.Background = new SolidColorBrush(Color.FromArgb(255, 227, 227, 227));
+
+                task.Priority = 2;
+            }
+            else if ((string)item.Tag == "1")
+            {
+                Medium.Background = new SolidColorBrush(Color.FromArgb(255, 227, 227, 227));
+
+                task.Priority = 1;
+
+            }
+            else if ((string)item.Tag == "0")
+
+            {
+                Low.Background = new SolidColorBrush(Color.FromArgb(255, 227, 227, 227));
+
+                task.Priority = 0;
+
+            }
+            //  printpriority();
+
+        }
+        public void printpriority()
+        {
+            foreach (ZTask task in subtasks)
+            {
+                Debug.WriteLine(task.Priority);
+
+            }
+        }
+
         //private bool _focusItem = true;
         //private void UserControlObj_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
         //{
@@ -101,6 +143,7 @@ namespace ZTasks.Presentation.Views
             else
             {
                 Reminder.IsEnabled = false;
+                task.RemindOn = null;
             }
 
 

@@ -21,6 +21,11 @@
                   FontFamily="Segoe MDL2 Assets"
                   FontSize="19"
                   Foreground="#888888"/>
+            <Button.Resources>
+                <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="Transparent"/>
+                <SolidColorBrush x:Key="ButtonBackgroundPressed" Color="Transparent"/>
+
+            </Button.Resources>
         </Button>
 
         <Button Name="Priority"   RelativePanel.AlignBottomWith="TaskTitle" RelativePanel.LeftOf="Recurring" Background="Transparent" BorderThickness="0" Height="Auto" Width="Auto">
@@ -29,17 +34,39 @@
                   FontFamily="Segoe MDL2 Assets"
                   FontSize="19"
                   Foreground="#888888"/>
-        </Button>
-        <Button Name="DueDate" ClickMode="Hover"  Click="ShowCalendarButton_Click" RelativePanel.AlignBottomWith="TaskTitle" RelativePanel.LeftOf="Priority" Background="Transparent" BorderThickness="0" Height="Auto" Width="Auto">
             <Button.Resources>
                 <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="Transparent"/>
+                <SolidColorBrush x:Key="ButtonBackgroundPressed" Color="Transparent"/>
             </Button.Resources>
-
+            <Button.Flyout >
+                <MenuFlyout Placement="Bottom"  x:Name="Flyout">
+                    <MenuFlyout.MenuFlyoutPresenterStyle>
+                        <Style TargetType="MenuFlyoutPresenter">
+                            <Setter Property="Background" Value="White"/>
+                        </Style>
+                    </MenuFlyout.MenuFlyoutPresenterStyle>
+                    <MenuFlyout.Items  >
+                        <MenuFlyoutItem x:Name="High" Tag="2" Text="High"  Click="PriorityClick">
+                        </MenuFlyoutItem >
+                        <MenuFlyoutItem x:Name="Medium" Tag="1" Text="Medium"  Click="PriorityClick">
+                        </MenuFlyoutItem >
+                        <MenuFlyoutItem x:Name="Low" Tag="0" Text="Low"  Click="PriorityClick">
+                        </MenuFlyoutItem>
+                    </MenuFlyout.Items>
+                </MenuFlyout>
+            </Button.Flyout>
+        </Button>
+        <Button Name="DueDate"   Click="ShowCalendarButton_Click" RelativePanel.AlignBottomWith="TaskTitle" RelativePanel.LeftOf="Priority" Background="Transparent" BorderThickness="0" Height="Auto" Width="Auto">
             <TextBlock
                   Text="&#xE163;"
                   FontFamily="Segoe MDL2 Assets"
                   FontSize="19"
                   Foreground="#888888"/>
+            <Button.Resources>
+                <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="Transparent"/>
+                <SolidColorBrush x:Key="ButtonBackgroundPressed" Color="Transparent"/>
+
+            </Button.Resources>
         </Button>
         <Popup Name="CalendarPopup"  RelativePanel.Below="DueDate" IsLightDismissEnabled="True"  RelativePanel.AlignHorizontalCenterWith="DueDate">
             <CalendarDatePicker Date="{x:Bind task.DueDate , Mode=TwoWay}" x:Name="calendar"  PlaceholderText="Due date"></CalendarDatePicker>

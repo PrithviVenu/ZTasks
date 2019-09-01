@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Diagnostics;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using ZTasks.Models;
 
 // The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
 
@@ -17,6 +19,7 @@ namespace ZTasks.Presentation.Views
         public delegate void TextBoxContextChanged(FrameworkElement sender,
      DataContextChangedEventArgs args);
         public event TextBoxContextChanged TextContextChanged;
+        // AddTaskPage addTaskPage1;
         //public delegate void CalendarButtonClick(object sender, RoutedEventArgs e);
         //public event CalendarButtonClick CalendarButtonClicked;
         public Page page;
@@ -33,11 +36,18 @@ namespace ZTasks.Presentation.Views
             SubTaskTitle.Focus(FocusState.Programmatic);
         }
 
-        private void InputTextBox_Loaded(object sender, RoutedEventArgs e)
-        {
-            var textBox = (TextBox)sender;
-            textBox.Focus(FocusState.Programmatic);
-        }
+        //private void textChangedEventHandler(object sender, TextChangedEventArgs args)
+        //{
+        //    Flyout.ShowAt(SubTaskTitle);
+
+        //    // Omitted Code: Insert code that does something whenever
+        //    // the text changes...
+        //}
+        //private void InputTextBox_Loaded(object sender, RoutedEventArgs e)
+        //{
+        //    var textBox = (TextBox)sender;
+        //    textBox.Focus(FocusState.Programmatic);
+        //}
         //private void TextBox_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
         //{
         //    TextContextChanged?.Invoke(sender, args);
@@ -48,11 +58,45 @@ namespace ZTasks.Presentation.Views
             this.page = page;
             AddTaskPage addTaskPage = (AddTaskPage)page;
             addTaskPage.ListViewClicked += ItemClick;
-
+            // addTaskPage1 = addTaskPage;
         }
         public void ItemClick(object sender, RoutedEventArgs e)
         {
             Debug.WriteLine("UC");
+        }
+
+        public void PriorityClick(object sender, RoutedEventArgs e)
+        {
+            MenuFlyoutItem item = (MenuFlyoutItem)sender;
+            //Debug.WriteLine(item.Text, item.Name);
+            ZTask task = (ZTask)item.DataContext;
+            High.Background = new SolidColorBrush(Colors.Transparent);
+            Low.Background = new SolidColorBrush(Colors.Transparent);
+            Medium.Background = new SolidColorBrush(Colors.Transparent);
+
+            if ((string)item.Tag == "2")
+            {
+                High.Background = new SolidColorBrush(Color.FromArgb(255, 227, 227, 227));
+
+                task.Priority = 2;
+            }
+            else if ((string)item.Tag == "1")
+            {
+                Medium.Background = new SolidColorBrush(Color.FromArgb(255, 227, 227, 227));
+
+                task.Priority = 1;
+
+            }
+            else if ((string)item.Tag == "0")
+
+            {
+                Low.Background = new SolidColorBrush(Color.FromArgb(255, 227, 227, 227));
+
+                task.Priority = 0;
+
+            }
+            //  addTaskPage1.printpriority();
+
         }
         private void ShowSubTaskCalendarButton_Click(object sender, RoutedEventArgs e)
         {
