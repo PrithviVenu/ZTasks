@@ -58,6 +58,12 @@ namespace ZTasks.Presentation.Views
 
         }
 
+        public void AddAssigneeToTask(object sender, RoutedEventArgs e)
+        {
+            //  AddAssigneePopup.IsOpen = !AddAssigneePopup.IsOpen;
+
+        }
+
         public void PriorityClick(object sender, RoutedEventArgs e)
         {
             MenuFlyoutItem item = (MenuFlyoutItem)sender;

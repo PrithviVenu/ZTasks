@@ -14,7 +14,7 @@
     </UserControl.Resources>
 
     <RelativePanel  Margin="10,10,0,10"  HorizontalAlignment="Stretch"  VerticalAlignment="Stretch">
-        <TextBox GotFocus="textBox_GotFocus" LostFocus="textBox_LostFocus" Text="{x:Bind Subtasks.TaskTitle , Mode=TwoWay}"  RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" BorderThickness="0,0,0,0" BorderBrush="#8888" HorizontalContentAlignment="Stretch"  HorizontalAlignment="Stretch" KeyDown="Box_KeyDown"  Name="SubTaskTitle" PlaceholderText="+ Subtask" FontSize="16"    Margin="0 0 120 0">
+        <TextBox IsSpellCheckEnabled="True" GotFocus="textBox_GotFocus" LostFocus="textBox_LostFocus" Text="{x:Bind Subtasks.TaskTitle , Mode=TwoWay}"  RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" BorderThickness="0,0,0,0" BorderBrush="#8888" HorizontalContentAlignment="Stretch"  HorizontalAlignment="Stretch" KeyDown="Box_KeyDown"  Name="SubTaskTitle" PlaceholderText="+ Subtask" FontSize="16"    Margin="0 0 120 0">
 
         </TextBox>
         <Button Name="SubTaskDelete" Click="DeleteSubTask" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignBottomWith="SubTaskTitle" Margin="0,0,20,0" Background="Transparent" BorderThickness="0" Height="Auto" Width="Auto">
