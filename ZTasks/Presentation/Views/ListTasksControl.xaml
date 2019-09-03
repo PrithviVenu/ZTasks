@@ -13,7 +13,7 @@
         <TextBlock RelativePanel.AlignLeftWithPanel="True" Name="TaskTitle" Text="{x:Bind Tasks.TaskTitle , Mode=TwoWay}" FontSize="16"   Margin="10 0 0 2"/>
         <TextBlock RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWith="TaskTitle" Name="TaskDueDate" Text="Aug 15" FontSize="16"   Margin="0 0 10 0"/>
         <TextBlock RelativePanel.AlignLeftWithPanel="True" RelativePanel.Below="TaskTitle" Name="TaskAssignee" FontWeight="Medium" Text="Assignee:" FontSize="16"   Margin="10 0 0 0"/>
-        <TextBlock RelativePanel.RightOf="TaskAssignee"  RelativePanel.AlignBottomWith="TaskAssignee" Name="TaskAssigneeName" Text="{x:Bind Tasks.AssigneeName, Mode=TwoWay}" FontSize="16"   Margin="10,0,0,0"/>
+        <TextBlock RelativePanel.RightOf="TaskAssignee"  RelativePanel.AlignBottomWith="TaskAssignee" Name="TaskAssigneeName" Text="Prithvi Venu" FontSize="16"   Margin="10,0,0,0"/>
         <Line  Name="Line" Stretch="Fill" Margin="5 10 0 2" Stroke="DimGray" X2="1"  RelativePanel.Below="TaskAssignee" />
     </RelativePanel>
 </UserControl>

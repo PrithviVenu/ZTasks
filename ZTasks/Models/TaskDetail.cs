@@ -1,10 +1,13 @@
-﻿using SQLite;
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using ZTasks.NotificationCenter;
 
 namespace ZTasks.Models
 {
-    public class ZTask : NotifyPropertyChangedBase
+    class TaskDetail : NotifyPropertyChangedBase
     {
         private string ZTaskId;
         private string ZTaskTitle;
@@ -16,8 +19,6 @@ namespace ZTasks.Models
         private DateTimeOffset? ZRemindOn;
         private string ZDescription;
         private string ZParentTaskId;
-        private TaskAssignment ZAssignment;
-        [PrimaryKey]
         public string TaskId
         {
             get
@@ -142,21 +143,5 @@ namespace ZTasks.Models
                 this.SetProperty(ref ZParentTaskId, value);
             }
         }
-        //public TaskAssignment Assignment
-        //{
-        //    get
-        //    {
-        //        return ZAssignment;
-        //    }
-
-        //    set
-        //    {
-        //        this.SetProperty(ref ZAssignment, value);
-        //    }
-
-        //}
-
     }
-
-
 }

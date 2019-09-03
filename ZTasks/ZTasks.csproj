@@ -133,6 +133,8 @@
     <Compile Include="Data\DMHandlerContract\IGetTaskDbHandlerDMContract.cs" />
     <Compile Include="Domain\DMContract\IGetTaskDMContract.cs" />
     <Compile Include="Domain\DMContract\ICreateTaskDMContract.cs" />
+    <Compile Include="Models\TaskDetail.cs" />
+    <Compile Include="Models\TaskAssignment.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\ZTask.cs" />
     <Compile Include="NotificationCenter\NotifyPropertyChangedBase.cs" />

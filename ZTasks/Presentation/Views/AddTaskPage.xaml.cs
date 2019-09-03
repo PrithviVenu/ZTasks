@@ -60,7 +60,7 @@ namespace ZTasks.Presentation.Views
 
         public void AddAssigneeToTask(object sender, RoutedEventArgs e)
         {
-            //  AddAssigneePopup.IsOpen = !AddAssigneePopup.IsOpen;
+            //AddAssigneePopup.IsOpen = !AddAssigneePopup.IsOpen;
 
         }
 

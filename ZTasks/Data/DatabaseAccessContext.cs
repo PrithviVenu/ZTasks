@@ -49,8 +49,10 @@ namespace ZTasks.Data
         }
         private void InitializeDBWithTables()
         {
-            Connection.CreateTableAsync<ZTask>();
+            //Connection.CreateTableAsync<ZTask>();
             Connection.CreateTableAsync<User>();
+            Connection.CreateTableAsync<TaskAssignment>();
+            Connection.CreateTableAsync<TaskDetail>();
 
         }
 

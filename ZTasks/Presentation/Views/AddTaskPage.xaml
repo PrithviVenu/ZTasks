@@ -39,7 +39,14 @@
 
             </Button.Resources>
         </Button>
+        <!--<Popup x:Name="AddAssigneePopup" IsOpen="True"   RelativePanel.Below="AddAssignee" RelativePanel.LeftOf="AddAssignee">
+            <ListBox HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" Width="400">
+                <ListBoxItem>iiii</ListBoxItem>
+                <ListBoxItem>oooo</ListBoxItem>
+                <ListBoxItem>llll</ListBoxItem>
 
+            </ListBox>
+        </Popup>-->
         <Button Name="Priority"  RelativePanel.LeftOf="AddAssignee"  RelativePanel.AlignBottomWith="TaskTitle"  Background="Transparent" BorderThickness="0" Height="Auto" Width="Auto">
             <TextBlock
                   Text="&#xE171;"
