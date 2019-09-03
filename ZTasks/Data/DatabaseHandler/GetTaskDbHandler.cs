@@ -1,18 +1,20 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Diagnostics;
+using System.Threading.Tasks;
 using ZTasks.Data.DatabaseHandlerCallback;
 using ZTasks.Data.DMHandlerContract;
 using ZTasks.Models;
 
 namespace ZTasks.Data.DatabaseHandler
 {
-    class GetTaskDbHandler: IGetTaskDbHandlerDMContract
+    class GetTaskDbHandler : IGetTaskDbHandlerDMContract
     {
         public DatabaseAccessContext zTasksContext;
         private static GetTaskDbHandler instance = null;
         private static readonly object lockobj = new object();
         private GetTaskDbHandler()
         {
-            zTasksContext =  DatabaseAccessContext.GetInstance;
+            zTasksContext = DatabaseAccessContext.GetInstance;
         }
         public static GetTaskDbHandler GetInstance
         {
@@ -32,8 +34,18 @@ namespace ZTasks.Data.DatabaseHandler
 
         async public Task GetTasks(IGetTaskDMCallback callback)
         {
-            var Tasks = (await DatabaseAccessContext.Connection.QueryAsync<ZTask>("select * from ZTask"));
-            callback.OnTasksFetchedSuccessfully((Tasks));
+
+            var Tasks = (await DatabaseAccessContext.Connection.QueryAsync<TaskUtilityModel>("select TaskDetail.* , TaskAssignment.* from TaskDetail inner join TaskAssignment where TaskDetail.TaskId = TaskAssignment.TaskId"));
+            Debug.WriteLine(Tasks.Count, "count");
+
+            //foreach (TaskUtilityModel zTask in Tasks)
+            //{
+            //    Debug.WriteLine(zTask.AssignedByName);
+            //}
+
+            callback.OnTasksFetchedSuccessfully(Tasks);
         }
     }
+
+
 }

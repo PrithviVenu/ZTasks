@@ -17,11 +17,29 @@ namespace ZTasks.Domain.Usecase
             this.callback = callback;
         }
 
-      
 
-        public void OnTasksFetchedSuccessfully(List<ZTask> ZtaskList)
+
+        public void OnTasksFetchedSuccessfully(List<TaskUtilityModel> ZtaskList)
         {
-            callback.OnTasksFetchedSuccessfully(ZtaskList);
+            callback.OnTasksFetchedSuccessfully(TaskUtilityToZTask(ZtaskList));
+        }
+
+        public List<ZTask> TaskUtilityToZTask(List<TaskUtilityModel> ZtaskList)
+        {
+            List<ZTask> tasks = new List<ZTask>();
+            foreach (TaskUtilityModel task in ZtaskList)
+            {
+
+                ZTask zTask = new ZTask();
+                TaskDetail taskDetail = zTask.TaskDetails;
+                TaskAssignment taskAssignment = zTask.Assignment;
+                taskDetail.TaskId = task.TaskId; taskDetail.TaskTitle = task.TaskTitle; taskDetail.CreatedTime = task.CreatedTime; taskDetail.DueDate = task.DueDate; taskDetail.ModifiedDate = task.ModifiedDate; taskDetail.Priority = task.Priority; taskDetail.TaskStatus = task.TaskStatus; taskDetail.RemindOn = task.RemindOn; taskDetail.Description = task.Description; taskDetail.ParentTaskId = task.ParentTaskId;
+                taskAssignment.AssigneeId = task.AssigneeId; taskAssignment.AssignedById = task.AssignedById; taskAssignment.AssignedByName = task.AssignedByName; taskAssignment.AssigneeName = task.AssigneeName;
+                tasks.Add(zTask);
+
+            }
+            return tasks;
+
         }
 
         protected override async Task ActionAsync()

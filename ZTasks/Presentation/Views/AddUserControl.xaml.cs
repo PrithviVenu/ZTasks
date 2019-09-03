@@ -33,12 +33,12 @@ namespace ZTasks.Presentation.Views
 
         }
 
-        private void textBox_GotFocus(object sender, RoutedEventArgs e)
+        private void TextBox_GotFocus(object sender, RoutedEventArgs e)
         {
             OldText = SubTaskTitle.Text;
         }
 
-        private void textBox_LostFocus(object sender, RoutedEventArgs e)
+        private void TextBox_LostFocus(object sender, RoutedEventArgs e)
         {
             string newText = SubTaskTitle.Text;
             if (string.IsNullOrEmpty(newText))
@@ -94,13 +94,13 @@ namespace ZTasks.Presentation.Views
             {
                 High.Background = new SolidColorBrush(Color.FromArgb(255, 227, 227, 227));
 
-                task.Priority = 2;
+                task.TaskDetails.Priority = 2;
             }
             else if ((string)item.Tag == "1")
             {
                 Medium.Background = new SolidColorBrush(Color.FromArgb(255, 227, 227, 227));
 
-                task.Priority = 1;
+                task.TaskDetails.Priority = 1;
 
             }
             else if ((string)item.Tag == "0")
@@ -108,7 +108,7 @@ namespace ZTasks.Presentation.Views
             {
                 Low.Background = new SolidColorBrush(Color.FromArgb(255, 227, 227, 227));
 
-                task.Priority = 0;
+                task.TaskDetails.Priority = 0;
 
             }
             //  addTaskPage1.printpriority();

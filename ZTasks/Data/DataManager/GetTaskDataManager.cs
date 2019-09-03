@@ -13,15 +13,15 @@ namespace ZTasks.Data.DataManager
         public IGetTaskCallback callback;
         public GetTaskDbHandler getTaskDbHandler;
 
-   
+
         async public Task GetTasks(IGetTaskCallback callback)
         {
             this.callback = callback;
-            getTaskDbHandler =  GetTaskDbHandler.GetInstance;
+            getTaskDbHandler = GetTaskDbHandler.GetInstance;
             await getTaskDbHandler.GetTasks(this);
         }
 
-        public void OnTasksFetchedSuccessfully(List<ZTask> ZtaskList)
+        public void OnTasksFetchedSuccessfully(List<TaskUtilityModel> ZtaskList)
         {
             callback.OnTasksFetchedSuccessfully((ZtaskList));
         }

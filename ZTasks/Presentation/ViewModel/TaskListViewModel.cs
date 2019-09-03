@@ -55,7 +55,7 @@ namespace ZTasks.Presentation.ViewModel
                 Ztasks.Clear();
                 AddElementsToCollection(ZtaskList);
             });
-        
+
             //Ztasks = new ObservableCollection<ZTask>(ZtaskList);
 
         }

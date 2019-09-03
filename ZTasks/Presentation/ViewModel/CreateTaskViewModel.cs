@@ -58,7 +58,7 @@ namespace ZTasks.Presentation.ViewModel
             //}
             for (int i = Ztasks.Count - 1; i >= 0; i--)
             {
-                if (string.IsNullOrEmpty(Ztasks[i].TaskTitle))
+                if (string.IsNullOrEmpty(Ztasks[i].TaskDetails.TaskTitle))
                     Ztasks.RemoveAt(i);
             }
         }

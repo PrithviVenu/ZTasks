@@ -32,14 +32,24 @@ namespace ZTasks.Data.DatabaseHandler
                 return instance;
             }
         }
-        async  public Task AddTask(List<ZTask> task, ZTask parentZtask, ICreateTaskDMCallback callback)
+        async public Task AddTask(List<ZTask> task, ZTask parentZtask, ICreateTaskDMCallback callback)
         {
-            await DatabaseAccessContext.Connection.InsertAllAsync(task);
-            await DatabaseAccessContext.Connection.InsertAsync(parentZtask);
+            await AddTasksToDb(task);
+            await DatabaseAccessContext.Connection.InsertAsync(parentZtask.TaskDetails);
+            await DatabaseAccessContext.Connection.InsertAsync(parentZtask.Assignment);
+
             callback.OnSuccess(true);
 
         }
 
-   
+        async public Task AddTasksToDb(List<ZTask> task)
+        {
+            foreach (ZTask zTask in task)
+            {
+                await DatabaseAccessContext.Connection.InsertAsync(zTask.TaskDetails);
+                await DatabaseAccessContext.Connection.InsertAsync(zTask.Assignment);
+            }
+        }
+
     }
 }

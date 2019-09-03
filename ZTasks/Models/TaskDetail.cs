@@ -7,7 +7,7 @@ using ZTasks.NotificationCenter;
 
 namespace ZTasks.Models
 {
-    class TaskDetail : NotifyPropertyChangedBase
+    public class TaskDetail : NotifyPropertyChangedBase
     {
         private string ZTaskId;
         private string ZTaskTitle;

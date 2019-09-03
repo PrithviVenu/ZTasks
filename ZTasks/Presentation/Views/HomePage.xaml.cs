@@ -29,9 +29,10 @@ namespace ZTasks.Presentation.Views
             tasks = taskListViewModel.Ztasks;
             tasks.CollectionChanged += Task_CollectionChanged;
             GetListData();
-
-
-            tasks.Add(new ZTask { TaskId = Guid.NewGuid().ToString(), TaskTitle = "Learn C#", CreatedTime = DateTime.Now, DueDate = DateTime.Now, Priority = 1, RemindOn = DateTime.Now, ParentTaskId = "-1" });
+            //ZTask zTask = new ZTask();
+            //TaskDetail taskDetail = zTask.TaskDetails;
+            //taskDetail.TaskId = Guid.NewGuid().ToString(); taskDetail.TaskTitle = "Learn C#"; taskDetail.CreatedTime = DateTime.Now; taskDetail.DueDate = DateTime.Now; taskDetail.Priority = 1; taskDetail.RemindOn = DateTime.Now; taskDetail.ParentTaskId = "-1";
+            //tasks.Add(zTask);
         }
         private void ListTasksUserControl_Loaded(object sender, RoutedEventArgs e)
         {

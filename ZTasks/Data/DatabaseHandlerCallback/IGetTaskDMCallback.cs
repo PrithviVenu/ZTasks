@@ -5,7 +5,7 @@ namespace ZTasks.Data.DatabaseHandlerCallback
 {
     interface IGetTaskDMCallback
     {
-        void OnTasksFetchedSuccessfully(List<ZTask> ZtaskList);
+        void OnTasksFetchedSuccessfully(List<TaskUtilityModel> ZtaskList);
 
     }
 }

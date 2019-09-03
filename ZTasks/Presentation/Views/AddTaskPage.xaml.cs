@@ -43,8 +43,16 @@ namespace ZTasks.Presentation.Views
             createTaskViewModel = new CreateTaskViewModel();
             this.DataContext = createTaskViewModel;
             subtasks = createTaskViewModel.Ztasks;
-            task = new ZTask { TaskId = GetTaskId(), TaskTitle = TaskTitle.Text };
-            subtasks.Add(new ZTask { TaskId = Guid.NewGuid().ToString(), ParentTaskId = GetTaskId() });
+            ZTask zTask = new ZTask();
+            TaskDetail taskDetail = zTask.TaskDetails;
+            taskDetail.TaskId = GetTaskId(); taskDetail.TaskTitle = TaskTitle.Text;
+            Assignment(zTask.Assignment, "user101010", "user101010", "Prithvi Venu", "Prithvi Venu", taskDetail.TaskId);
+            task = zTask;
+            ZTask zSubTask = new ZTask();
+            TaskDetail subTaskDetail = zSubTask.TaskDetails;
+            subTaskDetail.TaskId = Guid.NewGuid().ToString(); subTaskDetail.ParentTaskId = GetTaskId();
+            Assignment(zSubTask.Assignment, "user101010", "user101010", "Prithvi Venu", "Prithvi Venu", subTaskDetail.TaskId);
+            subtasks.Add(zSubTask);
         }
         private void AddUserControl_Loaded(object sender, RoutedEventArgs e)
         {
@@ -57,7 +65,14 @@ namespace ZTasks.Presentation.Views
 
 
         }
-
+        public void Assignment(TaskAssignment taskAssignment, string AssignedById, string AssigneeId, string AssigneeName, string AssignedByName, string TaskId)
+        {
+            taskAssignment.AssignedById = AssignedById;
+            taskAssignment.AssigneeId = AssigneeId;
+            taskAssignment.AssigneeName = AssigneeName;
+            taskAssignment.AssignedByName = AssignedByName;
+            taskAssignment.TaskId = TaskId;
+        }
         public void AddAssigneeToTask(object sender, RoutedEventArgs e)
         {
             //AddAssigneePopup.IsOpen = !AddAssigneePopup.IsOpen;
@@ -76,13 +91,13 @@ namespace ZTasks.Presentation.Views
             {
                 High.Background = new SolidColorBrush(Color.FromArgb(255, 227, 227, 227));
 
-                task.Priority = 2;
+                task.TaskDetails.Priority = 2;
             }
             else if ((string)item.Tag == "1")
             {
                 Medium.Background = new SolidColorBrush(Color.FromArgb(255, 227, 227, 227));
 
-                task.Priority = 1;
+                task.TaskDetails.Priority = 1;
 
             }
             else if ((string)item.Tag == "0")
@@ -90,17 +105,17 @@ namespace ZTasks.Presentation.Views
             {
                 Low.Background = new SolidColorBrush(Color.FromArgb(255, 227, 227, 227));
 
-                task.Priority = 0;
+                task.TaskDetails.Priority = 0;
 
             }
             //  printpriority();
 
         }
-        public void printpriority()
+        public void Printpriority()
         {
             foreach (ZTask task in subtasks)
             {
-                Debug.WriteLine(task.Priority);
+                Debug.WriteLine(task.TaskDetails.Priority);
 
             }
         }
@@ -152,7 +167,7 @@ namespace ZTasks.Presentation.Views
             else
             {
                 Reminder.IsEnabled = false;
-                task.RemindOn = null;
+                task.TaskDetails.RemindOn = null;
             }
 
 
@@ -253,9 +268,13 @@ namespace ZTasks.Presentation.Views
             {
                 if (!b.Text.Equals(""))
                 {
-                    ZTask subZtask = new ZTask { TaskId = Guid.NewGuid().ToString(), ParentTaskId = GetTaskId() };
-                    newRowSubTask = subZtask;
-                    subtasks.Add(subZtask);
+                    ZTask zTask = new ZTask();
+                    TaskDetail subTaskDetail = zTask.TaskDetails;
+
+                    subTaskDetail.TaskId = Guid.NewGuid().ToString(); subTaskDetail.ParentTaskId = GetTaskId();
+                    newRowSubTask = zTask;
+                    Assignment(zTask.Assignment, "user101010", "user101010", "Prithvi Venu", "Prithvi Venu", subTaskDetail.TaskId);
+                    subtasks.Add(zTask);
                     //Debug.WriteLine(SubTasksListView.Items.Count, "count");
 
                     e.Handled = true; LoseFocus(sender);
@@ -271,15 +290,18 @@ namespace ZTasks.Presentation.Views
         {
             TextBox b = (TextBox)sender;
             ZTask task1 = (ZTask)b.DataContext;
-            task1.TaskTitle = b.Text;
-            Debug.WriteLine(task1.TaskTitle);
+            task1.TaskDetails.TaskTitle = b.Text;
+            Debug.WriteLine(task1.TaskDetails.TaskTitle);
             if (subtasks.Last() == task1)
             {
                 if (!b.Text.Equals(""))
                 {
-                    ZTask subZtask = new ZTask { TaskId = Guid.NewGuid().ToString(), ParentTaskId = GetTaskId() };
-                    newRowSubTask = subZtask;
-                    subtasks.Add(subZtask);
+                    ZTask zTask = new ZTask();
+                    TaskDetail subTaskDetail = zTask.TaskDetails;
+                    subTaskDetail.TaskId = Guid.NewGuid().ToString(); subTaskDetail.ParentTaskId = GetTaskId();
+                    newRowSubTask = zTask;
+                    Assignment(zTask.Assignment, "user101010", "user101010", "Prithvi Venu", "Prithvi Venu", subTaskDetail.TaskId);
+                    subtasks.Add(zTask);
                     //Debug.WriteLine(SubTasksListView.Items.Count, "count");
 
                     e.Handled = true; LoseFocus(sender);
@@ -311,7 +333,7 @@ namespace ZTasks.Presentation.Views
         {
             if (!string.IsNullOrWhiteSpace(TaskTitle.Text))
             {
-                Debug.WriteLine(task.DueDate, "hoiii");
+                // Debug.WriteLine(task.DueDate, "hoiii");
                 //tasks.Add(new ZTask { TaskId = GetTaskId(), TaskTitle = TaskTitle.Text });
                 createTaskViewModel.AddTask(task);
                 //TaskId = "";

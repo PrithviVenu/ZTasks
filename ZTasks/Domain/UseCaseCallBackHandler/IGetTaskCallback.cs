@@ -5,7 +5,7 @@ namespace ZTasks.Domain.UseCaseCallBackHandler
 {
     interface IGetTaskCallback
     {
-        void OnTasksFetchedSuccessfully(List<ZTask> ZtaskList);
+        void OnTasksFetchedSuccessfully(List<TaskUtilityModel> ZtaskList);
 
     }
 }
