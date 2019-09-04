@@ -75,6 +75,7 @@ namespace ZTasks
 
             if (Home.IsSelected)
             {
+                MyFrame.BackStack.Clear();
                 MyFrame.Navigate(typeof(HomePage), this, new SuppressNavigationTransitionInfo());
 
                 //Title.Text = "Home";
@@ -82,23 +83,27 @@ namespace ZTasks
 
             else if (Today.IsSelected)
             {
+                MyFrame.BackStack.Clear();
                 MyFrame.Navigate(typeof(Today), this, new SuppressNavigationTransitionInfo());
                 //Title.Text = "Today";
             }
 
             else if (Upcoming.IsSelected)
             {
+                MyFrame.BackStack.Clear();
                 MyFrame.Navigate(typeof(Upcoming), this, new SuppressNavigationTransitionInfo());
                 //Title.Text = "Upcoming";
 
             }
             else if (Delayed.IsSelected)
             {
+                MyFrame.BackStack.Clear();
                 MyFrame.Navigate(typeof(Delayed), this, new SuppressNavigationTransitionInfo());
                 //Title.Text = "Delayed";
             }
             else if (AssignedToOthers.IsSelected)
             {
+                MyFrame.BackStack.Clear();
                 MyFrame.Navigate(typeof(OthersTasks), this, new SuppressNavigationTransitionInfo());
                 //Title.Text = "Assigned To Others";
             }

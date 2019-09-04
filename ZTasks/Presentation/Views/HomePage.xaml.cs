@@ -58,12 +58,14 @@ namespace ZTasks.Presentation.Views
 
         public void ItemClick(object sender, RoutedEventArgs e)
         {
+            MyFrame.BackStack.Clear();
+            MyFrame.Navigate(typeof(AddTaskPage), this, new SuppressNavigationTransitionInfo());
             ShowSlideInPane();
-
         }
 
         public void AddNewTask(object sender, RoutedEventArgs e)
         {
+            MyFrame.BackStack.Clear();
             MyFrame.Navigate(typeof(AddTaskPage), this, new SuppressNavigationTransitionInfo());
             ShowSlideInPane();
             //CollapseSlideInPane();

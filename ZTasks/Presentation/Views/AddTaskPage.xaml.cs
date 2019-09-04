@@ -40,12 +40,16 @@ namespace ZTasks.Presentation.Views
             this.InitializeComponent();
             //subtasks = new ObservableCollection<ZTask>();
             //SubTasksListView.Items.VectorChanged += ListViewItems_VectorChanged;
+            PageSetup();
+        }
+        public void PageSetup()
+        {
             createTaskViewModel = new CreateTaskViewModel();
             this.DataContext = createTaskViewModel;
             subtasks = createTaskViewModel.Ztasks;
             ZTask zTask = new ZTask();
             TaskDetail taskDetail = zTask.TaskDetails;
-            taskDetail.TaskId = GetTaskId(); taskDetail.TaskTitle = TaskTitle.Text;
+            taskDetail.TaskId = GetTaskId();
             Assignment(zTask.Assignment, "user101010", "user101010", "Prithvi Venu", "Prithvi Venu", taskDetail.TaskId);
             task = zTask;
             ZTask zSubTask = new ZTask();
