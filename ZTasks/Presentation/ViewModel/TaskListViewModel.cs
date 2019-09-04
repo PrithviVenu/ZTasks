@@ -17,18 +17,11 @@ namespace ZTasks.Presentation.ViewModel
 
         UseCaseBase usecase;
 
-        public ObservableCollection<ZTask> Ztasks
-        {
-            get { return ZTaskCollection; }
-            set
-            {
-                ZTaskCollection = value;
-                OnPropertyChanged("Ztasks");
-            }
-        }
+        public ObservableCollection<ZTask> Ztasks { get; set; }
         public TaskListViewModel()
         {
             ZTaskCollection = new ObservableCollection<ZTask>();
+            Ztasks = new ObservableCollection<ZTask>();
         }
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -64,7 +57,11 @@ namespace ZTasks.Presentation.ViewModel
         {
             foreach (ZTask task in ZtaskList)
             {
-                Ztasks.Add(task);
+                ZTaskCollection.Add(task);
+                if (task.TaskDetails.ParentTaskId == null)
+                {
+                    Ztasks.Add(task);
+                }
             }
         }
     }

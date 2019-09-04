@@ -35,12 +35,20 @@ namespace ZTasks.Data.DatabaseHandler
         async public Task GetTasks(IGetTaskDMCallback callback)
         {
 
-            var Tasks = (await DatabaseAccessContext.Connection.QueryAsync<TaskUtilityModel>("select TaskDetail.* , TaskAssignment.* from TaskDetail inner join TaskAssignment where TaskDetail.TaskId = TaskAssignment.TaskId"));
+            var Tasks = (await DatabaseAccessContext.Connection.QueryAsync<TaskUtilityModel>("select TaskDetail.* , TaskAssignment.* from TaskDetail inner join TaskAssignment where TaskDetail.TaskId = TaskAssignment.TaskId "));
             Debug.WriteLine(Tasks.Count, "count");
 
             //foreach (TaskUtilityModel zTask in Tasks)
             //{
-            //    Debug.WriteLine(zTask.AssignedByName);
+            //    if (zTask.ParentTaskId == null)
+            //    {
+            //        Debug.WriteLine(zTask.ParentTaskId, "null");
+
+            //    }
+            //    else
+            //    {
+            //        Debug.WriteLine(zTask.ParentTaskId, "ooo");
+            //    }
             //}
 
             callback.OnTasksFetchedSuccessfully(Tasks);

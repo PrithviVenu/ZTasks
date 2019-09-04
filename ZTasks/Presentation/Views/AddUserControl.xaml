@@ -9,9 +9,7 @@
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
-    <UserControl.Resources>
-        <local:TimeConverter x:Key="TimeConverter"/>
-    </UserControl.Resources>
+
 
     <RelativePanel  Margin="10,10,0,10"  HorizontalAlignment="Stretch"  VerticalAlignment="Stretch">
         <TextBox IsSpellCheckEnabled="True" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" Text="{x:Bind Subtasks.TaskDetails.TaskTitle , Mode=TwoWay}"  RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" BorderThickness="0,0,0,0" BorderBrush="#8888" HorizontalContentAlignment="Stretch"  HorizontalAlignment="Stretch" KeyDown="Box_KeyDown"  Name="SubTaskTitle" PlaceholderText="+ Subtask" FontSize="16"    Margin="0 0 120 0">
