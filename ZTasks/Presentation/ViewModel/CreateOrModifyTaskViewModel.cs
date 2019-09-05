@@ -31,6 +31,7 @@ namespace ZTasks.Presentation.ViewModel
         public CreateOrModifyTaskViewModel()
         {
             ZTaskCollection = new ObservableCollection<ZTask>();
+            ZTaskCollection.CollectionChanged -= Task_CollectionChanged;
             ZTaskCollection.CollectionChanged += Task_CollectionChanged;
         }
         void Task_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)

@@ -73,6 +73,7 @@ namespace ZTasks.Presentation.Views
         {
             this.page = page;
             CreateOrModifyTaskPage addTaskPage = (CreateOrModifyTaskPage)page;
+            addTaskPage.ListViewClicked -= ItemClick;
             addTaskPage.ListViewClicked += ItemClick;
             // addTaskPage1 = addTaskPage;
         }
