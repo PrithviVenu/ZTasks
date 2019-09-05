@@ -8,18 +8,18 @@ using ZTasks.Utility;
 
 namespace ZTasks.Data.DatabaseHandler
 {
-    class CreateTaskDbHandler : ICreateTaskDbHandlerDMContract
+    class CreateOrModifyTaskDbHandler : ICreateOrModifyTaskDbHandlerDMContract
     {
 
         public DatabaseAccessContext zTasksContext;
-        private static CreateTaskDbHandler instance = null;
+        private static CreateOrModifyTaskDbHandler instance = null;
         private static readonly object lockobj = new object();
-        private CreateTaskDbHandler()
+        private CreateOrModifyTaskDbHandler()
         {
             zTasksContext = DatabaseAccessContext.GetInstance;
 
         }
-        public static CreateTaskDbHandler GetInstance
+        public static CreateOrModifyTaskDbHandler GetInstance
         {
             get
             {
@@ -28,13 +28,13 @@ namespace ZTasks.Data.DatabaseHandler
                     lock (lockobj)
                     {
                         if (instance == null)
-                            instance = new CreateTaskDbHandler();
+                            instance = new CreateOrModifyTaskDbHandler();
                     }
                 }
                 return instance;
             }
         }
-        async public Task AddTask(List<ZTask> task, ZTask parentZtask, ICreateTaskDMCallback callback, TaskOperation taskOperation)
+        async public Task AddTask(List<ZTask> task, ZTask parentZtask, ICreateOrModifyTaskDMCallback callback, TaskOperation taskOperation)
         {
             await AddOrModifyTasks(task, taskOperation);
 

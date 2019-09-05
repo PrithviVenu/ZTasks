@@ -2,7 +2,7 @@
 
 namespace ZTasks.Presentation.PresenterCallBackHandler
 {
-    interface ICreateTaskPresenterCallback
+    interface ICreateOrModifyTaskPresenterCallback
     {
         void OnSuccess(bool success);
 

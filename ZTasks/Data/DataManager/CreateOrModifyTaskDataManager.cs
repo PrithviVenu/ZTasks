@@ -10,18 +10,18 @@ using ZTasks.Utility;
 
 namespace ZTasks.Data.DataManager
 {
-    class CreateTaskDataManager : ICreateTaskDMContract, ICreateTaskDMCallback
+    class CreateOrModifyTaskDataManager : ICreateOrModifyTaskDMContract, ICreateOrModifyTaskDMCallback
     {
 
-        public ICreateTaskDbHandlerDMContract addTaskDbHandler;
-        public ICreateTaskCallback callback;
+        public ICreateOrModifyTaskDbHandlerDMContract addTaskDbHandler;
+        public ICreateOrModifyTaskCallback callback;
 
 
 
-        async Task ICreateTaskDMContract.AddTask(List<ZTask> task, ZTask parentZtask, ICreateTaskCallback callback, TaskOperation taskOperation)
+        async Task ICreateOrModifyTaskDMContract.AddTask(List<ZTask> task, ZTask parentZtask, ICreateOrModifyTaskCallback callback, TaskOperation taskOperation)
         {
             this.callback = callback;
-            addTaskDbHandler = CreateTaskDbHandler.GetInstance;
+            addTaskDbHandler = CreateOrModifyTaskDbHandler.GetInstance;
             await addTaskDbHandler.AddTask(task, parentZtask, this, taskOperation);
         }
         public void OnSuccess(bool success)

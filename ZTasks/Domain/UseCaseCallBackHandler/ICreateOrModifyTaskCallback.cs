@@ -2,7 +2,7 @@
 
 namespace ZTasks.Domain.UseCaseCallBackHandler
 {
-    interface ICreateTaskCallback
+    interface ICreateOrModifyTaskCallback
     {
         void OnSuccess(bool success);
 

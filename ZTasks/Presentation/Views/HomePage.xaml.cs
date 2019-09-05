@@ -66,7 +66,7 @@ namespace ZTasks.Presentation.Views
         {
 
             MyFrame.BackStack.Clear();
-            MyFrame.Navigate(typeof(AddOrModifyTaskPage), this, new SuppressNavigationTransitionInfo());
+            MyFrame.Navigate(typeof(CreateOrModifyTaskPage), this, new SuppressNavigationTransitionInfo());
             ZTask item = (ZTask)e.ClickedItem;
             TaskClicked?.Invoke(item);
             ShowSlideInPane();
@@ -75,7 +75,7 @@ namespace ZTasks.Presentation.Views
         public void AddNewTask(object sender, RoutedEventArgs e)
         {
             MyFrame.BackStack.Clear();
-            MyFrame.Navigate(typeof(AddOrModifyTaskPage), this, new SuppressNavigationTransitionInfo());
+            MyFrame.Navigate(typeof(CreateOrModifyTaskPage), this, new SuppressNavigationTransitionInfo());
             ShowSlideInPane();
             AddEvent?.Invoke();
             //CollapseSlideInPane();

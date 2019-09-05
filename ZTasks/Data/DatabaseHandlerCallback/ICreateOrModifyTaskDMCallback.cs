@@ -2,7 +2,7 @@
 
 namespace ZTasks.Data.DatabaseHandlerCallback
 {
-    interface ICreateTaskDMCallback
+    interface ICreateOrModifyTaskDMCallback
     {
         void OnSuccess(bool success);
 

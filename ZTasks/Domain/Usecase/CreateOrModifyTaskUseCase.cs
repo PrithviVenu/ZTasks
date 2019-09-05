@@ -9,13 +9,13 @@ using ZTasks.Utility;
 
 namespace ZTasks.Domain.Usecase
 {
-    class CreateTaskUseCase : UseCaseBase, ICreateTaskCallback
+    class CreateOrModifyTaskUseCase : UseCaseBase, ICreateOrModifyTaskCallback
     {
         public List<ZTask> tasks;
         public ZTask parentZtask;
-        public ICreateTaskPresenterCallback callback;
+        public ICreateOrModifyTaskPresenterCallback callback;
         public TaskOperation taskOperation;
-        public CreateTaskUseCase(List<ZTask> tasks, ZTask parentZtask, ICreateTaskPresenterCallback callBack, TaskOperation taskOperation)
+        public CreateOrModifyTaskUseCase(List<ZTask> tasks, ZTask parentZtask, ICreateOrModifyTaskPresenterCallback callBack, TaskOperation taskOperation)
         {
             this.tasks = tasks;
             this.parentZtask = parentZtask;
@@ -32,7 +32,7 @@ namespace ZTasks.Domain.Usecase
 
         protected override async Task ActionAsync()
         {
-            ICreateTaskDMContract taskHandler = new CreateTaskDataManager();
+            ICreateOrModifyTaskDMContract taskHandler = new CreateOrModifyTaskDataManager();
 
 
             await taskHandler.AddTask(tasks, parentZtask, this, taskOperation);

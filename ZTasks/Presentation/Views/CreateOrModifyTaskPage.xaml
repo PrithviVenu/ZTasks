@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="ZTasks.Presentation.Views.AddOrModifyTaskPage"
+    x:Class="ZTasks.Presentation.Views.CreateOrModifyTaskPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:ZTasks.Presentation.Views"
@@ -129,7 +129,7 @@
             </ListView.ItemsPanel>
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="data:ZTask">
-                    <local:AddOrModifyUserControl x:Name="MyUserControl" 
+                    <local:CreateOrModifyUserControl x:Name="MyUserControl" 
                         Loaded="AddUserControl_Loaded"
                         HorizontalAlignment="Stretch" 
                         VerticalAlignment="Stretch" />

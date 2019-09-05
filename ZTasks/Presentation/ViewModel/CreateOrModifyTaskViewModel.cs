@@ -13,7 +13,7 @@ using ZTasks.Utility;
 namespace ZTasks.Presentation.ViewModel
 {
 
-    public class CreateTaskViewModel : INotifyPropertyChanged, ICreateTaskPresenterCallback
+    public class CreateOrModifyTaskViewModel : INotifyPropertyChanged, ICreateOrModifyTaskPresenterCallback
     {
         private ObservableCollection<ZTask> ZTaskCollection { get; set; }
         UseCaseBase usecase;
@@ -28,7 +28,7 @@ namespace ZTasks.Presentation.ViewModel
                 OnPropertyChanged("Ztasks");
             }
         }
-        public CreateTaskViewModel()
+        public CreateOrModifyTaskViewModel()
         {
             ZTaskCollection = new ObservableCollection<ZTask>();
             ZTaskCollection.CollectionChanged += Task_CollectionChanged;
@@ -41,7 +41,7 @@ namespace ZTasks.Presentation.ViewModel
         public void AddTask(ZTask parentZtask, TaskOperation taskOperation)
         {
             RemoveEmptyListElements();
-            usecase = new CreateTaskUseCase(Ztasks.ToList<ZTask>(), parentZtask, this, taskOperation);
+            usecase = new CreateOrModifyTaskUseCase(Ztasks.ToList<ZTask>(), parentZtask, this, taskOperation);
             usecase.Execute();
 
         }

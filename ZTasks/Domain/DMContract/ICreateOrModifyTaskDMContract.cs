@@ -6,9 +6,9 @@ using ZTasks.Utility;
 
 namespace ZTasks.Domain.DMContract
 {
-    interface ICreateTaskDMContract
+    interface ICreateOrModifyTaskDMContract
     {
-        Task AddTask(List<ZTask> task, ZTask parentZtask, ICreateTaskCallback callback, TaskOperation taskOperation)
+        Task AddTask(List<ZTask> task, ZTask parentZtask, ICreateOrModifyTaskCallback callback, TaskOperation taskOperation)
 ;
     }
 }

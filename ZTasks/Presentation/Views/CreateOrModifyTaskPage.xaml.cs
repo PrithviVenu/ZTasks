@@ -24,7 +24,7 @@ namespace ZTasks.Presentation.Views
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class AddOrModifyTaskPage : Page, INotifyPropertyChanged
+    public sealed partial class CreateOrModifyTaskPage : Page, INotifyPropertyChanged
     {
         private ObservableCollection<ZTask> subtasks;
         private ZTask zTask;
@@ -38,18 +38,18 @@ namespace ZTasks.Presentation.Views
         public delegate void ListViewClick(object sender, RoutedEventArgs e);
         public event ListViewClick ListViewClicked;
         public event PropertyChangedEventHandler PropertyChanged;
-        public CreateTaskViewModel createTaskViewModel;
-        public AddOrModifyUserControl userControlObj;
+        public CreateOrModifyTaskViewModel createTaskViewModel;
+        public CreateOrModifyUserControl userControlObj;
         public ZTask newRowSubTask;
         public TaskOperation taskOperation;
         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        public AddOrModifyTaskPage()
+        public CreateOrModifyTaskPage()
         {
             this.InitializeComponent();
-            createTaskViewModel = new CreateTaskViewModel();
+            createTaskViewModel = new CreateOrModifyTaskViewModel();
             this.DataContext = createTaskViewModel;
             PageSetup();
         }
@@ -74,7 +74,7 @@ namespace ZTasks.Presentation.Views
         }
         private void AddUserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            userControlObj = (AddOrModifyUserControl)sender;
+            userControlObj = (CreateOrModifyUserControl)sender;
             userControlObj.EnterKeyDown -= Box_KeyDown;
             userControlObj.EnterKeyDown += Box_KeyDown;
             userControlObj.SetEventPageReference(this);
