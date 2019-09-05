@@ -35,7 +35,7 @@ namespace ZTasks.Domain.Usecase
             ICreateOrModifyTaskDMContract taskHandler = new CreateOrModifyTaskDataManager();
 
 
-            await taskHandler.AddTask(tasks, parentZtask, this, taskOperation);
+            await taskHandler.AddOrModifyTask(tasks, parentZtask, this, taskOperation);
 
         }
     }

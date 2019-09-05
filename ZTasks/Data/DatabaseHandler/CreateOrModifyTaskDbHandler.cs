@@ -34,7 +34,7 @@ namespace ZTasks.Data.DatabaseHandler
                 return instance;
             }
         }
-        async public Task AddTask(List<ZTask> task, ZTask parentZtask, ICreateOrModifyTaskDMCallback callback, TaskOperation taskOperation)
+        async public Task AddOrModifyTask(List<ZTask> task, ZTask parentZtask, ICreateOrModifyTaskDMCallback callback, TaskOperation taskOperation)
         {
             await AddOrModifyTasks(task, taskOperation);
 

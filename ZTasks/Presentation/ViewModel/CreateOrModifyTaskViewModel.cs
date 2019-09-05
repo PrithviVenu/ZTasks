@@ -38,7 +38,7 @@ namespace ZTasks.Presentation.ViewModel
             Debug.WriteLine(Ztasks.Count, "countooo");
         }
 
-        public void AddTask(ZTask parentZtask, TaskOperation taskOperation)
+        public void AddOrModifyTask(ZTask parentZtask, TaskOperation taskOperation)
         {
             RemoveEmptyListElements();
             usecase = new CreateOrModifyTaskUseCase(Ztasks.ToList<ZTask>(), parentZtask, this, taskOperation);

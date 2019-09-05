@@ -130,7 +130,7 @@
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="data:ZTask">
                     <local:CreateOrModifyUserControl x:Name="MyUserControl" 
-                        Loaded="AddUserControl_Loaded"
+                        Loaded="CreateOrModifyUserControlLoaded"
                         HorizontalAlignment="Stretch" 
                         VerticalAlignment="Stretch" />
                 </DataTemplate>

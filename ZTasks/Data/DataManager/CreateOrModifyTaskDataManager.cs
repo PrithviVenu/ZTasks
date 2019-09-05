@@ -18,11 +18,11 @@ namespace ZTasks.Data.DataManager
 
 
 
-        async Task ICreateOrModifyTaskDMContract.AddTask(List<ZTask> task, ZTask parentZtask, ICreateOrModifyTaskCallback callback, TaskOperation taskOperation)
+        async Task ICreateOrModifyTaskDMContract.AddOrModifyTask(List<ZTask> task, ZTask parentZtask, ICreateOrModifyTaskCallback callback, TaskOperation taskOperation)
         {
             this.callback = callback;
             addTaskDbHandler = CreateOrModifyTaskDbHandler.GetInstance;
-            await addTaskDbHandler.AddTask(task, parentZtask, this, taskOperation);
+            await addTaskDbHandler.AddOrModifyTask(task, parentZtask, this, taskOperation);
         }
         public void OnSuccess(bool success)
         {

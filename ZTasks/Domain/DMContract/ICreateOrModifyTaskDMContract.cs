@@ -8,7 +8,7 @@ namespace ZTasks.Domain.DMContract
 {
     interface ICreateOrModifyTaskDMContract
     {
-        Task AddTask(List<ZTask> task, ZTask parentZtask, ICreateOrModifyTaskCallback callback, TaskOperation taskOperation)
+        Task AddOrModifyTask(List<ZTask> task, ZTask parentZtask, ICreateOrModifyTaskCallback callback, TaskOperation taskOperation)
 ;
     }
 }

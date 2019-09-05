@@ -72,7 +72,7 @@ namespace ZTasks.Presentation.Views
             Assignment(zSubTask.Assignment, "user101010", "user101010", "Prithvi Venu", "Prithvi Venu", subTaskDetail.TaskId);
             subtasks.Add(zSubTask);
         }
-        private void AddUserControl_Loaded(object sender, RoutedEventArgs e)
+        private void CreateOrModifyUserControlLoaded(object sender, RoutedEventArgs e)
         {
             userControlObj = (CreateOrModifyUserControl)sender;
             userControlObj.EnterKeyDown -= Box_KeyDown;
@@ -369,7 +369,7 @@ namespace ZTasks.Presentation.Views
             {
                 // Debug.WriteLine(task.DueDate, "hoiii");
                 //tasks.Add(new ZTask { TaskId = GetTaskId(), TaskTitle = TaskTitle.Text });
-                createTaskViewModel.AddTask(task, taskOperation);
+                createTaskViewModel.AddOrModifyTask(task, taskOperation);
                 //TaskId = "";
                 //tasks.Clear();
             }

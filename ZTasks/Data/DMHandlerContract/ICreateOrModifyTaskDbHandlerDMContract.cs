@@ -8,7 +8,7 @@ namespace ZTasks.Data.DMHandlerContract
 {
     interface ICreateOrModifyTaskDbHandlerDMContract
     {
-        Task AddTask(List<ZTask> task, ZTask parentZtask, ICreateOrModifyTaskDMCallback callback, TaskOperation taskOperation);
+        Task AddOrModifyTask(List<ZTask> task, ZTask parentZtask, ICreateOrModifyTaskDMCallback callback, TaskOperation taskOperation);
 
     }
 }
