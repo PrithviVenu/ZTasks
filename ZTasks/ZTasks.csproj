@@ -164,8 +164,8 @@
     <Compile Include="Presentation\Views\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Presentation\Views\ListTasksControl.xaml.cs">
-      <DependentUpon>ListTasksControl.xaml</DependentUpon>
+    <Compile Include="Presentation\Views\HomeListControl.xaml.cs">
+      <DependentUpon>HomeListControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Presentation\Views\OthersTasks.xaml.cs">
       <DependentUpon>OthersTasks.xaml</DependentUpon>
@@ -230,7 +230,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Presentation\Views\ListTasksControl.xaml">
+    <Page Include="Presentation\Views\HomeListControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

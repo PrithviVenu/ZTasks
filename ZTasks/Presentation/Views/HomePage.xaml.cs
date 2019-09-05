@@ -43,7 +43,7 @@ namespace ZTasks.Presentation.Views
         }
         private void ListTasksUserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            var userControlObj = (ListTasksControl)sender;
+            var userControlObj = (HomeListControl)sender;
 
 
         }

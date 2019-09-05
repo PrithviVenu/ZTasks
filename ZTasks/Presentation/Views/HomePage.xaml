@@ -97,7 +97,7 @@
             </ListView.ItemsPanel>
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="data:ZTask">
-                    <local:ListTasksControl 
+                    <local:HomeListControl 
                         Loaded="ListTasksUserControl_Loaded"
                         HorizontalAlignment="Stretch" 
                         VerticalAlignment="Stretch" />

@@ -5,11 +5,11 @@
 
 namespace ZTasks.Presentation.Views
 {
-    public sealed partial class ListTasksControl : UserControl
+    public sealed partial class HomeListControl : UserControl
     {
         public Models.ZTask Tasks { get { return this.DataContext as Models.ZTask; } }
 
-        public ListTasksControl()
+        public HomeListControl()
         {
             this.InitializeComponent();
             this.DataContextChanged += (s, e) => Bindings.Update();
