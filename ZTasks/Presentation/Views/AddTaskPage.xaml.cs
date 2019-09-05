@@ -42,19 +42,13 @@ namespace ZTasks.Presentation.Views
         public ZTask newRowSubTask;
         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
         {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         public AddTaskPage()
         {
             this.InitializeComponent();
             createTaskViewModel = new CreateTaskViewModel();
             this.DataContext = createTaskViewModel;
-            // this.NavigationCacheMode = NavigationCacheMode.Required;
-            //subtasks = new ObservableCollection<ZTask>();
-            //SubTasksListView.Items.VectorChanged += ListViewItems_VectorChanged;
             PageSetup();
         }
 
