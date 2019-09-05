@@ -7,6 +7,7 @@ using ZTasks.Models;
 using ZTasks.Domain.Usecase;
 using ZTasks.Presentation.PresenterCallBackHandler;
 using Windows.ApplicationModel.Core;
+using System.Runtime.CompilerServices;
 
 namespace ZTasks.Presentation.ViewModel
 {
@@ -16,8 +17,8 @@ namespace ZTasks.Presentation.ViewModel
         private ObservableCollection<ZTask> ZTaskCollection { get; set; }
 
         UseCaseBase usecase;
-
-        public ObservableCollection<ZTask> Ztasks { get; set; }
+        private ObservableCollection<ZTask> _Ztasks;
+        public ObservableCollection<ZTask> Ztasks { get { return _Ztasks; } set { _Ztasks = value; NotifyPropertyChanged(); } }
         public TaskListViewModel()
         {
             ZTaskCollection = new ObservableCollection<ZTask>();
@@ -25,9 +26,12 @@ namespace ZTasks.Presentation.ViewModel
         }
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private void OnPropertyChanged(string propertyName)
+        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
 
 
