@@ -24,21 +24,22 @@ namespace ZTasks.Presentation.Views
         public event TaskEventHandler TaskClicked;
         public delegate void AddEventHandler();
         public event AddEventHandler AddEvent;
-        public delegate void ModifyEventHandler();
-        public event ModifyEventHandler ModifyEvent;
+
         public HomePage()
         {
             this.InitializeComponent();
             taskListViewModel = new TaskListViewModel();
             this.DataContext = taskListViewModel;
-            //tasks = new ObservableCollection<ZTask>();
+            PageSetup();
+
+        }
+
+        public void PageSetup()
+        {
             tasks = taskListViewModel.Ztasks;
+            tasks.CollectionChanged -= Task_CollectionChanged;
             tasks.CollectionChanged += Task_CollectionChanged;
             GetListData();
-            //ZTask zTask = new ZTask();
-            //TaskDetail taskDetail = zTask.TaskDetails;
-            //taskDetail.TaskId = Guid.NewGuid().ToString(); taskDetail.TaskTitle = "Learn C#"; taskDetail.CreatedTime = DateTime.Now; taskDetail.DueDate = DateTime.Now; taskDetail.Priority = 1; taskDetail.RemindOn = DateTime.Now; taskDetail.ParentTaskId = "-1";
-            //tasks.Add(zTask);
         }
         private void ListTasksUserControl_Loaded(object sender, RoutedEventArgs e)
         {
@@ -94,7 +95,8 @@ namespace ZTasks.Presentation.Views
             if (e != null)
             {
                 MainPage mainPage = (MainPage)e.Parameter;
-                mainPage.AddTaskClicked += this.AddNewTask;
+                mainPage.AddTaskClicked += AddNewTask;
+                mainPage.HomeEvent += PageSetup;
             }
 
         }

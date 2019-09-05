@@ -30,7 +30,8 @@ namespace ZTasks
     {
         public delegate void AddTaskEventHandler(object sender, RoutedEventArgs args);
         public event AddTaskEventHandler AddTaskClicked;
-
+        public delegate void HomeEventHandler();
+        public event HomeEventHandler HomeEvent;
         public MainPage()
         {
             this.InitializeComponent();
@@ -77,7 +78,7 @@ namespace ZTasks
             {
                 MyFrame.BackStack.Clear();
                 MyFrame.Navigate(typeof(HomePage), this, new SuppressNavigationTransitionInfo());
-
+                HomeEvent?.Invoke();
                 //Title.Text = "Home";
             }
 

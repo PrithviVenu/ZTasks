@@ -36,21 +36,21 @@ namespace ZTasks.Data.DatabaseHandler
         {
 
             var Tasks = (await DatabaseAccessContext.Connection.QueryAsync<TaskUtilityModel>("select TaskDetail.* , TaskAssignment.* from TaskDetail inner join TaskAssignment where TaskDetail.TaskId = TaskAssignment.TaskId "));
-            Debug.WriteLine(Tasks.Count, "countuuuuuuuuuuu");
+            // Debug.WriteLine(Tasks.Count, "countuuuuuuuuuuu");
 
-            foreach (TaskUtilityModel zTask in Tasks)
-            {
-                Debug.WriteLine(zTask, "lol");
-                //    if (zTask.ParentTaskId == null)
-                //    {
-                //        Debug.WriteLine(zTask.ParentTaskId, zTask.TaskTitle);
+            //foreach (TaskUtilityModel zTask in Tasks)
+            //{
+            // Debug.WriteLine(zTask, "lol");
+            //    if (zTask.ParentTaskId == null)
+            //    {
+            //        Debug.WriteLine(zTask.ParentTaskId, zTask.TaskTitle);
 
-                //    }
-                //    else
-                //    {
-                //        Debug.WriteLine(zTask.ParentTaskId, "ooo");
-                //    }
-            }
+            //    }
+            //    else
+            //    {
+            //        Debug.WriteLine(zTask.ParentTaskId, "ooo");
+            //    }
+            //}
 
             callback.OnTasksFetchedSuccessfully(Tasks);
         }
