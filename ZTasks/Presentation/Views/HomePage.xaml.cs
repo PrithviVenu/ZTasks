@@ -30,17 +30,39 @@ namespace ZTasks.Presentation.Views
             this.InitializeComponent();
             taskListViewModel = new TaskListViewModel();
             this.DataContext = taskListViewModel;
-            PageSetup();
-
-        }
-
-        public void PageSetup()
-        {
-            tasks = taskListViewModel.Ztasks;
+            HomePageSetup();
             tasks.CollectionChanged -= Task_CollectionChanged;
             tasks.CollectionChanged += Task_CollectionChanged;
+        }
+
+        public void HomePageSetup()
+        {
+            Title.Text = "Home";
+            tasks = taskListViewModel.Ztasks;
             GetListData();
         }
+
+        public void TodayPageSetup()
+        {
+            Title.Text = "Today";
+        }
+
+        public void UpcomingPageSetup()
+        {
+            Title.Text = "Upcoming";
+        }
+
+        public void DelayedPageSetup()
+        {
+            Title.Text = "Delayed";
+        }
+
+        public void AssignedToOthersPageSetup()
+        {
+            Title.Text = "Assigned To Others";
+        }
+
+
         private void ListTasksUserControl_Loaded(object sender, RoutedEventArgs e)
         {
             var userControlObj = (HomeListControl)sender;
@@ -88,10 +110,25 @@ namespace ZTasks.Presentation.Views
             if (e != null)
             {
                 MainPage mainPage = (MainPage)e.Parameter;
-                mainPage.AddTaskClicked += AddNewTask;
-                mainPage.HomeEvent += PageSetup;
+                SetEvents(mainPage);
             }
 
+        }
+
+        public void SetEvents(MainPage mainPage)
+        {
+            mainPage.AddTaskClicked -= AddNewTask;
+            mainPage.AddTaskClicked += AddNewTask;
+            mainPage.HomeEvent -= HomePageSetup;
+            mainPage.HomeEvent += HomePageSetup;
+            mainPage.TodayEvent -= TodayPageSetup;
+            mainPage.TodayEvent += TodayPageSetup;
+            mainPage.UpcomingEvent -= UpcomingPageSetup;
+            mainPage.UpcomingEvent += UpcomingPageSetup;
+            mainPage.DelayedEvent -= DelayedPageSetup;
+            mainPage.DelayedEvent += DelayedPageSetup;
+            mainPage.AssignedToOthersEvent -= AssignedToOthersPageSetup;
+            mainPage.AssignedToOthersEvent += AssignedToOthersPageSetup;
         }
 
         public void GetListData()

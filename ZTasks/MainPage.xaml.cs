@@ -32,6 +32,14 @@ namespace ZTasks
         public event AddTaskEventHandler AddTaskClicked;
         public delegate void HomeEventHandler();
         public event HomeEventHandler HomeEvent;
+        public delegate void TodayEventHandler();
+        public event TodayEventHandler TodayEvent;
+        public delegate void UpcomingEventHandler();
+        public event UpcomingEventHandler UpcomingEvent;
+        public delegate void DelayedEventHandler();
+        public event DelayedEventHandler DelayedEvent;
+        public delegate void AssignedToOthersEventHandler();
+        public event AssignedToOthersEventHandler AssignedToOthersEvent;
         public MainPage()
         {
             this.InitializeComponent();
@@ -73,52 +81,32 @@ namespace ZTasks
         {
             ListBoxItem item = ListBox.SelectedItem as ListBoxItem;
             Home.Background = new SolidColorBrush(Colors.Transparent);
-
+            MyFrame.BackStack.Clear();
+            MyFrame.Navigate(typeof(HomePage), this, new SuppressNavigationTransitionInfo());
             if (Home.IsSelected)
             {
-                MyFrame.BackStack.Clear();
-                MyFrame.Navigate(typeof(HomePage), this, new SuppressNavigationTransitionInfo());
                 HomeEvent?.Invoke();
-                //Title.Text = "Home";
             }
 
             else if (Today.IsSelected)
             {
-                MyFrame.BackStack.Clear();
-                MyFrame.Navigate(typeof(Today), this, new SuppressNavigationTransitionInfo());
-                //Title.Text = "Today";
+                TodayEvent?.Invoke();
             }
 
             else if (Upcoming.IsSelected)
             {
-                MyFrame.BackStack.Clear();
-                MyFrame.Navigate(typeof(Upcoming), this, new SuppressNavigationTransitionInfo());
-                //Title.Text = "Upcoming";
-
+                UpcomingEvent?.Invoke();
             }
             else if (Delayed.IsSelected)
             {
-                MyFrame.BackStack.Clear();
-                MyFrame.Navigate(typeof(Delayed), this, new SuppressNavigationTransitionInfo());
-                //Title.Text = "Delayed";
+                DelayedEvent?.Invoke();
             }
             else if (AssignedToOthers.IsSelected)
             {
-                MyFrame.BackStack.Clear();
-                MyFrame.Navigate(typeof(OthersTasks), this, new SuppressNavigationTransitionInfo());
-                //Title.Text = "Assigned To Others";
+                AssignedToOthersEvent?.Invoke();
             }
         }
 
-        //public void SetBackground()
-        //{
-        //    Home.Background = new SolidColorBrush(Colors.Transparent);
-        //    Today.Background = new SolidColorBrush(Colors.Transparent);
-        //    Upcoming.Background = new SolidColorBrush(Colors.Transparent);
-        //    Delayed.Background = new SolidColorBrush(Colors.Transparent);
-        //    AssignedToOthers.Background = new SolidColorBrush(Colors.Transparent);
-
-        //}
 
     }
 }

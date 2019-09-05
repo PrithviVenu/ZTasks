@@ -158,28 +158,13 @@
     <Compile Include="Presentation\Views\CreateOrModifyUserControl.xaml.cs">
       <DependentUpon>CreateOrModifyUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Presentation\Views\Delayed.xaml.cs">
-      <DependentUpon>Delayed.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Presentation\Views\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Presentation\Views\HomeListControl.xaml.cs">
       <DependentUpon>HomeListControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Presentation\Views\OthersTasks.xaml.cs">
-      <DependentUpon>OthersTasks.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Presentation\Views\StringFormatConverter.cs" />
-    <Compile Include="Presentation\Views\Today.xaml.cs">
-      <DependentUpon>Today.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Presentation\Views\Upcoming.xaml.cs">
-      <DependentUpon>Upcoming.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Presentation\Views\ViewTask.xaml.cs">
-      <DependentUpon>ViewTask.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -222,31 +207,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Presentation\Views\Delayed.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Presentation\Views\HomePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Presentation\Views\HomeListControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Presentation\Views\OthersTasks.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Presentation\Views\Today.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Presentation\Views\Upcoming.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Presentation\Views\ViewTask.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
