@@ -156,20 +156,20 @@
         <SplitView Name="MySplitView"
                Grid.Row="1"
                DisplayMode="CompactInline"
-               OpenPaneLength="250"
+               OpenPaneLength="280"
                CompactPaneLength="45" 
                IsPaneOpen="True"
                    BorderThickness="1"
                    >
             <SplitView.Pane  >
-                <Grid >
+                <Grid  BorderBrush="#8888" BorderThickness="0 0 1 0" >
                     <Grid.RowDefinitions>
                         <RowDefinition Height="60" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <Button HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Transparent" BorderThickness="0" >
-                        <StackPanel HorizontalAlignment="Left" Orientation="Horizontal" Margin="-105,0,0,0" >
+                    <Button HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Transparent" BorderThickness="0 0 1 0" >
+                        <StackPanel HorizontalAlignment="Left" Orientation="Horizontal" Margin="-135,0,0,0" >
                             <Ellipse HorizontalAlignment="Left" Stretch="UniformToFill" Width="35" Height="35" Margin="0,0,0,0">
                                 <Ellipse.Fill>
                                     <ImageBrush ImageSource="Assets/user.jpg" />

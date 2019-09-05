@@ -20,7 +20,7 @@ namespace ZTasks.Presentation.Views
     {
         private ObservableCollection<ZTask> tasks;
         public TaskListViewModel taskListViewModel;
-        public delegate void TaskEventHandler(object sender, ItemClickEventArgs args);
+        public delegate void TaskEventHandler(ZTask item);
         public event TaskEventHandler TaskClicked;
         public delegate void AddEventHandler();
         public event AddEventHandler AddEvent;
@@ -58,31 +58,24 @@ namespace ZTasks.Presentation.Views
             {
                 EmptyAddTaskDisplayPanel.Visibility = Visibility.Collapsed;
                 TasksListView.Visibility = Visibility.Visible;
-
             }
 
         }
 
         public void ItemClick(object sender, ItemClickEventArgs e)
         {
-            Debug.WriteLine(MyFrame.BackStack.Count, "iiiiii");
 
             MyFrame.BackStack.Clear();
-            Debug.WriteLine(MyFrame.BackStack.Count, "ooooo");
-
-            MyFrame.Navigate(typeof(AddTaskPage), this, new SuppressNavigationTransitionInfo());
-
-            Debug.WriteLine(MyFrame.BackStack.Count, "ggggg");
-
-            Debug.WriteLine("homeclick");
-            TaskClicked?.Invoke(sender, e);
+            MyFrame.Navigate(typeof(AddOrModifyTaskPage), this, new SuppressNavigationTransitionInfo());
+            ZTask item = (ZTask)e.ClickedItem;
+            TaskClicked?.Invoke(item);
             ShowSlideInPane();
         }
 
         public void AddNewTask(object sender, RoutedEventArgs e)
         {
             MyFrame.BackStack.Clear();
-            MyFrame.Navigate(typeof(AddTaskPage), this, new SuppressNavigationTransitionInfo());
+            MyFrame.Navigate(typeof(AddOrModifyTaskPage), this, new SuppressNavigationTransitionInfo());
             ShowSlideInPane();
             AddEvent?.Invoke();
             //CollapseSlideInPane();
@@ -110,7 +103,7 @@ namespace ZTasks.Presentation.Views
             //TasksListView.Margin = new Thickness(10, 10, 10, 0);
             TasksListView.SetValue(Grid.ColumnSpanProperty, 2);
             //EmptyAddTaskDisplayPanel.SetValue(Grid.ColumnSpanProperty, 2);
-            //TopPanel.SetValue(Grid.ColumnSpanProperty, 2);
+            TopPanel.SetValue(Grid.ColumnSpanProperty, 2);
             SlideInPane.Visibility = Visibility.Collapsed;
 
         }
@@ -120,7 +113,11 @@ namespace ZTasks.Presentation.Views
             //TasksListView.Margin = new Thickness(0, 0, 0, 0);
             TasksListView.SetValue(Grid.ColumnSpanProperty, 1);
             //EmptyAddTaskDisplayPanel.SetValue(Grid.ColumnSpanProperty, 1);
-            //TopPanel.SetValue(Grid.ColumnSpanProperty, 1);
+            if (tasks.Count > 0)
+            {
+
+                TopPanel.SetValue(Grid.ColumnSpanProperty, 1);
+            }
             SlideInPane.Visibility = Visibility.Visible;
 
         }

@@ -15,7 +15,7 @@ namespace ZTasks.Presentation.Views
                 return null;
 
             DateTime dt = DateTime.Parse(value.ToString());
-            return dt.ToString("MMM d, yyyy");
+            return dt.ToString("ddd MMM dd");
 
         }
 

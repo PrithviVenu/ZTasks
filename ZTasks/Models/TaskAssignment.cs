@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SQLite;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,7 @@ namespace ZTasks.Models
         private string ZAssigneeId;
         private string ZAssigneeName;
 
+        [PrimaryKey]
 
         public string TaskId
         {

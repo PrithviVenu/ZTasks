@@ -6,15 +6,21 @@ using System.Threading.Tasks;
 
 namespace ZTasks.Utility
 {
-    enum Priority : int
+  public  enum Priority : int
     {
         Low,
         Medium,
         High
     }
-    enum Status
+    public enum Status
     {
         open,
         closed
+    }
+
+    public enum TaskOperation
+    {
+        Add,
+        Modify
     }
 }

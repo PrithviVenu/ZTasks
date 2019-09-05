@@ -11,7 +11,7 @@ using ZTasks.Models;
 
 namespace ZTasks.Presentation.Views
 {
-    public sealed partial class AddUserControl : UserControl
+    public sealed partial class AddOrModifyUserControl : UserControl
     {
         public Models.ZTask Subtasks { get { return this.DataContext as Models.ZTask; } }
         public delegate void KeyEvent(object sender, KeyRoutedEventArgs e);
@@ -26,7 +26,7 @@ namespace ZTasks.Presentation.Views
         //public delegate void CalendarButtonClick(object sender, RoutedEventArgs e);
         //public event CalendarButtonClick CalendarButtonClicked;
         public Page page;
-        public AddUserControl()
+        public AddOrModifyUserControl()
         {
             this.InitializeComponent();
             this.DataContextChanged += (s, e) => Bindings.Update();
@@ -72,7 +72,7 @@ namespace ZTasks.Presentation.Views
         public void SetEventPageReference(Page page)
         {
             this.page = page;
-            AddTaskPage addTaskPage = (AddTaskPage)page;
+            AddOrModifyTaskPage addTaskPage = (AddOrModifyTaskPage)page;
             addTaskPage.ListViewClicked += ItemClick;
             // addTaskPage1 = addTaskPage;
         }

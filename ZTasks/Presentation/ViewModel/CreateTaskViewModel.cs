@@ -8,7 +8,7 @@ using ZTasks.Domain.Usecase;
 using ZTasks.Presentation.PresenterCallBackHandler;
 using Windows.ApplicationModel.Core;
 using System;
-
+using ZTasks.Utility;
 
 namespace ZTasks.Presentation.ViewModel
 {
@@ -38,10 +38,10 @@ namespace ZTasks.Presentation.ViewModel
             Debug.WriteLine(Ztasks.Count, "countooo");
         }
 
-        public void AddTask(ZTask parentZtask)
+        public void AddTask(ZTask parentZtask, TaskOperation taskOperation)
         {
             RemoveEmptyListElements();
-            usecase = new CreateTaskUseCase(Ztasks.ToList<ZTask>(), parentZtask, this);
+            usecase = new CreateTaskUseCase(Ztasks.ToList<ZTask>(), parentZtask, this, taskOperation);
             usecase.Execute();
 
         }

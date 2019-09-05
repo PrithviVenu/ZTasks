@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Navigation;
 using ZTasks.Models;
 using ZTasks.NotificationCenter;
 using ZTasks.Presentation.ViewModel;
+using ZTasks.Utility;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -23,7 +24,7 @@ namespace ZTasks.Presentation.Views
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class AddTaskPage : Page, INotifyPropertyChanged
+    public sealed partial class AddOrModifyTaskPage : Page, INotifyPropertyChanged
     {
         private ObservableCollection<ZTask> subtasks;
         private ZTask zTask;
@@ -38,13 +39,14 @@ namespace ZTasks.Presentation.Views
         public event ListViewClick ListViewClicked;
         public event PropertyChangedEventHandler PropertyChanged;
         public CreateTaskViewModel createTaskViewModel;
-        public AddUserControl userControlObj;
+        public AddOrModifyUserControl userControlObj;
         public ZTask newRowSubTask;
+        public TaskOperation taskOperation;
         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        public AddTaskPage()
+        public AddOrModifyTaskPage()
         {
             this.InitializeComponent();
             createTaskViewModel = new CreateTaskViewModel();
@@ -56,7 +58,7 @@ namespace ZTasks.Presentation.Views
         public void PageSetup()
         {
 
-
+            TaskId = "";
             subtasks = createTaskViewModel.Ztasks;
             subtasks.Clear();
             ZTask zTask = new ZTask();
@@ -72,9 +74,11 @@ namespace ZTasks.Presentation.Views
         }
         private void AddUserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            userControlObj = (AddUserControl)sender;
+            userControlObj = (AddOrModifyUserControl)sender;
+            userControlObj.EnterKeyDown -= Box_KeyDown;
             userControlObj.EnterKeyDown += Box_KeyDown;
             userControlObj.SetEventPageReference(this);
+            userControlObj.DeleteButtonClicked -= DeleteSubTask;
             userControlObj.DeleteButtonClicked += DeleteSubTask;
             //userControlObj.TextContextChanged += TextBox_DataContextChanged;
             //userControlObj.DataContextChanged += UserControlObj_DataContextChanged;
@@ -218,20 +222,18 @@ namespace ZTasks.Presentation.Views
 
         public void AddEvent()
         {
+            taskOperation = TaskOperation.Add;
             Debug.WriteLine("Add Event");
             PageSetup();
 
 
         }
 
-        public void ModifyEvent()
-        {
 
-
-        }
         public void RefreshList()
         {
             RefreshData?.Invoke();
+            taskOperation = TaskOperation.Modify;
             Debug.WriteLine(999999);
 
         }
@@ -273,16 +275,13 @@ namespace ZTasks.Presentation.Views
             {
                 ListView listView = (ListView)sender;
                 ZTask zTask = (ZTask)listView.DataContext;  // might be null
-                Debug.WriteLine("oiiii");
 
                 if (zTask == newRowSubTask)
                 {
-                    Debug.WriteLine("hiiii");
                     TextBox textBox = FindControl<TextBox>(listView, typeof(TextBox), "SubTaskTitle");
                     if (textBox != null)
                     {
                         textBox.Focus(FocusState.Programmatic);
-                        Debug.WriteLine("siiii");
                     }
                     newRowSubTask = null;
                 }
@@ -307,27 +306,23 @@ namespace ZTasks.Presentation.Views
         private void Task_KeyDown(object sender, KeyRoutedEventArgs e)
         {
             TextBox b = (TextBox)sender;
-
-            if (subtasks.Count == 0)
+            if (e.Key == Windows.System.VirtualKey.Enter && subtasks.Count == 0 && !string.IsNullOrWhiteSpace(b.Text))
             {
-                if (!b.Text.Equals(""))
-                {
-                    ZTask zTask = new ZTask();
-                    TaskDetail subTaskDetail = zTask.TaskDetails;
 
-                    subTaskDetail.TaskId = Guid.NewGuid().ToString(); subTaskDetail.ParentTaskId = GetTaskId();
-                    newRowSubTask = zTask;
-                    Assignment(zTask.Assignment, "user101010", "user101010", "Prithvi Venu", "Prithvi Venu", subTaskDetail.TaskId);
-                    subtasks.Add(zTask);
-                    //Debug.WriteLine(SubTasksListView.Items.Count, "count");
+                ZTask zTask = new ZTask();
+                TaskDetail subTaskDetail = zTask.TaskDetails;
 
-                    e.Handled = true; LoseFocus(sender);
+                subTaskDetail.TaskId = Guid.NewGuid().ToString(); subTaskDetail.ParentTaskId = GetTaskId();
+                newRowSubTask = zTask;
+                Assignment(zTask.Assignment, "user101010", "user101010", "Prithvi Venu", "Prithvi Venu", subTaskDetail.TaskId);
+                subtasks.Add(zTask);
+                //Debug.WriteLine(SubTasksListView.Items.Count, "count");
 
-                    //SubTasksListView?.ScrollIntoView(SubTasksListView.Items[subtasks.Count - 1], ScrollIntoViewAlignment.Leading);
-                    //FocusLastAddUserControl(userControlObj);
+                e.Handled = true; LoseFocus(sender);
 
+                //SubTasksListView?.ScrollIntoView(SubTasksListView.Items[subtasks.Count - 1], ScrollIntoViewAlignment.Leading);
+                //FocusLastAddUserControl(userControlObj);
 
-                }
             }
         }
         private void Box_KeyDown(object sender, KeyRoutedEventArgs e)
@@ -336,30 +331,25 @@ namespace ZTasks.Presentation.Views
             ZTask task1 = (ZTask)b.DataContext;
             task1.TaskDetails.TaskTitle = b.Text;
             Debug.WriteLine(task1.TaskDetails.TaskTitle);
-            if (subtasks.Last() == task1)
+            if (subtasks.Last() == task1 && !string.IsNullOrWhiteSpace(b.Text))
             {
-                if (!b.Text.Equals(""))
-                {
-                    ZTask zTask = new ZTask();
-                    TaskDetail subTaskDetail = zTask.TaskDetails;
-                    subTaskDetail.TaskId = Guid.NewGuid().ToString(); subTaskDetail.ParentTaskId = GetTaskId();
-                    newRowSubTask = zTask;
-                    Assignment(zTask.Assignment, "user101010", "user101010", "Prithvi Venu", "Prithvi Venu", subTaskDetail.TaskId);
-                    subtasks.Add(zTask);
-                    //Debug.WriteLine(SubTasksListView.Items.Count, "count");
+                ZTask zTask = new ZTask();
+                TaskDetail subTaskDetail = zTask.TaskDetails;
+                subTaskDetail.TaskId = Guid.NewGuid().ToString(); subTaskDetail.ParentTaskId = GetTaskId();
+                newRowSubTask = zTask;
+                Assignment(zTask.Assignment, "user101010", "user101010", "Prithvi Venu", "Prithvi Venu", subTaskDetail.TaskId);
+                subtasks.Add(zTask);
+                //Debug.WriteLine(SubTasksListView.Items.Count, "count");
 
-                    e.Handled = true; LoseFocus(sender);
+                e.Handled = true; LoseFocus(sender);
 
-                    //SubTasksListView?.ScrollIntoView(SubTasksListView.Items[subtasks.Count - 1], ScrollIntoViewAlignment.Leading);
-                    //FocusLastAddUserControl(userControlObj);
+                //SubTasksListView?.ScrollIntoView(SubTasksListView.Items[subtasks.Count - 1], ScrollIntoViewAlignment.Leading);
+                //FocusLastAddUserControl(userControlObj);
 
 
-                }
-            }
-            else
-            {
 
             }
+
 
             //task1.AssignedBy = "101";
 
@@ -379,7 +369,7 @@ namespace ZTasks.Presentation.Views
             {
                 // Debug.WriteLine(task.DueDate, "hoiii");
                 //tasks.Add(new ZTask { TaskId = GetTaskId(), TaskTitle = TaskTitle.Text });
-                createTaskViewModel.AddTask(task);
+                createTaskViewModel.AddTask(task, taskOperation);
                 //TaskId = "";
                 //tasks.Clear();
             }
@@ -406,9 +396,10 @@ namespace ZTasks.Presentation.Views
             Debug.WriteLine(SubTasksListView.SelectedIndex, "AddTaskPage");
             ListViewClicked?.Invoke(sender, e);
         }
-        public void TaskItemClick(object sender, ItemClickEventArgs e)
+        public void TaskItemClick(ZTask item)
         {
-            ZTask item = (ZTask)e.ClickedItem;
+            taskOperation = TaskOperation.Modify;
+            //ZTask item = (ZTask)e.ClickedItem;
             task = item;
             //task.TaskDetails = item.TaskDetails;
             //task.Assignment = item.Assignment;
