@@ -159,8 +159,9 @@
                OpenPaneLength="250"
                CompactPaneLength="45" 
                IsPaneOpen="True"
+                   BorderThickness="1"
                    >
-            <SplitView.Pane >
+            <SplitView.Pane  >
                 <Grid >
                     <Grid.RowDefinitions>
                         <RowDefinition Height="60" />

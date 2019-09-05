@@ -35,7 +35,7 @@ namespace ZTasks.Presentation.ViewModel
         }
         void Task_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            Debug.WriteLine(Ztasks.Count);
+            Debug.WriteLine(Ztasks.Count, "countooo");
         }
 
         public void AddTask(ZTask parentZtask)
@@ -74,7 +74,7 @@ namespace ZTasks.Presentation.ViewModel
         {
             await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
             {
-                Debug.WriteLine("success");
+                Debug.WriteLine("success", RefreshData);
                 RefreshData?.Invoke();
             });
 

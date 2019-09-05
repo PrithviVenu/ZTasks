@@ -20,6 +20,12 @@ namespace ZTasks.Presentation.Views
     {
         private ObservableCollection<ZTask> tasks;
         public TaskListViewModel taskListViewModel;
+        public delegate void TaskEventHandler(object sender, ItemClickEventArgs args);
+        public event TaskEventHandler TaskClicked;
+        public delegate void AddEventHandler();
+        public event AddEventHandler AddEvent;
+        public delegate void ModifyEventHandler();
+        public event ModifyEventHandler ModifyEvent;
         public HomePage()
         {
             this.InitializeComponent();
@@ -56,10 +62,19 @@ namespace ZTasks.Presentation.Views
 
         }
 
-        public void ItemClick(object sender, RoutedEventArgs e)
+        public void ItemClick(object sender, ItemClickEventArgs e)
         {
+            Debug.WriteLine(MyFrame.BackStack.Count, "iiiiii");
+
             MyFrame.BackStack.Clear();
+            Debug.WriteLine(MyFrame.BackStack.Count, "ooooo");
+
             MyFrame.Navigate(typeof(AddTaskPage), this, new SuppressNavigationTransitionInfo());
+
+            Debug.WriteLine(MyFrame.BackStack.Count, "ggggg");
+
+            Debug.WriteLine("homeclick");
+            TaskClicked?.Invoke(sender, e);
             ShowSlideInPane();
         }
 
@@ -68,6 +83,7 @@ namespace ZTasks.Presentation.Views
             MyFrame.BackStack.Clear();
             MyFrame.Navigate(typeof(AddTaskPage), this, new SuppressNavigationTransitionInfo());
             ShowSlideInPane();
+            AddEvent?.Invoke();
             //CollapseSlideInPane();
 
         }
@@ -106,7 +122,6 @@ namespace ZTasks.Presentation.Views
             SlideInPane.Visibility = Visibility.Visible;
 
         }
-
 
     }
 }

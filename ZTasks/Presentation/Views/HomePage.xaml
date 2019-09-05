@@ -61,7 +61,7 @@
                 </Button.Resources>
             </Button>
         </StackPanel>
-        <ListView Grid.Row="1" Visibility="Collapsed" Name="TasksListView" Margin="0,10,0,0"  MinWidth="400" Grid.ColumnSpan="2" ItemsSource="{x:Bind tasks}" IsItemClickEnabled="True" ItemClick="ItemClick" HorizontalAlignment="Stretch" >
+        <ListView Grid.Row="1" Visibility="Collapsed" Name="TasksListView" Margin="0,10,0,0"  MinWidth="400" Grid.ColumnSpan="2" ItemsSource="{x:Bind tasks}" IsItemClickEnabled="True"  ItemClick="ItemClick" HorizontalAlignment="Stretch" >
             <ListView.Resources>
                 <SolidColorBrush x:Key="ListViewItemBackgroundSelected" Color="#f18e8e" />
                 <SolidColorBrush x:Key="ListViewItemBackgroundSelectedPointerOver" Color="#ff8e8e" />

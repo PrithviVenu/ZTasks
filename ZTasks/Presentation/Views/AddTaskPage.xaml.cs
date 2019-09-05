@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using Windows.Foundation.Collections;
 using Windows.UI;
 using Windows.UI.Popups;
@@ -11,6 +13,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using ZTasks.Models;
+using ZTasks.NotificationCenter;
 using ZTasks.Presentation.ViewModel;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
@@ -20,10 +23,12 @@ namespace ZTasks.Presentation.Views
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class AddTaskPage : Page
+    public sealed partial class AddTaskPage : Page, INotifyPropertyChanged
     {
         private ObservableCollection<ZTask> subtasks;
-        private ZTask task;
+        private ZTask zTask;
+        private ZTask task { get { return zTask; } set { zTask = value; NotifyPropertyChanged(); } }
+
         private string TaskId = "";
         public delegate void Collapse();
         public event Collapse CollapseClicked;
@@ -31,22 +36,35 @@ namespace ZTasks.Presentation.Views
         public event Refresh RefreshData;
         public delegate void ListViewClick(object sender, RoutedEventArgs e);
         public event ListViewClick ListViewClicked;
+        public event PropertyChangedEventHandler PropertyChanged;
         public CreateTaskViewModel createTaskViewModel;
         public AddUserControl userControlObj;
         public ZTask newRowSubTask;
-
+        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
         public AddTaskPage()
         {
             this.InitializeComponent();
+            createTaskViewModel = new CreateTaskViewModel();
+            this.DataContext = createTaskViewModel;
+            // this.NavigationCacheMode = NavigationCacheMode.Required;
             //subtasks = new ObservableCollection<ZTask>();
             //SubTasksListView.Items.VectorChanged += ListViewItems_VectorChanged;
             PageSetup();
         }
+
+
         public void PageSetup()
         {
-            createTaskViewModel = new CreateTaskViewModel();
-            this.DataContext = createTaskViewModel;
+
+
             subtasks = createTaskViewModel.Ztasks;
+            subtasks.Clear();
             ZTask zTask = new ZTask();
             TaskDetail taskDetail = zTask.TaskDetails;
             taskDetail.TaskId = GetTaskId();
@@ -182,14 +200,42 @@ namespace ZTasks.Presentation.Views
             if (e != null)
             {
                 HomePage Page = (HomePage)e.Parameter;
-                this.CollapseClicked += Page.CollapseSlideInPane;
-                this.RefreshData += Page.GetListData;
-                createTaskViewModel.RefreshData += refresh;
+                SetEvents(Page);
             }
 
         }
 
-        public void refresh()
+
+        public void SetEvents(HomePage Page)
+        {
+            this.CollapseClicked -= Page.CollapseSlideInPane;
+            this.CollapseClicked += Page.CollapseSlideInPane;
+            this.RefreshData -= Page.GetListData;
+            this.RefreshData += Page.GetListData;
+            Page.TaskClicked -= TaskItemClick;
+            Page.TaskClicked += TaskItemClick;
+            Page.AddEvent -= AddEvent;
+            Page.AddEvent += AddEvent;
+            createTaskViewModel.RefreshData -= RefreshList;
+            createTaskViewModel.RefreshData += RefreshList;
+        }
+
+
+
+        public void AddEvent()
+        {
+            Debug.WriteLine("Add Event");
+            PageSetup();
+
+
+        }
+
+        public void ModifyEvent()
+        {
+
+
+        }
+        public void RefreshList()
         {
             RefreshData?.Invoke();
             Debug.WriteLine(999999);
@@ -366,7 +412,15 @@ namespace ZTasks.Presentation.Views
             Debug.WriteLine(SubTasksListView.SelectedIndex, "AddTaskPage");
             ListViewClicked?.Invoke(sender, e);
         }
-
+        public void TaskItemClick(object sender, ItemClickEventArgs e)
+        {
+            ZTask item = (ZTask)e.ClickedItem;
+            task = item;
+            //task.TaskDetails = item.TaskDetails;
+            //task.Assignment = item.Assignment;
+            subtasks.Clear();
+            Debug.WriteLine(item.TaskDetails.TaskTitle);
+        }
         public async void DeleteSubTask(object sender, RoutedEventArgs e)
         {
             Button item = (Button)sender;
@@ -403,5 +457,16 @@ namespace ZTasks.Presentation.Views
         {
 
         }
+
+        private void ItemClick(object sender, ItemClickEventArgs e)
+        {
+
+        }
+
+        private void RelativePanel_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
     }
 }

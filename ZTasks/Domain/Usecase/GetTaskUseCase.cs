@@ -5,6 +5,7 @@ using ZTasks.Domain.DMContract;
 using ZTasks.Models;
 using ZTasks.Domain.UseCaseCallBackHandler;
 using ZTasks.Presentation.PresenterCallBackHandler;
+using System.Diagnostics;
 
 namespace ZTasks.Domain.Usecase
 {
@@ -34,7 +35,7 @@ namespace ZTasks.Domain.Usecase
                 TaskDetail taskDetail = zTask.TaskDetails;
                 TaskAssignment taskAssignment = zTask.Assignment;
                 taskDetail.TaskId = task.TaskId; taskDetail.TaskTitle = task.TaskTitle; taskDetail.CreatedTime = task.CreatedTime; taskDetail.DueDate = task.DueDate; taskDetail.ModifiedDate = task.ModifiedDate; taskDetail.Priority = task.Priority; taskDetail.TaskStatus = task.TaskStatus; taskDetail.RemindOn = task.RemindOn; taskDetail.Description = task.Description; taskDetail.ParentTaskId = task.ParentTaskId;
-                taskAssignment.AssigneeId = task.AssigneeId; taskAssignment.AssignedById = task.AssignedById; taskAssignment.AssignedByName = task.AssignedByName; taskAssignment.AssigneeName = task.AssigneeName;
+                taskAssignment.TaskId = taskDetail.TaskId; taskAssignment.AssigneeId = task.AssigneeId; taskAssignment.AssignedById = task.AssignedById; taskAssignment.AssignedByName = task.AssignedByName; taskAssignment.AssigneeName = task.AssigneeName;
                 tasks.Add(zTask);
 
             }
@@ -44,6 +45,7 @@ namespace ZTasks.Domain.Usecase
 
         protected override async Task ActionAsync()
         {
+
             IGetTaskDMContract taskHandler = new GetTaskDataManager();
             await taskHandler.GetTasks(this);
 
