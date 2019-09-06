@@ -49,6 +49,31 @@ namespace ZTasks.Presentation.ViewModel
             usecase.Execute();
 
         }
+        public void Home()
+        {
+
+        }
+        public void TasksForToday()
+        {
+            Ztasks.Clear();
+            ConvertListData(Today);
+        }
+        public void TasksAssignedToOthers()
+        {
+            Ztasks.Clear();
+            ConvertListData(AssignedToOthers);
+
+        }
+        public void UpcomingTasks()
+        {
+            Ztasks.Clear();
+            ConvertListData(Upcoming);
+        }
+        public void DelayedTasks()
+        {
+            Ztasks.Clear();
+            ConvertListData(Delayed);
+        }
 
         public async void OnTasksFetchedSuccessfully(List<ZTask> ZtaskList)
         {
@@ -79,24 +104,31 @@ namespace ZTasks.Presentation.ViewModel
                 {
                     Today.Add(task);
                 }
-
+                if (dateTime?.Date <= DateTime.Today)
+                {
+                    Delayed.Add(task);
+                }
+                if (dateTime?.Date >= DateTime.Today)
+                {
+                    Upcoming.Add(task);
+                }
             }
 
         }
-        public void AddElementsToCollection(List<ZTask> ZtaskList)
+        public void ConvertListData(List<ZTask> ZtaskList)
         {
-            Debug.WriteLine(DateTime.Today, "Today");
-            Debug.WriteLine(DateTime.Now, "TodayNow");
-            Debug.WriteLine(DateTime.UtcNow, "TodayNowutc");
-
             foreach (ZTask task in ZtaskList)
             {
-                DateTimeOffset? offset = task.TaskDetails.DueDate;
-                DateTime? dateTime = offset.HasValue ? offset.Value.DateTime : (DateTime?)null;
-                Debug.WriteLine(dateTime?.Date, task.TaskDetails.TaskTitle);
+                Ztasks.Add(task);
+            }
+        }
+        public void AddElementsToCollection(List<ZTask> ZtaskList)
+        {
+            foreach (ZTask task in ZtaskList)
+            {
+                AddToLists(task);
                 ZTaskCollection.Add(task);
 
-                //AddToLists(task);
                 if (task.TaskDetails.ParentTaskId == null)
                 {
                     Ztasks.Add(task);

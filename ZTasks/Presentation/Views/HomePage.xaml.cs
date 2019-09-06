@@ -30,6 +30,7 @@ namespace ZTasks.Presentation.Views
             this.InitializeComponent();
             taskListViewModel = new TaskListViewModel();
             this.DataContext = taskListViewModel;
+            tasks = taskListViewModel.Ztasks;
             HomePageSetup();
             tasks.CollectionChanged -= Task_CollectionChanged;
             tasks.CollectionChanged += Task_CollectionChanged;
@@ -38,28 +39,34 @@ namespace ZTasks.Presentation.Views
         public void HomePageSetup()
         {
             Title.Text = "Home";
-            tasks = taskListViewModel.Ztasks;
-            GetListData();
+            taskListViewModel.MyTasks();
         }
 
         public void TodayPageSetup()
         {
             Title.Text = "Today";
+            taskListViewModel.TasksForToday();
         }
 
         public void UpcomingPageSetup()
         {
             Title.Text = "Upcoming";
+            taskListViewModel.UpcomingTasks();
+
         }
 
         public void DelayedPageSetup()
         {
             Title.Text = "Delayed";
+            taskListViewModel.DelayedTasks();
+
         }
 
         public void AssignedToOthersPageSetup()
         {
             Title.Text = "Assigned To Others";
+            taskListViewModel.TasksAssignedToOthers();
+
         }
 
 
@@ -131,10 +138,7 @@ namespace ZTasks.Presentation.Views
             mainPage.AssignedToOthersEvent += AssignedToOthersPageSetup;
         }
 
-        public void GetListData()
-        {
-            taskListViewModel.MyTasks();
-        }
+
         public void CollapseSlideInPane()
         {
             //TasksListView.Margin = new Thickness(10, 10, 10, 0);
