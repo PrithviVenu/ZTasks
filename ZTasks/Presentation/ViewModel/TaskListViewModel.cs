@@ -14,15 +14,25 @@ namespace ZTasks.Presentation.ViewModel
     public class TaskListViewModel : INotifyPropertyChanged, IGetTaskPresenterCallBack
     {
 
-        private ObservableCollection<ZTask> ZTaskCollection { get; set; }
+        private List<ZTask> ZTaskCollection { get; set; }
 
         UseCaseBase usecase;
         private ObservableCollection<ZTask> _Ztasks;
         public ObservableCollection<ZTask> Ztasks { get { return _Ztasks; } set { _Ztasks = value; NotifyPropertyChanged(); } }
+        public List<ZTask> Today { get; set; }
+        public List<ZTask> Upcoming { get; set; }
+        public List<ZTask> Delayed { get; set; }
+        public List<ZTask> AssignedToOthers { get; set; }
+
         public TaskListViewModel()
         {
-            ZTaskCollection = new ObservableCollection<ZTask>();
+            ZTaskCollection = new List<ZTask>();
             Ztasks = new ObservableCollection<ZTask>();
+            Today = new List<ZTask>();
+            Upcoming = new List<ZTask>();
+            Delayed = new List<ZTask>();
+            AssignedToOthers = new List<ZTask>();
+
         }
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -45,7 +55,7 @@ namespace ZTasks.Presentation.ViewModel
             //var v =System.Windows.Application.Current.Dispatcher;
             await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
             {
-                Debug.WriteLine(ZtaskList.Count, "msdmsdm");
+                //Debug.WriteLine(ZtaskList.Count, "msdmsdm");
                 Ztasks.Clear();
                 AddElementsToCollection(ZtaskList);
             });
@@ -54,11 +64,39 @@ namespace ZTasks.Presentation.ViewModel
 
         }
 
+        public void AddToLists(ZTask task)
+        {
+            if (task.Assignment.AssigneeId != "user101010")
+            {
+                AssignedToOthers.Add(task);
+            }
+            DateTimeOffset? offset = task.TaskDetails.DueDate;
+            DateTime? dateTime = offset.HasValue ? offset.Value.DateTime : (DateTime?)null;
+
+            if (dateTime != null)
+            {
+                if (dateTime?.Date == DateTime.Today)
+                {
+                    Today.Add(task);
+                }
+
+            }
+
+        }
         public void AddElementsToCollection(List<ZTask> ZtaskList)
         {
+            Debug.WriteLine(DateTime.Today, "Today");
+            Debug.WriteLine(DateTime.Now, "TodayNow");
+            Debug.WriteLine(DateTime.UtcNow, "TodayNowutc");
+
             foreach (ZTask task in ZtaskList)
             {
+                DateTimeOffset? offset = task.TaskDetails.DueDate;
+                DateTime? dateTime = offset.HasValue ? offset.Value.DateTime : (DateTime?)null;
+                Debug.WriteLine(dateTime?.Date, task.TaskDetails.TaskTitle);
                 ZTaskCollection.Add(task);
+
+                //AddToLists(task);
                 if (task.TaskDetails.ParentTaskId == null)
                 {
                     Ztasks.Add(task);
