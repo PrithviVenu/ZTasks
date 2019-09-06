@@ -403,11 +403,37 @@ namespace ZTasks.Presentation.Views
             Debug.WriteLine(SubTasksListView.SelectedIndex, "AddTaskPage");
             ListViewClicked?.Invoke(sender, e);
         }
+
+
+        public void ModifyPriority(ZTask zTask)
+        {
+            High.Background = new SolidColorBrush(Colors.Transparent);
+            Low.Background = new SolidColorBrush(Colors.Transparent);
+            Medium.Background = new SolidColorBrush(Colors.Transparent);
+            if (zTask.TaskDetails.Priority == 0)
+            {
+                Low.Background = new SolidColorBrush(Color.FromArgb(255, 227, 227, 227));
+                PriorityText.Foreground = new SolidColorBrush(Color.FromArgb(255, 136, 136, 136));
+            }
+            else if (zTask.TaskDetails.Priority == 1)
+            {
+                Medium.Background = new SolidColorBrush(Color.FromArgb(255, 227, 227, 227));
+                PriorityText.Foreground = new SolidColorBrush(Color.FromArgb(255, 93, 188, 210));
+            }
+            else if (zTask.TaskDetails.Priority == 2)
+            {
+                High.Background = new SolidColorBrush(Color.FromArgb(255, 227, 227, 227));
+                PriorityText.Foreground = new SolidColorBrush(Color.FromArgb(255, 217, 72, 59));
+            }
+
+        }
+
         public void TaskItemClick(ZTask item)
         {
             taskOperation = TaskOperation.Modify;
             //ZTask item = (ZTask)e.ClickedItem;
             task = item;
+            ModifyPriority(item);
             //task.TaskDetails = item.TaskDetails;
             //task.Assignment = item.Assignment;
             subtasks.Clear();
