@@ -48,6 +48,7 @@
         </Popup>-->
         <Button Name="Priority"  RelativePanel.LeftOf="AddAssignee"  RelativePanel.AlignBottomWith="TaskTitle"  Background="Transparent" BorderThickness="0" Height="Auto" Width="Auto">
             <TextBlock
+                x:Name="PriorityText"
                   Text="&#xE171;"
                   FontFamily="Segoe MDL2 Assets"
                   FontSize="19"

@@ -40,6 +40,8 @@ namespace ZTasks.Presentation.Views
         public event PropertyChangedEventHandler PropertyChanged;
         public CreateOrModifyTaskViewModel createTaskViewModel;
         public CreateOrModifyUserControl userControlObj;
+        public delegate void UserControlAddEvent();
+        public event UserControlAddEvent UserControlAddEventTriggered;
         public ZTask newRowSubTask;
         public TaskOperation taskOperation;
         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
@@ -71,6 +73,9 @@ namespace ZTasks.Presentation.Views
             subTaskDetail.TaskId = Guid.NewGuid().ToString(); subTaskDetail.ParentTaskId = GetTaskId();
             Assignment(zSubTask.Assignment, "user101010", "user101010", "Prithvi Venu", "Prithvi Venu", subTaskDetail.TaskId);
             subtasks.Add(zSubTask);
+            Low.Background = new SolidColorBrush(Color.FromArgb(255, 227, 227, 227));
+            PriorityText.Foreground = new SolidColorBrush(Color.FromArgb(255, 136, 136, 136));
+            task.TaskDetails.Priority = 0;
         }
         private void CreateOrModifyUserControlLoaded(object sender, RoutedEventArgs e)
         {
@@ -110,13 +115,13 @@ namespace ZTasks.Presentation.Views
             if ((string)item.Tag == "2")
             {
                 High.Background = new SolidColorBrush(Color.FromArgb(255, 227, 227, 227));
-
+                PriorityText.Foreground = new SolidColorBrush(Color.FromArgb(255, 217, 72, 59));
                 task.TaskDetails.Priority = 2;
             }
             else if ((string)item.Tag == "1")
             {
                 Medium.Background = new SolidColorBrush(Color.FromArgb(255, 227, 227, 227));
-
+                PriorityText.Foreground = new SolidColorBrush(Color.FromArgb(255, 93, 188, 210));
                 task.TaskDetails.Priority = 1;
 
             }
@@ -124,7 +129,7 @@ namespace ZTasks.Presentation.Views
 
             {
                 Low.Background = new SolidColorBrush(Color.FromArgb(255, 227, 227, 227));
-
+                PriorityText.Foreground = new SolidColorBrush(Color.FromArgb(255, 136, 136, 136));
                 task.TaskDetails.Priority = 0;
 
             }
@@ -222,10 +227,11 @@ namespace ZTasks.Presentation.Views
 
         public void AddEvent()
         {
+
             taskOperation = TaskOperation.Add;
             Debug.WriteLine("Add Event");
             PageSetup();
-
+            UserControlAddEventTriggered?.Invoke();
 
         }
 
@@ -234,6 +240,7 @@ namespace ZTasks.Presentation.Views
         {
             RefreshData?.Invoke();
             taskOperation = TaskOperation.Modify;
+            // PriorityText.Foreground = new SolidColorBrush(Color.FromArgb(255, 136, 136, 136));
             Debug.WriteLine(999999);
 
         }

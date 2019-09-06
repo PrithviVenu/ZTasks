@@ -22,6 +22,7 @@ namespace ZTasks.Presentation.Views
         string OldText = string.Empty;
         public delegate void DeleteButtonClick(object sender, RoutedEventArgs e);
         public event DeleteButtonClick DeleteButtonClicked;
+
         // AddTaskPage addTaskPage1;
         //public delegate void CalendarButtonClick(object sender, RoutedEventArgs e);
         //public event CalendarButtonClick CalendarButtonClicked;
@@ -72,14 +73,23 @@ namespace ZTasks.Presentation.Views
         public void SetEventPageReference(Page page)
         {
             this.page = page;
-            CreateOrModifyTaskPage addTaskPage = (CreateOrModifyTaskPage)page;
-            addTaskPage.ListViewClicked -= ItemClick;
-            addTaskPage.ListViewClicked += ItemClick;
+            CreateOrModifyTaskPage TaskPage = (CreateOrModifyTaskPage)page;
+            TaskPage.ListViewClicked -= ItemClick;
+            TaskPage.ListViewClicked += ItemClick;
+            TaskPage.UserControlAddEventTriggered -= AddEvent;
+            TaskPage.UserControlAddEventTriggered += AddEvent;
+
             // addTaskPage1 = addTaskPage;
         }
         public void ItemClick(object sender, RoutedEventArgs e)
         {
             Debug.WriteLine("UC");
+        }
+        public void AddEvent()
+        {
+            Low.Background = new SolidColorBrush(Color.FromArgb(255, 227, 227, 227));
+            SubTaskPriorityText.Foreground = new SolidColorBrush(Color.FromArgb(255, 136, 136, 136));
+            //task.TaskDetails.Priority = 0; Not Required As By Default its gonna be 0.
         }
 
         public void PriorityClick(object sender, RoutedEventArgs e)
@@ -94,13 +104,13 @@ namespace ZTasks.Presentation.Views
             if ((string)item.Tag == "2")
             {
                 High.Background = new SolidColorBrush(Color.FromArgb(255, 227, 227, 227));
-
+                SubTaskPriorityText.Foreground = new SolidColorBrush(Color.FromArgb(255, 217, 72, 59));
                 task.TaskDetails.Priority = 2;
             }
             else if ((string)item.Tag == "1")
             {
                 Medium.Background = new SolidColorBrush(Color.FromArgb(255, 227, 227, 227));
-
+                SubTaskPriorityText.Foreground = new SolidColorBrush(Color.FromArgb(255, 93, 188, 210));
                 task.TaskDetails.Priority = 1;
 
             }
@@ -108,7 +118,7 @@ namespace ZTasks.Presentation.Views
 
             {
                 Low.Background = new SolidColorBrush(Color.FromArgb(255, 227, 227, 227));
-
+                SubTaskPriorityText.Foreground = new SolidColorBrush(Color.FromArgb(255, 136, 136, 136));
                 task.TaskDetails.Priority = 0;
 
             }

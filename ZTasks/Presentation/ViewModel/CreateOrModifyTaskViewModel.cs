@@ -36,7 +36,7 @@ namespace ZTasks.Presentation.ViewModel
         }
         void Task_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            Debug.WriteLine(Ztasks.Count, "countooo");
+            //Debug.WriteLine(Ztasks.Count, "countooo");
         }
 
         public void AddOrModifyTask(ZTask parentZtask, TaskOperation taskOperation)
@@ -49,14 +49,6 @@ namespace ZTasks.Presentation.ViewModel
 
         public void RemoveEmptyListElements()
         {
-            //foreach (ZTask item in Ztasks)
-            //{
-            //    if (string.IsNullOrWhiteSpace(item.TaskTitle))
-            //    {
-
-            //        Ztasks.Remove(item);
-            //    }
-            //}
             for (int i = Ztasks.Count - 1; i >= 0; i--)
             {
                 if (string.IsNullOrEmpty(Ztasks[i].TaskDetails.TaskTitle))
