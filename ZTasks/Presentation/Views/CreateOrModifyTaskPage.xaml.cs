@@ -227,7 +227,9 @@ namespace ZTasks.Presentation.Views
 
         public void AddEvent()
         {
-
+            High.Background = new SolidColorBrush(Colors.Transparent);
+            Low.Background = new SolidColorBrush(Colors.Transparent);
+            Medium.Background = new SolidColorBrush(Colors.Transparent);
             taskOperation = TaskOperation.Add;
             Debug.WriteLine("Add Event");
             PageSetup();
@@ -241,7 +243,6 @@ namespace ZTasks.Presentation.Views
             RefreshData?.Invoke();
             taskOperation = TaskOperation.Modify;
             // PriorityText.Foreground = new SolidColorBrush(Color.FromArgb(255, 136, 136, 136));
-            Debug.WriteLine(999999);
 
         }
         private void LoseFocus(object sender)
