@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ZTasks.Utility
 {
-  public  enum Priority : int
+    public enum Priority : int
     {
         Low,
         Medium,
@@ -22,5 +22,15 @@ namespace ZTasks.Utility
     {
         Add,
         Modify
+    }
+
+
+    public enum TaskView
+    {
+        Home,
+        Today,
+        Upcoming,
+        Delayed,
+        AssignedToOthers
     }
 }

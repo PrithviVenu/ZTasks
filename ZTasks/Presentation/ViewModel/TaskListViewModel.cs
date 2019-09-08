@@ -8,6 +8,7 @@ using ZTasks.Domain.Usecase;
 using ZTasks.Presentation.PresenterCallBackHandler;
 using Windows.ApplicationModel.Core;
 using System.Runtime.CompilerServices;
+using ZTasks.Utility;
 
 namespace ZTasks.Presentation.ViewModel
 {
@@ -19,15 +20,17 @@ namespace ZTasks.Presentation.ViewModel
         UseCaseBase usecase;
         private ObservableCollection<ZTask> _Ztasks;
         public ObservableCollection<ZTask> Ztasks { get { return _Ztasks; } set { _Ztasks = value; NotifyPropertyChanged(); } }
+        public List<ZTask> Home { get; set; }
         public List<ZTask> Today { get; set; }
         public List<ZTask> Upcoming { get; set; }
         public List<ZTask> Delayed { get; set; }
         public List<ZTask> AssignedToOthers { get; set; }
-
+        public TaskView taskView;
         public TaskListViewModel()
         {
             ZTaskCollection = new List<ZTask>();
             Ztasks = new ObservableCollection<ZTask>();
+            Home = new List<ZTask>();
             Today = new List<ZTask>();
             Upcoming = new List<ZTask>();
             Delayed = new List<ZTask>();
@@ -44,35 +47,56 @@ namespace ZTasks.Presentation.ViewModel
 
         public void MyTasks()
         {
+            taskView = TaskView.Home;
+
             usecase = new GetTaskUseCase(this);
 
             usecase.Execute();
 
         }
-        public void Home()
+        public void MyTasksRefresh()
         {
+            usecase = new GetTaskUseCase(this);
 
+            usecase.Execute();
+
+        }
+        public void HomeTasks()
+        {
+            Ztasks.Clear();
+            ConvertListData(Home);
         }
         public void TasksForToday()
         {
+            taskView = TaskView.Today;
             Ztasks.Clear();
             ConvertListData(Today);
+            Debug.WriteLine(Ztasks.Count);
+
         }
         public void TasksAssignedToOthers()
         {
+            taskView = TaskView.AssignedToOthers;
             Ztasks.Clear();
             ConvertListData(AssignedToOthers);
+            Debug.WriteLine(Ztasks.Count);
 
         }
         public void UpcomingTasks()
         {
+            taskView = TaskView.Upcoming;
             Ztasks.Clear();
             ConvertListData(Upcoming);
+            Debug.WriteLine(Ztasks.Count);
+
         }
         public void DelayedTasks()
         {
+            taskView = TaskView.Delayed;
             Ztasks.Clear();
             ConvertListData(Delayed);
+            Debug.WriteLine(Ztasks.Count);
+
         }
 
         public async void OnTasksFetchedSuccessfully(List<ZTask> ZtaskList)
@@ -82,12 +106,57 @@ namespace ZTasks.Presentation.ViewModel
             {
                 //Debug.WriteLine(ZtaskList.Count, "msdmsdm");
                 Ztasks.Clear();
+                Today.Clear();
+                Upcoming.Clear();
+                Delayed.Clear();
+                AssignedToOthers.Clear();
+                Home.Clear();
                 AddElementsToCollection(ZtaskList);
             });
 
             //Ztasks = new ObservableCollection<ZTask>(ZtaskList);
 
         }
+        public void AddElementsToCollection(List<ZTask> ZtaskList)
+        {
+            foreach (ZTask task in ZtaskList)
+            {
+                AddToLists(task);
+                ZTaskCollection.Add(task);
+
+                if (task.TaskDetails.ParentTaskId == null)
+                {
+                    //Ztasks.Add(task);
+                    Home.Add(task);
+
+                }
+            }
+            Display();
+        }
+
+        public void Display()
+        {
+            switch (taskView)
+            {
+                case TaskView.Home:
+                    HomeTasks();
+                    break;
+                case TaskView.Today:
+                    TasksForToday();
+                    break;
+                case TaskView.Upcoming:
+                    UpcomingTasks();
+                    break;
+                case TaskView.Delayed:
+                    DelayedTasks();
+                    break;
+                case TaskView.AssignedToOthers:
+                    TasksAssignedToOthers();
+                    break;
+            }
+
+        }
+
 
         public void AddToLists(ZTask task)
         {
@@ -104,11 +173,11 @@ namespace ZTasks.Presentation.ViewModel
                 {
                     Today.Add(task);
                 }
-                if (dateTime?.Date <= DateTime.Today)
+                if (dateTime?.Date < DateTime.Today)
                 {
                     Delayed.Add(task);
                 }
-                if (dateTime?.Date >= DateTime.Today)
+                if (dateTime?.Date > DateTime.Today)
                 {
                     Upcoming.Add(task);
                 }
@@ -122,18 +191,6 @@ namespace ZTasks.Presentation.ViewModel
                 Ztasks.Add(task);
             }
         }
-        public void AddElementsToCollection(List<ZTask> ZtaskList)
-        {
-            foreach (ZTask task in ZtaskList)
-            {
-                AddToLists(task);
-                ZTaskCollection.Add(task);
 
-                if (task.TaskDetails.ParentTaskId == null)
-                {
-                    Ztasks.Add(task);
-                }
-            }
-        }
     }
 }

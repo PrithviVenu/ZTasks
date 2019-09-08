@@ -213,8 +213,8 @@ namespace ZTasks.Presentation.Views
         {
             this.CollapseClicked -= Page.CollapseSlideInPane;
             this.CollapseClicked += Page.CollapseSlideInPane;
-            this.RefreshData -= Page.HomePageSetup;
-            this.RefreshData += Page.HomePageSetup;
+            this.RefreshData -= Page.HomePageRefresh;
+            this.RefreshData += Page.HomePageRefresh;
             Page.TaskClicked -= TaskItemClick;
             Page.TaskClicked += TaskItemClick;
             Page.AddEvent -= AddEvent;

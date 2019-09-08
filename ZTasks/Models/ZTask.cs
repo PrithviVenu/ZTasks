@@ -18,7 +18,7 @@ namespace ZTasks.Models
         //private string ZParentTaskId;
         private TaskAssignment ZAssignment;
         private TaskDetail ZTaskDetail;
-
+        
         public ZTask()
         {
             ZAssignment = new TaskAssignment();
@@ -26,7 +26,7 @@ namespace ZTasks.Models
         }
 
 
-        [PrimaryKey]
+        //[PrimaryKey]
         //public string TaskId
         //{
         //    get
