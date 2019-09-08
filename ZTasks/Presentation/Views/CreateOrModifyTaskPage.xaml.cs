@@ -25,9 +25,10 @@ namespace ZTasks.Presentation.Views
     /// </summary>
     public sealed partial class CreateOrModifyTaskPage : Page, INotifyPropertyChanged
     {
-        private ObservableCollection<ZTask> subtasks;
+
+        public ObservableCollection<ZTask> subtasks;
         private ZTask zTask;
-        private ZTask task { get { return zTask; } set { zTask = value; NotifyPropertyChanged(); } }
+        public ZTask task { get { return zTask; } set { zTask = value; NotifyPropertyChanged(); } }
 
         private string TaskId = "";
         public delegate void Collapse();
@@ -431,12 +432,16 @@ namespace ZTasks.Presentation.Views
         public void TaskItemClick(ZTask item)
         {
             taskOperation = TaskOperation.Modify;
-            //ZTask item = (ZTask)e.ClickedItem;
             task = item;
             ModifyPriority(item);
             //task.TaskDetails = item.TaskDetails;
             //task.Assignment = item.Assignment;
             subtasks.Clear();
+            foreach (ZTask subTask in item.SubTasks)
+            {
+                subtasks.Add(subTask);
+                Debug.WriteLine(subTask.TaskDetails.TaskTitle);
+            }
             Debug.WriteLine(item.TaskDetails.TaskTitle);
         }
         public async void DeleteSubTask(object sender, RoutedEventArgs e)

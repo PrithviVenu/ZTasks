@@ -52,7 +52,7 @@ namespace ZTasks.Domain.Usecase
             {
                 foreach (ZTask subTask in subTasks)
                 {
-                    if (subTask.TaskDetails.TaskId == task.TaskDetails.TaskId)
+                    if (subTask.TaskDetails.ParentTaskId == task.TaskDetails.TaskId)
                     {
                         task.SubTasks.Add(subTask);
                     }
