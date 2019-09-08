@@ -13,7 +13,6 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using ZTasks.Models;
-using ZTasks.NotificationCenter;
 using ZTasks.Presentation.ViewModel;
 using ZTasks.Utility;
 

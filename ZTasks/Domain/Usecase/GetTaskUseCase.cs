@@ -28,6 +28,8 @@ namespace ZTasks.Domain.Usecase
         public List<ZTask> TaskUtilityToZTask(List<TaskUtilityModel> ZtaskList)
         {
             List<ZTask> tasks = new List<ZTask>();
+            List<ZTask> subTasks = new List<ZTask>();
+
             foreach (TaskUtilityModel task in ZtaskList)
             {
 
