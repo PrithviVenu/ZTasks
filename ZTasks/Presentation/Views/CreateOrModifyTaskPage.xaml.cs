@@ -433,6 +433,7 @@ namespace ZTasks.Presentation.Views
         {
             taskOperation = TaskOperation.Modify;
             task = item;
+            TaskId = task.TaskDetails.TaskId;
             ModifyPriority(item);
             //task.TaskDetails = item.TaskDetails;
             //task.Assignment = item.Assignment;
@@ -441,6 +442,15 @@ namespace ZTasks.Presentation.Views
             {
                 subtasks.Add(subTask);
                 Debug.WriteLine(subTask.TaskDetails.TaskTitle);
+            }
+            if (subtasks.Count == 0)
+            {
+                ZTask zTask = new ZTask();
+                TaskDetail subTaskDetail = zTask.TaskDetails;
+                subTaskDetail.TaskId = Guid.NewGuid().ToString(); subTaskDetail.ParentTaskId = GetTaskId();
+                newRowSubTask = zTask;
+                Assignment(zTask.Assignment, "user101010", "user101010", "Prithvi Venu", "Prithvi Venu", subTaskDetail.TaskId);
+                subtasks.Add(zTask);
             }
             Debug.WriteLine(item.TaskDetails.TaskTitle);
         }
