@@ -123,13 +123,7 @@ namespace ZTasks.Presentation.ViewModel
             {
                 AddToLists(task);
                 ZTaskCollection.Add(task);
-
-                if (task.TaskDetails.ParentTaskId == null)
-                {
-                    //Ztasks.Add(task);
-                    Home.Add(task);
-
-                }
+                Home.Add(task);
             }
             Display();
         }

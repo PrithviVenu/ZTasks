@@ -38,8 +38,25 @@ namespace ZTasks.Domain.Usecase
                 TaskAssignment taskAssignment = zTask.Assignment;
                 taskDetail.TaskId = task.TaskId; taskDetail.TaskTitle = task.TaskTitle; taskDetail.CreatedTime = task.CreatedTime; taskDetail.DueDate = task.DueDate; taskDetail.ModifiedDate = task.ModifiedDate; taskDetail.Priority = task.Priority; taskDetail.TaskStatus = task.TaskStatus; taskDetail.RemindOn = task.RemindOn; taskDetail.Description = task.Description; taskDetail.ParentTaskId = task.ParentTaskId;
                 taskAssignment.TaskId = taskDetail.TaskId; taskAssignment.AssigneeId = task.AssigneeId; taskAssignment.AssignedById = task.AssignedById; taskAssignment.AssignedByName = task.AssignedByName; taskAssignment.AssigneeName = task.AssigneeName;
-                tasks.Add(zTask);
+                if (zTask.TaskDetails.ParentTaskId == null)
+                {
+                    tasks.Add(zTask);
+                }
+                else
+                {
+                    subTasks.Add(zTask);
+                }
 
+            }
+            foreach (ZTask task in tasks)
+            {
+                foreach (ZTask subTask in subTasks)
+                {
+                    if (subTask.TaskDetails.TaskId == task.TaskDetails.TaskId)
+                    {
+                        task.SubTasks.Add(subTask);
+                    }
+                }
             }
             return tasks;
 
