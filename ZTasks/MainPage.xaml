@@ -32,27 +32,14 @@
                         <AdaptiveTrigger MinWindowWidth="0"  />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <!--<Setter Target="MyAutoSuggestBox.Visibility" Value="Collapsed" />-->
                         <Setter Target="MySplitView.DisplayMode" Value="CompactOverlay" />
                     </VisualState.Setters>
                 </VisualState>
-                <!--<VisualState x:Name="NLayout">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="650"  />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        -->
-                <!--<Setter Target="MyAutoSuggestBox.Visibility" Value="Collapsed" />-->
-                <!--
-                        <Setter Target="MySplitView.DisplayMode" Value="CompactInline" />
-                    </VisualState.Setters>
-                </VisualState>-->
                 <VisualState x:Name="WideLayout">
                     <VisualState.StateTriggers>
                         <AdaptiveTrigger MinWindowWidth="1200" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <!--<Setter Target="MyAutoSuggestBox.Visibility" Value="Visible" />-->
                         <Setter Target="MySplitView.DisplayMode" Value="CompactInline" />
                     </VisualState.Setters>
                 </VisualState>
@@ -90,14 +77,6 @@
                  Foreground="White"
                   />
 
-                <!--<AutoSuggestBox Name="MyAutoSuggestBox"
-                      QueryIcon="Find"
-                      PlaceholderText="Quick Search"
-                 RelativePanel.RightOf="TitleTextBlock"
-                      Width="250"
-                      Margin="0,5,10,0" 
-                      />-->
-
 
                 <Button Name="AddTaskButton"
               BorderThickness="0"
@@ -131,13 +110,14 @@
                     <Image Source="Assets/notification.png" Stretch="Fill" Height="18" Width="21"/>
                 </Button>
 
-                <Button Name="AppSettings"
+                <Button Name="AppRefresh"
               BorderThickness="0"
               RelativePanel.AlignRightWithPanel="True"
               FontFamily="Segoe MDL2 Assets"
-              Content="&#xE115;"
+              Click="Refresh"
+              Content="&#xE117;"
               FontSize="15"
-              FontWeight="ExtraBold"
+              FontWeight="Medium"
               Margin="0,0,180,0"
               Width="45"
               Height="45"
@@ -175,7 +155,6 @@
                                     <ImageBrush ImageSource="Assets/user.jpg" />
                                 </Ellipse.Fill>
                             </Ellipse>
-                            <!--<Image Source="Assets/user.jpg" HorizontalAlignment="Left" Stretch="Fill" />-->
                             <TextBlock x:Name="UserName" Margin="10,0,0,0" VerticalAlignment="Center" FontWeight="Medium" FontSize="16"></TextBlock>
                         </StackPanel>
                         <Button.Resources>

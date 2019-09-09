@@ -113,6 +113,7 @@ namespace ZTasks.Presentation.Views
 
         }
 
+
         public void ItemClick(object sender, ItemClickEventArgs e)
         {
 
@@ -148,6 +149,8 @@ namespace ZTasks.Presentation.Views
         {
             mainPage.AddTaskClicked -= AddNewTask;
             mainPage.AddTaskClicked += AddNewTask;
+            mainPage.RefreshEventClicked -= HomePageRefresh;
+            mainPage.RefreshEventClicked += HomePageRefresh;
             mainPage.HomeEvent -= HomePageSetup;
             mainPage.HomeEvent += HomePageSetup;
             mainPage.TodayEvent -= TodayPageSetup;

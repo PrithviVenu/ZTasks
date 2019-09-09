@@ -30,6 +30,8 @@ namespace ZTasks
     {
         public delegate void AddTaskEventHandler(object sender, RoutedEventArgs args);
         public event AddTaskEventHandler AddTaskClicked;
+        public delegate void RefreshEvent();
+        public event RefreshEvent RefreshEventClicked;
         public delegate void HomeEventHandler();
         public event HomeEventHandler HomeEvent;
         public delegate void TodayEventHandler();
@@ -107,6 +109,9 @@ namespace ZTasks
             }
         }
 
-
+        private void Refresh(object sender, RoutedEventArgs e)
+        {
+            RefreshEventClicked.Invoke();
+        }
     }
 }
