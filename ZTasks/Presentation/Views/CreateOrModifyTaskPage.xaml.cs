@@ -85,10 +85,6 @@ namespace ZTasks.Presentation.Views
             userControlObj.SetEventPageReference(this);
             userControlObj.DeleteButtonClicked -= DeleteSubTask;
             userControlObj.DeleteButtonClicked += DeleteSubTask;
-            //userControlObj.TextContextChanged += TextBox_DataContextChanged;
-            //userControlObj.DataContextChanged += UserControlObj_DataContextChanged;
-
-
         }
         public void Assignment(TaskAssignment taskAssignment, string AssignedById, string AssigneeId, string AssigneeName, string AssignedByName, string TaskId)
         {
@@ -107,7 +103,6 @@ namespace ZTasks.Presentation.Views
         public void PriorityClick(object sender, RoutedEventArgs e)
         {
             MenuFlyoutItem item = (MenuFlyoutItem)sender;
-            //Debug.WriteLine(item.Text, item.Name);
             High.Background = new SolidColorBrush(Colors.Transparent);
             Low.Background = new SolidColorBrush(Colors.Transparent);
             Medium.Background = new SolidColorBrush(Colors.Transparent);
@@ -133,7 +128,6 @@ namespace ZTasks.Presentation.Views
                 task.TaskDetails.Priority = 0;
 
             }
-            //  printpriority();
 
         }
         public void Printpriority()
@@ -486,20 +480,6 @@ namespace ZTasks.Presentation.Views
             CollapseClicked?.Invoke();
         }
 
-        private void SubTasksListView_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
-        {
-
-        }
-
-        private void ItemClick(object sender, ItemClickEventArgs e)
-        {
-
-        }
-
-        private void RelativePanel_Loaded(object sender, RoutedEventArgs e)
-        {
-
-        }
 
     }
 }
