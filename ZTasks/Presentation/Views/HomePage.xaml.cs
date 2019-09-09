@@ -46,7 +46,6 @@ namespace ZTasks.Presentation.Views
         }
         public void HomePageRefresh()
         {
-            Title.Text = "Home";
             taskListViewModel.MyTasksRefresh();
         }
         public void TodayPageSetup()
