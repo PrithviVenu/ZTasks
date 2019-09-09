@@ -227,6 +227,9 @@ namespace ZTasks.Presentation.Views
             High.Background = new SolidColorBrush(Colors.Transparent);
             Low.Background = new SolidColorBrush(Colors.Transparent);
             Medium.Background = new SolidColorBrush(Colors.Transparent);
+            checkBox.IsChecked = false;
+            Reminder.IsEnabled = false;
+            TaskObj.TaskDetails.RemindOn = null;
             taskOperation = TaskOperation.Add;
             Debug.WriteLine("Add Event");
             PageSetup();
@@ -413,6 +416,16 @@ namespace ZTasks.Presentation.Views
             TaskObj = item;
             TaskId = TaskObj.TaskDetails.TaskId;
             ModifyPriority(item);
+            if (TaskObj.TaskDetails.RemindOn == null)
+            {
+                Reminder.IsEnabled = false;
+                checkBox.IsChecked = false;
+            }
+            else
+            {
+                Reminder.IsEnabled = true;
+                checkBox.IsChecked = true;
+            }
             subtasks.Clear();
             foreach (ZTask subTask in item.SubTasks)
             {

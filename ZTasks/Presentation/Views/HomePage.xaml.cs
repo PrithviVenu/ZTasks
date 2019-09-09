@@ -102,7 +102,6 @@ namespace ZTasks.Presentation.Views
         public void Sort(object sender, RoutedEventArgs e)
         {
             MenuFlyoutItem item = (MenuFlyoutItem)sender;
-            ZTask task = (ZTask)item.DataContext;
             if ((string)item.Tag == "DueDateAsc")
             {
             }
