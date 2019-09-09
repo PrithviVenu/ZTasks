@@ -175,6 +175,7 @@
   <ItemGroup>
     <Content Include="Assets\notification.png" />
     <Content Include="Assets\tasks.png" />
+    <Content Include="Assets\TasksEmpty.png" />
     <Content Include="Assets\user.jpg" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />

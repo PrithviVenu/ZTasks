@@ -91,12 +91,29 @@ namespace ZTasks.Presentation.Views
         {
             if (tasks.Count == 0)
             {
-                EmptyAddTaskDisplayPanel.Visibility = Visibility.Visible;
+                if (taskView == TaskView.Home)
+                {
+                    EmptyAddTaskDisplayPanel.Visibility = Visibility.Visible;
+                    EmptyTaskDisplayPanel.Visibility = Visibility.Collapsed;
+
+                }
+                else if (taskView == TaskView.Today)
+                {
+                    EmptyAddTaskDisplayPanel.Visibility = Visibility.Visible;
+                    EmptyTaskDisplayPanel.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    EmptyAddTaskDisplayPanel.Visibility = Visibility.Collapsed;
+                    EmptyTaskDisplayPanel.Visibility = Visibility.Visible;
+                }
                 TasksListView.Visibility = Visibility.Collapsed;
+
             }
             else
             {
                 EmptyAddTaskDisplayPanel.Visibility = Visibility.Collapsed;
+                EmptyTaskDisplayPanel.Visibility = Visibility.Collapsed;
                 TasksListView.Visibility = Visibility.Visible;
             }
 

@@ -74,6 +74,10 @@
                 </Button.Resources>
             </Button>
         </StackPanel>
+        <StackPanel Visibility="Collapsed" Grid.Row="1" Name="EmptyTaskDisplayPanel" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.ColumnSpan="2">
+            <Image Source="/Assets/TasksEmpty.png" Stretch="Fill" HorizontalAlignment="Center" VerticalAlignment="Center" Height="200" Width="230"/>
+            <TextBlock Text="Oops! No tasks found" HorizontalAlignment="Center" FontSize="25"  Margin="0,10,0,0" />
+        </StackPanel>
         <ListView Grid.Row="1" Visibility="Collapsed" Name="TasksListView" Margin="0,10,0,0"  MinWidth="400" Grid.ColumnSpan="2" ItemsSource="{x:Bind tasks}" IsItemClickEnabled="True"  ItemClick="ItemClick" HorizontalAlignment="Stretch" >
             <ListView.Resources>
                 <SolidColorBrush x:Key="ListViewItemBackgroundSelected" Color="#f18e8e" />
