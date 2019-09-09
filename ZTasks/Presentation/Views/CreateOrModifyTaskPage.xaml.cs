@@ -28,7 +28,7 @@ namespace ZTasks.Presentation.Views
 
         public ObservableCollection<ZTask> subtasks;
         private ZTask zTask;
-        public ZTask task { get { return zTask; } set { zTask = value; NotifyPropertyChanged(); } }
+        public ZTask TaskObj { get { return zTask; } set { zTask = value; NotifyPropertyChanged(); } }
 
         private string TaskId = "";
         public delegate void Collapse();
@@ -67,15 +67,15 @@ namespace ZTasks.Presentation.Views
             TaskDetail taskDetail = zTask.TaskDetails;
             taskDetail.TaskId = GetTaskId();
             Assignment(zTask.Assignment, "user101010", "user101010", "Prithvi Venu", "Prithvi Venu", taskDetail.TaskId);
-            task = zTask;
+            TaskObj = zTask; TaskObj.TaskDetails.CreatedTime = DateTime.Now;
             ZTask zSubTask = new ZTask();
-            TaskDetail subTaskDetail = zSubTask.TaskDetails;
+            TaskDetail subTaskDetail = zSubTask.TaskDetails; subTaskDetail.CreatedTime = DateTime.Now;
             subTaskDetail.TaskId = Guid.NewGuid().ToString(); subTaskDetail.ParentTaskId = GetTaskId();
             Assignment(zSubTask.Assignment, "user101010", "user101010", "Prithvi Venu", "Prithvi Venu", subTaskDetail.TaskId);
             subtasks.Add(zSubTask);
             Low.Background = new SolidColorBrush(Color.FromArgb(255, 227, 227, 227));
             PriorityText.Foreground = new SolidColorBrush(Color.FromArgb(255, 136, 136, 136));
-            task.TaskDetails.Priority = 0;
+            TaskObj.TaskDetails.Priority = 0;
         }
         private void CreateOrModifyUserControlLoaded(object sender, RoutedEventArgs e)
         {
@@ -111,13 +111,13 @@ namespace ZTasks.Presentation.Views
             {
                 High.Background = new SolidColorBrush(Color.FromArgb(255, 227, 227, 227));
                 PriorityText.Foreground = new SolidColorBrush(Color.FromArgb(255, 217, 72, 59));
-                task.TaskDetails.Priority = 2;
+                TaskObj.TaskDetails.Priority = 2;
             }
             else if ((string)item.Tag == "1")
             {
                 Medium.Background = new SolidColorBrush(Color.FromArgb(255, 227, 227, 227));
                 PriorityText.Foreground = new SolidColorBrush(Color.FromArgb(255, 93, 188, 210));
-                task.TaskDetails.Priority = 1;
+                TaskObj.TaskDetails.Priority = 1;
 
             }
             else if ((string)item.Tag == "0")
@@ -125,7 +125,7 @@ namespace ZTasks.Presentation.Views
             {
                 Low.Background = new SolidColorBrush(Color.FromArgb(255, 227, 227, 227));
                 PriorityText.Foreground = new SolidColorBrush(Color.FromArgb(255, 136, 136, 136));
-                task.TaskDetails.Priority = 0;
+                TaskObj.TaskDetails.Priority = 0;
 
             }
 
@@ -186,7 +186,7 @@ namespace ZTasks.Presentation.Views
             else
             {
                 Reminder.IsEnabled = false;
-                task.TaskDetails.RemindOn = null;
+                TaskObj.TaskDetails.RemindOn = null;
             }
 
 
@@ -253,20 +253,7 @@ namespace ZTasks.Presentation.Views
             // If user clicks on a control in the row, select entire row
             SubTasksListView.SelectedItem = (sender as ListView).DataContext;
         }
-        private void ListViewItems_VectorChanged(IObservableVector<object> sender, IVectorChangedEventArgs @event)
-        {
 
-            // If new row added, at this point we can safely select and scroll to new item
-            if (newRowSubTask != null)
-            {
-                Debug.WriteLine(SubTasksListView.Items.Count, "count");
-
-                SubTasksListView.SelectedIndex = SubTasksListView.Items.Count - 1; // select row
-                SubTasksListView.ScrollIntoView(SubTasksListView.Items[SubTasksListView.Items.Count - 1]);   // scroll to bottom; this will make sure new row is visible and that DataContextChanged is called
-                Debug.WriteLine(SubTasksListView.Items.Count, "count");
-                userControlObj.FocusTextBox();
-            }
-        }
 
         private void ListView_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
         {
@@ -314,7 +301,7 @@ namespace ZTasks.Presentation.Views
                 ZTask zTask = new ZTask();
                 TaskDetail subTaskDetail = zTask.TaskDetails;
 
-                subTaskDetail.TaskId = Guid.NewGuid().ToString(); subTaskDetail.ParentTaskId = GetTaskId();
+                subTaskDetail.TaskId = Guid.NewGuid().ToString(); subTaskDetail.ParentTaskId = GetTaskId(); subTaskDetail.CreatedTime = DateTime.Now;
                 newRowSubTask = zTask;
                 Assignment(zTask.Assignment, "user101010", "user101010", "Prithvi Venu", "Prithvi Venu", subTaskDetail.TaskId);
                 subtasks.Add(zTask);
@@ -337,7 +324,7 @@ namespace ZTasks.Presentation.Views
             {
                 ZTask zTask = new ZTask();
                 TaskDetail subTaskDetail = zTask.TaskDetails;
-                subTaskDetail.TaskId = Guid.NewGuid().ToString(); subTaskDetail.ParentTaskId = GetTaskId();
+                subTaskDetail.TaskId = Guid.NewGuid().ToString(); subTaskDetail.ParentTaskId = GetTaskId(); subTaskDetail.CreatedTime = DateTime.Now;
                 newRowSubTask = zTask;
                 Assignment(zTask.Assignment, "user101010", "user101010", "Prithvi Venu", "Prithvi Venu", subTaskDetail.TaskId);
                 subtasks.Add(zTask);
@@ -362,42 +349,26 @@ namespace ZTasks.Presentation.Views
         }
         private void ShowCalendarButton_Click(object sender, RoutedEventArgs e)
         {
-            // calendarPopup.IsOpen = true;
             CalendarPopup.IsOpen = !CalendarPopup.IsOpen;
         }
         private async void SaveTask(object sender, RoutedEventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(TaskTitle.Text))
             {
-                // Debug.WriteLine(task.DueDate, "hoiii");
-                //tasks.Add(new ZTask { TaskId = GetTaskId(), TaskTitle = TaskTitle.Text });
-                createTaskViewModel.AddOrModifyTask(task, taskOperation);
-                //TaskId = "";
-                //tasks.Clear();
+                createTaskViewModel.AddOrModifyTask(TaskObj, taskOperation);
             }
             else
             {
                 MessageDialog showDialog = new MessageDialog("Please Enter Title");
                 showDialog.Commands.Add(new UICommand("Ok")
                 {
-                    // Id = 0
                 });
-                //showDialog.DefaultCommandIndex = 0;
                 await showDialog.ShowAsync();
-                //if ((int)result.Id == 0)
-                //{
-                //    //do your task  
-                //}
+
 
             }
         }
 
-
-        public void ItemClick(object sender, RoutedEventArgs e)
-        {
-            Debug.WriteLine(SubTasksListView.SelectedIndex, "AddTaskPage");
-            ListViewClicked?.Invoke(sender, e);
-        }
 
 
         public void ModifyPriority(ZTask zTask)
@@ -426,11 +397,9 @@ namespace ZTasks.Presentation.Views
         public void TaskItemClick(ZTask item)
         {
             taskOperation = TaskOperation.Modify;
-            task = item;
-            TaskId = task.TaskDetails.TaskId;
+            TaskObj = item;
+            TaskId = TaskObj.TaskDetails.TaskId;
             ModifyPriority(item);
-            //task.TaskDetails = item.TaskDetails;
-            //task.Assignment = item.Assignment;
             subtasks.Clear();
             foreach (ZTask subTask in item.SubTasks)
             {
