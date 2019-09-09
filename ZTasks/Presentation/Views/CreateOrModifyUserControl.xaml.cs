@@ -27,11 +27,13 @@ namespace ZTasks.Presentation.Views
         //public delegate void CalendarButtonClick(object sender, RoutedEventArgs e);
         //public event CalendarButtonClick CalendarButtonClicked;
         public Page page;
+
+        private static int CreateSubTaskCounter = 0;
         public CreateOrModifyUserControl()
         {
             this.InitializeComponent();
             this.DataContextChanged += (s, e) => Bindings.Update();
-
+            // Debug.WriteLine("SubTask Control CreateSubTaskCounter: " + ++CreateSubTaskCounter);
         }
 
         private void TextBox_GotFocus(object sender, RoutedEventArgs e)
@@ -53,6 +55,14 @@ namespace ZTasks.Presentation.Views
             SubTaskTitle.Focus(FocusState.Programmatic);
         }
 
+        private static int LoadCounter = 0;
+        private void InputTextBox_Loaded(object sender, RoutedEventArgs e)
+        {
+            var textBox = (TextBox)sender;
+            //textBox.Focus(FocusState.Programmatic);
+            SubTaskTitle.Focus(FocusState.Programmatic);
+            Debug.WriteLine("SubTask Control Load Counter: " + ++LoadCounter);
+        }
         //private void textChangedEventHandler(object sender, TextChangedEventArgs args)
         //{
         //    Flyout.ShowAt(SubTaskTitle);
@@ -144,6 +154,14 @@ namespace ZTasks.Presentation.Views
         {
             DeleteButtonClicked?.Invoke(sender, e);
         }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            //Debug.WriteLine("Trying here=======================================>");
+            //SubTaskTitle.Focus(FocusState.Programmatic);
+        }
+
+
         //private void ItemPointerEntered(Object sender, PointerRoutedEventArgs e)
 
         //{

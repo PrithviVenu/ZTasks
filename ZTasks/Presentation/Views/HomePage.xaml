@@ -30,7 +30,7 @@
                          Foreground="#001111"
                          Margin="20,18,0,0"     
                            />
-          
+
             <Button RelativePanel.AlignRightWithPanel="True" Margin="0,7,10,0" Background="Transparent" BorderThickness="0" Height="45" Width="45">
                 <TextBlock
                   Text="&#xE174;"
@@ -48,15 +48,14 @@
                                 <Setter Property="Background" Value="White"/>
                             </Style>
                         </MenuFlyout.MenuFlyoutPresenterStyle>
-
                         <MenuFlyoutSubItem x:Name="DueDate"  Text="Due Date"  >
-                            <MenuFlyoutItem x:Name="Asc"  Text="Ascending" />
-                            <MenuFlyoutItem x:Name="Desc"  Text="Descending" />
+                            <MenuFlyoutItem x:Name="Asc" Tag="DueDateAsc" Text="Ascending" Click="Sort" />
+                            <MenuFlyoutItem x:Name="Desc" Tag="DueDateDesc" Text="Descending" Click="Sort" />
                         </MenuFlyoutSubItem >
 
                         <MenuFlyoutSubItem x:Name="ModifiedDate"  Text="Modified Date"  >
-                            <MenuFlyoutItem x:Name="Ascending"  Text="Ascending"  />
-                            <MenuFlyoutItem x:Name="Descending"  Text="Descending"/>
+                            <MenuFlyoutItem x:Name="Ascending" Tag="ModifiedDateAsc" Text="Ascending" Click="Sort" />
+                            <MenuFlyoutItem x:Name="Descending" Tag="ModifiedDateDesc" Text="Descending" Click="Sort"/>
                         </MenuFlyoutSubItem >
 
                     </MenuFlyout>
@@ -81,15 +80,14 @@
                         </MenuFlyout.MenuFlyoutPresenterStyle>
 
                         <MenuFlyoutSubItem x:Name="Status"  Text="Status"  >
-                            <MenuFlyoutItem x:Name="Open"  Text="Open" />
-                            <MenuFlyoutItem x:Name="Closed"  Text="Closed" />
+                            <MenuFlyoutItem x:Name="Open" Tag="Open"  Text="Open"  Click="Filter"/>
+                            <MenuFlyoutItem x:Name="Closed" Tag="Closed" Text="Closed"  Click="Filter" />
                         </MenuFlyoutSubItem >
 
                         <MenuFlyoutSubItem x:Name="Priority"  Text="Priority"  >
-                            <MenuFlyoutItem x:Name="High" Tag="2" Text="High"  />
-                            <MenuFlyoutItem x:Name="Medium" Tag="1" Text="Medium"/>
-                            <MenuFlyoutItem x:Name="Low" Tag="0" Text="Low" />
-
+                            <MenuFlyoutItem x:Name="High" Tag="High" Text="High" Click="Filter"  />
+                            <MenuFlyoutItem x:Name="Medium" Tag="Medium" Text="Medium" Click="Filter"/>
+                            <MenuFlyoutItem x:Name="Low" Tag="Low" Text="Low" Click="Filter" />
                         </MenuFlyoutSubItem >
 
                     </MenuFlyout>
@@ -126,9 +124,9 @@
             </ListView.ItemContainerStyle>
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <ItemsStackPanel
+                    <!--<ItemsStackPanel
                ItemsUpdatingScrollMode="KeepLastItemInView"
-           />
+           />-->
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
             <ListView.ItemTemplate>

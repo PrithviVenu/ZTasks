@@ -128,7 +128,7 @@
            />
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
-            <ListView.ItemTemplate>
+            <ListView.ItemTemplate >
                 <DataTemplate x:DataType="data:ZTask">
                     <local:CreateOrModifyUserControl x:Name="MyUserControl" 
                         Loaded="CreateOrModifyUserControlLoaded"

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
@@ -51,6 +52,7 @@ namespace ZTasks.Presentation.Views
         public CreateOrModifyTaskPage()
         {
             this.InitializeComponent();
+
             createTaskViewModel = new CreateOrModifyTaskViewModel();
             this.DataContext = createTaskViewModel;
             PageSetup();
@@ -86,6 +88,7 @@ namespace ZTasks.Presentation.Views
             userControlObj.DeleteButtonClicked -= DeleteSubTask;
             userControlObj.DeleteButtonClicked += DeleteSubTask;
         }
+
         public void Assignment(TaskAssignment taskAssignment, string AssignedById, string AssigneeId, string AssigneeName, string AssignedByName, string TaskId)
         {
             taskAssignment.AssignedById = AssignedById;
@@ -322,15 +325,25 @@ namespace ZTasks.Presentation.Views
             Debug.WriteLine(task1.TaskDetails.TaskTitle);
             if (subtasks.Last() == task1 && !string.IsNullOrWhiteSpace(b.Text))
             {
+                //SubTasksListView.Items.Add(new CreateOrModifyUserControl());
                 ZTask zTask = new ZTask();
                 TaskDetail subTaskDetail = zTask.TaskDetails;
                 subTaskDetail.TaskId = Guid.NewGuid().ToString(); subTaskDetail.ParentTaskId = GetTaskId(); subTaskDetail.CreatedTime = DateTime.Now;
-                newRowSubTask = zTask;
+                //newRowSubTask = zTask;
                 Assignment(zTask.Assignment, "user101010", "user101010", "Prithvi Venu", "Prithvi Venu", subTaskDetail.TaskId);
+
                 subtasks.Add(zTask);
+
+                //SubTasksListView.ScrollIntoView(zTask);
+                //userControlObj.FocusTextBox();
+
+
+
+
+
                 //Debug.WriteLine(SubTasksListView.Items.Count, "count");
 
-                e.Handled = true; LoseFocus(sender);
+                //e.Handled = true; LoseFocus(sender);
 
                 //SubTasksListView?.ScrollIntoView(SubTasksListView.Items[subtasks.Count - 1], ScrollIntoViewAlignment.Leading);
                 //FocusLastAddUserControl(userControlObj);
@@ -414,6 +427,7 @@ namespace ZTasks.Presentation.Views
                 newRowSubTask = zTask;
                 Assignment(zTask.Assignment, "user101010", "user101010", "Prithvi Venu", "Prithvi Venu", subTaskDetail.TaskId);
                 subtasks.Add(zTask);
+
             }
             Debug.WriteLine(item.TaskDetails.TaskTitle);
         }

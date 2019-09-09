@@ -79,7 +79,44 @@ namespace ZTasks.Presentation.Views
 
         }
 
+        public void Filter(object sender, RoutedEventArgs e)
+        {
+            MenuFlyoutItem item = (MenuFlyoutItem)sender;
+            if ((string)item.Tag == "Open")
+            {
+            }
+            else if ((string)item.Tag == "Closed")
+            {
+            }
+            else if ((string)item.Tag == "High")
+            {
+            }
+            else if ((string)item.Tag == "Medium")
+            {
+            }
+            else if ((string)item.Tag == "Low")
+            {
+            }
+        }
 
+        public void Sort(object sender, RoutedEventArgs e)
+        {
+            MenuFlyoutItem item = (MenuFlyoutItem)sender;
+            ZTask task = (ZTask)item.DataContext;
+            if ((string)item.Tag == "DueDateAsc")
+            {
+            }
+            else if ((string)item.Tag == "DueDateDesc")
+            {
+            }
+            else if ((string)item.Tag == "ModifiedDateAsc")
+            {
+            }
+            else if ((string)item.Tag == "ModifiedDateDesc")
+            {
+            }
+
+        }
         private void ListTasksUserControl_Loaded(object sender, RoutedEventArgs e)
         {
             var userControlObj = (HomeListControl)sender;
@@ -166,6 +203,7 @@ namespace ZTasks.Presentation.Views
 
         public void CollapseSlideInPane()
         {
+            TasksListView.SelectedIndex = -1;
             //TasksListView.Margin = new Thickness(10, 10, 10, 0);
             TasksListView.SetValue(Grid.ColumnSpanProperty, 2);
             //EmptyAddTaskDisplayPanel.SetValue(Grid.ColumnSpanProperty, 2);
