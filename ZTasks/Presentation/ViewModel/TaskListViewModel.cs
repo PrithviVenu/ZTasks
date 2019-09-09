@@ -101,10 +101,8 @@ namespace ZTasks.Presentation.ViewModel
 
         public async void OnTasksFetchedSuccessfully(List<ZTask> ZtaskList)
         {
-            //var v =System.Windows.Application.Current.Dispatcher;
             await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
             {
-                //Debug.WriteLine(ZtaskList.Count, "msdmsdm");
                 Ztasks.Clear();
                 Today.Clear();
                 Upcoming.Clear();
@@ -114,7 +112,6 @@ namespace ZTasks.Presentation.ViewModel
                 AddElementsToCollection(ZtaskList);
             });
 
-            //Ztasks = new ObservableCollection<ZTask>(ZtaskList);
 
         }
         public void AddElementsToCollection(List<ZTask> ZtaskList)

@@ -8,6 +8,7 @@ using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 using ZTasks.Models;
 using ZTasks.Presentation.ViewModel;
+using ZTasks.Utility;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -24,6 +25,7 @@ namespace ZTasks.Presentation.Views
         public event TaskEventHandler TaskClicked;
         public delegate void AddEventHandler();
         public event AddEventHandler AddEvent;
+        public TaskView taskView;
 
         public HomePage()
         {
@@ -38,6 +40,7 @@ namespace ZTasks.Presentation.Views
 
         public void HomePageSetup()
         {
+            taskView = TaskView.Home;
             Title.Text = "Home";
             taskListViewModel.MyTasks();
         }
@@ -48,12 +51,14 @@ namespace ZTasks.Presentation.Views
         }
         public void TodayPageSetup()
         {
+            taskView = TaskView.Today;
             Title.Text = "Today";
             taskListViewModel.TasksForToday();
         }
 
         public void UpcomingPageSetup()
         {
+            taskView = TaskView.Upcoming;
             Title.Text = "Upcoming";
             taskListViewModel.UpcomingTasks();
 
@@ -61,6 +66,7 @@ namespace ZTasks.Presentation.Views
 
         public void DelayedPageSetup()
         {
+            taskView = TaskView.Delayed;
             Title.Text = "Delayed";
             taskListViewModel.DelayedTasks();
 
@@ -68,6 +74,7 @@ namespace ZTasks.Presentation.Views
 
         public void AssignedToOthersPageSetup()
         {
+            taskView = TaskView.AssignedToOthers;
             Title.Text = "Assigned To Others";
             taskListViewModel.TasksAssignedToOthers();
 

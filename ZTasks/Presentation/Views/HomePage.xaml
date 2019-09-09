@@ -90,9 +90,9 @@
             </ListView.ItemContainerStyle>
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <!--<ItemsStackPanel
+                    <ItemsStackPanel
                ItemsUpdatingScrollMode="KeepLastItemInView"
-           />-->
+           />
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
             <ListView.ItemTemplate>
