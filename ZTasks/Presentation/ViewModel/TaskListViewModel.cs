@@ -9,6 +9,8 @@ using ZTasks.Presentation.PresenterCallBackHandler;
 using Windows.ApplicationModel.Core;
 using System.Runtime.CompilerServices;
 using ZTasks.Utility;
+using System.Threading.Tasks;
+using System.Linq;
 
 namespace ZTasks.Presentation.ViewModel
 {
@@ -44,22 +46,124 @@ namespace ZTasks.Presentation.ViewModel
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        public void Filter(FilterOperation filter)
+        {
+            switch (filter)
+            {
+                case FilterOperation.open:
+                    break;
+                case FilterOperation.closed:
+                    break;
+                case FilterOperation.Low:
+                    break;
+                case FilterOperation.Medium:
+                    break;
+                case FilterOperation.High:
+                    break;
+            }
+        }
 
+        public void Sort(SortOperation sort)
+        {
+            List<ZTask> ZTaskCollection = Ztasks.ToList<ZTask>();
+            Task.Run(() =>
+            {
+                switch (sort)
+                {
+                    case SortOperation.DueDateAscending:
+                        for (int i = 0; i < ZTaskCollection.Count; i++)
+                        {
+                            for (int j = i + 1; j < ZTaskCollection.Count; j++)
+                            {
+                                if (ZTaskCollection[i].TaskDetails.DueDate > ZTaskCollection[j].TaskDetails.DueDate || ZTaskCollection[i].TaskDetails.DueDate == null)
+                                {
+                                    var tempTask = ZTaskCollection[i];
+                                    ZTaskCollection[i] = ZTaskCollection[j];
+                                    ZTaskCollection[j] = tempTask;
+
+                                }
+                            }
+
+                        }
+                        break;
+                    case SortOperation.DueDateDescending:
+                        for (int i = 0; i < ZTaskCollection.Count; i++)
+                        {
+                            for (int j = i + 1; j < ZTaskCollection.Count; j++)
+                            {
+                                if (ZTaskCollection[i].TaskDetails.DueDate < ZTaskCollection[j].TaskDetails.DueDate || ZTaskCollection[i].TaskDetails.DueDate == null)
+                                {
+                                    var tempTask = ZTaskCollection[i];
+                                    ZTaskCollection[i] = ZTaskCollection[j];
+                                    ZTaskCollection[j] = tempTask;
+
+                                }
+                            }
+
+                        }
+                        break;
+                    case SortOperation.ModifiedDateAscending:
+                        for (int i = 0; i < ZTaskCollection.Count; i++)
+                        {
+                            for (int j = i + 1; j < ZTaskCollection.Count; j++)
+                            {
+                                if (ZTaskCollection[i].TaskDetails.ModifiedDate > ZTaskCollection[j].TaskDetails.ModifiedDate || ZTaskCollection[i].TaskDetails.ModifiedDate == null)
+                                {
+                                    var tempTask = ZTaskCollection[i];
+                                    ZTaskCollection[i] = ZTaskCollection[j];
+                                    ZTaskCollection[j] = tempTask;
+
+                                }
+                            }
+
+                        }
+                        break;
+                    case SortOperation.ModifiedDateDescending:
+                        for (int i = 0; i < ZTaskCollection.Count; i++)
+                        {
+                            for (int j = i + 1; j < ZTaskCollection.Count; j++)
+                            {
+                                if (ZTaskCollection[i].TaskDetails.ModifiedDate < ZTaskCollection[j].TaskDetails.ModifiedDate || ZTaskCollection[i].TaskDetails.ModifiedDate == null)
+                                {
+                                    var tempTask = ZTaskCollection[i];
+                                    ZTaskCollection[i] = ZTaskCollection[j];
+                                    ZTaskCollection[j] = tempTask;
+
+                                }
+                            }
+
+                        }
+                        break;
+                }
+            });
+
+            OnOperationCompletion(ZTaskCollection);
+        }
+
+        public async void OnOperationCompletion(List<ZTask> ZtaskList)
+        {
+            await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+            {
+                Ztasks.Clear();
+                foreach (ZTask task in ZtaskList)
+                {
+                    Ztasks.Add(task);
+                }
+            });
+
+
+        }
         public void MyTasks()
         {
             taskView = TaskView.Home;
-
             usecase = new GetTaskUseCase(this);
-
             usecase.Execute();
 
         }
         public void MyTasksRefresh()
         {
             usecase = new GetTaskUseCase(this);
-
             usecase.Execute();
-
         }
         public void HomeTasks()
         {
@@ -160,15 +264,15 @@ namespace ZTasks.Presentation.ViewModel
 
             if (dateTime != null)
             {
-                if (dateTime?.Date == DateTime.Today)
+                if (dateTime?.Date == DateTime.Today && task.TaskDetails.TaskStatus == 0)
                 {
                     Today.Add(task);
                 }
-                if (dateTime?.Date < DateTime.Today)
+                if (dateTime?.Date < DateTime.Today && task.TaskDetails.TaskStatus == 0)
                 {
                     Delayed.Add(task);
                 }
-                if (dateTime?.Date > DateTime.Today)
+                if (dateTime?.Date > DateTime.Today && task.TaskDetails.TaskStatus == 0)
                 {
                     Upcoming.Add(task);
                 }

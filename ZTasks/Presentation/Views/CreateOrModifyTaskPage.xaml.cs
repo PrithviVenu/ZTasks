@@ -71,8 +71,10 @@ namespace ZTasks.Presentation.Views
             Assignment(zTask.Assignment, "user101010", "user101010", "Prithvi Venu", "Prithvi Venu", taskDetail.TaskId);
             TaskObj = zTask; TaskObj.TaskDetails.CreatedTime = DateTime.Now;
             ZTask zSubTask = new ZTask();
-            TaskDetail subTaskDetail = zSubTask.TaskDetails; subTaskDetail.CreatedTime = DateTime.Now;
-            subTaskDetail.TaskId = Guid.NewGuid().ToString(); subTaskDetail.ParentTaskId = GetTaskId();
+            TaskDetail subTaskDetail = zSubTask.TaskDetails;
+            subTaskDetail.CreatedTime = DateTime.Now;
+            subTaskDetail.TaskId = Guid.NewGuid().ToString();
+            subTaskDetail.ParentTaskId = GetTaskId();
             Assignment(zSubTask.Assignment, "user101010", "user101010", "Prithvi Venu", "Prithvi Venu", subTaskDetail.TaskId);
             subtasks.Add(zSubTask);
             Low.Background = new SolidColorBrush(Color.FromArgb(255, 227, 227, 227));
@@ -303,21 +305,18 @@ namespace ZTasks.Presentation.Views
             TextBox b = (TextBox)sender;
             if (e.Key == Windows.System.VirtualKey.Enter && subtasks.Count == 0 && !string.IsNullOrWhiteSpace(b.Text))
             {
-
                 ZTask zTask = new ZTask();
                 TaskDetail subTaskDetail = zTask.TaskDetails;
-
-                subTaskDetail.TaskId = Guid.NewGuid().ToString(); subTaskDetail.ParentTaskId = GetTaskId(); subTaskDetail.CreatedTime = DateTime.Now;
+                subTaskDetail.TaskId = Guid.NewGuid().ToString();
+                subTaskDetail.ParentTaskId = GetTaskId();
+                subTaskDetail.CreatedTime = DateTime.Now;
                 newRowSubTask = zTask;
                 Assignment(zTask.Assignment, "user101010", "user101010", "Prithvi Venu", "Prithvi Venu", subTaskDetail.TaskId);
                 subtasks.Add(zTask);
                 //Debug.WriteLine(SubTasksListView.Items.Count, "count");
-
-                e.Handled = true; LoseFocus(sender);
-
+                // e.Handled = true; LoseFocus(sender);
                 //SubTasksListView?.ScrollIntoView(SubTasksListView.Items[subtasks.Count - 1], ScrollIntoViewAlignment.Leading);
                 //FocusLastAddUserControl(userControlObj);
-
             }
         }
         private void Box_KeyDown(object sender, KeyRoutedEventArgs e)
@@ -328,26 +327,18 @@ namespace ZTasks.Presentation.Views
             Debug.WriteLine(task1.TaskDetails.TaskTitle);
             if (subtasks.Last() == task1 && !string.IsNullOrWhiteSpace(b.Text))
             {
-                //SubTasksListView.Items.Add(new CreateOrModifyUserControl());
                 ZTask zTask = new ZTask();
                 TaskDetail subTaskDetail = zTask.TaskDetails;
-                subTaskDetail.TaskId = Guid.NewGuid().ToString(); subTaskDetail.ParentTaskId = GetTaskId(); subTaskDetail.CreatedTime = DateTime.Now;
+                subTaskDetail.TaskId = Guid.NewGuid().ToString();
+                subTaskDetail.ParentTaskId = GetTaskId();
+                subTaskDetail.CreatedTime = DateTime.Now;
                 //newRowSubTask = zTask;
                 Assignment(zTask.Assignment, "user101010", "user101010", "Prithvi Venu", "Prithvi Venu", subTaskDetail.TaskId);
-
                 subtasks.Add(zTask);
-
                 //SubTasksListView.ScrollIntoView(zTask);
                 //userControlObj.FocusTextBox();
-
-
-
-
-
                 //Debug.WriteLine(SubTasksListView.Items.Count, "count");
-
                 //e.Handled = true; LoseFocus(sender);
-
                 //SubTasksListView?.ScrollIntoView(SubTasksListView.Items[subtasks.Count - 1], ScrollIntoViewAlignment.Leading);
                 //FocusLastAddUserControl(userControlObj);
 
@@ -355,9 +346,7 @@ namespace ZTasks.Presentation.Views
 
             }
 
-
             //task1.AssignedBy = "101";
-
             //Debug.WriteLine(task1.AssignedBy, task1.AssignedBy);
 
 
@@ -436,7 +425,8 @@ namespace ZTasks.Presentation.Views
             {
                 ZTask zTask = new ZTask();
                 TaskDetail subTaskDetail = zTask.TaskDetails;
-                subTaskDetail.TaskId = Guid.NewGuid().ToString(); subTaskDetail.ParentTaskId = GetTaskId();
+                subTaskDetail.TaskId = Guid.NewGuid().ToString();
+                subTaskDetail.ParentTaskId = GetTaskId();
                 newRowSubTask = zTask;
                 Assignment(zTask.Assignment, "user101010", "user101010", "Prithvi Venu", "Prithvi Venu", subTaskDetail.TaskId);
                 subtasks.Add(zTask);

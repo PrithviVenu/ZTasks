@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Diagnostics;
+using Windows.ApplicationModel.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
@@ -84,35 +85,49 @@ namespace ZTasks.Presentation.Views
             MenuFlyoutItem item = (MenuFlyoutItem)sender;
             if ((string)item.Tag == "Open")
             {
+                taskListViewModel.Filter(FilterOperation.open);
             }
             else if ((string)item.Tag == "Closed")
             {
+                taskListViewModel.Filter(FilterOperation.closed);
             }
             else if ((string)item.Tag == "High")
             {
+                taskListViewModel.Filter(FilterOperation.High);
+
             }
             else if ((string)item.Tag == "Medium")
             {
+                taskListViewModel.Filter(FilterOperation.Medium);
             }
             else if ((string)item.Tag == "Low")
             {
+                taskListViewModel.Filter(FilterOperation.Low);
             }
         }
 
         public void Sort(object sender, RoutedEventArgs e)
         {
+
             MenuFlyoutItem item = (MenuFlyoutItem)sender;
             if ((string)item.Tag == "DueDateAsc")
             {
+                taskListViewModel.Sort(SortOperation.DueDateAscending);
             }
             else if ((string)item.Tag == "DueDateDesc")
             {
+                taskListViewModel.Sort(SortOperation.DueDateDescending);
+
             }
             else if ((string)item.Tag == "ModifiedDateAsc")
             {
+                taskListViewModel.Sort(SortOperation.ModifiedDateAscending);
+
             }
             else if ((string)item.Tag == "ModifiedDateDesc")
             {
+                taskListViewModel.Sort(SortOperation.ModifiedDateDescending);
+
             }
 
         }
@@ -124,6 +139,7 @@ namespace ZTasks.Presentation.Views
         }
         void Task_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
+
             if (tasks.Count == 0)
             {
                 if (taskView == TaskView.Home || taskView == TaskView.Today)
@@ -146,7 +162,6 @@ namespace ZTasks.Presentation.Views
                 EmptyTaskDisplayPanel.Visibility = Visibility.Collapsed;
                 TasksListView.Visibility = Visibility.Visible;
             }
-
         }
 
 

@@ -14,7 +14,7 @@
     </UserControl.Resources>
     <RelativePanel  Margin="0,10,0,0"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="Auto"   >
         <TextBlock RelativePanel.AlignLeftWithPanel="True" Name="TaskTitle" Text="{x:Bind Tasks.TaskDetails.TaskTitle , Mode=OneWay}" FontSize="16"   Margin="10 0 0 2"/>
-        <TextBlock RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWith="TaskTitle" Name="TaskDueDate" Text="{x:Bind Tasks.TaskDetails.DueDate , Mode=OneWay ,Converter={StaticResource StringFormatConverter}}" FontSize="16"   Margin="0 0 10 0"/>
+        <TextBlock RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWith="TaskTitle" Name="TaskDueDate"  HorizontalTextAlignment="Right"  Text="{x:Bind Tasks.TaskDetails.DueDate , Mode=OneWay ,Converter={StaticResource StringFormatConverter}}" FontSize="16" Margin="0 0 10 0"  />
         <TextBlock RelativePanel.AlignLeftWithPanel="True" RelativePanel.Below="TaskTitle" Name="TaskAssignee" FontWeight="Medium" Text="Assignee:" FontSize="16"   Margin="10 0 0 0"/>
         <TextBlock RelativePanel.RightOf="TaskAssignee"  RelativePanel.AlignBottomWith="TaskAssignee" Name="TaskAssigneeName" Text="{x:Bind Tasks.Assignment.AssigneeName , Mode=OneWay}" FontSize="16"   Margin="10,0,0,0"/>
         <Line  Name="Line" Stretch="Fill" Margin="5 10 0 0" Stroke="#8888" X2="1"  RelativePanel.Below="TaskAssignee" />

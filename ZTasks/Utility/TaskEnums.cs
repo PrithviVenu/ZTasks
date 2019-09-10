@@ -6,16 +6,20 @@ using System.Threading.Tasks;
 
 namespace ZTasks.Utility
 {
-    public enum Priority : int
+    public enum FilterOperation : int
     {
+        open,
+        closed,
         Low,
         Medium,
         High
     }
-    public enum Status
+    public enum SortOperation
     {
-        open,
-        closed
+        DueDateAscending,
+        DueDateDescending,
+        ModifiedDateAscending,
+        ModifiedDateDescending
     }
 
     public enum TaskOperation
