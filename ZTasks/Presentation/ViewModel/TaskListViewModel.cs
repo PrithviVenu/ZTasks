@@ -48,38 +48,98 @@ namespace ZTasks.Presentation.ViewModel
 
         public void Filter(FilterOperation filter)
         {
-            switch (filter)
+            List<ZTask> ZTaskList = new List<ZTask>();
+            switch (taskView)
             {
-                case FilterOperation.open:
+                case TaskView.Home:
+                    ZTaskList = Home;
                     break;
-                case FilterOperation.closed:
+                case TaskView.Today:
+                    ZTaskList = Today;
                     break;
-                case FilterOperation.Low:
+                case TaskView.Upcoming:
+                    ZTaskList = Upcoming;
                     break;
-                case FilterOperation.Medium:
+                case TaskView.Delayed:
+                    ZTaskList = Delayed;
                     break;
-                case FilterOperation.High:
+                case TaskView.AssignedToOthers:
+                    ZTaskList = AssignedToOthers;
                     break;
             }
+            List<ZTask> FilteredZTaskList = new List<ZTask>();
+
+            Task.Run(() =>
+            {
+                switch (filter)
+                {
+                    case FilterOperation.open:
+                        foreach (ZTask task in ZTaskList)
+                        {
+                            if (task.TaskDetails.TaskStatus == 0)
+                            {
+                                FilteredZTaskList.Add(task);
+                            }
+                        }
+                        break;
+                    case FilterOperation.closed:
+                        foreach (ZTask task in ZTaskList)
+                        {
+                            if (task.TaskDetails.TaskStatus == 1)
+                            {
+                                FilteredZTaskList.Add(task);
+                            }
+                        }
+                        break;
+                    case FilterOperation.Low:
+                        foreach (ZTask task in ZTaskList)
+                        {
+                            if (task.TaskDetails.Priority == 0)
+                            {
+                                FilteredZTaskList.Add(task);
+                            }
+                        }
+                        break;
+                    case FilterOperation.Medium:
+                        foreach (ZTask task in ZTaskList)
+                        {
+                            if (task.TaskDetails.Priority == 1)
+                            {
+                                FilteredZTaskList.Add(task);
+                            }
+                        }
+                        break;
+                    case FilterOperation.High:
+                        foreach (ZTask task in ZTaskList)
+                        {
+                            if (task.TaskDetails.Priority == 2)
+                            {
+                                FilteredZTaskList.Add(task);
+                            }
+                        }
+                        break;
+                }
+            });
+            OnOperationCompletion(FilteredZTaskList);
         }
 
         public void Sort(SortOperation sort)
         {
-            List<ZTask> ZTaskCollection = Ztasks.ToList<ZTask>();
+            List<ZTask> ZTaskList = Ztasks.ToList<ZTask>();
             Task.Run(() =>
             {
                 switch (sort)
                 {
                     case SortOperation.DueDateAscending:
-                        for (int i = 0; i < ZTaskCollection.Count; i++)
+                        for (int i = 0; i < ZTaskList.Count; i++)
                         {
-                            for (int j = i + 1; j < ZTaskCollection.Count; j++)
+                            for (int j = i + 1; j < ZTaskList.Count; j++)
                             {
-                                if (ZTaskCollection[i].TaskDetails.DueDate > ZTaskCollection[j].TaskDetails.DueDate || ZTaskCollection[i].TaskDetails.DueDate == null)
+                                if (ZTaskList[i].TaskDetails.DueDate > ZTaskList[j].TaskDetails.DueDate || ZTaskList[i].TaskDetails.DueDate == null)
                                 {
-                                    var tempTask = ZTaskCollection[i];
-                                    ZTaskCollection[i] = ZTaskCollection[j];
-                                    ZTaskCollection[j] = tempTask;
+                                    var tempTask = ZTaskList[i];
+                                    ZTaskList[i] = ZTaskList[j];
+                                    ZTaskList[j] = tempTask;
 
                                 }
                             }
@@ -87,15 +147,15 @@ namespace ZTasks.Presentation.ViewModel
                         }
                         break;
                     case SortOperation.DueDateDescending:
-                        for (int i = 0; i < ZTaskCollection.Count; i++)
+                        for (int i = 0; i < ZTaskList.Count; i++)
                         {
-                            for (int j = i + 1; j < ZTaskCollection.Count; j++)
+                            for (int j = i + 1; j < ZTaskList.Count; j++)
                             {
-                                if (ZTaskCollection[i].TaskDetails.DueDate < ZTaskCollection[j].TaskDetails.DueDate || ZTaskCollection[i].TaskDetails.DueDate == null)
+                                if (ZTaskList[i].TaskDetails.DueDate < ZTaskList[j].TaskDetails.DueDate || ZTaskList[i].TaskDetails.DueDate == null)
                                 {
-                                    var tempTask = ZTaskCollection[i];
-                                    ZTaskCollection[i] = ZTaskCollection[j];
-                                    ZTaskCollection[j] = tempTask;
+                                    var tempTask = ZTaskList[i];
+                                    ZTaskList[i] = ZTaskList[j];
+                                    ZTaskList[j] = tempTask;
 
                                 }
                             }
@@ -103,15 +163,15 @@ namespace ZTasks.Presentation.ViewModel
                         }
                         break;
                     case SortOperation.ModifiedDateAscending:
-                        for (int i = 0; i < ZTaskCollection.Count; i++)
+                        for (int i = 0; i < ZTaskList.Count; i++)
                         {
-                            for (int j = i + 1; j < ZTaskCollection.Count; j++)
+                            for (int j = i + 1; j < ZTaskList.Count; j++)
                             {
-                                if (ZTaskCollection[i].TaskDetails.ModifiedDate > ZTaskCollection[j].TaskDetails.ModifiedDate || ZTaskCollection[i].TaskDetails.ModifiedDate == null)
+                                if (ZTaskList[i].TaskDetails.ModifiedDate > ZTaskList[j].TaskDetails.ModifiedDate || ZTaskList[i].TaskDetails.ModifiedDate == null)
                                 {
-                                    var tempTask = ZTaskCollection[i];
-                                    ZTaskCollection[i] = ZTaskCollection[j];
-                                    ZTaskCollection[j] = tempTask;
+                                    var tempTask = ZTaskList[i];
+                                    ZTaskList[i] = ZTaskList[j];
+                                    ZTaskList[j] = tempTask;
 
                                 }
                             }
@@ -119,15 +179,15 @@ namespace ZTasks.Presentation.ViewModel
                         }
                         break;
                     case SortOperation.ModifiedDateDescending:
-                        for (int i = 0; i < ZTaskCollection.Count; i++)
+                        for (int i = 0; i < ZTaskList.Count; i++)
                         {
-                            for (int j = i + 1; j < ZTaskCollection.Count; j++)
+                            for (int j = i + 1; j < ZTaskList.Count; j++)
                             {
-                                if (ZTaskCollection[i].TaskDetails.ModifiedDate < ZTaskCollection[j].TaskDetails.ModifiedDate || ZTaskCollection[i].TaskDetails.ModifiedDate == null)
+                                if (ZTaskList[i].TaskDetails.ModifiedDate < ZTaskList[j].TaskDetails.ModifiedDate || ZTaskList[i].TaskDetails.ModifiedDate == null)
                                 {
-                                    var tempTask = ZTaskCollection[i];
-                                    ZTaskCollection[i] = ZTaskCollection[j];
-                                    ZTaskCollection[j] = tempTask;
+                                    var tempTask = ZTaskList[i];
+                                    ZTaskList[i] = ZTaskList[j];
+                                    ZTaskList[j] = tempTask;
 
                                 }
                             }
@@ -137,7 +197,7 @@ namespace ZTasks.Presentation.ViewModel
                 }
             });
 
-            OnOperationCompletion(ZTaskCollection);
+            OnOperationCompletion(ZTaskList);
         }
 
         public async void OnOperationCompletion(List<ZTask> ZtaskList)
@@ -175,7 +235,6 @@ namespace ZTasks.Presentation.ViewModel
             taskView = TaskView.Today;
             Ztasks.Clear();
             ConvertListData(Today);
-            Debug.WriteLine(Ztasks.Count);
 
         }
         public void TasksAssignedToOthers()
@@ -183,7 +242,6 @@ namespace ZTasks.Presentation.ViewModel
             taskView = TaskView.AssignedToOthers;
             Ztasks.Clear();
             ConvertListData(AssignedToOthers);
-            Debug.WriteLine(Ztasks.Count);
 
         }
         public void UpcomingTasks()
@@ -191,7 +249,6 @@ namespace ZTasks.Presentation.ViewModel
             taskView = TaskView.Upcoming;
             Ztasks.Clear();
             ConvertListData(Upcoming);
-            Debug.WriteLine(Ztasks.Count);
 
         }
         public void DelayedTasks()
@@ -199,7 +256,6 @@ namespace ZTasks.Presentation.ViewModel
             taskView = TaskView.Delayed;
             Ztasks.Clear();
             ConvertListData(Delayed);
-            Debug.WriteLine(Ztasks.Count);
 
         }
 
