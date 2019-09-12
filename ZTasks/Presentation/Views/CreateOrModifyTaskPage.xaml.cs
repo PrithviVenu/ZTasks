@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using Windows.Foundation.Collections;
 using Windows.UI;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
@@ -30,7 +28,6 @@ namespace ZTasks.Presentation.Views
         public ObservableCollection<ZTask> subtasks;
         private ZTask zTask;
         public ZTask TaskObj { get { return zTask; } set { zTask = value; NotifyPropertyChanged(); } }
-
         private string TaskId = "";
         public delegate void Collapse();
         public event Collapse CollapseClicked;
