@@ -18,22 +18,15 @@ namespace ZTasks.Presentation.Views
         public event KeyEvent EnterKeyDown;
         public delegate void TextBoxContextChanged(FrameworkElement sender,
      DataContextChangedEventArgs args);
-        // public event TextBoxContextChanged TextContextChanged;
         string OldText = string.Empty;
         public delegate void DeleteButtonClick(object sender, RoutedEventArgs e);
         public event DeleteButtonClick DeleteButtonClicked;
-
-        // AddTaskPage addTaskPage1;
-        //public delegate void CalendarButtonClick(object sender, RoutedEventArgs e);
-        //public event CalendarButtonClick CalendarButtonClicked;
         public Page page;
 
-        private static int CreateSubTaskCounter = 0;
         public CreateOrModifyUserControl()
         {
             this.InitializeComponent();
             this.DataContextChanged += (s, e) => Bindings.Update();
-            // Debug.WriteLine("SubTask Control CreateSubTaskCounter: " + ++CreateSubTaskCounter);
         }
 
         private void TextBox_GotFocus(object sender, RoutedEventArgs e)
@@ -46,55 +39,24 @@ namespace ZTasks.Presentation.Views
             string newText = SubTaskTitle.Text;
             if (string.IsNullOrEmpty(newText))
             {
+                //Comparing OldText and newText 
                 SubTaskTitle.Text = OldText;
             }
-            //Compare OldText and newText here
         }
         internal void FocusTextBox()
         {
             SubTaskTitle.Focus(FocusState.Programmatic);
         }
 
-        private static int LoadCounter = 0;
-        private void InputTextBox_Loaded(object sender, RoutedEventArgs e)
-        {
-            var textBox = (TextBox)sender;
-            //textBox.Focus(FocusState.Programmatic);
-            SubTaskTitle.Focus(FocusState.Programmatic);
-            Debug.WriteLine("SubTask Control Load Counter: " + ++LoadCounter);
-        }
-        //private void textChangedEventHandler(object sender, TextChangedEventArgs args)
-        //{
-        //    Flyout.ShowAt(SubTaskTitle);
-
-        //    // Omitted Code: Insert code that does something whenever
-        //    // the text changes...
-        //}
-        //private void InputTextBox_Loaded(object sender, RoutedEventArgs e)
-        //{
-        //    var textBox = (TextBox)sender;
-        //    textBox.Focus(FocusState.Programmatic);
-        //}
-        //private void TextBox_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
-        //{
-        //    TextContextChanged?.Invoke(sender, args);
-        //}
-
         public void SetEventPageReference(Page page)
         {
             this.page = page;
             CreateOrModifyTaskPage TaskPage = (CreateOrModifyTaskPage)page;
-            TaskPage.ListViewClicked -= ItemClick;
-            TaskPage.ListViewClicked += ItemClick;
             TaskPage.UserControlAddEventTriggered -= AddEvent;
             TaskPage.UserControlAddEventTriggered += AddEvent;
 
-            // addTaskPage1 = addTaskPage;
         }
-        public void ItemClick(object sender, RoutedEventArgs e)
-        {
-            Debug.WriteLine("UC");
-        }
+
         public void AddEvent()
         {
             Low.Background = new SolidColorBrush(Color.FromArgb(255, 227, 227, 227));
@@ -105,7 +67,6 @@ namespace ZTasks.Presentation.Views
         public void PriorityClick(object sender, RoutedEventArgs e)
         {
             MenuFlyoutItem item = (MenuFlyoutItem)sender;
-            //Debug.WriteLine(item.Text, item.Name);
             ZTask task = (ZTask)item.DataContext;
             High.Background = new SolidColorBrush(Colors.Transparent);
             Low.Background = new SolidColorBrush(Colors.Transparent);
@@ -132,14 +93,12 @@ namespace ZTasks.Presentation.Views
                 task.TaskDetails.Priority = 0;
 
             }
-            //  addTaskPage1.printpriority();
 
         }
         private void ShowSubTaskCalendarButton_Click(object sender, RoutedEventArgs e)
         {
             SubTaskCalendarPopup.IsOpen = !SubTaskCalendarPopup.IsOpen;
 
-            //CalendarButtonClicked?.Invoke(sender, e);
 
         }
         private void Box_KeyDown(object sender, KeyRoutedEventArgs e)
@@ -155,28 +114,6 @@ namespace ZTasks.Presentation.Views
             DeleteButtonClicked?.Invoke(sender, e);
         }
 
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
-        {
-            //Debug.WriteLine("Trying here=======================================>");
-            //SubTaskTitle.Focus(FocusState.Programmatic);
-        }
-
-
-        //private void ItemPointerEntered(Object sender, PointerRoutedEventArgs e)
-
-        //{
-        //    SubTaskRecurring.Visibility = Visibility.Visible;
-        //    SubTaskPriority.Visibility = Visibility.Visible;
-        //    SubTaskDueDate.Visibility = Visibility.Visible;
-
-        //}
-
-        //private void ItemPointerExited(Object sender, PointerRoutedEventArgs e)
-        //{
-        //    SubTaskRecurring.Visibility = Visibility.Collapsed;
-        //    SubTaskPriority.Visibility = Visibility.Collapsed;
-        //    SubTaskDueDate.Visibility = Visibility.Collapsed;
-        //}
 
 
     }

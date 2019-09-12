@@ -36,8 +36,6 @@ namespace ZTasks.Presentation.Views
         public event Collapse CollapseClicked;
         public delegate void Refresh();
         public event Refresh RefreshData;
-        public delegate void ListViewClick(object sender, RoutedEventArgs e);
-        public event ListViewClick ListViewClicked;
         public event PropertyChangedEventHandler PropertyChanged;
         public CreateOrModifyTaskViewModel createTaskViewModel;
         public CreateOrModifyUserControl userControlObj;
@@ -144,20 +142,6 @@ namespace ZTasks.Presentation.Views
             }
         }
 
-        //private bool _focusItem = true;
-        //private void UserControlObj_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
-        //{
-        //    FocusLastAddUserControl((AddUserControl)sender);
-        //}
-
-        //private void FocusLastAddUserControl(AddUserControl control)
-        //{
-
-        //    //last item, focus it
-        //    Debug.WriteLine(SubTasksListView.Items.Count, "dddddddd");
-        //    control.FocusTextBox();
-        //    //_focusItem = false;
-        //}
         public string GetTaskId()
         {
             if (TaskId == "")
@@ -168,18 +152,6 @@ namespace ZTasks.Presentation.Views
             return TaskId;
 
         }
-
-        //private void TextBox_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
-        //{
-        //    var textBox = (TextBox)sender;
-        //    if (args.NewValue == SubTasksListView.Items[SubTasksListView.Items.Count - 1] && _focusItem)
-        //    {
-        //        //last item, focus it
-        //        textBox.Focus(FocusState.Programmatic);
-        //        _focusItem = false;
-        //    }
-
-        //}
 
         private void CheckBoxClicked(object sender, RoutedEventArgs e)
         {
@@ -244,7 +216,6 @@ namespace ZTasks.Presentation.Views
         {
             RefreshData?.Invoke();
             taskOperation = TaskOperation.Modify;
-            // PriorityText.Foreground = new SolidColorBrush(Color.FromArgb(255, 136, 136, 136));
 
         }
         private void LoseFocus(object sender)
@@ -256,34 +227,7 @@ namespace ZTasks.Presentation.Views
             control.IsEnabled = true;
             control.IsTabStop = isTabStop;
         }
-        private void ListView_GotFocus(object sender, RoutedEventArgs e)
-        {
-            // If user clicks on a control in the row, select entire row
-            SubTasksListView.SelectedItem = (sender as ListView).DataContext;
-        }
 
-
-        private void ListView_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
-        {
-            Debug.WriteLine("ListView_DataContextChanged");
-
-            // If new row added, at this point the UI is created and we can set focus to text box 
-            if (newRowSubTask != null)
-            {
-                ListView listView = (ListView)sender;
-                ZTask zTask = (ZTask)listView.DataContext;  // might be null
-
-                if (zTask == newRowSubTask)
-                {
-                    TextBox textBox = FindControl<TextBox>(listView, typeof(TextBox), "SubTaskTitle");
-                    if (textBox != null)
-                    {
-                        textBox.Focus(FocusState.Programmatic);
-                    }
-                    newRowSubTask = null;
-                }
-            }
-        }
         public static T FindControl<T>(UIElement parent, Type targetType, string ControlName) where T : FrameworkElement
         {
 
@@ -313,10 +257,7 @@ namespace ZTasks.Presentation.Views
                 newRowSubTask = zTask;
                 Assignment(zTask.Assignment, "user101010", "user101010", "Prithvi Venu", "Prithvi Venu", subTaskDetail.TaskId);
                 subtasks.Add(zTask);
-                //Debug.WriteLine(SubTasksListView.Items.Count, "count");
                 // e.Handled = true; LoseFocus(sender);
-                //SubTasksListView?.ScrollIntoView(SubTasksListView.Items[subtasks.Count - 1], ScrollIntoViewAlignment.Leading);
-                //FocusLastAddUserControl(userControlObj);
             }
         }
         private void Box_KeyDown(object sender, KeyRoutedEventArgs e)
@@ -335,22 +276,9 @@ namespace ZTasks.Presentation.Views
                 //newRowSubTask = zTask;
                 Assignment(zTask.Assignment, "user101010", "user101010", "Prithvi Venu", "Prithvi Venu", subTaskDetail.TaskId);
                 subtasks.Add(zTask);
-                //SubTasksListView.ScrollIntoView(zTask);
-                //userControlObj.FocusTextBox();
-                //Debug.WriteLine(SubTasksListView.Items.Count, "count");
                 //e.Handled = true; LoseFocus(sender);
-                //SubTasksListView?.ScrollIntoView(SubTasksListView.Items[subtasks.Count - 1], ScrollIntoViewAlignment.Leading);
-                //FocusLastAddUserControl(userControlObj);
-
-
 
             }
-
-            //task1.AssignedBy = "101";
-            //Debug.WriteLine(task1.AssignedBy, task1.AssignedBy);
-
-
-
         }
         private void ShowCalendarButton_Click(object sender, RoutedEventArgs e)
         {

@@ -131,12 +131,7 @@ namespace ZTasks.Presentation.Views
             }
 
         }
-        private void ListTasksUserControl_Loaded(object sender, RoutedEventArgs e)
-        {
-            var userControlObj = (HomeListControl)sender;
-
-
-        }
+      
         void Task_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
 
