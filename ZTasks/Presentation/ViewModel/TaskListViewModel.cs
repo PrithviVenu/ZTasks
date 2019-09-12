@@ -216,17 +216,18 @@ namespace ZTasks.Presentation.ViewModel
         public void MyTasks()
         {
             taskView = TaskView.Home;
-            usecase = new GetTaskUseCase(this);
+            usecase = new GetTaskUseCase(this, taskView);
             usecase.Execute();
 
         }
         public void MyTasksRefresh()
         {
-            usecase = new GetTaskUseCase(this);
+            usecase = new GetTaskUseCase(this, taskView);
             usecase.Execute();
         }
         public void HomeTasks()
         {
+
             Ztasks.Clear();
             ConvertListData(Home);
         }

@@ -5,6 +5,7 @@ using ZTasks.Data.DatabaseHandlerCallback;
 using ZTasks.Domain.DMContract;
 using ZTasks.Domain.UseCaseCallBackHandler;
 using ZTasks.Models;
+using ZTasks.Utility;
 
 namespace ZTasks.Data.DataManager
 {
@@ -14,11 +15,11 @@ namespace ZTasks.Data.DataManager
         public GetTaskDbHandler getTaskDbHandler;
 
 
-        async public Task GetTasks(IGetTaskCallback callback)
+        async public Task GetTasks(IGetTaskCallback callback, TaskView taskView)
         {
             this.callback = callback;
             getTaskDbHandler = GetTaskDbHandler.GetInstance;
-            await getTaskDbHandler.GetTasks(this);
+            await getTaskDbHandler.GetTasks(this,taskView);
         }
 
         public void OnTasksFetchedSuccessfully(List<TaskUtilityModel> ZtaskList)

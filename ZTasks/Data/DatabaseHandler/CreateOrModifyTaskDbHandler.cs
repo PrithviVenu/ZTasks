@@ -38,7 +38,7 @@ namespace ZTasks.Data.DatabaseHandler
         async public Task AddOrModifyTask(List<ZTask> task, ZTask parentZtask, ICreateOrModifyTaskDMCallback callback, TaskOperation taskOperation)
         {
             await AddOrModifyTasks(task, taskOperation);
-            parentZtask.TaskDetails.ModifiedDate = DateTime.Now;
+            parentZtask.TaskDetails.ModifiedDate = DateTime.Now.Date;
             if (taskOperation == TaskOperation.Add)
             {
                 await DatabaseAccessContext.Connection.InsertAsync(parentZtask.TaskDetails);
@@ -58,7 +58,7 @@ namespace ZTasks.Data.DatabaseHandler
         {
             foreach (ZTask zTask in task)
             {
-                zTask.TaskDetails.ModifiedDate = DateTime.Now;
+                zTask.TaskDetails.ModifiedDate = DateTime.Now.Date;
 
 
                 if (taskOperation == TaskOperation.Add)

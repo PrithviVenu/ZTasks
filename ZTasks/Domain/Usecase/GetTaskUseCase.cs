@@ -6,16 +6,18 @@ using ZTasks.Models;
 using ZTasks.Domain.UseCaseCallBackHandler;
 using ZTasks.Presentation.PresenterCallBackHandler;
 using System.Diagnostics;
+using ZTasks.Utility;
 
 namespace ZTasks.Domain.Usecase
 {
     class GetTaskUseCase : UseCaseBase, IGetTaskCallback
     {
         public IGetTaskPresenterCallBack callback;
-
-        public GetTaskUseCase(IGetTaskPresenterCallBack callback)
+        public TaskView taskView;
+        public GetTaskUseCase(IGetTaskPresenterCallBack callback, TaskView taskView)
         {
             this.callback = callback;
+            this.taskView = taskView;
         }
 
 
@@ -66,7 +68,7 @@ namespace ZTasks.Domain.Usecase
         {
 
             IGetTaskDMContract taskHandler = new GetTaskDataManager();
-            await taskHandler.GetTasks(this);
+            await taskHandler.GetTasks(this, taskView);
 
 
             //ObservableCollection<ZTask> await taskHandler.GetTasksFromDb();

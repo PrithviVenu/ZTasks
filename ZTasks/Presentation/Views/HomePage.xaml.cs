@@ -142,7 +142,7 @@ namespace ZTasks.Presentation.Views
 
             if (tasks.Count == 0)
             {
-                if (taskView == TaskView.Home || taskView == TaskView.Today)
+                if (taskView == TaskView.Home)
                 {
                     EmptyAddTaskDisplayPanel.Visibility = Visibility.Visible;
                     EmptyTaskDisplayPanel.Visibility = Visibility.Collapsed;

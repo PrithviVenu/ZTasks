@@ -69,10 +69,10 @@ namespace ZTasks.Presentation.Views
             TaskDetail taskDetail = zTask.TaskDetails;
             taskDetail.TaskId = GetTaskId();
             Assignment(zTask.Assignment, "user101010", "user101010", "Prithvi Venu", "Prithvi Venu", taskDetail.TaskId);
-            TaskObj = zTask; TaskObj.TaskDetails.CreatedTime = DateTime.Now;
+            TaskObj = zTask; TaskObj.TaskDetails.CreatedTime = DateTime.Now.Date;
             ZTask zSubTask = new ZTask();
             TaskDetail subTaskDetail = zSubTask.TaskDetails;
-            subTaskDetail.CreatedTime = DateTime.Now;
+            subTaskDetail.CreatedTime = DateTime.Now.Date;
             subTaskDetail.TaskId = Guid.NewGuid().ToString();
             subTaskDetail.ParentTaskId = GetTaskId();
             Assignment(zSubTask.Assignment, "user101010", "user101010", "Prithvi Venu", "Prithvi Venu", subTaskDetail.TaskId);
@@ -309,7 +309,7 @@ namespace ZTasks.Presentation.Views
                 TaskDetail subTaskDetail = zTask.TaskDetails;
                 subTaskDetail.TaskId = Guid.NewGuid().ToString();
                 subTaskDetail.ParentTaskId = GetTaskId();
-                subTaskDetail.CreatedTime = DateTime.Now;
+                subTaskDetail.CreatedTime = DateTime.Now.Date;
                 newRowSubTask = zTask;
                 Assignment(zTask.Assignment, "user101010", "user101010", "Prithvi Venu", "Prithvi Venu", subTaskDetail.TaskId);
                 subtasks.Add(zTask);
@@ -331,7 +331,7 @@ namespace ZTasks.Presentation.Views
                 TaskDetail subTaskDetail = zTask.TaskDetails;
                 subTaskDetail.TaskId = Guid.NewGuid().ToString();
                 subTaskDetail.ParentTaskId = GetTaskId();
-                subTaskDetail.CreatedTime = DateTime.Now;
+                subTaskDetail.CreatedTime = DateTime.Now.Date;
                 //newRowSubTask = zTask;
                 Assignment(zTask.Assignment, "user101010", "user101010", "Prithvi Venu", "Prithvi Venu", subTaskDetail.TaskId);
                 subtasks.Add(zTask);
