@@ -131,6 +131,8 @@
     <Compile Include="Data\DataManager\GetTaskDataManager.cs" />
     <Compile Include="Data\DMHandlerContract\ICreateOrModifyTaskDbHandlerDMContract.cs" />
     <Compile Include="Data\DMHandlerContract\IGetTaskDbHandlerDMContract.cs" />
+    <Compile Include="Data\NetworkHandler\CreateOrModifyTaskNetworkHandler.cs" />
+    <Compile Include="Data\NetworkHandler\GetTaskNetworkHandler.cs" />
     <Compile Include="Domain\DMContract\IGetTaskDMContract.cs" />
     <Compile Include="Domain\DMContract\ICreateOrModifyTaskDMContract.cs" />
     <Compile Include="Models\TaskDetail.cs" />

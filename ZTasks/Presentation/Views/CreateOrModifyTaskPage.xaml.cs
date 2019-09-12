@@ -47,7 +47,6 @@ namespace ZTasks.Presentation.Views
         public CreateOrModifyTaskPage()
         {
             this.InitializeComponent();
-
             createTaskViewModel = new CreateOrModifyTaskViewModel();
             this.DataContext = createTaskViewModel;
             PageSetup();

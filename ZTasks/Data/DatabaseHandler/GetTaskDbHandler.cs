@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
+using System.Net.Http;
 using System.Threading.Tasks;
 using ZTasks.Data.DatabaseHandlerCallback;
 using ZTasks.Data.DMHandlerContract;
 using ZTasks.Models;
 using ZTasks.Utility;
-
 namespace ZTasks.Data.DatabaseHandler
 {
     class GetTaskDbHandler : IGetTaskDbHandlerDMContract
@@ -16,6 +15,7 @@ namespace ZTasks.Data.DatabaseHandler
         private static readonly object lockobj = new object();
         private GetTaskDbHandler()
         {
+
             zTasksContext = DatabaseAccessContext.GetInstance;
         }
         public static GetTaskDbHandler GetInstance
