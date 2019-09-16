@@ -47,7 +47,7 @@ namespace ZTasks.Presentation.Views
         }
         public void HomePageRefresh()
         {
-            taskListViewModel.MyTasksRefresh();
+            taskListViewModel.RefreshTasks();
         }
         public void TodayPageSetup()
         {
@@ -131,7 +131,7 @@ namespace ZTasks.Presentation.Views
             }
 
         }
-      
+
         void Task_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
 

@@ -220,23 +220,25 @@ namespace ZTasks.Presentation.ViewModel
             usecase.Execute();
 
         }
-        public void MyTasksRefresh()
-        {
-            usecase = new GetTaskUseCase(this, taskView);
-            usecase.Execute();
-        }
-        public void HomeTasks()
+        public void DisplayMyTasks()
         {
 
             Ztasks.Clear();
             ConvertListData(Home);
         }
+
         public void TasksForToday()
         {
             taskView = TaskView.Today;
             Ztasks.Clear();
             ConvertListData(Today);
 
+        }
+        public void DisplayTasksForToday()
+        {
+
+            Ztasks.Clear();
+            ConvertListData(Today);
         }
         public void TasksAssignedToOthers()
         {
@@ -245,6 +247,12 @@ namespace ZTasks.Presentation.ViewModel
             ConvertListData(AssignedToOthers);
 
         }
+        public void DisplayTasksAssignedToOthers()
+        {
+
+            Ztasks.Clear();
+            ConvertListData(AssignedToOthers);
+        }
         public void UpcomingTasks()
         {
             taskView = TaskView.Upcoming;
@@ -252,12 +260,30 @@ namespace ZTasks.Presentation.ViewModel
             ConvertListData(Upcoming);
 
         }
+        public void DisplayUpcomingTasks()
+        {
+
+            Ztasks.Clear();
+            ConvertListData(Upcoming);
+        }
         public void DelayedTasks()
         {
             taskView = TaskView.Delayed;
             Ztasks.Clear();
             ConvertListData(Delayed);
 
+        }
+        public void DisplayDelayedTasks()
+        {
+
+            Ztasks.Clear();
+            ConvertListData(Delayed);
+        }
+
+        public void RefreshTasks()
+        {
+            usecase = new GetTaskUseCase(this, taskView);
+            usecase.Execute();
         }
 
         public async void OnTasksFetchedSuccessfully(List<ZTask> ZtaskList)
@@ -291,19 +317,19 @@ namespace ZTasks.Presentation.ViewModel
             switch (taskView)
             {
                 case TaskView.Home:
-                    HomeTasks();
+                    DisplayMyTasks();
                     break;
                 case TaskView.Today:
-                    TasksForToday();
+                    DisplayTasksForToday();
                     break;
                 case TaskView.Upcoming:
-                    UpcomingTasks();
+                    DisplayUpcomingTasks();
                     break;
                 case TaskView.Delayed:
-                    DelayedTasks();
+                    DisplayDelayedTasks();
                     break;
                 case TaskView.AssignedToOthers:
-                    TasksAssignedToOthers();
+                    DisplayTasksAssignedToOthers();
                     break;
             }
 
