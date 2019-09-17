@@ -39,7 +39,7 @@ namespace ZTasks.Data.DatabaseHandler
         {
             string query = "";
             List<TaskUtilityModel> Tasks = new List<TaskUtilityModel>();
-            Debug.WriteLine(((DateTimeOffset)DateTimeOffset.Now.Date).ToUnixTimeMilliseconds(), "todayyy");
+            //Debug.WriteLine(DateTime.Today.ToUniversalTime(), "todayyy");
             switch (taskView)
             {
                 case TaskView.Home:
@@ -48,38 +48,38 @@ namespace ZTasks.Data.DatabaseHandler
                     break;
                 case TaskView.Today:
                     query = "select TaskDetail.* , TaskAssignment.* from TaskDetail inner join TaskAssignment where TaskDetail.TaskId = TaskAssignment.TaskId AND TaskDetail.DueDate NOT NULL AND TaskStatus = 0 AND TaskDetail.DueDate = ?";
-                    Tasks = await DatabaseAccessContext.Connection.QueryAsync<TaskUtilityModel>(query, DateTime.Now.Date);
+                    Tasks = await DatabaseAccessContext.Connection.QueryAsync<TaskUtilityModel>(query, DateTime.Today.ToUniversalTime());
                     break;
                 case TaskView.Upcoming:
                     query = "select TaskDetail.* , TaskAssignment.* from TaskDetail inner join TaskAssignment where TaskDetail.TaskId = TaskAssignment.TaskId AND TaskDetail.DueDate NOT NULL AND TaskStatus = 0 AND TaskDetail.DueDate > ?";
-                    Tasks = await DatabaseAccessContext.Connection.QueryAsync<TaskUtilityModel>(query, DateTime.Now.Date);
+                    Tasks = await DatabaseAccessContext.Connection.QueryAsync<TaskUtilityModel>(query, DateTime.Today.ToUniversalTime());
                     break;
                 case TaskView.Delayed:
                     query = "select TaskDetail.* , TaskAssignment.* from TaskDetail inner join TaskAssignment where TaskDetail.TaskId = TaskAssignment.TaskId AND TaskDetail.DueDate NOT NULL AND TaskStatus = 0 AND TaskDetail.DueDate < ?";
-                    Tasks = await DatabaseAccessContext.Connection.QueryAsync<TaskUtilityModel>(query, DateTime.Now.Date);
+                    Tasks = await DatabaseAccessContext.Connection.QueryAsync<TaskUtilityModel>(query, DateTime.Today.ToUniversalTime());
                     break;
                 case TaskView.AssignedToOthers:
                     query = "select TaskDetail.* , TaskAssignment.* from TaskDetail inner join TaskAssignment where TaskDetail.TaskId = TaskAssignment.TaskId AND AssignedById = 'user101010' AND AssigneeId != 'user101010' ";
-                    Tasks = await DatabaseAccessContext.Connection.QueryAsync<TaskUtilityModel>(query, DateTime.Now.Date);
+                    Tasks = await DatabaseAccessContext.Connection.QueryAsync<TaskUtilityModel>(query, DateTime.Today.ToUniversalTime());
                     break;
             }
 
             // Debug.WriteLine(Tasks.Count, "countuuuuuuuuuuu");
 
-            foreach (TaskUtilityModel zTask in Tasks)
-            {
-                Debug.WriteLine(zTask.DueDate, "countuuuuuuuuuuu");
-                //Debug.WriteLine(zTask, "lol");
-                //    if (zTask.ParentTaskId == null)
-                //    {
-                //        Debug.WriteLine(zTask.ParentTaskId, zTask.TaskTitle);
+            //foreach (TaskUtilityModel zTask in Tasks)
+            //{
+            //Debug.WriteLine(zTask.DueDate, "countuuuuuuuuuuu");
+            //Debug.WriteLine(zTask, "lol");
+            //    if (zTask.ParentTaskId == null)
+            //    {
+            //        Debug.WriteLine(zTask.ParentTaskId, zTask.TaskTitle);
 
-                //    }
-                //    else
-                //    {
-                //        Debug.WriteLine(zTask.ParentTaskId, "ooo");
-                //    }
-            }
+            //    }
+            //    else
+            //    {
+            //        Debug.WriteLine(zTask.ParentTaskId, "ooo");
+            //    }
+            //}
 
             callback.OnTasksFetchedSuccessfully(Tasks);
         }
