@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Net.Http;
 using System.Threading.Tasks;
 using ZTasks.Data.DatabaseHandlerCallback;
@@ -38,6 +39,7 @@ namespace ZTasks.Data.DatabaseHandler
         {
             string query = "";
             List<TaskUtilityModel> Tasks = new List<TaskUtilityModel>();
+            Debug.WriteLine(((DateTimeOffset)DateTimeOffset.Now.Date).ToUnixTimeMilliseconds(), "todayyy");
             switch (taskView)
             {
                 case TaskView.Home:
@@ -57,26 +59,27 @@ namespace ZTasks.Data.DatabaseHandler
                     Tasks = await DatabaseAccessContext.Connection.QueryAsync<TaskUtilityModel>(query, DateTime.Now.Date);
                     break;
                 case TaskView.AssignedToOthers:
-                    query = "select TaskDetail.* , TaskAssignment.* from TaskDetail inner join TaskAssignment where TaskDetail.TaskId = TaskAssignment.TaskId AND AssignedBy = 'user101010' AND AssigneeId != 'user101010' ";
+                    query = "select TaskDetail.* , TaskAssignment.* from TaskDetail inner join TaskAssignment where TaskDetail.TaskId = TaskAssignment.TaskId AND AssignedById = 'user101010' AND AssigneeId != 'user101010' ";
                     Tasks = await DatabaseAccessContext.Connection.QueryAsync<TaskUtilityModel>(query, DateTime.Now.Date);
                     break;
             }
 
             // Debug.WriteLine(Tasks.Count, "countuuuuuuuuuuu");
 
-            //foreach (TaskUtilityModel zTask in Tasks)
-            //{
-            // Debug.WriteLine(zTask, "lol");
-            //    if (zTask.ParentTaskId == null)
-            //    {
-            //        Debug.WriteLine(zTask.ParentTaskId, zTask.TaskTitle);
+            foreach (TaskUtilityModel zTask in Tasks)
+            {
+                Debug.WriteLine(zTask.DueDate, "countuuuuuuuuuuu");
+                //Debug.WriteLine(zTask, "lol");
+                //    if (zTask.ParentTaskId == null)
+                //    {
+                //        Debug.WriteLine(zTask.ParentTaskId, zTask.TaskTitle);
 
-            //    }
-            //    else
-            //    {
-            //        Debug.WriteLine(zTask.ParentTaskId, "ooo");
-            //    }
-            //}
+                //    }
+                //    else
+                //    {
+                //        Debug.WriteLine(zTask.ParentTaskId, "ooo");
+                //    }
+            }
 
             callback.OnTasksFetchedSuccessfully(Tasks);
         }

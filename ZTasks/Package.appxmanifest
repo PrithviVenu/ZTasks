@@ -7,15 +7,15 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="1ec2b4f7-f1c1-417b-9150-2257648dd450"
-    Publisher="CN=prithvi-9176"
+    Name="ZohoCorp.619101048B1B1"
+    Publisher="CN=4B1C51E3-0B76-4E84-B9EC-E417C6DE901A"
     Version="1.0.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="1ec2b4f7-f1c1-417b-9150-2257648dd450" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="0eaaf6c1-72f6-400a-9a1e-74c1c636d3c9" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
-    <DisplayName>ZTasks</DisplayName>
-    <PublisherDisplayName>prithvi-9176</PublisherDisplayName>
+    <DisplayName>Zoho Mail</DisplayName>
+    <PublisherDisplayName>Zoho Corp</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 
@@ -32,7 +32,7 @@
       Executable="$targetnametoken$.exe"
       EntryPoint="ZTasks.App">
       <uap:VisualElements
-        DisplayName="ZTasks"
+        DisplayName="Zoho Mail"
         Square150x150Logo="Assets\Square150x150Logo.png"
         Square44x44Logo="Assets\Square44x44Logo.png"
         Description="ZTasks"

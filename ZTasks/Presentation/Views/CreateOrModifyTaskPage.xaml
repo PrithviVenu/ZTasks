@@ -9,7 +9,9 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     NavigationCacheMode="Required">
-
+    <Page.Resources>
+        <local:DateTimeFormatter  x:Key="DateTimeFormatter"/>
+    </Page.Resources>
 
     <RelativePanel>
         <TextBlock Name="MainTitle" HorizontalAlignment="Center" RelativePanel.AlignHorizontalCenterWithPanel="True" Margin="0 10 0 0" FontSize="16" FontWeight="Medium" Text="Add Task"/>
@@ -76,7 +78,7 @@
             </Button.Resources>
         </Button>
         <Popup Name="CalendarPopup"  RelativePanel.Below="DueDate" IsLightDismissEnabled="True"  RelativePanel.AlignHorizontalCenterWith="DueDate">
-            <CalendarDatePicker Date="{x:Bind TaskObj.TaskDetails.DueDate , Mode=TwoWay}" x:Name="calendar"  PlaceholderText="Due date"></CalendarDatePicker>
+            <CalendarDatePicker Date="{x:Bind TaskObj.TaskDetails.DueDate , Mode=TwoWay,Converter={StaticResource DateTimeFormatter}}" x:Name="calendar"  PlaceholderText="Due date"></CalendarDatePicker>
         </Popup>
         <Line Name="Line" Stretch="Fill" Margin="10 0 10 0" Stroke="#8888" X2="1" Opacity="0.2" RelativePanel.Below="TaskTitle"/>
         <Button Name="ClosePaneButton"
@@ -136,14 +138,14 @@
         </TextBox>
 
         <Button Name="Save" Content="Save" Click="SaveTask" Background="#DE483B" Foreground="White" RelativePanel.Below="Description" RelativePanel.AlignLeftWithPanel="True" Margin="20 45 40 0"  >
-            
+
             <Button.Resources>
                 <SolidColorBrush x:Key="ButtonForegroundPointerOver" Color="White"/>
                 <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="#ff8e8e"/>
 
             </Button.Resources>
-            
+
         </Button>
-        
+
     </RelativePanel>
 </Page>

@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.ApplicationModel.Core;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -17,6 +18,9 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
+using Windows_SsoFramework.Zoho.Accounts;
+using Windows_SsoFramework.Zoho.Accounts.Callback;
+using Windows_SsoFramework.Zoho.Accounts.Util;
 using ZTasks.Presentation.Views;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
@@ -56,7 +60,21 @@ namespace ZTasks
             Home.Background = new SolidColorBrush(Color.FromArgb(255, 244, 141, 142));
 
         }
+        public async Task InitSSOKit()
+        {
+            await AuthManager.InitializeSSOKit("1002.L94IXL8BEJB167191T7QML3S0ZMTQE",
+                            "ms-app://s-1-15-2-2243022705-1476087268-978001290-2832051958-2838887293-1045991513-3901128562/",
+                            scopes: null, ZBuildType.Live_SSO, true, true).ConfigureAwait(false);
+            // AuthManager.IAMSSOKit.PresentLoginScreen(new TokenCallBack());
+            string token = await AuthManager.GetAuthTokenAsync("679547111");
+            Debug.WriteLine("token", token);
+        }
 
+        protected async override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            await InitSSOKit();
+
+        }
         private void HamburgerButton_Click(object sender, RoutedEventArgs e)
         {
             MySplitView.IsPaneOpen = !MySplitView.IsPaneOpen;
@@ -100,6 +118,32 @@ namespace ZTasks
         private void Refresh(object sender, RoutedEventArgs e)
         {
             RefreshEventClicked.Invoke();
+        }
+    }
+    class TokenCallBack : IZSSOTokenCallback
+    {
+        public void LoadingIndicatorAllowed()
+        {
+        }
+
+        public void PhotoDownloadFailed(ZSSOErrorCodes errorCode, string message)
+        {
+        }
+
+        public void PhotoDownloadSuccess(UserData userData)
+        {
+            string userId = userData.Zuid.ToString();
+        }
+
+        public void TokenFetchComplete(ZToken AccessToken, UserData userData)
+        {
+
+        }
+
+        public void TokenFetchFailed(ZSSOErrorCodes errorCode, Exception ex)
+        {
+            //throw new NotImplementedException();
+            Debug.WriteLine(ex.Message);
         }
     }
 }

@@ -230,8 +230,10 @@ namespace ZTasks.Presentation.ViewModel
         public void TasksForToday()
         {
             taskView = TaskView.Today;
-            Ztasks.Clear();
-            ConvertListData(Today);
+            usecase = new GetTaskUseCase(this, taskView);
+            usecase.Execute();
+            //Ztasks.Clear();
+            //ConvertListData(Today);
 
         }
         public void DisplayTasksForToday()
@@ -243,8 +245,10 @@ namespace ZTasks.Presentation.ViewModel
         public void TasksAssignedToOthers()
         {
             taskView = TaskView.AssignedToOthers;
-            Ztasks.Clear();
-            ConvertListData(AssignedToOthers);
+            usecase = new GetTaskUseCase(this, taskView);
+            usecase.Execute();
+            //Ztasks.Clear();
+            //ConvertListData(AssignedToOthers);
 
         }
         public void DisplayTasksAssignedToOthers()
@@ -256,8 +260,10 @@ namespace ZTasks.Presentation.ViewModel
         public void UpcomingTasks()
         {
             taskView = TaskView.Upcoming;
-            Ztasks.Clear();
-            ConvertListData(Upcoming);
+            usecase = new GetTaskUseCase(this, taskView);
+            usecase.Execute();
+            //Ztasks.Clear();
+            //ConvertListData(Upcoming);
 
         }
         public void DisplayUpcomingTasks()
@@ -269,8 +275,10 @@ namespace ZTasks.Presentation.ViewModel
         public void DelayedTasks()
         {
             taskView = TaskView.Delayed;
-            Ztasks.Clear();
-            ConvertListData(Delayed);
+            usecase = new GetTaskUseCase(this, taskView);
+            usecase.Execute();
+            //Ztasks.Clear();
+            //ConvertListData(Delayed);
 
         }
         public void DisplayDelayedTasks()
@@ -291,12 +299,14 @@ namespace ZTasks.Presentation.ViewModel
             await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
             {
                 Ztasks.Clear();
-                Today.Clear();
-                Upcoming.Clear();
-                Delayed.Clear();
-                AssignedToOthers.Clear();
-                Home.Clear();
-                AddElementsToCollection(ZtaskList);
+                Display(ZtaskList);
+
+                //Today.Clear();
+                //Upcoming.Clear();
+                //Delayed.Clear();
+                //AssignedToOthers.Clear();
+                //Home.Clear();
+                //AddElementsToCollection(ZtaskList);
             });
 
 
@@ -309,26 +319,36 @@ namespace ZTasks.Presentation.ViewModel
                 ZTaskCollection.Add(task);
                 Home.Add(task);
             }
-            Display();
+            //Display();
         }
 
-        public void Display()
+        public void Display(List<ZTask> ZtaskList)
         {
             switch (taskView)
             {
                 case TaskView.Home:
+                    Home.Clear();
+                    Home = ZtaskList;
                     DisplayMyTasks();
                     break;
                 case TaskView.Today:
+                    Today.Clear();
+                    Today = ZtaskList;
                     DisplayTasksForToday();
                     break;
                 case TaskView.Upcoming:
+                    Upcoming.Clear();
+                    Upcoming = ZtaskList;
                     DisplayUpcomingTasks();
                     break;
                 case TaskView.Delayed:
+                    Delayed.Clear();
+                    Delayed = ZtaskList;
                     DisplayDelayedTasks();
                     break;
                 case TaskView.AssignedToOthers:
+                    AssignedToOthers.Clear();
+                    AssignedToOthers = ZtaskList;
                     DisplayTasksAssignedToOthers();
                     break;
             }
