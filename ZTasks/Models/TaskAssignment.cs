@@ -15,7 +15,7 @@ namespace ZTasks.Models
         private string ZAssignedByName;
         private string ZAssigneeId;
         private string ZAssigneeName;
-
+      
         [PrimaryKey]
 
         public string TaskId

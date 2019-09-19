@@ -32,6 +32,7 @@ namespace ZTasks
     /// </summary>
     public sealed partial class MainPage : Page
     {
+
         public delegate void AddTaskEventHandler(object sender, RoutedEventArgs args);
         public event AddTaskEventHandler AddTaskClicked;
         public delegate void RefreshEvent();
@@ -65,9 +66,10 @@ namespace ZTasks
             await AuthManager.InitializeSSOKit("1002.L94IXL8BEJB167191T7QML3S0ZMTQE",
                             "ms-app://s-1-15-2-2243022705-1476087268-978001290-2832051958-2838887293-1045991513-3901128562/",
                             scopes: null, ZBuildType.Live_SSO, true, true).ConfigureAwait(false);
-            // AuthManager.IAMSSOKit.PresentLoginScreen(new TokenCallBack());
-            string token = await AuthManager.GetAuthTokenAsync("679547111");
-            Debug.WriteLine("token", token);
+            if (!AuthManager.IAMSSOKit.IsUserLoggedIn())
+            {
+                AuthManager.IAMSSOKit.PresentLoginScreen(new TokenCallBack());
+            }
         }
 
         protected async override void OnNavigatedTo(NavigationEventArgs e)
@@ -137,7 +139,7 @@ namespace ZTasks
 
         public void TokenFetchComplete(ZToken AccessToken, UserData userData)
         {
-
+            Debug.WriteLine("Hii");
         }
 
         public void TokenFetchFailed(ZSSOErrorCodes errorCode, Exception ex)

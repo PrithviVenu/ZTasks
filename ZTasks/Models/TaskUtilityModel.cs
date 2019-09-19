@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ZTasks.Models
 {
-    class TaskUtilityModel
+   public class TaskUtilityModel
     {
         public string TaskId { get; set; }
         public string TaskTitle { get; set; }

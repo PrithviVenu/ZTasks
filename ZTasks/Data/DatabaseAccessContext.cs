@@ -6,7 +6,7 @@ using ZTasks.Models;
 
 namespace ZTasks.Data
 {
-    class DatabaseAccessContext
+    public class DatabaseAccessContext
     {
         public static SQLiteAsyncConnection Connection;
         private static DatabaseAccessContext instance = null;

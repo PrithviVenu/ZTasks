@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using ZTasks.Data.DatabaseHandlerCallback;
 using ZTasks.Data.DMHandlerContract;
+using ZTasks.Data.NetworkHandler;
 using ZTasks.Models;
 using ZTasks.Utility;
 namespace ZTasks.Data.DatabaseHandler
@@ -37,8 +38,8 @@ namespace ZTasks.Data.DatabaseHandler
 
         async public Task GetTasks(IGetTaskDMCallback callback, TaskView taskView)
         {
-            string query = "";
             List<TaskUtilityModel> Tasks = new List<TaskUtilityModel>();
+            string query;
             //Debug.WriteLine(DateTime.Today.ToUniversalTime(), "todayyy");
             switch (taskView)
             {
