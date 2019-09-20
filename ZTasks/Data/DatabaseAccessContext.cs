@@ -54,10 +54,10 @@ namespace ZTasks.Data
             Connection.CreateTableAsync<TaskDetail>();
             User user = new User
             {
-                UserId = "user101010",
+                UserId = "679547111",
                 UserName = "Prithvi Venu"
             };
-            Connection.InsertAsync(user);
+            Connection.InsertOrReplaceAsync(user);
         }
 
     }

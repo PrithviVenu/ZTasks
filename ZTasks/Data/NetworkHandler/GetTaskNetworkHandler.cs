@@ -23,7 +23,7 @@ namespace ZTasks.Data.NetworkHandler
         }
         public async Task GetTasksAsync(IGetTasksNetworkCallback getTasksNetworkCallback)
         {
-           await NetworkHelper.InitializeClientAsync();
+            await NetworkHelper.InitializeClientAsync();
             List<TaskUtilityModel> tasks = new List<TaskUtilityModel>();
             var content = new FormUrlEncodedContent(new[]
             {
@@ -59,7 +59,7 @@ namespace ZTasks.Data.NetworkHandler
                     else if (jProp.Name == "CREATEDTIME")
                     {
                         var date = (long)jProp.Value;
-                        model.CreatedTime = DateTimeOffset.FromUnixTimeMilliseconds(date);
+                        model.CreatedTime = DateTimeOffset.FromUnixTimeMilliseconds(date).Date;
 
                     }
                     else if (jProp.Name == "DUEDATEINMILLISECONDS")
@@ -69,14 +69,14 @@ namespace ZTasks.Data.NetworkHandler
                         var date = (long)jProp.Value;
                         if (date != -1)
                         {
-                            model.DueDate = DateTimeOffset.FromUnixTimeMilliseconds(date);
+                            model.DueDate = DateTimeOffset.FromUnixTimeMilliseconds(date).Date;
                         }
 
                     }
                     else if (jProp.Name == "UPDATEDTIME")
                     {
                         var date = (long)jProp.Value;
-                        model.ModifiedDate = DateTimeOffset.FromUnixTimeMilliseconds(date);
+                        model.ModifiedDate = DateTimeOffset.FromUnixTimeMilliseconds(date).Date;
                     }
                     else if (jProp.Name == "PRIORITY")
                     {
@@ -88,7 +88,7 @@ namespace ZTasks.Data.NetworkHandler
                     }
                     else if (jProp.Name == "RD")
                     {
-                        model.RemindOn = (DateTimeOffset)jProp.Value;
+                        model.RemindOn = ((DateTimeOffset)jProp.Value).Date;
                     }
                     else if (jProp.Name == "SUMMARY")
                     {

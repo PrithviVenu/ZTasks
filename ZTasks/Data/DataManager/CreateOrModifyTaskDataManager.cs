@@ -7,10 +7,13 @@ using ZTasks.Data.DMHandlerContract;
 using ZTasks.Data.DatabaseHandler;
 using ZTasks.Data.DatabaseHandlerCallback;
 using ZTasks.Utility;
+using ZTasks.Data.NetworkCallback;
+using ZTasks.Data.NetworkHandler;
+using ZTasks.Data.DMNetworkHandlerContract;
 
 namespace ZTasks.Data.DataManager
 {
-    class CreateOrModifyTaskDataManager : ICreateOrModifyTaskDMContract, ICreateOrModifyTaskDMCallback
+    class CreateOrModifyTaskDataManager : ICreateOrModifyTaskDMContract, ICreateOrModifyTaskDMCallback, IAddTasksNetworkCallback
     {
 
         public ICreateOrModifyTaskDbHandlerDMContract addTaskDbHandler;
@@ -22,16 +25,25 @@ namespace ZTasks.Data.DataManager
         {
             this.callback = callback;
             addTaskDbHandler = CreateOrModifyTaskDbHandler.GetInstance;
-            await addTaskDbHandler.AddOrModifyTask(task, parentZtask, this, taskOperation);
+            if (taskOperation == TaskOperation.Add)
+            {
+                IAddTasksNetworkHandlerContract Handler = new CreateOrModifyTaskNetworkHandler();
+                await Handler.AddTasksAsync(this, task, parentZtask);
+            }
+            //  await addTaskDbHandler.AddOrModifyTask(task, parentZtask, this, taskOperation);
         }
         public void OnSuccess(bool success)
         {
             callback.OnSuccess(success);
         }
 
+        public void OnSuccess(ZTask task)
+        {
 
+        }
 
-
-
+        public void OnFailure()
+        {
+        }
     }
 }

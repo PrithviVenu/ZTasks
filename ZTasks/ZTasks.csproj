@@ -135,7 +135,9 @@
     <Compile Include="Data\DMHandlerContract\IAddTasksDBHandlerContract.cs" />
     <Compile Include="Data\DMHandlerContract\ICreateOrModifyTaskDbHandlerDMContract.cs" />
     <Compile Include="Data\DMHandlerContract\IGetTaskDbHandlerDMContract.cs" />
+    <Compile Include="Data\DMNetworkHandlerContract\IAddTasksNetworkHandlerContract.cs" />
     <Compile Include="Data\DMNetworkHandlerContract\IGetTaskNetworkHandlerContract.cs" />
+    <Compile Include="Data\NetworkCallback\IAddTasksNetworkCallback.cs" />
     <Compile Include="Data\NetworkCallback\IGetTasksNetworkCallback.cs" />
     <Compile Include="Data\NetworkHandler\CreateOrModifyTaskNetworkHandler.cs" />
     <Compile Include="Data\NetworkHandler\GetTaskNetworkHandler.cs" />

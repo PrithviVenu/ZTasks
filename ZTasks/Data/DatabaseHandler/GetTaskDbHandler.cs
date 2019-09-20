@@ -44,23 +44,23 @@ namespace ZTasks.Data.DatabaseHandler
             switch (taskView)
             {
                 case TaskView.Home:
-                    query = "select TaskDetail.* , TaskAssignment.* from TaskDetail inner join TaskAssignment where TaskDetail.TaskId = TaskAssignment.TaskId ";
+                    query = "select TaskDetail.* , TaskAssignment.* from TaskDetail inner join TaskAssignment where TaskDetail.TaskId = TaskAssignment.TaskId ORDER BY TaskTitle COLLATE NOCASE ASC ";
                     Tasks = await DatabaseAccessContext.Connection.QueryAsync<TaskUtilityModel>(query);
                     break;
                 case TaskView.Today:
-                    query = "select TaskDetail.* , TaskAssignment.* from TaskDetail inner join TaskAssignment where TaskDetail.TaskId = TaskAssignment.TaskId AND TaskDetail.DueDate NOT NULL AND TaskStatus = 0 AND TaskDetail.DueDate = ?";
+                    query = "select TaskDetail.* , TaskAssignment.* from TaskDetail inner join TaskAssignment where TaskDetail.TaskId = TaskAssignment.TaskId AND TaskDetail.DueDate NOT NULL AND TaskDetail.DueDate = ? ORDER BY TaskTitle COLLATE NOCASE ASC";
                     Tasks = await DatabaseAccessContext.Connection.QueryAsync<TaskUtilityModel>(query, DateTime.Today.ToUniversalTime());
                     break;
                 case TaskView.Upcoming:
-                    query = "select TaskDetail.* , TaskAssignment.* from TaskDetail inner join TaskAssignment where TaskDetail.TaskId = TaskAssignment.TaskId AND TaskDetail.DueDate NOT NULL AND TaskStatus = 0 AND TaskDetail.DueDate > ?";
+                    query = "select TaskDetail.* , TaskAssignment.* from TaskDetail inner join TaskAssignment where TaskDetail.TaskId = TaskAssignment.TaskId AND TaskDetail.DueDate NOT NULL AND TaskDetail.DueDate > ? ORDER BY TaskTitle COLLATE NOCASE ASC";
                     Tasks = await DatabaseAccessContext.Connection.QueryAsync<TaskUtilityModel>(query, DateTime.Today.ToUniversalTime());
                     break;
                 case TaskView.Delayed:
-                    query = "select TaskDetail.* , TaskAssignment.* from TaskDetail inner join TaskAssignment where TaskDetail.TaskId = TaskAssignment.TaskId AND TaskDetail.DueDate NOT NULL AND TaskStatus = 0 AND TaskDetail.DueDate < ?";
+                    query = "select TaskDetail.* , TaskAssignment.* from TaskDetail inner join TaskAssignment where TaskDetail.TaskId = TaskAssignment.TaskId AND TaskDetail.DueDate NOT NULL  AND TaskDetail.DueDate < ? ORDER BY TaskTitle COLLATE NOCASE ASC";
                     Tasks = await DatabaseAccessContext.Connection.QueryAsync<TaskUtilityModel>(query, DateTime.Today.ToUniversalTime());
                     break;
                 case TaskView.AssignedToOthers:
-                    query = "select TaskDetail.* , TaskAssignment.* from TaskDetail inner join TaskAssignment where TaskDetail.TaskId = TaskAssignment.TaskId AND AssignedById = 'user101010' AND AssigneeId != 'user101010' ";
+                    query = "select TaskDetail.* , TaskAssignment.* from TaskDetail inner join TaskAssignment where TaskDetail.TaskId = TaskAssignment.TaskId AND AssignedById = '679547111' AND AssigneeId != '679547111'  ORDER BY TaskTitle COLLATE NOCASE ASC";
                     Tasks = await DatabaseAccessContext.Connection.QueryAsync<TaskUtilityModel>(query, DateTime.Today.ToUniversalTime());
                     break;
             }

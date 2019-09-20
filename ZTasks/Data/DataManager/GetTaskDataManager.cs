@@ -21,6 +21,9 @@ namespace ZTasks.Data.DataManager
 
         async public Task GetTasks(IGetTaskCallback callback, TaskView taskView)
         {
+            this.callback = callback;
+            getTaskDbHandler = GetTaskDbHandler.GetInstance;
+            await getTaskDbHandler.GetTasks(this, taskView);
             IGetTaskNetworkHandlerContract getTaskNetworkHandler = new GetTaskNetworkHandler();
             await getTaskNetworkHandler.GetTasksAsync(this);
             this.callback = callback;
