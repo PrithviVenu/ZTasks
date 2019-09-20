@@ -30,16 +30,16 @@ namespace ZTasks.Data.DataManager
                 IAddTasksNetworkHandlerContract Handler = new CreateOrModifyTaskNetworkHandler();
                 await Handler.AddTasksAsync(this, task, parentZtask);
             }
-            //  await addTaskDbHandler.AddOrModifyTask(task, parentZtask, this, taskOperation);
+            //await addTaskDbHandler.AddOrModifyTask(task, parentZtask, this, taskOperation);
         }
-        public void OnSuccess(bool success)
-        {
-            callback.OnSuccess(success);
-        }
+        //public void OnSuccess(bool success)
+        //{
+        //    callback.OnSuccess(success);
+        //}
 
         public void OnSuccess(ZTask task)
         {
-
+            callback.OnSuccess(task);
         }
 
         public void OnFailure()

@@ -25,9 +25,9 @@ namespace ZTasks.Domain.Usecase
         }
 
 
-        public void OnSuccess(bool success)
+        public void OnSuccess(ZTask task)
         {
-            callback.OnSuccess(success);
+            callback.OnSuccess(task);
         }
 
         protected override async Task ActionAsync()

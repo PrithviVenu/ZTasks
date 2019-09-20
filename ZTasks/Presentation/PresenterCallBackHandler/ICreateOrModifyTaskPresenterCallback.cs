@@ -1,10 +1,12 @@
 ﻿
 
+using ZTasks.Models;
+
 namespace ZTasks.Presentation.PresenterCallBackHandler
 {
     interface ICreateOrModifyTaskPresenterCallback
     {
-        void OnSuccess(bool success);
+        void OnSuccess(ZTask task);
 
     }
 }

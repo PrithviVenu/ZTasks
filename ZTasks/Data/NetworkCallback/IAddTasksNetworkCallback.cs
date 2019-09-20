@@ -11,7 +11,6 @@ namespace ZTasks.Data.NetworkCallback
     {
         void OnSuccess(ZTask task);
         void OnFailure();
-        void OnSuccess(bool success);
 
     }
 }

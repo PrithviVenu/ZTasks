@@ -28,7 +28,11 @@ namespace ZTasks.Data.NetworkHandler
             var result = await response.Content.ReadAsStringAsync();
             if (response.IsSuccessStatusCode)
             {
-                addTasksNetworkCallback.OnSuccess(true);
+                ZTask zTask = new ZTask();
+                zTask.TaskDetails.TaskTitle = parentZtask.TaskDetails.TaskTitle;
+                zTask.Assignment.AssigneeName = parentZtask.Assignment.AssigneeName;
+
+                addTasksNetworkCallback.OnSuccess(zTask);
             }
             Debug.WriteLine(result);
         }

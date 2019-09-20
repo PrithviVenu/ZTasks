@@ -50,7 +50,8 @@ namespace ZTasks.Data.DatabaseHandler
                 await DatabaseAccessContext.Connection.UpdateAsync(parentZtask.Assignment);
 
             }
-            callback.OnSuccess(true);
+            Debug.WriteLine("hii");
+            callback.OnSuccess(parentZtask);
 
         }
 

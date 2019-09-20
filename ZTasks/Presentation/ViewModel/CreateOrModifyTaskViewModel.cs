@@ -17,7 +17,7 @@ namespace ZTasks.Presentation.ViewModel
     {
         private ObservableCollection<ZTask> ZTaskCollection { get; set; }
         UseCaseBase usecase;
-        public delegate void Refresh();
+        public delegate void Refresh(ZTask task);
         public event Refresh RefreshData;
         public ObservableCollection<ZTask> Ztasks
         {
@@ -63,12 +63,13 @@ namespace ZTasks.Presentation.ViewModel
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public async void OnSuccess(bool success)
+        public async void OnSuccess(ZTask task)
         {
             await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
             {
                 Debug.WriteLine("success", RefreshData);
-                RefreshData?.Invoke();
+
+                RefreshData?.Invoke(task);
             });
 
         }

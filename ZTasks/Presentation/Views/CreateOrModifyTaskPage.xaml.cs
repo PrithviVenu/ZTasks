@@ -31,7 +31,7 @@ namespace ZTasks.Presentation.Views
         private string TaskId = "";
         public delegate void Collapse();
         public event Collapse CollapseClicked;
-        public delegate void Refresh();
+        public delegate void Refresh(ZTask task);
         public event Refresh RefreshData;
         public event PropertyChangedEventHandler PropertyChanged;
         public CreateOrModifyTaskViewModel createTaskViewModel;
@@ -180,8 +180,8 @@ namespace ZTasks.Presentation.Views
         {
             this.CollapseClicked -= Page.CollapseSlideInPane;
             this.CollapseClicked += Page.CollapseSlideInPane;
-            this.RefreshData -= Page.HomePageRefresh;
-            this.RefreshData += Page.HomePageRefresh;
+            this.RefreshData -= Page.RefreshTask;
+            this.RefreshData += Page.RefreshTask;
             Page.TaskClicked -= TaskItemClick;
             Page.TaskClicked += TaskItemClick;
             Page.AddEvent -= AddEvent;
@@ -208,9 +208,9 @@ namespace ZTasks.Presentation.Views
         }
 
 
-        public void RefreshList()
+        public void RefreshList(ZTask task)
         {
-            RefreshData?.Invoke();
+            RefreshData?.Invoke(task);
             taskOperation = TaskOperation.Modify;
 
         }

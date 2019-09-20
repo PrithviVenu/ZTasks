@@ -53,6 +53,7 @@ namespace ZTasks.Presentation.Views
 
         public void RefreshTask(ZTask task)
         {
+            tasks.Add(task);
             TasksListView.ScrollIntoView(task);
             TasksListView.SelectedItem = task;
         }
