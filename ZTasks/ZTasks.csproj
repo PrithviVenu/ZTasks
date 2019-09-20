@@ -186,6 +186,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\notification.png" />
+    <Content Include="Assets\SplashScreen.scale-400.png" />
+    <Content Include="Assets\Square44x44Logo.scale-100.png" />
+    <Content Include="Assets\Square44x44Logo.scale-400.png" />
     <Content Include="Assets\tasks.png" />
     <Content Include="Assets\TasksEmpty.png" />
     <Content Include="Assets\user.jpg" />

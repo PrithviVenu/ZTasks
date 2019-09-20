@@ -30,7 +30,10 @@ namespace ZTasks.Data.DataManager
                 IAddTasksNetworkHandlerContract Handler = new CreateOrModifyTaskNetworkHandler();
                 await Handler.AddTasksAsync(this, task, parentZtask);
             }
-            //await addTaskDbHandler.AddOrModifyTask(task, parentZtask, this, taskOperation);
+            else
+            {
+                await addTaskDbHandler.AddOrModifyTask(task, parentZtask, this, taskOperation);
+            }
         }
         //public void OnSuccess(bool success)
         //{
