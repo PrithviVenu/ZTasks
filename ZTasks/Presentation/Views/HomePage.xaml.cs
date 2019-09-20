@@ -47,7 +47,14 @@ namespace ZTasks.Presentation.Views
         }
         public void HomePageRefresh()
         {
+
             taskListViewModel.RefreshTasks();
+        }
+
+        public void RefreshTask(ZTask task)
+        {
+            TasksListView.ScrollIntoView(task);
+            TasksListView.SelectedItem = task;
         }
         public void TodayPageSetup()
         {
@@ -176,6 +183,7 @@ namespace ZTasks.Presentation.Views
             MyFrame.Navigate(typeof(CreateOrModifyTaskPage), this, new SuppressNavigationTransitionInfo());
             ShowSlideInPane();
             AddEvent?.Invoke();
+
             //CollapseSlideInPane();
 
         }
