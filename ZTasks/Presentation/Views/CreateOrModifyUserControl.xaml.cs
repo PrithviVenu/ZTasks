@@ -94,12 +94,7 @@ namespace ZTasks.Presentation.Views
             }
 
         }
-        private void ShowSubTaskCalendarButton_Click(object sender, RoutedEventArgs e)
-        {
-            SubTaskCalendarPopup.IsOpen = !SubTaskCalendarPopup.IsOpen;
 
-
-        }
         private void Box_KeyDown(object sender, KeyRoutedEventArgs e)
         {
             if (e.Key == Windows.System.VirtualKey.Enter)

@@ -276,10 +276,7 @@ namespace ZTasks.Presentation.Views
 
             }
         }
-        private void ShowCalendarButton_Click(object sender, RoutedEventArgs e)
-        {
-            CalendarPopup.IsOpen = !CalendarPopup.IsOpen;
-        }
+    
         private async void SaveTask(object sender, RoutedEventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(TaskTitle.Text))

@@ -10,12 +10,18 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     NavigationCacheMode="Required">
     <Page.Resources>
-        <local:DateTimeFormatter  x:Key="DateTimeFormatter"/>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Themes/CalanderStyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <local:DateTimeFormatter  x:Key="DateTimeFormatter"/>
+        </ResourceDictionary>
     </Page.Resources>
+
 
     <RelativePanel>
         <TextBlock Name="MainTitle" HorizontalAlignment="Center" RelativePanel.AlignHorizontalCenterWithPanel="True" Margin="0 10 0 0" FontSize="16" FontWeight="Medium" Text="Add Task"/>
-        <TextBox  Name="TaskTitle"  IsSpellCheckEnabled="True"  KeyDown="Task_KeyDown" Text="{x:Bind TaskObj.TaskDetails.TaskTitle,Mode=TwoWay}" BorderThickness="0 0 0 0"  RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.Below="MainTitle"  Margin="0 40 130 0" FontSize="16"  PlaceholderText="Task Title" />
+        <TextBox  Name="TaskTitle"  IsSpellCheckEnabled="True"  KeyDown="Task_KeyDown" Text="{x:Bind TaskObj.TaskDetails.TaskTitle,Mode=TwoWay}" BorderThickness="0 0 0 0"  RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.Below="MainTitle"  Margin="0 40 195 0" FontSize="16"  PlaceholderText="Task Title" />
         <Button Name="AddAssignee" Click="AddAssigneeToTask" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignBottomWith="TaskTitle" Margin="0,0,30,0" Background="Transparent" BorderThickness="0" Height="Auto" Width="Auto">
             <TextBlock
                   Text="&#xE1E2;"
@@ -65,21 +71,10 @@
                 </MenuFlyout>
             </Button.Flyout>
         </Button>
-        <Button Name="DueDate"   Click="ShowCalendarButton_Click" RelativePanel.AlignBottomWith="TaskTitle" RelativePanel.LeftOf="Priority" Background="Transparent" BorderThickness="0" Height="Auto" Width="Auto">
-            <TextBlock
-                  Text="&#xE163;"
-                  FontFamily="Segoe MDL2 Assets"
-                  FontSize="19"
-                  Foreground="#888888"/>
-            <Button.Resources>
-                <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="Transparent"/>
-                <SolidColorBrush x:Key="ButtonBackgroundPressed" Color="Transparent"/>
+        <CalendarDatePicker Style="{StaticResource DueDateStyle}" RelativePanel.AlignBottomWith="TaskTitle" RelativePanel.LeftOf="Priority" 
+              BorderThickness="0" BorderBrush="Transparent" 
+              Date="{x:Bind TaskObj.TaskDetails.DueDate , Mode=TwoWay,Converter={StaticResource DateTimeFormatter}}" x:Name="calendar"  PlaceholderText="Due date"></CalendarDatePicker>
 
-            </Button.Resources>
-        </Button>
-        <Popup Name="CalendarPopup"  RelativePanel.Below="DueDate" IsLightDismissEnabled="True"  RelativePanel.AlignHorizontalCenterWith="DueDate">
-            <CalendarDatePicker Date="{x:Bind TaskObj.TaskDetails.DueDate , Mode=TwoWay,Converter={StaticResource DateTimeFormatter}}" x:Name="calendar"  PlaceholderText="Due date"></CalendarDatePicker>
-        </Popup>
         <Line Name="Line" Stretch="Fill" Margin="10 0 10 0" Stroke="#8888" X2="1" Opacity="0.2" RelativePanel.Below="TaskTitle"/>
         <Button Name="ClosePaneButton"
               BorderThickness="0"
