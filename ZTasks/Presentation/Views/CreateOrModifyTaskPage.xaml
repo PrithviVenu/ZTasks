@@ -57,9 +57,9 @@
                     <MenuFlyout.Items  >
                         <MenuFlyoutItem x:Name="High" Tag="2" Text="High"  Click="PriorityClick">
                         </MenuFlyoutItem >
-                        <MenuFlyoutItem x:Name="Medium" Tag="1" Text="Medium"  Click="PriorityClick">
+                        <MenuFlyoutItem x:Name="Medium" Tag="3" Text="Medium"  Click="PriorityClick">
                         </MenuFlyoutItem >
-                        <MenuFlyoutItem x:Name="Low" Tag="0" Text="Low"  Click="PriorityClick">
+                        <MenuFlyoutItem x:Name="Low" Tag="4" Text="Low"  Click="PriorityClick">
                         </MenuFlyoutItem>
                     </MenuFlyout.Items>
                 </MenuFlyout>

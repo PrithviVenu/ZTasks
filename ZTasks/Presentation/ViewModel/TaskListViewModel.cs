@@ -76,7 +76,7 @@ namespace ZTasks.Presentation.ViewModel
                     case FilterOperation.open:
                         foreach (ZTask task in ZTaskList)
                         {
-                            if (task.TaskDetails.TaskStatus == 0)
+                            if (task.TaskDetails.TaskStatus == 2)
                             {
                                 FilteredZTaskList.Add(task);
                             }
@@ -85,7 +85,7 @@ namespace ZTasks.Presentation.ViewModel
                     case FilterOperation.closed:
                         foreach (ZTask task in ZTaskList)
                         {
-                            if (task.TaskDetails.TaskStatus == 1)
+                            if (task.TaskDetails.TaskStatus == 3)
                             {
                                 FilteredZTaskList.Add(task);
                             }
@@ -94,7 +94,7 @@ namespace ZTasks.Presentation.ViewModel
                     case FilterOperation.Low:
                         foreach (ZTask task in ZTaskList)
                         {
-                            if (task.TaskDetails.Priority == 0)
+                            if (task.TaskDetails.Priority == 4)
                             {
                                 FilteredZTaskList.Add(task);
                             }
@@ -103,7 +103,7 @@ namespace ZTasks.Presentation.ViewModel
                     case FilterOperation.Medium:
                         foreach (ZTask task in ZTaskList)
                         {
-                            if (task.TaskDetails.Priority == 1)
+                            if (task.TaskDetails.Priority == 3)
                             {
                                 FilteredZTaskList.Add(task);
                             }

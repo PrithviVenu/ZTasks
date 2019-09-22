@@ -15,12 +15,12 @@ namespace ZTasks.Models
         private DateTimeOffset? ZCreatedTime;
         private DateTimeOffset? ZDueDate;
         private DateTimeOffset? ZModifiedDate;
-        private int ZPriority;
-        private int ZTaskStatus;
+        private int ZPriority = 4;
+        private int ZTaskStatus=2;
         private DateTimeOffset? ZRemindOn;
         private string ZDescription;
         private string ZParentTaskId;
-       
+
         [PrimaryKey]
 
         public string TaskId

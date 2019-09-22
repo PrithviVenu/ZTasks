@@ -10,9 +10,9 @@ namespace ZTasks.Utility
     {
         open,
         closed,
-        Low,
+        High,  
         Medium,
-        High
+        Low
     }
     public enum SortOperation
     {

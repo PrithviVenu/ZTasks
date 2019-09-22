@@ -61,7 +61,6 @@ namespace ZTasks.Presentation.Views
         {
             Low.Background = new SolidColorBrush(Color.FromArgb(255, 227, 227, 227));
             SubTaskPriorityText.Foreground = new SolidColorBrush(Color.FromArgb(255, 136, 136, 136));
-            //task.TaskDetails.Priority = 0; Not Required As By Default its gonna be 0.
         }
 
         public void PriorityClick(object sender, RoutedEventArgs e)
@@ -78,19 +77,19 @@ namespace ZTasks.Presentation.Views
                 SubTaskPriorityText.Foreground = new SolidColorBrush(Color.FromArgb(255, 217, 72, 59));
                 task.TaskDetails.Priority = 2;
             }
-            else if ((string)item.Tag == "1")
+            else if ((string)item.Tag == "3")
             {
                 Medium.Background = new SolidColorBrush(Color.FromArgb(255, 227, 227, 227));
                 SubTaskPriorityText.Foreground = new SolidColorBrush(Color.FromArgb(255, 93, 188, 210));
-                task.TaskDetails.Priority = 1;
+                task.TaskDetails.Priority = 3;
 
             }
-            else if ((string)item.Tag == "0")
+            else if ((string)item.Tag == "4")
 
             {
                 Low.Background = new SolidColorBrush(Color.FromArgb(255, 227, 227, 227));
                 SubTaskPriorityText.Foreground = new SolidColorBrush(Color.FromArgb(255, 136, 136, 136));
-                task.TaskDetails.Priority = 0;
+                task.TaskDetails.Priority = 4;
 
             }
 

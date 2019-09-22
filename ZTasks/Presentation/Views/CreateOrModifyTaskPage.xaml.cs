@@ -73,7 +73,7 @@ namespace ZTasks.Presentation.Views
             subtasks.Add(zSubTask);
             Low.Background = new SolidColorBrush(Color.FromArgb(255, 227, 227, 227));
             PriorityText.Foreground = new SolidColorBrush(Color.FromArgb(255, 136, 136, 136));
-            TaskObj.TaskDetails.Priority = 0;
+            TaskObj.TaskDetails.Priority = 4;
         }
         private void CreateOrModifyUserControlLoaded(object sender, RoutedEventArgs e)
         {
@@ -112,19 +112,19 @@ namespace ZTasks.Presentation.Views
                 PriorityText.Foreground = new SolidColorBrush(Color.FromArgb(255, 217, 72, 59));
                 TaskObj.TaskDetails.Priority = 2;
             }
-            else if ((string)item.Tag == "1")
+            else if ((string)item.Tag == "3")
             {
                 Medium.Background = new SolidColorBrush(Color.FromArgb(255, 227, 227, 227));
                 PriorityText.Foreground = new SolidColorBrush(Color.FromArgb(255, 93, 188, 210));
-                TaskObj.TaskDetails.Priority = 1;
+                TaskObj.TaskDetails.Priority = 3;
 
             }
-            else if ((string)item.Tag == "0")
+            else if ((string)item.Tag == "4")
 
             {
                 Low.Background = new SolidColorBrush(Color.FromArgb(255, 227, 227, 227));
                 PriorityText.Foreground = new SolidColorBrush(Color.FromArgb(255, 136, 136, 136));
-                TaskObj.TaskDetails.Priority = 0;
+                TaskObj.TaskDetails.Priority = 4;
 
             }
 
@@ -305,12 +305,12 @@ namespace ZTasks.Presentation.Views
             High.Background = new SolidColorBrush(Colors.Transparent);
             Low.Background = new SolidColorBrush(Colors.Transparent);
             Medium.Background = new SolidColorBrush(Colors.Transparent);
-            if (zTask.TaskDetails.Priority == 0)
+            if (zTask.TaskDetails.Priority == 4)
             {
                 Low.Background = new SolidColorBrush(Color.FromArgb(255, 227, 227, 227));
                 PriorityText.Foreground = new SolidColorBrush(Color.FromArgb(255, 136, 136, 136));
             }
-            else if (zTask.TaskDetails.Priority == 1)
+            else if (zTask.TaskDetails.Priority == 3)
             {
                 Medium.Background = new SolidColorBrush(Color.FromArgb(255, 227, 227, 227));
                 PriorityText.Foreground = new SolidColorBrush(Color.FromArgb(255, 93, 188, 210));
