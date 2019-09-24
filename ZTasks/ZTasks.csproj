@@ -156,6 +156,8 @@
     <Compile Include="Domain\Usecase\GetTaskUseCase.cs" />
     <Compile Include="Domain\Usecase\UseCaseBase.cs" />
     <Compile Include="Presentation\Views\DateTimeFormatter.cs" />
+    <Compile Include="Presentation\Views\FlyoutBackgroundConverter.cs" />
+    <Compile Include="Presentation\Views\PriorityBackgroundConverter.cs" />
     <Compile Include="Utility\TaskEnums.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>

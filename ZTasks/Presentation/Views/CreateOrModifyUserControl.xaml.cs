@@ -14,8 +14,8 @@ namespace ZTasks.Presentation.Views
     public sealed partial class CreateOrModifyUserControl : UserControl
     {
         public Models.ZTask Subtasks { get { return this.DataContext as Models.ZTask; } }
-        public delegate void KeyEvent(object sender, KeyRoutedEventArgs e);
-        public event KeyEvent EnterKeyDown;
+        //public delegate void KeyEvent(object sender, KeyRoutedEventArgs e);
+        //public event KeyEvent EnterKeyDown;
         public delegate void TextBoxContextChanged(FrameworkElement sender,
      DataContextChangedEventArgs args);
         string OldText = string.Empty;
@@ -60,7 +60,7 @@ namespace ZTasks.Presentation.Views
         public void AddEvent()
         {
             Low.Background = new SolidColorBrush(Color.FromArgb(255, 227, 227, 227));
-            SubTaskPriorityText.Foreground = new SolidColorBrush(Color.FromArgb(255, 136, 136, 136));
+            // SubTaskPriorityText.Foreground = new SolidColorBrush(Color.FromArgb(255, 136, 136, 136));
         }
 
         public void PriorityClick(object sender, RoutedEventArgs e)
@@ -74,13 +74,13 @@ namespace ZTasks.Presentation.Views
             if ((string)item.Tag == "2")
             {
                 High.Background = new SolidColorBrush(Color.FromArgb(255, 227, 227, 227));
-                SubTaskPriorityText.Foreground = new SolidColorBrush(Color.FromArgb(255, 217, 72, 59));
+                //SubTaskPriorityText.Foreground = new SolidColorBrush(Color.FromArgb(255, 217, 72, 59));
                 task.TaskDetails.Priority = 2;
             }
             else if ((string)item.Tag == "3")
             {
                 Medium.Background = new SolidColorBrush(Color.FromArgb(255, 227, 227, 227));
-                SubTaskPriorityText.Foreground = new SolidColorBrush(Color.FromArgb(255, 93, 188, 210));
+                // SubTaskPriorityText.Foreground = new SolidColorBrush(Color.FromArgb(255, 93, 188, 210));
                 task.TaskDetails.Priority = 3;
 
             }
@@ -88,21 +88,21 @@ namespace ZTasks.Presentation.Views
 
             {
                 Low.Background = new SolidColorBrush(Color.FromArgb(255, 227, 227, 227));
-                SubTaskPriorityText.Foreground = new SolidColorBrush(Color.FromArgb(255, 136, 136, 136));
+                //SubTaskPriorityText.Foreground = new SolidColorBrush(Color.FromArgb(255, 136, 136, 136));
                 task.TaskDetails.Priority = 4;
 
             }
 
         }
 
-        private void Box_KeyDown(object sender, KeyRoutedEventArgs e)
-        {
-            if (e.Key == Windows.System.VirtualKey.Enter)
-            {
-                EnterKeyDown?.Invoke(sender, e);
-            }
+        //private void Box_KeyDown(object sender, KeyRoutedEventArgs e)
+        //{
+        //    if (e.Key == Windows.System.VirtualKey.Enter)
+        //    {
+        //        EnterKeyDown?.Invoke(sender, e);
+        //    }
 
-        }
+        //}
         public void DeleteSubTask(object sender, RoutedEventArgs e)
         {
             DeleteButtonClicked?.Invoke(sender, e);

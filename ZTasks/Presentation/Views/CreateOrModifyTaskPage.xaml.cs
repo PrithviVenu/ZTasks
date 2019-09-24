@@ -28,6 +28,7 @@ namespace ZTasks.Presentation.Views
         public ObservableCollection<ZTask> subtasks;
         private ZTask zTask;
         public ZTask TaskObj { get { return zTask; } set { zTask = value; NotifyPropertyChanged(); } }
+        public ZTask AddTask;
         private string TaskId = "";
         public delegate void Collapse();
         public event Collapse CollapseClicked;
@@ -55,7 +56,7 @@ namespace ZTasks.Presentation.Views
 
         public void PageSetup()
         {
-
+            AddTask = new ZTask();
             TaskId = "";
             subtasks = createTaskViewModel.Ztasks;
             subtasks.Clear();
@@ -64,22 +65,22 @@ namespace ZTasks.Presentation.Views
             taskDetail.TaskId = GetTaskId();
             Assignment(zTask.Assignment, "user101010", "user101010", "Prithvi Venu", "Prithvi Venu", taskDetail.TaskId);
             TaskObj = zTask; TaskObj.TaskDetails.CreatedTime = DateTime.Now.Date;
-            ZTask zSubTask = new ZTask();
-            TaskDetail subTaskDetail = zSubTask.TaskDetails;
-            subTaskDetail.CreatedTime = DateTime.Now.Date;
-            subTaskDetail.TaskId = Guid.NewGuid().ToString();
-            subTaskDetail.ParentTaskId = GetTaskId();
-            Assignment(zSubTask.Assignment, "user101010", "user101010", "Prithvi Venu", "Prithvi Venu", subTaskDetail.TaskId);
-            subtasks.Add(zSubTask);
-            Low.Background = new SolidColorBrush(Color.FromArgb(255, 227, 227, 227));
-            PriorityText.Foreground = new SolidColorBrush(Color.FromArgb(255, 136, 136, 136));
+            //ZTask zSubTask = new ZTask();
+            //TaskDetail subTaskDetail = zSubTask.TaskDetails;
+            //subTaskDetail.CreatedTime = DateTime.Now.Date;
+            //subTaskDetail.TaskId = Guid.NewGuid().ToString();
+            //subTaskDetail.ParentTaskId = GetTaskId();
+            //Assignment(zSubTask.Assignment, "user101010", "user101010", "Prithvi Venu", "Prithvi Venu", subTaskDetail.TaskId);
+            //subtasks.Add(zSubTask);
+            // Low.Background = new SolidColorBrush(Color.FromArgb(255, 227, 227, 227));
+            //  PriorityText.Foreground = new SolidColorBrush(Color.FromArgb(255, 136, 136, 136));
             TaskObj.TaskDetails.Priority = 4;
         }
         private void CreateOrModifyUserControlLoaded(object sender, RoutedEventArgs e)
         {
             userControlObj = (CreateOrModifyUserControl)sender;
-            userControlObj.EnterKeyDown -= Box_KeyDown;
-            userControlObj.EnterKeyDown += Box_KeyDown;
+            //userControlObj.EnterKeyDown -= Box_KeyDown;
+            //userControlObj.EnterKeyDown += Box_KeyDown;
             userControlObj.SetEventPageReference(this);
             userControlObj.DeleteButtonClicked -= DeleteSubTask;
             userControlObj.DeleteButtonClicked += DeleteSubTask;
@@ -109,13 +110,13 @@ namespace ZTasks.Presentation.Views
             if ((string)item.Tag == "2")
             {
                 High.Background = new SolidColorBrush(Color.FromArgb(255, 227, 227, 227));
-                PriorityText.Foreground = new SolidColorBrush(Color.FromArgb(255, 217, 72, 59));
+                //  PriorityText.Foreground = new SolidColorBrush(Color.FromArgb(255, 217, 72, 59));
                 TaskObj.TaskDetails.Priority = 2;
             }
             else if ((string)item.Tag == "3")
             {
                 Medium.Background = new SolidColorBrush(Color.FromArgb(255, 227, 227, 227));
-                PriorityText.Foreground = new SolidColorBrush(Color.FromArgb(255, 93, 188, 210));
+                //    PriorityText.Foreground = new SolidColorBrush(Color.FromArgb(255, 93, 188, 210));
                 TaskObj.TaskDetails.Priority = 3;
 
             }
@@ -123,19 +124,41 @@ namespace ZTasks.Presentation.Views
 
             {
                 Low.Background = new SolidColorBrush(Color.FromArgb(255, 227, 227, 227));
-                PriorityText.Foreground = new SolidColorBrush(Color.FromArgb(255, 136, 136, 136));
+                // PriorityText.Foreground = new SolidColorBrush(Color.FromArgb(255, 136, 136, 136));
                 TaskObj.TaskDetails.Priority = 4;
 
             }
 
         }
-        public void Printpriority()
+        public void AddTaskPriorityClick(object sender, RoutedEventArgs e)
         {
-            foreach (ZTask task in subtasks)
+            MenuFlyoutItem item = (MenuFlyoutItem)sender;
+            High.Background = new SolidColorBrush(Colors.Transparent);
+            Low.Background = new SolidColorBrush(Colors.Transparent);
+            Medium.Background = new SolidColorBrush(Colors.Transparent);
+
+            if ((string)item.Tag == "2")
             {
-                Debug.WriteLine(task.TaskDetails.Priority);
+                AddHigh.Background = new SolidColorBrush(Color.FromArgb(255, 227, 227, 227));
+                //  PriorityText.Foreground = new SolidColorBrush(Color.FromArgb(255, 217, 72, 59));
+                AddTask.TaskDetails.Priority = 2;
+            }
+            else if ((string)item.Tag == "3")
+            {
+                AddMedium.Background = new SolidColorBrush(Color.FromArgb(255, 227, 227, 227));
+                //    PriorityText.Foreground = new SolidColorBrush(Color.FromArgb(255, 93, 188, 210));
+                AddTask.TaskDetails.Priority = 3;
 
             }
+            else if ((string)item.Tag == "4")
+
+            {
+                AddLow.Background = new SolidColorBrush(Color.FromArgb(255, 227, 227, 227));
+                // PriorityText.Foreground = new SolidColorBrush(Color.FromArgb(255, 136, 136, 136));
+                AddTask.TaskDetails.Priority = 4;
+
+            }
+
         }
 
         public string GetTaskId()
@@ -203,7 +226,7 @@ namespace ZTasks.Presentation.Views
             taskOperation = TaskOperation.Add;
             Debug.WriteLine("Add Event");
             PageSetup();
-            UserControlAddEventTriggered?.Invoke();
+            // UserControlAddEventTriggered?.Invoke();
 
         }
 
@@ -240,47 +263,69 @@ namespace ZTasks.Presentation.Views
             return null;
         }
 
-        private void Task_KeyDown(object sender, KeyRoutedEventArgs e)
-        {
-            TextBox b = (TextBox)sender;
-            if (e.Key == Windows.System.VirtualKey.Enter && subtasks.Count == 0 && !string.IsNullOrWhiteSpace(b.Text))
-            {
-                ZTask zTask = new ZTask();
-                TaskDetail subTaskDetail = zTask.TaskDetails;
-                subTaskDetail.TaskId = Guid.NewGuid().ToString();
-                subTaskDetail.ParentTaskId = GetTaskId();
-                subTaskDetail.CreatedTime = DateTime.Now.Date;
-                newRowSubTask = zTask;
-                Assignment(zTask.Assignment, "user101010", "user101010", "Prithvi Venu", "Prithvi Venu", subTaskDetail.TaskId);
-                subtasks.Add(zTask);
-                // e.Handled = true; LoseFocus(sender);
-            }
-        }
+        //private void Task_KeyDown(object sender, KeyRoutedEventArgs e)
+        //{
+        //    TextBox b = (TextBox)sender;
+        //    if (e.Key == Windows.System.VirtualKey.Enter && subtasks.Count == 0 && !string.IsNullOrWhiteSpace(b.Text))
+        //    {
+        //        ZTask zTask = new ZTask();
+        //        TaskDetail subTaskDetail = zTask.TaskDetails;
+        //        subTaskDetail.TaskId = Guid.NewGuid().ToString();
+        //        subTaskDetail.ParentTaskId = GetTaskId();
+        //        subTaskDetail.CreatedTime = DateTime.Now.Date;
+        //        newRowSubTask = zTask;
+        //        Assignment(zTask.Assignment, "user101010", "user101010", "Prithvi Venu", "Prithvi Venu", subTaskDetail.TaskId);
+        //        subtasks.Add(zTask);
+        //        // e.Handled = true; LoseFocus(sender);
+        //    }
+        //}
         private void Box_KeyDown(object sender, KeyRoutedEventArgs e)
         {
             TextBox b = (TextBox)sender;
-            ZTask task1 = (ZTask)b.DataContext;
-            task1.TaskDetails.TaskTitle = b.Text;
-            Debug.WriteLine(task1.TaskDetails.TaskTitle);
-            if (subtasks.Last() == task1 && !string.IsNullOrWhiteSpace(b.Text))
+            //ZTask task1 = (ZTask)b.DataContext;
+            //task1.TaskDetails.TaskTitle = b.Text;
+            //Debug.WriteLine(task1.TaskDetails.TaskTitle);
+            //if (subtasks.Last() == task1 && !string.IsNullOrWhiteSpace(b.Text))
+            //{
+            //    ZTask zTask = new ZTask();
+            //    TaskDetail subTaskDetail = zTask.TaskDetails;
+            //    subTaskDetail.TaskId = Guid.NewGuid().ToString();
+            //    subTaskDetail.ParentTaskId = GetTaskId();
+            //    subTaskDetail.CreatedTime = DateTime.Now.Date;
+            //    //newRowSubTask = zTask;
+            //    Assignment(zTask.Assignment, "user101010", "user101010", "Prithvi Venu", "Prithvi Venu", subTaskDetail.TaskId);
+            //    subtasks.Add(zTask);
+            //    //e.Handled = true; LoseFocus(sender);
+
+            //}
+            if (e.Key == Windows.System.VirtualKey.Enter && !string.IsNullOrWhiteSpace(b.Text))
             {
                 ZTask zTask = new ZTask();
                 TaskDetail subTaskDetail = zTask.TaskDetails;
                 subTaskDetail.TaskId = Guid.NewGuid().ToString();
                 subTaskDetail.ParentTaskId = GetTaskId();
                 subTaskDetail.CreatedTime = DateTime.Now.Date;
+                subTaskDetail.TaskTitle = b.Text;
+                subTaskDetail.Priority = AddTask.TaskDetails.Priority;
+                subTaskDetail.DueDate = AddTask.TaskDetails.DueDate;
                 //newRowSubTask = zTask;
                 Assignment(zTask.Assignment, "user101010", "user101010", "Prithvi Venu", "Prithvi Venu", subTaskDetail.TaskId);
                 subtasks.Add(zTask);
+                AddTask.TaskDetails.TaskTitle = "";
+                SubTaskTitle.Text = "";
+                AddTask.TaskDetails.Priority = 4;
+                AddTask.TaskDetails.DueDate = null;
                 //e.Handled = true; LoseFocus(sender);
 
             }
+
         }
-    
+
         private async void SaveTask(object sender, RoutedEventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(TaskTitle.Text))
             {
+                subtasks.Add(AddTask);
                 createTaskViewModel.AddOrModifyTask(TaskObj, taskOperation);
             }
             else
@@ -305,17 +350,17 @@ namespace ZTasks.Presentation.Views
             if (zTask.TaskDetails.Priority == 4)
             {
                 Low.Background = new SolidColorBrush(Color.FromArgb(255, 227, 227, 227));
-                PriorityText.Foreground = new SolidColorBrush(Color.FromArgb(255, 136, 136, 136));
+                // PriorityText.Foreground = new SolidColorBrush(Color.FromArgb(255, 136, 136, 136));
             }
             else if (zTask.TaskDetails.Priority == 3)
             {
                 Medium.Background = new SolidColorBrush(Color.FromArgb(255, 227, 227, 227));
-                PriorityText.Foreground = new SolidColorBrush(Color.FromArgb(255, 93, 188, 210));
+                // PriorityText.Foreground = new SolidColorBrush(Color.FromArgb(255, 93, 188, 210));
             }
             else if (zTask.TaskDetails.Priority == 2)
             {
                 High.Background = new SolidColorBrush(Color.FromArgb(255, 227, 227, 227));
-                PriorityText.Foreground = new SolidColorBrush(Color.FromArgb(255, 217, 72, 59));
+                //PriorityText.Foreground = new SolidColorBrush(Color.FromArgb(255, 217, 72, 59));
             }
 
         }
@@ -342,17 +387,16 @@ namespace ZTasks.Presentation.Views
                 subtasks.Add(subTask);
                 Debug.WriteLine(subTask.TaskDetails.TaskTitle);
             }
-            if (subtasks.Count == 0)
-            {
-                ZTask zTask = new ZTask();
-                TaskDetail subTaskDetail = zTask.TaskDetails;
-                subTaskDetail.TaskId = Guid.NewGuid().ToString();
-                subTaskDetail.ParentTaskId = GetTaskId();
-                newRowSubTask = zTask;
-                Assignment(zTask.Assignment, "user101010", "user101010", "Prithvi Venu", "Prithvi Venu", subTaskDetail.TaskId);
-                subtasks.Add(zTask);
-
-            }
+            //if (subtasks.Count == 0)
+            //{
+            //    ZTask zTask = new ZTask();
+            //    TaskDetail subTaskDetail = zTask.TaskDetails;
+            //    subTaskDetail.TaskId = Guid.NewGuid().ToString();
+            //    subTaskDetail.ParentTaskId = GetTaskId();
+            //    newRowSubTask = zTask;
+            //    Assignment(zTask.Assignment, "user101010", "user101010", "Prithvi Venu", "Prithvi Venu", subTaskDetail.TaskId);
+            //    subtasks.Add(zTask);
+            //}
             Debug.WriteLine(item.TaskDetails.TaskTitle);
         }
         public async void DeleteSubTask(object sender, RoutedEventArgs e)
