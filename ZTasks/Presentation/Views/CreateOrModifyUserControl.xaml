@@ -59,7 +59,7 @@
                             <Setter Property="Background" Value="White"/>
                         </Style>
                     </MenuFlyout.MenuFlyoutPresenterStyle>
-                    <MenuFlyout.Items >
+                    <MenuFlyout.Items>
                         <MenuFlyoutItem x:Name="High" Tag="2" Text="High"  Click="PriorityClick">
                         </MenuFlyoutItem >
                         <MenuFlyoutItem x:Name="Medium" Tag="3" Text="Medium"  Click="PriorityClick">
